@@ -24,7 +24,52 @@ namespace Hangman.UI.Views
             InitializeComponent();
         }
 
-        private void TextBoxControl_Loaded(object sender, RoutedEventArgs e)
+        private void TitleBarControl_WindowStateChangeRequested(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_Name_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_LastName_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_SecondLastName_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_PhoneNumber_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_Email_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_Password_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TextBoxControl_ConfirmPassword_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_SignUp_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
         {
 
         }
