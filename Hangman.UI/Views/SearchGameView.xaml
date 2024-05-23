@@ -64,17 +64,23 @@
                             Foreground="{StaticResource SolidColorBrush_Gold}"
                             Text="Partidas disponibles"
                             TextAlignment="Center" />
-                        <Grid Margin="0,0,0,40">
+                        <Grid Margin="0,0,0,20">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="450" />
+                                <ColumnDefinition Width="250" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="IdPartida" /></TextBlock>
-                            </Border>
+                            <components:TextBoxControl
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Width="200"
+                                Height="50"
+                                HorizontalAlignment="Left"
+                                FieldName="ID de la Partida"
+                                Loaded="TextBoxControl_IDGame"
+                                Text="" />
 
                         </Grid>
                         <Border
