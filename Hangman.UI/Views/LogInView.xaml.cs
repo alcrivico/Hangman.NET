@@ -56,5 +56,10 @@ namespace Hangman.UI.Views
         {
             TextBlock_SingUp.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
         }
+
+        private void TitleBarControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

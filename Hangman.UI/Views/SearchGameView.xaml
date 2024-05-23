@@ -99,7 +99,7 @@
                                     <DataGridTextColumn
                                         Width="*"
                                         Binding="{Binding CreadaPor}"
-                                        Header="Creada por:" />
+                                        Header="Creada por" />
 
                                     <DataGridTextColumn
                                         Width="*"

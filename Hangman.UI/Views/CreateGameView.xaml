@@ -17,11 +17,15 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="344*"/>
+        </Grid.RowDefinitions>
 
         <Border
             BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
             BorderThickness="5"
-            CornerRadius="30">
+            CornerRadius="30" Grid.RowSpan="2">
 
             <Border.Background>
 
@@ -72,6 +76,7 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <components:ComboBoxControl
+                                HorizontalAlignment="Left"
                                 Grid.Column="0"
                                 ComboBoxHeight="40"
                                 ComboBoxWidth="400"
@@ -91,7 +96,7 @@
                                 Margin="10"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+                                AutoGenerateColumns="False" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="*"
