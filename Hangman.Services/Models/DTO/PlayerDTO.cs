@@ -13,8 +13,11 @@ namespace Hangman.Services.Models.DTO
     {
         public static Dictionary<string, object> LogIn(string email, string password)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
-            response.Add("Error", true);
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -26,21 +29,21 @@ namespace Hangman.Services.Models.DTO
                     var query = from player in playerTable
                                 where player.Email == email && player.Password == password
                                 select player;
-
                     if (query.Any())
                     {
                         response["Error"] = false;
-                        response.Add("Message", "Inicio de sesión exitoso");
+                        response["Message"] = "Inicio de sesión exitoso";
                         response.Add("Player", query.First());
                     }
                     else
                     {
-                        response.Add("Message", "Correo o contraseña incorrectos. Por favor, verifíquelos");
+                        response["Message"] = "Correo o contraseña incorrectos. Por favor, verifíquelos";
                     }
                 }
                 catch (SqlException sqlEx)
                 {
-                    Console.WriteLine(sqlEx.Message);
+                    Console.WriteLine(sqlEx.StackTrace);
+                    
                 }
                 finally
                 {
@@ -49,7 +52,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response.Add("Message", Constants.ERROR_CONNECTION_MESSAGE);
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
             }
 
             return response;

@@ -15,13 +15,13 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "Name")]
         public string Name { get; set; }
 
-        [Column (Name = "FirsLastName")]
+        [Column (Name = "FirstLastName")]
         public string FirsLastName { get; set; }
 
         [Column (Name = "SecondLastName")]
         public string SecondLastName { get; set; }
 
-        [Column (Name = "BirhtDate")]
+        [Column (Name = "BirthDate")]
         public DateTime BirhtDate { get; set; }
 
         [Column (Name = "Email")]
