@@ -397,4 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-Utilities/DBConnection.cs
+Hangman.Services/Utilities/DBConnection.cs
