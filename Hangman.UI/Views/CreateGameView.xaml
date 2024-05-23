@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" Loaded="TitleBarControl_Loaded" />
+                    <components:TitleBarControl Loaded="TitleBarControl_Loaded" WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -54,10 +54,15 @@
                         VerticalAlignment="Center"
                         Orientation="Vertical">
                         <TextBlock
-                            Margin="0,0,0,50"
+                            Margin="0,0,0,20"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="50"
-                            TextAlignment="Center"><Run Language="es-mx" Text="Crear partida" /></TextBlock>
+                            FontFamily="{StaticResource Font_Nunito}"
+                            FontSize="60"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource SolidColorBrush_Gold}"
+                            Text="Crear partida"
+                            TextAlignment="Center" />
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />

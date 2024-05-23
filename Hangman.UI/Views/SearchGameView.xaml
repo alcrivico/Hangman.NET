@@ -54,10 +54,16 @@
                         VerticalAlignment="Center"
                         Orientation="Vertical">
                         <TextBlock
+                            Grid.Row="0"
                             Margin="0,0,0,20"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontSize="50"
-                            TextAlignment="Center"><Run Language="es-mx" Text="Crear partida" /></TextBlock>
+                            FontFamily="{StaticResource Font_Nunito}"
+                            FontSize="60"
+                            FontWeight="Bold"
+                            Foreground="{StaticResource SolidColorBrush_Gold}"
+                            Text="Partidas disponibles"
+                            TextAlignment="Center" />
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
