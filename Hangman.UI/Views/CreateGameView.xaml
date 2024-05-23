@@ -74,15 +74,6 @@
                             <Border Grid.Column="0" Background="LightGray">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categorias" /></TextBlock>
                             </Border>
-                            <components:TextBoxControl
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Width="200"
-                                Height="50"
-                                HorizontalAlignment="Right"
-                                FieldName="ID de la Partida"
-                                Loaded="TextBoxControl_IDGame"
-                                Text="" />
                         </Grid>
                         <Border
                             Height="290"

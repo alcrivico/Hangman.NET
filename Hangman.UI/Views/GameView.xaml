@@ -78,12 +78,7 @@
                                 <Border Grid.Row="0" Background="LightGray">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categoria" /></TextBlock>
                                 </Border>
-                                <Border
-                                    Grid.Row="1"
-                                    Margin="0,0,0,20"
-                                    Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Pista" /></TextBlock>
-                                </Border>
+                                
                                 <Border
                                     Grid.Row="3"
                                     Margin="0,0,0,30"
@@ -133,15 +128,17 @@
 
                 <Grid Name="Footer" Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="282*"/>
-                        <ColumnDefinition Width="353*"/>
+                        <ColumnDefinition Width="282*" />
+                        <ColumnDefinition Width="353*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
+                        Grid.ColumnSpan="2"
+                        Margin="491,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{StaticResource SolidColorBrush_White}"
                         Text="© 2024 Universidad Veracruzana. Derechos reservados"
-                        TextAlignment="Center" Grid.ColumnSpan="2" Margin="491,0,0,0" />
+                        TextAlignment="Center" />
                 </Grid>
 
             </Grid>
