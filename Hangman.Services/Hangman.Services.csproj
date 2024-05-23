@@ -75,6 +75,7 @@
     <Compile Include="Communications\PlayerServices.svc.cs">
       <DependentUpon>PlayerServices.svc</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\CategoriesDTO.cs" />
     <Compile Include="Models\DTO\GameDTO.cs" />
     <Compile Include="Models\DTO\PlayerDTO.cs" />
     <Compile Include="Models\POCO\Category.cs" />
