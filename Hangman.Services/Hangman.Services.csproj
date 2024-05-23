@@ -65,6 +65,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\POCO\Category.cs" />
     <Compile Include="Models\POCO\Game.cs" />
     <Compile Include="Models\POCO\GameStatus.cs" />
     <Compile Include="Models\POCO\Language.cs" />
