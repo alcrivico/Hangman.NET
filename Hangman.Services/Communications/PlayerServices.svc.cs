@@ -27,5 +27,12 @@ namespace Hangman.Services.Communications
         {
             return (Player)PlayerDTO.UpdateProfile(player)["Player"];
         }
+
+        public List<Game> GetPlayedGames(int idPlayer)
+        {
+            return (List<Game>)PlayerDTO.GetPlayedGames(idPlayer)["Games"];
+        }
+
+
     }
 }

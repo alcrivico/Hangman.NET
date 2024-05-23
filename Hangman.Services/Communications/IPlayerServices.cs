@@ -20,5 +20,10 @@ namespace Hangman.Services.Communications
 
         [OperationContract]
         Player UpdateProfile(Player player);//Cambiar el retorno
+
+        [OperationContract]
+        List<Game> GetPlayedGames(int idPlayer);//Cambiar el retorno
+
+
     }
 }
