@@ -28,7 +28,6 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Game> gameTable = data.GetTable<Game>();
 
-                    // Establecer la fecha de creación de la partida
                     newGame.CreationDate = DateTime.Now;
 
                     gameTable.InsertOnSubmit(newGame);
@@ -36,7 +35,6 @@ namespace Hangman.Services.Models.DTO
 
                     response["Error"] = false;
                     response["Message"] = "Partida creada exitosamente";
-                    response.Add("Game", newGame);
                 }
                 catch (SqlException sqlEx)
                 {
