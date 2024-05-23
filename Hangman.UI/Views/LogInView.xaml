@@ -137,9 +137,12 @@
                             TextAlignment="Center" />
 
                         <components:ButtonControl
+                            x:Name="Button_LogIn"
                             Grid.Row="3"
                             Width="150"
-                            Height="55" />
+                            Height="55"
+                            ButtonControlClick="Button_LogIn_ButtonControlClick"
+                            Text="Acceder" />
 
                         <TextBlock
                             Grid.Row="4"

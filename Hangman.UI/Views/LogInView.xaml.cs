@@ -30,5 +30,11 @@ namespace Hangman.UI.Views
             this.WindowState = e;
         }
 
+        private void Button_LogIn_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+            //Comportamiento de Prueba para el botón de LogIn
+            //Temporal
+            MessageBox.Show("LogIn Button Clicked");
+        }
     }
 }
