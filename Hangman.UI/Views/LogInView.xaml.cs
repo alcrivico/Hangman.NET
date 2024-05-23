@@ -34,12 +34,8 @@ namespace Hangman.UI.Views
         {
             //Comportamiento de Prueba para el botón de LogIn
             //Temporal
-            MessageBox.Show("LogIn Button Clicked");
+            MessageBox.Show("Password: " + PasswordBoxControl.PasswordText);
         }
 
-        private void Button_LogIn_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

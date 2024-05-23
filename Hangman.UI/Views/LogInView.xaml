@@ -47,6 +47,7 @@
                 </Grid>
 
 
+
                 <Grid
                     Name="CaseContent"
                     Grid.Row="1"
@@ -64,89 +65,90 @@
                             VerticalAlignment="Center"
                             Fill="LightGray" />
                     </Grid>
-
-                    <Grid Grid.Column="1">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="0.5*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="0.5*" />
-                        </Grid.RowDefinitions>
-
-
-
-                        <TextBlock
-                            Grid.Row="0"
-                            Margin="0,50,0,50"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource Font_Nunito}"
-                            FontSize="60"
-                            FontWeight="Bold"
-                            Foreground="{StaticResource SolidColorBrush_Gold}"
-                            Text="Ahorcado.NET"
-                            TextAlignment="Center" />
-
-                        <Grid Grid.Row="1">
+                    <Border
+                        Grid.Column="1"
+                        Background="{StaticResource SolidColorBrush_MarianBlue}"
+                        BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
+                        BorderThickness="5"
+                        CornerRadius="30">
+                        <Grid>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="0.5*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="0.5*" />
                             </Grid.RowDefinitions>
 
-                            <components:TextBoxControl
+
+
+                            <TextBlock
                                 Grid.Row="0"
-                                Width="400"
-                                Height="50"
-                                FieldName="Correo Electronico"
-                                Text="Texto Ejemplo yyy" />
-
-                            <PasswordBox
-                                Grid.Row="1"
-                                Width="400"
-                                Height="50"
-                                Padding="10"
-                                Background="Transparent"
-                                BorderBrush="{StaticResource SolidColorBrush_Gold}"
-                                BorderThickness="2"
+                                Margin="0,50,0,50"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 FontFamily="{StaticResource Font_Nunito}"
-                                Foreground="White" />
+                                FontSize="60"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource SolidColorBrush_Gold}"
+                                Text="Ahorcado.NET"
+                                TextAlignment="Center" />
+
+                            <Grid Grid.Row="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <components:TextBoxControl
+                                    Grid.Row="0"
+                                    Width="400"
+                                    Height="50"
+                                    FieldName="Correo Electronico"
+                                    Text="" />
+
+                                <components:PasswordBoxControl
+                                    x:Name="PasswordBoxControl"
+                                    Grid.Row="1"
+                                    Width="400"
+                                    Height="50"
+                                    FieldName="Contraseña" />
+
+                            </Grid>
+
+                            <TextBlock
+                                Grid.Row="2"
+                                Margin="0,40,0,40"
+                                Background="#002255"
+                                FontFamily="{StaticResource Font_Nunito}"
+                                Foreground="{StaticResource SolidColorBrush_Gold}"
+                                Text="Correo y/o contraseña incorrectos. Por favor, verifíquelos."
+                                TextAlignment="Center" />
+
+                            <components:ButtonControl
+                                x:Name="Button_LogIn"
+                                Grid.Row="3"
+                                Width="150"
+                                Height="55"
+                                ButtonControlClick="Button_LogIn_ButtonControlClick"
+                                FontSize="24"
+                                Text="Entrar" />
+
+                            <TextBlock
+                                Grid.Row="4"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource Font_Nunito}"
+                                FontSize="14"
+                                Foreground="{StaticResource SolidColorBrush_Gold}"
+                                Text="Registrar Usuario"
+                                TextAlignment="Center" />
+
                         </Grid>
-
-                        <TextBlock
-                            Grid.Row="2"
-                            Margin="0,40,0,40"
-                            Background="#002255"
-                            FontFamily="{StaticResource Font_Nunito}"
-                            Foreground="{StaticResource SolidColorBrush_Gold}"
-                            Text="Correo y/o contraseña incorrectos. Por favor, verifíquelos."
-                            TextAlignment="Center" />
-
-                        <components:ButtonControl
-                            x:Name="Button_LogIn"
-                            Grid.Row="3"
-                            Width="150"
-                            Height="55"
-                            FontSize="24"
-                            ButtonControlClick="Button_LogIn_ButtonControlClick"
-                            Text="Acceder" Loaded="Button_LogIn_Loaded" />
-
-                        <TextBlock
-                            Grid.Row="4"
-                            Margin="0,0,0,0"
-                            FontSize="14"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource Font_Nunito}"
-                            Foreground="{StaticResource SolidColorBrush_Gold}"
-                            Text="Registrar Usuario"
-                            TextAlignment="Center" />
-
-
-
-                    </Grid>
+                    </Border>
 
                 </Grid>
 
