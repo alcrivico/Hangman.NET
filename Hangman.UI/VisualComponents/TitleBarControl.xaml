@@ -20,6 +20,16 @@
             <ColumnDefinition Width="0.05*" />
         </Grid.ColumnDefinitions>
 
+        <local:ComboBoxControl
+            x:Name="ComboBoxControl"
+            Grid.Column="0"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ComboBoxHeight="30"
+            ComboBoxWidth="250"
+            Text="--Idioma--" />
+
         <Border
             Name="UvLogo"
             Grid.Column="1"

@@ -20,6 +20,46 @@ namespace Hangman.UI.VisualComponents
     /// </summary>
     public partial class ComboBoxControl : UserControl
     {
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register(
+                "Text",
+                typeof(string),
+                typeof(ComboBoxControl),
+                new PropertyMetadata(string.Empty));
+
+        public int ComboBoxWidth
+        {
+            get { return (int)GetValue(ComboBoxWidthProperty); }
+            set { SetValue(ComboBoxWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ComboBoxWidthProperty =
+            DependencyProperty.Register(
+                               "ComboBoxWidth",
+                               typeof(int),
+                               typeof(ComboBoxControl),
+                               new PropertyMetadata(150));
+
+        public int ComboBoxHeight
+        {
+            get { return (int)GetValue(ComboBoxHeightProperty); }
+            set { SetValue(ComboBoxHeightProperty, value); }
+        }
+
+        public static readonly DependencyProperty ComboBoxHeightProperty =
+            DependencyProperty.Register(
+                               "ComboBoxHeight",
+                               typeof(int),
+                               typeof(ComboBoxControl),
+                               new PropertyMetadata(55));
+
         public ComboBoxControl()
         {
             InitializeComponent();
@@ -27,7 +67,7 @@ namespace Hangman.UI.VisualComponents
 
         private void ComboBox_Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            
+            // TODO
         }
 
         private void ComboBox_Button_MouseEnter(object sender, MouseEventArgs e)

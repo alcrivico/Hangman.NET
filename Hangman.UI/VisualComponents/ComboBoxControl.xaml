@@ -5,13 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="40"
+    x:Name="ComboBox"
+    d:DesignHeight="320"
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Grid>
         <Border
             x:Name="ComboBox_Border"
-            Height="40"
+            Width="{Binding ComboBoxWidth, ElementName=ComboBox}"
+            Height="{Binding ComboBoxHeight, ElementName=ComboBox}"
+            VerticalAlignment="Top"
             Panel.ZIndex="0"
             Background="{StaticResource SolidColorBrush_MarianBlue}"
             BorderBrush="{StaticResource SolidColorBrush_Gold}"
@@ -33,7 +36,7 @@
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="--Categorías--"
+                    Text="{Binding Text, ElementName=ComboBox}"
                     TextAlignment="Left" />
 
                 <Border
@@ -69,6 +72,84 @@
 
             </Grid>
 
+        </Border>
+        <Border
+            x:Name="ComboBox_Dropdown"
+            Width="400"
+            Height="180"
+            Margin="0,40,0,0"
+            VerticalAlignment="Top"
+            Background="{StaticResource SolidColorBrush_RoyalBlue}"
+            BorderBrush="{StaticResource SolidColorBrush_Gold}"
+            BorderThickness="3"
+            CornerRadius="10"
+            Visibility="Hidden">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Padding="20,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="Celda 1" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Padding="20,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="Celda 2" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Padding="20,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="Celda 3" />
+
+                <TextBlock
+                    Grid.Row="3"
+                    Padding="20,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="Celda 4" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Padding="20,0,20,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="Celda 5" />
+
+            </Grid>
         </Border>
 
     </Grid>

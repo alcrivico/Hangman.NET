@@ -72,7 +72,11 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <components:ComboBoxControl Grid.Column="0" />
+                            <components:ComboBoxControl
+                                Grid.Column="0"
+                                ComboBoxHeight="40"
+                                ComboBoxWidth="400"
+                                Text="--Categorías--" />
                             <components:TextBoxControl
                                 Grid.Row="0"
                                 Grid.Column="1"
