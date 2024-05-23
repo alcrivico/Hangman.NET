@@ -57,5 +57,52 @@ namespace Hangman.Services.Models.DTO
 
             return response;
         }
+
+        public static Dictionary<string, object> SignUp(Player player)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Player> playerTable = data.GetTable<Player>();
+
+                    var query = from p in playerTable
+                                where p.Email == player.Email
+                                select p;
+                    if (!query.Any())
+                    {
+                        playerTable.InsertOnSubmit(player);
+                        data.SubmitChanges();
+                        response["Error"] = false;
+                        response["Message"] = "Registro exitoso";
+                        response.Add("Player", player);
+                    }
+                    else
+                    {
+                        response["Message"] = "Ya existe un jugador registrado con ese correo electrónico";
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    Console.WriteLine(sqlEx.StackTrace);
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
     }
 }
