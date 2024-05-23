@@ -82,7 +82,6 @@ namespace Hangman.Services.Models.DTO
                         data.SubmitChanges();
                         response["Error"] = false;
                         response["Message"] = "Registro exitoso";
-                        response.Add("Player", player);
                     }
                     else
                     {

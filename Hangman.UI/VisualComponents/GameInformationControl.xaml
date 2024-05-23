@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="Hangman.UI.VisualComponents.GameInformationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="InformationControl"
+    d:DesignHeight="100"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            x:Name="Category_Border"
+            Padding="10"
+            Background="{StaticResource SolidColorBrush_RoyalBlue}"
+            BorderBrush="{StaticResource SolidColorBrush_Gold}"
+            BorderThickness="2"
+            CornerRadius="20">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="{StaticResource Font_Nunito}"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="{StaticResource SolidColorBrush_Gold}"
+                Text="{Binding GameInformation, ElementName=InformationControl}"
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
+        </Border>
+    </Grid>
+
+</UserControl>

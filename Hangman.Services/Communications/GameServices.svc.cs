@@ -13,9 +13,10 @@ namespace Hangman.Services.Communications
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione GameServices.svc o GameServices.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class GameServices : IGameServices
     {
-        public Game CreateGame(Game newGame)
+        //CAMBIAR RETORNOS A DICTIONARY
+        public string CreateGame(Game newGame)
         {
-            return (Game)GameDTO.CreateGame(newGame)["Game"];
+            return (string)GameDTO.CreateGame(newGame)["Message"];
         }
 
         public List<Category> GetCategoriesList()
@@ -28,21 +29,23 @@ namespace Hangman.Services.Communications
             return (List<Word>)WordDTO.GetWordsList()["Words"];
         }
 
-        public Game SetChallenger(int idGame, int idChallenger)
+        public string SetChallenger(int idGame, int idChallenger)
         {
-            return (Game)GameDTO.SetChallenger(idGame, idChallenger)["Game"];
+            return (string)GameDTO.SetChallenger(idGame, idChallenger)["Message"];
         }
 
-        public Game SetGameStatus(int idGame, int idStatus)
+        public string SetGameStatus(int idGame, int idStatus)
         {
-            return (Game)GameDTO.SetGameStatus(idGame, idStatus)["Game"];
+            return (string)GameDTO.SetGameStatus(idGame, idStatus)["Message"];
         }
 
-        /*No jala, debo revisarlo xd
+        public List<Game> GetWaitingGames()
+        {
+            return (List<Game>)GameDTO.GetWaitingGames()["Games"];
+        }
         public string GetPlayerType(int playerId, int gameId)
         {
-            var response = GameDTO.GetPlayerType(playerId, gameId);
-            return response.ContainsKey("PlayerType") ? response["PlayerType"].ToString() : "Unknown";
-        }*/
+            return (string)GameDTO.GetPlayerType(playerId, gameId)["PlayerType"];
+        }
     }
 }

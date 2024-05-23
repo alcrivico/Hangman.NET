@@ -1,0 +1,76 @@
+﻿<UserControl
+    x:Class="Hangman.UI.VisualComponents.ComboBoxControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="40"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            x:Name="ComboBox_Border"
+            Height="40"
+            Panel.ZIndex="0"
+            Background="{StaticResource SolidColorBrush_MarianBlue}"
+            BorderBrush="{StaticResource SolidColorBrush_Gold}"
+            BorderThickness="3"
+            CornerRadius="10">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Grid.Column="0"
+                    Padding="10,0,10,0"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    Text="--Categorías--"
+                    TextAlignment="Left" />
+
+                <Border
+                    x:Name="ComboBox_Highlight"
+                    Grid.Column="1"
+                    Background="{StaticResource SolidColorBrush_Black}"
+                    BorderThickness="0"
+                    CornerRadius="10"
+                    Cursor="Hand"
+                    Opacity="0.5"
+                    Visibility="Hidden" />
+
+                <Grid
+                    x:Name="ComboBox_Button"
+                    Grid.Column="1"
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Center"
+                    Cursor="Hand"
+                    MouseEnter="ComboBox_Button_MouseEnter"
+                    MouseLeave="ComboBox_Button_MouseLeave"
+                    MouseLeftButtonUp="ComboBox_Button_MouseLeftButtonUp">
+
+                    <Border x:Name="ComboBox_Arrow">
+
+                        <Border.Background>
+                            <ImageBrush ImageSource="{StaticResource Icon_ArrowDown}" Stretch="Uniform" />
+                        </Border.Background>
+
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

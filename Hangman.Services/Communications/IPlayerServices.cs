@@ -12,11 +12,12 @@ namespace Hangman.Services.Communications
     [ServiceContract]
     public interface IPlayerServices
     {
+        //CAMBIAR RETORNOS A DICTIONARY
         [OperationContract]
         Player LogIn(string email, string pass);//Cambiar el retorno
 
         [OperationContract]
-        Player SignUp(Player player);//Cambiar el retorno
+        string SignUp(Player player);//Cambiar el retorno
 
         [OperationContract]
         Player UpdateProfile(Player player);//Cambiar el retorno

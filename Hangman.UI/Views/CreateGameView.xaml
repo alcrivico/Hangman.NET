@@ -44,7 +44,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl Loaded="TitleBarControl_Loaded" WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -72,9 +72,15 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categorias" /></TextBlock>
-                            </Border>
+                            <components:ComboBoxControl Grid.Column="0" />
+                            <components:TextBoxControl
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Width="200"
+                                Height="50"
+                                HorizontalAlignment="Right"
+                                FieldName="ID de la Partida"
+                                Text="" />
                         </Grid>
                         <Border
                             Height="290"
@@ -90,6 +96,7 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
+
                             <components:ButtonControl
                                 x:Name="Button_StartGame"
                                 Grid.Column="0"
@@ -99,8 +106,8 @@
                                 HorizontalAlignment="Right"
                                 ButtonControlClick="Button_StartGame_ButtonControlClick"
                                 FontSize="24"
-                                Loaded="Button_StartGame_Loaded"
                                 Text="Iniciar partida" />
+
                             <components:ButtonControl
                                 x:Name="Button_Cancel"
                                 Grid.Column="1"
@@ -110,7 +117,6 @@
                                 HorizontalAlignment="Left"
                                 ButtonControlClick="Button_Cancel_ButtonControlClick"
                                 FontSize="24"
-                                Loaded="Button_Cancel_Loaded"
                                 Text="Cancelar" />
                         </Grid>
                     </StackPanel>

@@ -21,7 +21,6 @@ namespace Hangman.UI.VisualComponents
     /// </summary>
     public partial class ButtonControl : UserControl
     {
-
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
@@ -64,8 +63,6 @@ namespace Hangman.UI.VisualComponents
         public ButtonControl()
         {
             InitializeComponent();
-            Button.ButtonHeight = ButtonHeight;
-            Button.ButtonWidth = ButtonWidth;
         }
 
         public static RoutedEvent ButtonControlClickEvent = 
@@ -85,8 +82,6 @@ namespace Hangman.UI.VisualComponents
         {
 
             Button_Border.Effect = FindResource("ButtonDropShadow") as DropShadowEffect;
-            Button.Height += 3;
-            Button.Width += 3;
 
             RaiseEvent(new RoutedEventArgs(ButtonControlClickEvent));
 
@@ -104,8 +99,6 @@ namespace Hangman.UI.VisualComponents
 
             Button_Highlight.Opacity = 0;
             Button_Border.Effect = FindResource("ButtonDropShadow") as DropShadowEffect;
-            Button.Height = ButtonHeight;
-            Button.Width = ButtonWidth;
 
         }
 
@@ -113,8 +106,6 @@ namespace Hangman.UI.VisualComponents
         {
 
             Button_Border.Effect = null;
-            Button.Height -= 3;
-            Button.Width -= 3;
 
         }
     }

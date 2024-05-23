@@ -79,5 +79,17 @@ namespace Hangman.UI.VisualComponents
             InitializeComponent();
         }
 
+        public void Disable()
+        {
+            TextBox.IsEnabled = false;
+            TextBox_Highlight.Visibility = Visibility.Visible;
+        }
+
+        public void Enable()
+        {
+            TextBox.IsEnabled = true;
+            TextBox_Highlight.Visibility = Visibility.Hidden;
+        }
+
     }
 }

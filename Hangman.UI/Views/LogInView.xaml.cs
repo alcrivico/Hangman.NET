@@ -24,6 +24,7 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
             Hangman.SetHangmanElements();
+            TextBoxControl.Disable();
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -36,6 +37,7 @@ namespace Hangman.UI.Views
             //Comportamiento de Prueba para el botón de LogIn - Resultado Esperado: Verificará el usuario y contraseña y llevará a la ventana MenuView
             //Temporal
             MessageBox.Show("Password: " + PasswordBoxControl.PasswordText);
+            TextBoxControl.Enable();
         }
 
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

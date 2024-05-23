@@ -12,8 +12,9 @@ namespace Hangman.Services.Communications
     [ServiceContract]
     public interface IGameServices
     {
+        //CAMBIAR RETORNOS A DICTIONARY
         [OperationContract]
-        Game CreateGame(Game newGame);
+        string CreateGame(Game newGame);
 
         [OperationContract]
         List<Category> GetCategoriesList();
@@ -22,14 +23,15 @@ namespace Hangman.Services.Communications
         List<Word> GetWordsList();
 
         [OperationContract]
-        Game SetChallenger(int idGame, int idChallenger);
+        string SetChallenger(int idGame, int idChallenger);
 
         [OperationContract]
-        Game SetGameStatus(int idGame, int idStatus);
+        string SetGameStatus(int idGame, int idStatus);
 
-        /*Por probar,no confio x'd - actualizacion: No jalo xd
+        [OperationContract]
+        List<Game> GetWaitingGames();
+
         [OperationContract]
         string GetPlayerType(int playerId, int gameId);
-        */
     }
 }

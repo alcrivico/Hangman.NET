@@ -28,7 +28,6 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Game> gameTable = data.GetTable<Game>();
 
-                    // Establecer la fecha de creación de la partida
                     newGame.CreationDate = DateTime.Now;
 
                     gameTable.InsertOnSubmit(newGame);
@@ -36,7 +35,6 @@ namespace Hangman.Services.Models.DTO
 
                     response["Error"] = false;
                     response["Message"] = "Partida creada exitosamente";
-                    response.Add("Game", newGame);
                 }
                 catch (SqlException sqlEx)
                 {
@@ -68,7 +66,10 @@ namespace Hangman.Services.Models.DTO
                     Table<Game> gameTable = data.GetTable<Game>();
 
                     var query = from game in gameTable
-                                where game.IdChallengerPlayer == idPlayer
+                                where game.IdChallengerPlayer == idPlayer &&
+                                (game.IdStatus == 3 || 
+                                    game.IdStatus == 4 ||
+                                    game.IdStatus == 6)
                                 select game;
                     if (query.Any())
                     {
@@ -84,6 +85,35 @@ namespace Hangman.Services.Models.DTO
                 finally
                 {
                     data.Dispose();
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
+
+        public static Dictionary<string, object> GetWaitingGames()
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                Table<Game> gameTable = data.GetTable<Game>();
+                var query = from game in gameTable
+                            where game.IdStatus == 1
+                            select game;
+                if (query.Any())
+                {
+                    response["Error"] = false;
+                    response["Message"] = "Partidas encontradas";
+                    response.Add("Games", query.ToList());
                 }
             }
             else
@@ -115,7 +145,6 @@ namespace Hangman.Services.Models.DTO
                     data.SubmitChanges();
                     response["Error"] = false;
                     response["Message"] = "Estado de la partida actualizado";
-                    response.Add("Game", game);
                 }
                 else
                 {
@@ -141,18 +170,16 @@ namespace Hangman.Services.Models.DTO
             if (data != null)
             {
                 Table<Game> gameTable = data.GetTable<Game>();
-                var query = from game in gameTable
+                var query = (from game in gameTable
                             where game.IdGame == idGame
-                            select game;
-                if (query.Any())
+                            select game).First();
+                if (query != null)
                 {
-                    Game game = query.First();
-                    game.IdChallengerPlayer = idChallenger;
+                    query.IdChallengerPlayer = idChallenger;
                     data.SubmitChanges();
 
                     response["Error"] = false;
                     response["Message"] = "Partida aceptada";
-                    response.Add("Game", game);
                 }
                 else
                 {
@@ -165,8 +192,6 @@ namespace Hangman.Services.Models.DTO
             }
             return response;
         }
-
-        /*No jala, mejor comentarlo xd
         public static Dictionary<string, object> GetPlayerType(int playerId, int gameId)
         {
             Dictionary<string, object> response = new Dictionary<string, object>
@@ -195,14 +220,9 @@ namespace Hangman.Services.Models.DTO
                         {
                             response["PlayerType"] = "Creator";
                         }
-                        else if (game.IdChallengerPlayer == playerId)
-                        {
-                            response["PlayerType"] = "Challenger";
-                        }
                         else
                         {
-                            //No estoy del todo segura de si este es necesario, el jugador sera o un creador o un retador
-                            response["PlayerType"] = "Unknown";
+                            response["PlayerType"] = "Challenger";
                         }
 
                         response["Error"] = false;
@@ -223,7 +243,12 @@ namespace Hangman.Services.Models.DTO
                     data.Dispose();
                 }
             }
-        }*/
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
 
     }
 }
