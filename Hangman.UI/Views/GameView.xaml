@@ -62,9 +62,12 @@
                                 <ColumnDefinition Width="1.5*" />
                                 <ColumnDefinition Width="1.5*" />
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Imagen ahorcado" /></TextBlock>
-                            </Border>
+                            <components:HangmanControl
+                                x:Name="Hangman"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,0,10"
+                                Grid.Row="0"
+                                IncorrectGuesses="6" Loaded="Hangman_Loaded" />
 
                             <Grid Grid.Column="1" Margin="0,0,0,0">
                                 <Grid.RowDefinitions>
@@ -78,7 +81,7 @@
                                 <Border Grid.Row="0" Background="LightGray">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categoria" /></TextBlock>
                                 </Border>
-                                
+
                                 <Border
                                     Grid.Row="3"
                                     Margin="0,0,0,30"

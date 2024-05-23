@@ -56,9 +56,7 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <!--  Fila para el título corto  -->
                                 <RowDefinition Height="50" />
-                                <!--  Fila vacía  -->
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
@@ -72,17 +70,20 @@
                                     VerticalAlignment="Center"
                                     Text="Perfil" />
                             </Border>
-                            <Rectangle
+                            <components:HangmanControl
+                                x:Name="Hangman"
                                 Grid.Row="1"
-                                Width="200"
-                                Height="300"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Fill="LightGray" />
+                                IncorrectGuesses="6" />
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Column="1">
+                    <Border
+                        Grid.Column="1"
+                        Background="{StaticResource SolidColorBrush_MarianBlue}"
+                        BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
+                        BorderThickness="5"
+                        CornerRadius="30">
+
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="150" />
@@ -143,7 +144,6 @@
                                 </Border>
                             </Grid>
 
-
                             <components:ButtonControl
                                 x:Name="Button_SearchGame"
                                 Grid.Row="3"
@@ -166,9 +166,8 @@
                                 Text="Crear partida" />
 
                         </Grid>
-                    </Grid>
+                    </Border>
                 </Grid>
-
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock
                         HorizontalAlignment="Center"
@@ -178,9 +177,11 @@
                         TextAlignment="Center" />
                 </Grid>
 
-            </Grid>
 
+            </Grid>
         </Border>
 
+
     </Grid>
+
 </Window>

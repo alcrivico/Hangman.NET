@@ -23,5 +23,10 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
         }
+
+        private void Hangman_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
