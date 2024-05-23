@@ -23,5 +23,10 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
         }
+
+        private void TitleBarControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

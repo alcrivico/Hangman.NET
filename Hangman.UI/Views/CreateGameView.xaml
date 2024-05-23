@@ -43,10 +43,59 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" Loaded="TitleBarControl_Loaded" />
                 </Grid>
 
-
+                <Grid Grid.Row="1" Margin="0,0,30,0">
+                    <StackPanel
+                        Width="1220"
+                        Height="590"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="0,0,0,50"
+                            VerticalAlignment="Center"
+                            FontSize="50"
+                            TextAlignment="Center"><Run Language="es-mx" Text="Crear partida" /></TextBlock>
+                        <Grid Margin="0,0,0,40">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categorias" /></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Id partida" /></TextBlock>
+                            </Border>
+                        </Grid>
+                        <Border
+                            Height="290"
+                            Margin="0,0,0,20"
+                            Background="LightGray">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
+                        </Border>
+                        <Grid Margin="0,0,0,40">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Iniciar partida" /></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Cancelar" /></TextBlock>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
 
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock
