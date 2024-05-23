@@ -74,6 +74,7 @@
     <Compile Include="Models\POCO\Player.cs" />
     <Compile Include="Models\POCO\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\DBConnection.cs" />
   </ItemGroup>
   <ItemGroup>
