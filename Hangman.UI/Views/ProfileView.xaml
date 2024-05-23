@@ -73,16 +73,16 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <components:ButtonControl
-                                x:Name="Button_Return"
+                                x:Name="Button_Back"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Width="160"
                                 Height="40"
                                 Margin="20,0,0,0"
                                 HorizontalAlignment="Left"
-                                ButtonControlClick="Button_Return_ButtonControlClick"
+                                ButtonControlClick="Button_Back_ButtonControlClick"
                                 FontSize="18"
-                                Loaded="Button_Return_Loaded"
+                                Loaded="Button_Back_Loaded"
                                 Text="Regresar" />
                             <Border
                                 Grid.Row="0"

@@ -84,14 +84,14 @@
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
                         </Border>
                         <components:ButtonControl
-                            x:Name="Button_Return"
+                            x:Name="Button_Back"
                             Width="200"
                             Height="55"
                             Margin="0,0,0,0"
                             HorizontalAlignment="Center"
-                            ButtonControlClick="Button_Return_ButtonControlClick"
+                            ButtonControlClick="Button_Back_ButtonControlClick"
                             FontSize="24"
-                            Loaded="Button_Return_Loaded"
+                            Loaded="Button_Back_Loaded"
                             Text="Volver" />
                     </StackPanel>
                 </Grid>
