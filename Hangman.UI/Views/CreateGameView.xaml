@@ -91,7 +91,7 @@
                                 Margin="10"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                AutoGenerateColumns="False">
+                                AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="*"
@@ -101,7 +101,7 @@
                                     <DataGridTextColumn
                                         Width="*"
                                         Binding="{Binding Pista}"
-                                        Header="Pista:" />
+                                        Header="Pista" />
 
                                 </DataGrid.Columns>
                             </DataGrid>

@@ -63,14 +63,15 @@
                                 <ColumnDefinition Width="1.5*" />
                             </Grid.ColumnDefinitions>
                             <components:HangmanControl
-                                Width="300" 
-                                Height="350"
                                 x:Name="Hangman"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,0,0"
                                 Grid.Row="0"
-                                IncorrectGuesses="6" Loaded="Hangman_Loaded" />
+                                Width="300"
+                                Height="350"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                IncorrectGuesses="6"
+                                Loaded="Hangman_Loaded" />
 
                             <Grid Grid.Column="1" Margin="0,0,0,0">
                                 <Grid.RowDefinitions>
@@ -81,9 +82,20 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Row="0" Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Categoria" /></TextBlock>
-                                </Border>
+                                <components:GameInformationControl
+                                    x:Name="Category"
+                                    Grid.Row="0"
+                                    Width="300"
+                                    Height="100"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+                                <components:GameInformationControl
+                                    x:Name="Clue"
+                                    Grid.Row="1"
+                                    Width="300"
+                                    Height="100"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
 
                                 <Border
                                     Grid.Row="3"
