@@ -4,6 +4,7 @@
         x:Key="ButtonDropShadow"
         BlurRadius="4"
         Direction="315"
-        Opacity="20" />
+        Opacity="0.5"
+        Color="{StaticResource Color_Black}" />
 
 </ResourceDictionary>
