@@ -384,4 +384,32 @@
 
     <DrawingImage x:Key="Icon_RightLeg" Drawing="{StaticResource Vector_RightLeg}" />
 
+    <DrawingGroup x:Key="Vector_ArrowDown">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0,0,80.755,45.255" />
+        </DrawingGroup.ClipGeometry>
+        <DrawingGroup Transform="0.707107,0.707107,-0.707107,0.707107,22.627,-9.37241">
+            <GeometryDrawing Brush="#fffcfcfd">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry
+                        RadiusX="3.5"
+                        RadiusY="3.5"
+                        Rect="-5.873,19.127,57.0,7.0" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="-0.707107,0.707107,-0.707107,-0.707107,115.229,-2.47529">
+            <GeometryDrawing Brush="#fffcfcfd">
+                <GeometryDrawing.Geometry>
+                    <RectangleGeometry
+                        RadiusX="3.5"
+                        RadiusY="3.5"
+                        Rect="29.627,19.127,57.0,7.0" />
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+    </DrawingGroup>
+
+    <DrawingImage x:Key="Icon_ArrowDown" Drawing="{StaticResource Vector_ArrowDown}" />
+
 </ResourceDictionary>

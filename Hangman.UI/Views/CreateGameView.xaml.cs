@@ -24,9 +24,19 @@ namespace Hangman.UI.Views
             InitializeComponent();
         }
 
-        private void TitleBarControl_Loaded(object sender, RoutedEventArgs e)
+        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {
+            this.WindowState = e;
+        }
 
+        private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+            //
         }
     }
 }

@@ -26,6 +26,15 @@
             Foreground="{StaticResource SolidColorBrush_Gold}"
             Text="{Binding FieldName, ElementName=TextBox}" />
 
+        <Rectangle
+            x:Name="TextBox_Highlight"
+            Panel.ZIndex="2"
+            Fill="{StaticResource SolidColorBrush_Black}"
+            Opacity="0.5"
+            RadiusX="10"
+            RadiusY="10"
+            Visibility="Hidden" />
+
         <Border
             x:Name="TextBox_Border"
             Height="40"
