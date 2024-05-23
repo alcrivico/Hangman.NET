@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 Hangman.Services/Utilities/DBConnection.cs
+/Hangman.Services/Utilities/DBConnection.cs
