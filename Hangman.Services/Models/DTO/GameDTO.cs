@@ -166,7 +166,7 @@ namespace Hangman.Services.Models.DTO
             return response;
         }
 
-        //Es posible que no este correcto
+        /*No jala, mejor comentarlo xd
         public static Dictionary<string, object> GetPlayerType(int playerId, int gameId)
         {
             Dictionary<string, object> response = new Dictionary<string, object>
@@ -223,8 +223,7 @@ namespace Hangman.Services.Models.DTO
                     data.Dispose();
                 }
             }
-        }
-
+        }*/
 
     }
 }

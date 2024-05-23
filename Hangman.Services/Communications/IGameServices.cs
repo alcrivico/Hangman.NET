@@ -27,8 +27,9 @@ namespace Hangman.Services.Communications
         [OperationContract]
         Game SetGameStatus(int idGame, int idStatus);
 
-        //Por probar,no confio x'd
+        /*Por probar,no confio x'd - actualizacion: No jalo xd
         [OperationContract]
         string GetPlayerType(int playerId, int gameId);
+        */
     }
 }

@@ -38,11 +38,11 @@ namespace Hangman.Services.Communications
             return (Game)GameDTO.SetGameStatus(idGame, idStatus)["Game"];
         }
 
-        //Por probar
+        /*No jala, debo revisarlo xd
         public string GetPlayerType(int playerId, int gameId)
         {
             var response = GameDTO.GetPlayerType(playerId, gameId);
             return response.ContainsKey("PlayerType") ? response["PlayerType"].ToString() : "Unknown";
-        }
+        }*/
     }
 }
