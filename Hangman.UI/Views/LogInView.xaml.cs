@@ -23,6 +23,7 @@ namespace Hangman.UI.Views
         public LogInView()
         {
             InitializeComponent();
+            Hangman.SetHangmanElements();
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)

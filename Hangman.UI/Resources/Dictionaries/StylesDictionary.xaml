@@ -7,4 +7,11 @@
         Opacity="0.5"
         Color="{StaticResource Color_Black}" />
 
+    <DropShadowEffect
+        x:Key="HangmanDropShadow"
+        BlurRadius="4"
+        Direction="400"
+        Opacity="0.1"
+        Color="{StaticResource Color_Black}" />
+
 </ResourceDictionary>
