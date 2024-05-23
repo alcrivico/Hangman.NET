@@ -120,24 +120,23 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
 
-                    var query = from p in playerTable
+                    var query = (from p in playerTable
                                 where p.Email == player.Email
-                                select p;
+                                select p).First();
 
-                    if (query.Any())
+                    if (query != null)
                     {
-                        Player playerToUpdate = query.First();
-                        playerToUpdate.Name = player.Name;
-                        playerToUpdate.FirstLastName = player.FirstLastName;
-                        playerToUpdate.SecondLastName = player.SecondLastName;
-                        playerToUpdate.BirthDate = player.BirthDate;
-                        playerToUpdate.Email = player.Email;
-                        playerToUpdate.Password = player.Password;
+                        query.Name = player.Name;
+                        query.FirstLastName = player.FirstLastName;
+                        query.SecondLastName = player.SecondLastName;
+                        query.BirthDate = player.BirthDate;
+                        query.Email = player.Email;
+                        query.Password = player.Password;
 
                         data.SubmitChanges();
                         response["Error"] = false;
                         response["Message"] = "Perfil actualizado";
-                        response.Add("Player", playerToUpdate);
+                        response.Add("Player", query);
                     }
                     else
                     {

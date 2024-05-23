@@ -22,5 +22,10 @@ namespace Hangman.Services.Communications
         {
             return (Player)PlayerDTO.SignUp(player)["Player"];
         }
+
+        public Player UpdateProfile(Player player)
+        {
+            return (Player)PlayerDTO.UpdateProfile(player)["Player"];
+        }
     }
 }
