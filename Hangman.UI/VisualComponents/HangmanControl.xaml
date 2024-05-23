@@ -9,92 +9,93 @@
     d:DesignHeight="485"
     mc:Ignorable="d">
 
-    <Grid Margin="80,0,-20,0">
+    <Viewbox Stretch="Uniform">
+        <Grid Margin="80,0,-20,0">
 
-        <Border
-            x:Name="Hangman_Pole"
-            Width="252"
-            Height="474"
-            Margin="-57,12,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Visibility="Visible">
+            <Border
+                x:Name="Hangman_Pole"
+                Width="252"
+                Height="474"
+                Margin="-57,12,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Visibility="Visible">
 
-            <Image
-                Margin="4,56,-11,-56"
-                Source="../Resources/Images/Pole.png"
-                Stretch="UniformToFill" />
+                <Image
+                    Margin="4,56,-11,-56"
+                    Source="../Resources/Images/Pole.png"
+                    Stretch="UniformToFill" />
 
-        </Border>
+            </Border>
 
-        <Border
-            x:Name="Hangman_RightArm"
-            Width="93.03"
-            Height="155.83"
-            Margin="135,171,32,158"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_RightArm}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_RightArm"
+                Width="93.03"
+                Height="155.83"
+                Margin="135,171,32,158"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_RightArm}" />
+                </Border.Background>
+            </Border>
 
-        <Border
-            x:Name="Hangman_RightLeg"
-            Width="72.67"
-            Height="157.4"
-            Margin="107,286,80,41"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_RightLeg}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_RightLeg"
+                Width="72.67"
+                Height="157.4"
+                Margin="107,286,80,41"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_RightLeg}" />
+                </Border.Background>
+            </Border>
 
-        <Border
-            x:Name="Hangman_LeftLeg"
-            Width="73.78"
-            Height="156.4"
-            Margin="55,269,131,59"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_LeftLeg}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_LeftLeg"
+                Width="73.78"
+                Height="156.4"
+                Margin="55,269,131,59"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_LeftLeg}" />
+                </Border.Background>
+            </Border>
 
-        <Border
-            x:Name="Hangman_Torso"
-            Width="103"
-            Height="175"
-            Margin="81,156,76,154"
-            Effect="{StaticResource HangmanDropShadow}"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_Torso}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_Torso"
+                Width="103"
+                Height="175"
+                Margin="81,156,76,154"
+                Effect="{StaticResource HangmanDropShadow}"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_Torso}" />
+                </Border.Background>
+            </Border>
 
-        <Border
-            x:Name="Hangman_Head"
-            Width="80"
-            Height="99"
-            Margin="125,77,55,309"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_Head}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_Head"
+                Width="80"
+                Height="99"
+                Margin="125,77,55,309"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_Head}" />
+                </Border.Background>
+            </Border>
 
-        <Border
-            x:Name="Hangman_LeftArm"
-            Width="78.48"
-            Height="154.36"
-            Margin="59,170,123,160"
-            Effect="{StaticResource HangmanDropShadow}"
-            Visibility="Hidden">
-            <Border.Background>
-                <ImageBrush ImageSource="{StaticResource Icon_LeftArm}" />
-            </Border.Background>
-        </Border>
+            <Border
+                x:Name="Hangman_LeftArm"
+                Width="78.48"
+                Height="154.36"
+                Margin="59,170,123,160"
+                Effect="{StaticResource HangmanDropShadow}"
+                Visibility="Hidden">
+                <Border.Background>
+                    <ImageBrush ImageSource="{StaticResource Icon_LeftArm}" />
+                </Border.Background>
+            </Border>
 
-    </Grid>
-
+        </Grid>
+    </Viewbox>
 </UserControl>

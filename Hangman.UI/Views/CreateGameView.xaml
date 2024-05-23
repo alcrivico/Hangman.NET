@@ -65,7 +65,7 @@
                             TextAlignment="Center" />
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />

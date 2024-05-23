@@ -71,6 +71,9 @@
                                     Text="Perfil" />
                             </Border>
                             <components:HangmanControl
+                                Width="400" 
+                                Height="500"
+                                VerticalAlignment="Top"
                                 x:Name="Hangman"
                                 Grid.Row="1"
                                 IncorrectGuesses="6" />
