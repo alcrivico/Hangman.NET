@@ -135,5 +135,42 @@ namespace Hangman.Services.Models.DTO
             return response;
         }
 
+        public static Dictionary<string, object> SetChallenger (int idGame, int idChallenger)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                Table<Game> gameTable = data.GetTable<Game>();
+                var query = from game in gameTable
+                            where game.IdGame == idGame
+                            select game;
+                if (query.Any())
+                {
+                    Game game = query.First();
+                    game.IdChallengerPlayer = idChallenger;
+                    data.SubmitChanges();
+
+                    response["Error"] = false;
+                    response["Message"] = "Partida aceptada";
+                    response.Add("Game", game);
+                }
+                else
+                {
+                    response["Message"] = "No se encontró la partida";
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
+
     }
 }
