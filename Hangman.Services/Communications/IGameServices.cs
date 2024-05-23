@@ -17,5 +17,8 @@ namespace Hangman.Services.Communications
 
         [OperationContract]
         List<Category> GetCategoriesList(); //Cambiar el retorno
+
+        [OperationContract]
+        List<Word> GetWordsList(); //Cambiar el retorno
     }
 }

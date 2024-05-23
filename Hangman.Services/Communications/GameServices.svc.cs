@@ -21,5 +21,10 @@ namespace Hangman.Services.Communications
         {
             return (List<Category>)CategoryDTO.GetCategoriesList()["Categories"]; 
         }
+
+        public List<Word> GetWordsList()
+        {
+            return (List<Word>)WordDTO.GetWordsList()["Words"];
+        }
     }
 }
