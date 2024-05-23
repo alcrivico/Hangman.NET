@@ -142,7 +142,7 @@
                             Width="150"
                             Height="55"
                             ButtonControlClick="Button_LogIn_ButtonControlClick"
-                            Text="Acceder" />
+                            Text="Acceder" Loaded="Button_LogIn_Loaded" />
 
                         <TextBlock
                             Grid.Row="4"

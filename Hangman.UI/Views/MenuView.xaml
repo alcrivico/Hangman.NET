@@ -144,25 +144,27 @@
                             </Grid>
 
 
-                            <Border
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Background="LightBlue">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Text="Fila 2, Columna 1" />
-                            </Border>
+                            <components:ButtonControl
+                                x:Name="Button_SearchGame"
+                                Grid.Row="3"
+                                Width="298"
+                                Height="300"
+                                ButtonControlClick="Button_SearchGame_ButtonControlClick"
+                                FontSize="36"
+                                Loaded="Button_SearchGame_Loaded"
+                                Text="Ingresar a partida" />
 
-                            <Border
+                            <components:ButtonControl
+                                x:Name="Button_CreateGame"
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Background="LightGreen">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Text="Fila 2, Columna 2" />
-                            </Border>
+                                Width="298"
+                                Height="300"
+                                ButtonControlClick="Button_CreateGame_ButtonControlClick"
+                                FontSize="36"
+                                Loaded="Button_CreateGame_Loaded"
+                                Text="Crear partida" />
+
                         </Grid>
                     </Grid>
                 </Grid>

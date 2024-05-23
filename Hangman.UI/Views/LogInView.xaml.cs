@@ -36,5 +36,10 @@ namespace Hangman.UI.Views
             //Temporal
             MessageBox.Show("LogIn Button Clicked");
         }
+
+        private void Button_LogIn_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
