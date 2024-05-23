@@ -45,8 +45,118 @@
                 <Grid Name="TitleBar" Grid.Row="0">
                     <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
-                
-               
+
+                <Grid Grid.Row="1" Margin="0,0,30,0">
+                    <StackPanel
+                        Width="1220"
+                        Height="590"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            VerticalAlignment="Center"
+                            FontSize="50"
+                            TextAlignment="Center"><Run Language="es-mx" Text="Información de usuario" /></TextBlock>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Background="LightGray">
+
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Regresar" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Puntuación global" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Modificar " /><Run Text="perfil" /></TextBlock>
+                            </Border>
+                        </Grid>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Nombre" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Apellido paterno" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Apellido materno" /></TextBlock>
+                            </Border>
+                        </Grid>
+                        <Border
+                            Height="40"
+                            Margin="0,0,0,20"
+                            Background="LightGray">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Correo electronico" /></TextBlock>
+                        </Border>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Año" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Mes" /></TextBlock>
+                            </Border>
+                            <Border
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Dia" /></TextBlock>
+                            </Border>
+                        </Grid>
+                        <Border
+                            Height="250"
+                            Margin="0,0,0,20"
+                            Background="LightGray">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Grid>
 
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock

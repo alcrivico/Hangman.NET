@@ -46,7 +46,123 @@
                     <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
+                <Grid Grid.Row="1" Margin="0,0,30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
 
+                    <Grid Grid.Column="0">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <!--  Fila para el título corto  -->
+                                <RowDefinition Height="50" />
+                                <!--  Fila vacía  -->
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Row="0" Background="LightGray">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="Perfil" />
+                            </Border>
+                            <Rectangle
+                                Grid.Row="1"
+                                Width="200"
+                                Height="300"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="LightGray" />
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150" />
+
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  TextBlock en la esquina superior izquierda  -->
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Background="LightGray">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Text="Idioma" />
+                                </Border>
+
+                                <!--  Celda en la parte superior  -->
+                                <Border
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Background="LightGray">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Text="Titulo" />
+                                </Border>
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Background="LightGray">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Text="Salir" />
+                                </Border>
+                            </Grid>
+
+
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Background="LightBlue">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="Fila 2, Columna 1" />
+                            </Border>
+
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Background="LightGreen">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="Fila 2, Columna 2" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Grid>
 
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock
