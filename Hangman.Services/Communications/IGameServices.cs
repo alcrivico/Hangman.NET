@@ -16,6 +16,6 @@ namespace Hangman.Services.Communications
         void DoWork();
 
         [OperationContract]
-        List<Category> GetCategories(); //Cambiar el retorno
+        List<Category> GetCategoriesList(); //Cambiar el retorno
     }
 }

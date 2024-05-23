@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.DTO
 {
     public class CategoryDTO
     {
-        public static Dictionary<string, object> GetCategories()
+        public static Dictionary<string, object> GetCategoriesList()
         {
             Dictionary<string, object> response = new Dictionary<string, object>
             {

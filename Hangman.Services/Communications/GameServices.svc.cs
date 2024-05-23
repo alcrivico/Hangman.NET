@@ -17,9 +17,9 @@ namespace Hangman.Services.Communications
         {
         }
 
-        public List<Category> GetCategories()
+        public List<Category> GetCategoriesList()
         {
-            return (List<Category>)CategoryDTO.GetCategories()["Categories"]; 
+            return (List<Category>)CategoryDTO.GetCategoriesList()["Categories"]; 
         }
     }
 }
