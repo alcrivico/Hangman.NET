@@ -33,10 +33,26 @@ namespace Hangman.UI.Views
 
         private void Button_LogIn_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            //Comportamiento de Prueba para el botón de LogIn
+            //Comportamiento de Prueba para el botón de LogIn - Resultado Esperado: Verificará el usuario y contraseña y llevará a la ventana MenuView
             //Temporal
             MessageBox.Show("Password: " + PasswordBoxControl.PasswordText);
         }
 
+        private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Comportamiento de Prueba para el TextBlock de SingUp - Resultado Esperado: LLevará a la ventana SignUpView
+            //Temporal
+            MessageBox.Show("SingUp");
+        }
+
+        private void TextBlock_SingUp_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBlock_SingUp.Foreground = FindResource("SolidColorBrush_MikadoYellow") as SolidColorBrush;
+        }
+
+        private void TextBlock_SingUp_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBlock_SingUp.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
+        }
     }
 }
