@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Hangman.Services.Models.DTO
 {
-    public class CategoriesDTO
+    public class CategoryDTO
     {
         public static Dictionary<string, object> GetCategories()
         {

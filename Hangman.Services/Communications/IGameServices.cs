@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangman.Services.Models.POCO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,5 +14,8 @@ namespace Hangman.Services.Communications
     {
         [OperationContract]
         void DoWork();
+
+        [OperationContract]
+        List<Category> GetCategories();
     }
 }
