@@ -170,12 +170,36 @@
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Dia" /></TextBlock>
                             </Border>
                         </Grid>
-                        <Border
-                            Height="250"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
-                        </Border>
+                        <Grid>
+                            <DataGrid
+                                MinHeight="200"
+                                Margin="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Contrincante}"
+                                        Header="Contrincante" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding FechaJuego}"
+                                        Header="Fecha de Juego" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Palabra}"
+                                        Header="Palabra" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Resultado}"
+                                        Header="Resultado" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                     </StackPanel>
                 </Grid>
 

@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl Loaded="TitleBarControl_Loaded" WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -83,12 +83,36 @@
                                 Text="" />
 
                         </Grid>
-                        <Border
-                            Height="320"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
-                        </Border>
+                        <Grid>
+                            <DataGrid
+                                MinHeight="320"
+                                Margin="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding ID}"
+                                        Header="ID" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding CreadaPor}"
+                                        Header="Creada por:" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding TiempoEsperando}"
+                                        Header="Tiempo esperando" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Ingresar}"
+                                        Header="Ingresar" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                         <components:ButtonControl
                             x:Name="Button_Back"
                             Width="200"

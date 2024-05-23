@@ -85,12 +85,27 @@
                                 FieldName="ID de la Partida"
                                 Text="" />
                         </Grid>
-                        <Border
-                            Height="290"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
-                        </Border>
+                        <Grid>
+                            <DataGrid
+                                MinHeight="320"
+                                Margin="10"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Palabra}"
+                                        Header="Palabra" />
+
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Pista}"
+                                        Header="Pista:" />
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
