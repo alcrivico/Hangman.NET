@@ -25,6 +25,10 @@ namespace Hangman.Services.Communications
         Game SetChallenger(int idGame, int idChallenger);
 
         [OperationContract]
-        Game SetGameStatus(int idGame, int idStatus); 
+        Game SetGameStatus(int idGame, int idStatus);
+
+        //Por probar,no confio x'd
+        [OperationContract]
+        string GetPlayerType(int playerId, int gameId);
     }
 }

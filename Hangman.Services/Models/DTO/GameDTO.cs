@@ -206,11 +206,11 @@ namespace Hangman.Services.Models.DTO
                         }
 
                         response["Error"] = false;
-                        response["Message"] = "Player type retrieved successfully";
+                        response["Message"] = "El tipo de jugador se ha recuperado de forma exitosa";
                     }
                     else
                     {
-                        response["Message"] = "Game not found";
+                        response["Message"] = "La partida no se ha encontrado";
                     }
 
                 }
