@@ -78,17 +78,21 @@
 
                         </Grid>
                         <Border
-                            Height="340"
+                            Height="320"
                             Margin="0,0,0,20"
                             Background="LightGray">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Tabla" /></TextBlock>
                         </Border>
-                        <Border
-                            Height="40"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Volver" /></TextBlock>
-                        </Border>
+                        <components:ButtonControl
+                            x:Name="Button_Return"
+                            Width="200"
+                            Height="55"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Center"
+                            ButtonControlClick="Button_Return_ButtonControlClick"
+                            FontSize="24"
+                            Loaded="Button_Return_Loaded"
+                            Text="Volver" />
                     </StackPanel>
                 </Grid>
 

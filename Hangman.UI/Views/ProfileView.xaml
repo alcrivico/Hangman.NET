@@ -91,16 +91,16 @@
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Puntuación global" /></TextBlock>
                             </Border>
                             <components:ButtonControl
-                                x:Name="Button_Return1"
+                                x:Name="Button_ModifyProfile"
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Width="160"
                                 Height="40"
                                 Margin="0,0,20,0"
                                 HorizontalAlignment="Right"
-                                ButtonControlClick="Button_Return_ButtonControlClick"
+                                ButtonControlClick="Button_ModifyProfile_ButtonControlClick"
                                 FontSize="18"
-                                Loaded="Button_Return_Loaded"
+                                Loaded="Button_ModifyProfile_Loaded"
                                 Text="Modificar perfil" />
                         </Grid>
                         <Grid Margin="0,0,0,20">

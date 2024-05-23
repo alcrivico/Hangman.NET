@@ -86,18 +86,34 @@
                         </Border>
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Iniciar partida" /></TextBlock>
-                            </Border>
-                            <Border Grid.Column="1" Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Cancelar" /></TextBlock>
-                            </Border>
+                            <components:ButtonControl
+                                x:Name="Button_StartGame"
+                                Grid.Column="0"
+                                Width="200"
+                                Height="55"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Right"
+                                ButtonControlClick="Button_StartGame_ButtonControlClick"
+                                FontSize="24"
+                                Loaded="Button_StartGame_Loaded"
+                                Text="Iniciar partida" />
+                            <components:ButtonControl
+                                x:Name="Button_Cancel"
+                                Grid.Column="1"
+                                Width="200"
+                                Height="55"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                ButtonControlClick="Button_Cancel_ButtonControlClick"
+                                FontSize="24"
+                                Loaded="Button_Cancel_Loaded"
+                                Text="Cancelar" />
                         </Grid>
                     </StackPanel>
                 </Grid>
