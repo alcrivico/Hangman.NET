@@ -63,9 +63,12 @@
                                 <ColumnDefinition Width="1.5*" />
                             </Grid.ColumnDefinitions>
                             <components:HangmanControl
+                                Width="300" 
+                                Height="350"
                                 x:Name="Hangman"
+                                VerticalAlignment="Top"
                                 HorizontalAlignment="Right"
-                                Margin="0,0,0,10"
+                                Margin="0,0,0,0"
                                 Grid.Row="0"
                                 IncorrectGuesses="6" Loaded="Hangman_Loaded" />
 
