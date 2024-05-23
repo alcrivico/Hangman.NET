@@ -7,6 +7,6 @@ namespace Hangman.Services.Models.DTO
 {
     public class CategoriesDTO
     {
-
+        
     }
 }
