@@ -14,5 +14,8 @@ namespace Hangman.Services.Communications
     {
         [OperationContract]
         Player LogIn(string email, string pass);//Cambiar el retorno
+
+        [OperationContract]
+        Player SignUp(Player player);//Cambiar el retorno
     }
 }
