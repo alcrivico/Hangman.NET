@@ -99,5 +99,41 @@ namespace Hangman.Services.Models.DTO
             return response;
         }
 
+        public static Dictionary<string, object> SetGameStatus(int gameId, int StatusID)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                Table<Game> gameTable = data.GetTable<Game>();
+                var query = from game in gameTable
+                            where game.IdGame == gameId
+                            select game;
+                if (query.Any())
+                {
+                    Game game = query.First();
+                    game.IdStatus = StatusID;
+                    data.SubmitChanges();
+                    response["Error"] = false;
+                    response["Message"] = "Estado de la partida actualizado";
+                    response.Add("Game", game);
+                }
+                else
+                {
+                    response["Message"] = "No se encontró la partida";
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
+
     }
 }
