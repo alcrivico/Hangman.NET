@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangman.Services.Models.POCO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,6 +13,6 @@ namespace Hangman.Services.Communications
     public interface IGameServices
     {
         [OperationContract]
-        Dictionary<string, object> CreateGame(int playerId, int categoryId, int wordId);
+        Game CreateGame(int playerId, int categoryId, int wordId);
     }
 }
