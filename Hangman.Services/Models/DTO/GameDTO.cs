@@ -166,6 +166,64 @@ namespace Hangman.Services.Models.DTO
             return response;
         }
 
+        //Es posible que no este correcto
+        public static Dictionary<string, object> GetPlayerType(int playerId, int gameId)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Game> gameTable = data.GetTable<Game>();
+
+                    var query = from game in gameTable
+                                where game.IdGame == gameId
+                                select game;
+
+                    if (query.Any())
+                    {
+                        var game = query.First();
+
+                        if(game.IdCreatorPlayer == playerId)
+                        {
+                            response["PlayerType"] = "Creator";
+                        }
+                        else if (game.IdChallengerPlayer == playerId)
+                        {
+                            response["PlayerType"] = "Challenger";
+                        }
+                        else
+                        {
+                            //No estoy del todo segura de si este es necesario, el jugador sera o un creador o un retador
+                            response["PlayerType"] = "Unknown";
+                        }
+
+                        response["Error"] = false;
+                        response["Message"] = "Player type retrieved successfully";
+                    }
+                    else
+                    {
+                        response["Message"] = "Game not found";
+                    }
+
+                }
+                catch (SqlException sqlEx)
+                {
+                    response["Message"] = "SQL Error: " + sqlEx.Message;
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+        }
 
 
     }
