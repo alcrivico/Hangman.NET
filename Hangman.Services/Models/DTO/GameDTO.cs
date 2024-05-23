@@ -66,7 +66,10 @@ namespace Hangman.Services.Models.DTO
                     Table<Game> gameTable = data.GetTable<Game>();
 
                     var query = from game in gameTable
-                                where game.IdChallengerPlayer == idPlayer
+                                where game.IdChallengerPlayer == idPlayer &&
+                                (game.IdStatus == 3 || 
+                                    game.IdStatus == 4 ||
+                                    game.IdStatus == 6)
                                 select game;
                     if (query.Any())
                     {
