@@ -13,7 +13,7 @@ namespace Hangman.Services.Communications
     public interface IGameServices
     {
         [OperationContract]
-        Game CreateGame(int playerId, int categoryId, int wordId);
+        Game CreateGame(Game newGame);
 
         [OperationContract]
         List<Category> GetCategoriesList();

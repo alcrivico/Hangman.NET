@@ -12,7 +12,7 @@ namespace Hangman.Services.Models.DTO
 {
     public class GameDTO
     {
-        public static Dictionary<string, object> CreateGame(int playerId,int categoryId, int wordId)
+        public static Dictionary<string, object> CreateGame(Game newGame)
         {
             Dictionary<string, object> response = new Dictionary<string, object>
             {
@@ -28,14 +28,8 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Game> gameTable = data.GetTable<Game>();
 
-                    var newGame = new Game
-                    {
-                        CreationDate = DateTime.Now,
-                        //idStatus =
-                        IdCreatorPlayer = playerId,
-                        IdWord = wordId,
-                        //IdLanguage =
-                    };
+                    // Establecer la fecha de creación de la partida
+                    newGame.CreationDate = DateTime.Now;
 
                     gameTable.InsertOnSubmit(newGame);
                     data.SubmitChanges();
