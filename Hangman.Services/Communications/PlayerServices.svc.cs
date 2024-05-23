@@ -18,9 +18,9 @@ namespace Hangman.Services.Communications
             return (Player)PlayerDTO.LogIn(email, pass)["Player"];
         }
 
-        public Player SignUp(Player player)
+        public string SignUp(Player player)
         {
-            return (Player)PlayerDTO.SignUp(player)["Player"];
+            return (string)PlayerDTO.SignUp(player)["Message"];
         }
 
         public Player UpdateProfile(Player player)
