@@ -14,5 +14,11 @@ namespace Hangman.Services.Communications
     {
         [OperationContract]
         Game CreateGame(int playerId, int categoryId, int wordId);
+
+        [OperationContract]
+        List<Category> GetCategoriesList();
+
+        [OperationContract]
+        List<Word> GetWordsList();
     }
 }
