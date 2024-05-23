@@ -21,6 +21,7 @@ namespace Hangman.UI.VisualComponents
     /// </summary>
     public partial class ButtonControl : UserControl
     {
+
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
