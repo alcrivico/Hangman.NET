@@ -28,9 +28,9 @@ namespace Hangman.Services.Communications
             return (List<Word>)WordDTO.GetWordsList()["Words"];
         }
 
-        public Game SetChallenger(int idGame, int idChallenger)
+        public string SetChallenger(int idGame, int idChallenger)
         {
-            return (Game)GameDTO.SetChallenger(idGame, idChallenger)["Game"];
+            return (string)GameDTO.SetChallenger(idGame, idChallenger)["Message"];
         }
 
         public string SetGameStatus(int idGame, int idStatus)

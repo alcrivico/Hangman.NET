@@ -22,7 +22,7 @@ namespace Hangman.Services.Communications
         List<Word> GetWordsList();
 
         [OperationContract]
-        Game SetChallenger(int idGame, int idChallenger);
+        string SetChallenger(int idGame, int idChallenger);
 
         [OperationContract]
         string SetGameStatus(int idGame, int idStatus);

@@ -141,18 +141,16 @@ namespace Hangman.Services.Models.DTO
             if (data != null)
             {
                 Table<Game> gameTable = data.GetTable<Game>();
-                var query = from game in gameTable
+                var query = (from game in gameTable
                             where game.IdGame == idGame
-                            select game;
-                if (query.Any())
+                            select game).First();
+                if (query != null)
                 {
-                    Game game = query.First();
-                    game.IdChallengerPlayer = idChallenger;
+                    query.IdChallengerPlayer = idChallenger;
                     data.SubmitChanges();
 
                     response["Error"] = false;
                     response["Message"] = "Partida aceptada";
-                    response.Add("Game", game);
                 }
                 else
                 {

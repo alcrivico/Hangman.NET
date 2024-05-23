@@ -21,8 +21,14 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "IdCreatorPlayer")]
         public int IdCreatorPlayer { get; set; }
 
-        [Column (Name = "IdChallengerPlayer")]
-        public int IdChallengerPlayer { get; set; }
+        [Column(Name = "IdChallengerPlayer")]
+        public int? IdChallengerPlayerNullable { get; set; }
+        //Necesario para aceptar nulos
+        public int IdChallengerPlayer
+        {
+            get { return IdChallengerPlayerNullable ?? 0; }
+            set { IdChallengerPlayerNullable = value; }
+        }
 
         [Column (Name = "IdWord")]
         public int IdWord { get; set; }
