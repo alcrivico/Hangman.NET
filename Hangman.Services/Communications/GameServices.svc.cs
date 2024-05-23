@@ -13,6 +13,7 @@ namespace Hangman.Services.Communications
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione GameServices.svc o GameServices.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class GameServices : IGameServices
     {
+        //CAMBIAR RETORNOS A DICTIONARY
         public string CreateGame(Game newGame)
         {
             return (string)GameDTO.CreateGame(newGame)["Message"];
@@ -42,12 +43,9 @@ namespace Hangman.Services.Communications
         {
             return (List<Game>)GameDTO.GetWaitingGames()["Games"];
         }
-
-        /*No jala, debo revisarlo xd
         public string GetPlayerType(int playerId, int gameId)
         {
-            var response = GameDTO.GetPlayerType(playerId, gameId);
-            return response.ContainsKey("PlayerType") ? response["PlayerType"].ToString() : "Unknown";
-        }*/
+            return (string)GameDTO.GetPlayerType(playerId, gameId)["PlayerType"];
+        }
     }
 }

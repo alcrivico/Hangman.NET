@@ -13,6 +13,7 @@ namespace Hangman.Services.Communications
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione PlayerServices.svc o PlayerServices.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class PlayerServices : IPlayerServices
     {
+        //CAMBIAR RETORNOS A DICTIONARY
         public Player LogIn (string email, string pass)
         {
             return (Player)PlayerDTO.LogIn(email, pass)["Player"];

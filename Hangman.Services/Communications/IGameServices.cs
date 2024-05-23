@@ -12,6 +12,7 @@ namespace Hangman.Services.Communications
     [ServiceContract]
     public interface IGameServices
     {
+        //CAMBIAR RETORNOS A DICTIONARY
         [OperationContract]
         string CreateGame(Game newGame);
 
@@ -30,9 +31,7 @@ namespace Hangman.Services.Communications
         [OperationContract]
         List<Game> GetWaitingGames();
 
-        /*Por probar,no confio x'd - actualizacion: No jalo xd
         [OperationContract]
         string GetPlayerType(int playerId, int gameId);
-        */
     }
 }

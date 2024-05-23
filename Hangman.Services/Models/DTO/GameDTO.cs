@@ -192,8 +192,6 @@ namespace Hangman.Services.Models.DTO
             }
             return response;
         }
-
-        /*No jala, mejor comentarlo xd
         public static Dictionary<string, object> GetPlayerType(int playerId, int gameId)
         {
             Dictionary<string, object> response = new Dictionary<string, object>
@@ -222,14 +220,9 @@ namespace Hangman.Services.Models.DTO
                         {
                             response["PlayerType"] = "Creator";
                         }
-                        else if (game.IdChallengerPlayer == playerId)
-                        {
-                            response["PlayerType"] = "Challenger";
-                        }
                         else
                         {
-                            //No estoy del todo segura de si este es necesario, el jugador sera o un creador o un retador
-                            response["PlayerType"] = "Unknown";
+                            response["PlayerType"] = "Challenger";
                         }
 
                         response["Error"] = false;
@@ -250,7 +243,12 @@ namespace Hangman.Services.Models.DTO
                     data.Dispose();
                 }
             }
-        }*/
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
 
     }
 }
