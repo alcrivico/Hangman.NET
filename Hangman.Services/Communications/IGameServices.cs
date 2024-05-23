@@ -20,5 +20,11 @@ namespace Hangman.Services.Communications
 
         [OperationContract]
         List<Word> GetWordsList();
+
+        [OperationContract]
+        Game SetChallenger(int idGame, int idChallenger);
+
+        [OperationContract]
+        Game SetGameStatus(int idGame, int idStatus); 
     }
 }
