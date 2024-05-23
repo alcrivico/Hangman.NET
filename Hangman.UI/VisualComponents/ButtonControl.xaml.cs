@@ -35,9 +35,37 @@ namespace Hangman.UI.VisualComponents
                 typeof(ButtonControl), 
                 new PropertyMetadata(string.Empty));
 
+        public int ButtonWidth
+        {
+            get { return (int)GetValue(ButtonWidthProperty); }
+            set { SetValue(ButtonWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonWidthProperty =
+            DependencyProperty.Register(
+                               "ButtonWidth",
+                               typeof(int),
+                               typeof(ButtonControl),
+                               new PropertyMetadata(150));
+
+        public int ButtonHeight
+        {
+            get { return (int)GetValue(ButtonHeightProperty); }
+            set { SetValue(ButtonHeightProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonHeightProperty =
+            DependencyProperty.Register(
+                               "ButtonHeight",
+                               typeof(int),
+                               typeof(ButtonControl),
+                               new PropertyMetadata(55));
+
         public ButtonControl()
         {
             InitializeComponent();
+            Button.ButtonHeight = ButtonHeight;
+            Button.ButtonWidth = ButtonWidth;
         }
 
         public static RoutedEvent ButtonControlClickEvent = 
@@ -75,6 +103,9 @@ namespace Hangman.UI.VisualComponents
         {
 
             Button_Highlight.Opacity = 0;
+            Button_Border.Effect = FindResource("ButtonDropShadow") as DropShadowEffect;
+            Button.Height = ButtonHeight;
+            Button.Width = ButtonWidth;
 
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hangman.Services.Models.DTO;
+using Hangman.Services.Models.POCO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +15,16 @@ namespace Hangman.Services.Communications
     {
         public void DoWork()
         {
+        }
+
+        public List<Category> GetCategoriesList()
+        {
+            return (List<Category>)CategoryDTO.GetCategoriesList()["Categories"]; 
+        }
+
+        public List<Word> GetWordsList()
+        {
+            return (List<Word>)WordDTO.GetWordsList()["Words"];
         }
     }
 }

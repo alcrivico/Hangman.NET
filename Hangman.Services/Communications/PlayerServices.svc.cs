@@ -30,7 +30,7 @@ namespace Hangman.Services.Communications
 
         public List<Game> GetPlayedGames(int idPlayer)
         {
-            return (List<Game>)PlayerDTO.GetPlayedGames(idPlayer)["Games"];
+            return (List<Game>)GameDTO.GetPlayedGames(idPlayer)["Games"];
         }
 
 
