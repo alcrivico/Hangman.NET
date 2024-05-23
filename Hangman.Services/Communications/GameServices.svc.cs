@@ -13,8 +13,9 @@ namespace Hangman.Services.Communications
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione GameServices.svc o GameServices.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class GameServices : IGameServices
     {
-        public void DoWork()
+        public Dictionary<string, object> CreateGame(int playerId, int categoryId, int wordId)
         {
+            throw new NotImplementedException();
         }
 
         public List<Category> GetCategoriesList()

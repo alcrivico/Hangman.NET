@@ -1,5 +1,4 @@
-﻿using Hangman.Services.Models.POCO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,12 +12,6 @@ namespace Hangman.Services.Communications
     public interface IGameServices
     {
         [OperationContract]
-        void DoWork();
-
-        [OperationContract]
-        List<Category> GetCategoriesList(); //Cambiar el retorno
-
-        [OperationContract]
-        List<Word> GetWordsList(); //Cambiar el retorno
+        Dictionary<string, object> CreateGame(int playerId, int categoryId, int wordId);
     }
 }
