@@ -46,14 +46,14 @@
                     <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
-                <Grid Grid.Row="1" Margin="0,0,30,0">
+                <Grid Grid.Row="1" Margin="0,0,0,0">
                     <StackPanel
                         Width="1220"
                         Height="590"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Orientation="Vertical">
-                        <Grid Margin="0,0,0,20">
+                        <Grid Margin="0,0,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="450" />
                             </Grid.RowDefinitions>
@@ -86,7 +86,7 @@
                                 </Border>
                                 <Border
                                     Grid.Row="3"
-                                    Margin="0,0,0,20"
+                                    Margin="0,0,0,30"
                                     Background="LightGray">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Alerta" /></TextBlock>
                                 </Border>
@@ -105,7 +105,7 @@
                                 </Border>
                                 <Border
                                     Grid.Row="3"
-                                    Margin="0,60,0,20"
+                                    Margin="0,60,0,30"
                                     Background="LightGray">
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Datos creador" /></TextBlock>
                                 </Border>
@@ -118,24 +118,30 @@
                             Background="LightGray">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Palabra" /></TextBlock>
                         </Border>
-                        <Border
-                            Height="40"
-                            Width="300"
-                            Margin="0,0,0,20"
+                        <components:ButtonControl
+                            x:Name="Button_ExitGame"
+                            Width="240"
+                            Height="55"
+                            Margin="0,0,0,0"
                             HorizontalAlignment="Right"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Abandonar partida" /></TextBlock>
-                        </Border>
+                            ButtonControlClick="Button_ExitGame_ButtonControlClick"
+                            FontSize="24"
+                            Loaded="Button_ExitGame_Loaded"
+                            Text="Abandonar partida" />
                     </StackPanel>
                 </Grid>
 
                 <Grid Name="Footer" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="282*"/>
+                        <ColumnDefinition Width="353*"/>
+                    </Grid.ColumnDefinitions>
                     <TextBlock
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Foreground="{StaticResource SolidColorBrush_White}"
                         Text="© 2024 Universidad Veracruzana. Derechos reservados"
-                        TextAlignment="Center" />
+                        TextAlignment="Center" Grid.ColumnSpan="2" Margin="491,0,0,0" />
                 </Grid>
 
             </Grid>
