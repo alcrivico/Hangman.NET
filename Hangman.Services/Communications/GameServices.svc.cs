@@ -38,6 +38,11 @@ namespace Hangman.Services.Communications
             return (string)GameDTO.SetGameStatus(idGame, idStatus)["Message"];
         }
 
+        public List<Game> GetWaitingGames()
+        {
+            return (List<Game>)GameDTO.GetWaitingGames()["Games"];
+        }
+
         /*No jala, debo revisarlo xd
         public string GetPlayerType(int playerId, int gameId)
         {

@@ -27,6 +27,9 @@ namespace Hangman.Services.Communications
         [OperationContract]
         string SetGameStatus(int idGame, int idStatus);
 
+        [OperationContract]
+        List<Game> GetWaitingGames();
+
         /*Por probar,no confio x'd - actualizacion: No jalo xd
         [OperationContract]
         string GetPlayerType(int playerId, int gameId);
