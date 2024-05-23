@@ -12,7 +12,7 @@ namespace Hangman.Services.Models.DTO
 {
     public class GameDTO
     {
-        public static Dictionary<string, object> CreateGame(int playerId,int categoryId, int wordId)
+        public static Dictionary<string, object> CreateGame(Game newGame)
         {
             Dictionary<string, object> response = new Dictionary<string, object>
             {
@@ -28,14 +28,8 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Game> gameTable = data.GetTable<Game>();
 
-                    var newGame = new Game
-                    {
-                        CreationDate = DateTime.Now,
-                        //idStatus =
-                        IdCreatorPlayer = playerId,
-                        IdWord = wordId,
-                        //IdLanguage =
-                    };
+                    // Establecer la fecha de creación de la partida
+                    newGame.CreationDate = DateTime.Now;
 
                     gameTable.InsertOnSubmit(newGame);
                     data.SubmitChanges();
@@ -90,6 +84,79 @@ namespace Hangman.Services.Models.DTO
                 finally
                 {
                     data.Dispose();
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
+
+        public static Dictionary<string, object> SetGameStatus(int gameId, int StatusID)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                Table<Game> gameTable = data.GetTable<Game>();
+                var query = from game in gameTable
+                            where game.IdGame == gameId
+                            select game;
+                if (query.Any())
+                {
+                    Game game = query.First();
+                    game.IdStatus = StatusID;
+                    data.SubmitChanges();
+                    response["Error"] = false;
+                    response["Message"] = "Estado de la partida actualizado";
+                    response.Add("Game", game);
+                }
+                else
+                {
+                    response["Message"] = "No se encontró la partida";
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
+
+        public static Dictionary<string, object> SetChallenger (int idGame, int idChallenger)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                Table<Game> gameTable = data.GetTable<Game>();
+                var query = from game in gameTable
+                            where game.IdGame == idGame
+                            select game;
+                if (query.Any())
+                {
+                    Game game = query.First();
+                    game.IdChallengerPlayer = idChallenger;
+                    data.SubmitChanges();
+
+                    response["Error"] = false;
+                    response["Message"] = "Partida aceptada";
+                    response.Add("Game", game);
+                }
+                else
+                {
+                    response["Message"] = "No se encontró la partida";
                 }
             }
             else
