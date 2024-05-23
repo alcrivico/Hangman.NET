@@ -33,9 +33,9 @@ namespace Hangman.Services.Communications
             return (Game)GameDTO.SetChallenger(idGame, idChallenger)["Game"];
         }
 
-        public Game SetGameStatus(int idGame, int idStatus)
+        public string SetGameStatus(int idGame, int idStatus)
         {
-            return (Game)GameDTO.SetGameStatus(idGame, idStatus)["Game"];
+            return (string)GameDTO.SetGameStatus(idGame, idStatus)["Message"];
         }
 
         /*No jala, debo revisarlo xd

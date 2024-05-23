@@ -116,7 +116,6 @@ namespace Hangman.Services.Models.DTO
                     data.SubmitChanges();
                     response["Error"] = false;
                     response["Message"] = "Estado de la partida actualizado";
-                    response.Add("Game", game);
                 }
                 else
                 {
