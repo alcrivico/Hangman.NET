@@ -19,7 +19,7 @@ namespace Hangman.Services.Communications
 
         public List<Category> GetCategories()
         {
-            return (List<Category>)CategoryDTO.GetCategories()["Categories"];
+            return (List<Category>)CategoryDTO.GetCategories()["Categories"]; 
         }
     }
 }
