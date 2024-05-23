@@ -96,24 +96,12 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBox
+                            <components:TextBoxControl
                                 Grid.Row="0"
                                 Width="400"
                                 Height="50"
-                                Padding="10"
-                                Background="Transparent"
-                                BorderBrush="{StaticResource SolidColorBrush_Gold}"
-                                BorderThickness="2"
-                                FontFamily="{StaticResource Font_Nunito}"
-                                Foreground="White">
-
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Text" Value="Correo Electrónico" />
-                                        <Setter Property="Foreground" Value="Gray" />
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
+                                FieldName="Correo Electronico"
+                                Text="Texto Ejemplo yyy" />
 
                             <PasswordBox
                                 Grid.Row="1"

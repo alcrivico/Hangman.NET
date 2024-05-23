@@ -9,7 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Fonts\Nunito\" />
+    <None Remove="Resources\Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
+    <None Remove="Resources\Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
+    <Resource Include="Resources\Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
   </ItemGroup>
 
 </Project>
