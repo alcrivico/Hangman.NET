@@ -65,7 +65,7 @@
                             TextAlignment="Center" />
                         <Grid Margin="0,0,0,20">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -78,25 +78,27 @@
                                 Grid.Column="0"
                                 Width="160"
                                 Height="40"
-                                Margin="20,0,0,0"
+                                Margin="35,0,0,0"
                                 HorizontalAlignment="Left"
                                 ButtonControlClick="Button_Back_ButtonControlClick"
                                 FontSize="18"
                                 Loaded="Button_Back_Loaded"
                                 Text="Regresar" />
-                            <Border
+                            <components:TextBoxControl
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Puntuación global" /></TextBlock>
-                            </Border>
+                                Width="230"
+                                Height="50"
+                                FieldName="Puntuación Global"
+                                Loaded="TextBoxControl_GlobalScore"
+                                Text="" />
                             <components:ButtonControl
                                 x:Name="Button_ModifyProfile"
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Width="160"
                                 Height="40"
-                                Margin="0,0,20,0"
+                                Margin="0,0,35,0"
                                 HorizontalAlignment="Right"
                                 ButtonControlClick="Button_ModifyProfile_ButtonControlClick"
                                 FontSize="18"
@@ -105,38 +107,41 @@
                         </Grid>
                         <Grid Margin="0,0,0,20">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border
+                            <components:TextBoxControl
                                 Grid.Row="0"
-                                Grid.Column="0"
-                                Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Nombre" /></TextBlock>
-                            </Border>
-                            <Border
-                                Grid.Row="0"
+                                Width="230"
+                                Height="50"
+                                FieldName="Nombre"
+                                Loaded="TextBoxControl_Name"
+                                Text="" />
+                            <components:TextBoxControl
                                 Grid.Column="1"
-                                Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Apellido paterno" /></TextBlock>
-                            </Border>
-                            <Border
-                                Grid.Row="0"
+                                Width="230"
+                                Height="50"
+                                FieldName="Apellido Paterno"
+                                Loaded="TextBoxControl_LastName"
+                                Text="" />
+                            <components:TextBoxControl
                                 Grid.Column="2"
-                                Background="LightGray">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Apellido materno" /></TextBlock>
-                            </Border>
+                                Width="230"
+                                Height="50"
+                                FieldName="Apellido Materno"
+                                Loaded="TextBoxControl_SecondLastName"
+                                Text="" />
                         </Grid>
-                        <Border
-                            Height="40"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Correo electronico" /></TextBlock>
-                        </Border>
+                        <components:TextBoxControl
+                            Width="230"
+                            Height="50"
+                            FieldName="Correo Electrónico"
+                            Loaded="TextBoxControl_Email"
+                            Text="" />
                         <Grid Margin="0,0,0,20">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />

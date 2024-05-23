@@ -48,7 +48,7 @@
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
                     <StackPanel
-                        Width="1220"
+                        Width="900"
                         Height="590"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

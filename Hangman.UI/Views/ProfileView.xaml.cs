@@ -23,5 +23,10 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
         }
+
+        private void TextBoxControl_Name(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
