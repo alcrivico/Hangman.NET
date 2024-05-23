@@ -24,11 +24,6 @@ namespace Hangman.UI.Views
             InitializeComponent();
         }
 
-        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
-        {
-            this.WindowState = e;
-        }
-
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             //
@@ -39,5 +34,9 @@ namespace Hangman.UI.Views
             //
         }
 
+        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
+        {
+            WindowState = e;
+        }
     }
 }
