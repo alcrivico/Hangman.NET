@@ -47,5 +47,15 @@ namespace Hangman.Services.Communications
         {
             return (string)GameDTO.GetPlayerType(playerId, gameId)["PlayerType"];
         }
+
+        public Player GetPlayerById(int playerId)
+        {
+            return (Player)PlayerDTO.GetPlayerById(playerId)["Player"];
+        }
+
+        public List<Language> GetLanguages()
+        {
+            return (List<Language>)LanguageDTO.GetLanguages()["Languages"];
+        }
     }
 }

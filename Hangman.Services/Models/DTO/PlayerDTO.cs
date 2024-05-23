@@ -157,5 +157,50 @@ namespace Hangman.Services.Models.DTO
             }
             return response;
         }
+
+        public static Dictionary<string, object> GetPlayerById(int playerId)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>
+            {
+                { "Error", true },
+                { "Message", "" }
+            };
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Player> playerTable = data.GetTable<Player>();
+
+                    var query = from player in playerTable
+                                where player.IdPlayer == playerId
+                                select player;
+                    if (query.Any())
+                    {
+                        response["Error"] = false;
+                        response["Message"] = "Jugador encontrado";
+                        response.Add("Player", query.First());
+                    }
+                    else
+                    {
+                        response["Message"] = "No se encontró al jugador";
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    Console.WriteLine(sqlEx.StackTrace);
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+            else
+            {
+                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+            }
+            return response;
+        }
     }
 }

@@ -33,5 +33,11 @@ namespace Hangman.Services.Communications
 
         [OperationContract]
         string GetPlayerType(int playerId, int gameId);
+
+        [OperationContract]
+        Player GetPlayerById(int playerId);
+
+        [OperationContract]
+        List<Language> GetLanguages();
     }
 }
