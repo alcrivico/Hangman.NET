@@ -39,29 +39,5 @@ namespace Hangman.UI.Views
             //
         }
 
-        private void TitleBarControl_WindowStateChangeRequested(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_StartGame_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Cancel_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
