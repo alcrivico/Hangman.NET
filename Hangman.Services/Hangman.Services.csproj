@@ -69,6 +69,7 @@
     <Compile Include="Models\POCO\GameStatus.cs" />
     <Compile Include="Models\POCO\Language.cs" />
     <Compile Include="Models\POCO\Player.cs" />
+    <Compile Include="Models\POCO\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DBConnection.cs" />
   </ItemGroup>
