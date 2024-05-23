@@ -141,12 +141,14 @@
                             Grid.Row="3"
                             Width="150"
                             Height="55"
+                            FontSize="24"
                             ButtonControlClick="Button_LogIn_ButtonControlClick"
                             Text="Acceder" Loaded="Button_LogIn_Loaded" />
 
                         <TextBlock
                             Grid.Row="4"
                             Margin="0,0,0,0"
+                            FontSize="14"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontFamily="{StaticResource Font_Nunito}"
