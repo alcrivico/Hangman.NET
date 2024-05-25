@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace Hangman.UI.VisualComponents
 {
     /// <summary>
-    /// Interaction logic for ComboBoxControl.xaml
+    /// Interaction logic for TableControl.xaml
     /// </summary>
-    public partial class ComboBoxControl : UserControl
+    public partial class TableControl : UserControl
     {
-
-        public ComboBoxControl()
+        public TableControl()
         {
             InitializeComponent();
         }
-
     }
-
 }
