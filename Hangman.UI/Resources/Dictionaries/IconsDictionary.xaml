@@ -411,5 +411,6 @@
     </DrawingGroup>
 
     <DrawingImage x:Key="Icon_ArrowDown" Drawing="{StaticResource Vector_ArrowDown}" />
+    <Geometry x:Key="Geometry_ArrowDown" x:Shared="False">M 0,0 L 80.755,0 80.755,45.255 0,45.255 Z</Geometry>
 
 </ResourceDictionary>

@@ -18,14 +18,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="377*"/>
-            <RowDefinition Height="344*"/>
+            <RowDefinition Height="377*" />
+            <RowDefinition Height="344*" />
         </Grid.RowDefinitions>
 
         <Border
+            Grid.RowSpan="2"
             BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
             BorderThickness="5"
-            CornerRadius="30" Grid.RowSpan="2">
+            CornerRadius="30">
 
             <Border.Background>
 
@@ -75,12 +76,13 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
+
                             <components:ComboBoxControl
-                                HorizontalAlignment="Left"
                                 Grid.Column="0"
-                                ComboBoxHeight="40"
-                                ComboBoxWidth="400"
-                                Text="--Categorías--" />
+                                Width="400"
+                                Height="40"
+                                HorizontalAlignment="Left" />
+
                             <components:TextBoxControl
                                 Grid.Row="0"
                                 Grid.Column="1"
@@ -89,6 +91,7 @@
                                 HorizontalAlignment="Right"
                                 FieldName="ID de la Partida"
                                 Text="" />
+
                         </Grid>
                         <Grid>
                             <DataGrid
@@ -96,7 +99,7 @@
                                 Margin="10"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                AutoGenerateColumns="False" >
+                                AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
                                         Width="*"

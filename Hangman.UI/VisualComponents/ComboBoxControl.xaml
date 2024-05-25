@@ -6,151 +6,15 @@
     xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="ComboBox"
-    d:DesignHeight="320"
-    d:DesignWidth="400"
+    d:DesignHeight="{Binding ComboBoxHeight, ElementName=ComboBox}"
+    d:DesignWidth="{Binding ComboBoxWidth, ElementName=ComboBox}"
     mc:Ignorable="d">
     <Grid>
-        <Border
-            x:Name="ComboBox_Border"
-            Width="{Binding ComboBoxWidth, ElementName=ComboBox}"
-            Height="{Binding ComboBoxHeight, ElementName=ComboBox}"
-            VerticalAlignment="Top"
-            Panel.ZIndex="0"
-            Background="{StaticResource SolidColorBrush_MarianBlue}"
-            BorderBrush="{StaticResource SolidColorBrush_Gold}"
-            BorderThickness="3"
-            CornerRadius="10">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock
-                    Grid.Column="0"
-                    Padding="10,0,10,0"
-                    VerticalAlignment="Center"
-                    Background="Transparent"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="18"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="{Binding Text, ElementName=ComboBox}"
-                    TextAlignment="Left" />
-
-                <Border
-                    x:Name="ComboBox_Highlight"
-                    Grid.Column="1"
-                    Background="{StaticResource SolidColorBrush_Black}"
-                    BorderThickness="0"
-                    CornerRadius="10"
-                    Cursor="Hand"
-                    Opacity="0.5"
-                    Visibility="Hidden" />
-
-                <Grid
-                    x:Name="ComboBox_Button"
-                    Grid.Column="1"
-                    Width="20"
-                    Height="20"
-                    HorizontalAlignment="Center"
-                    Cursor="Hand"
-                    MouseEnter="ComboBox_Button_MouseEnter"
-                    MouseLeave="ComboBox_Button_MouseLeave"
-                    MouseLeftButtonUp="ComboBox_Button_MouseLeftButtonUp">
-
-                    <Border x:Name="ComboBox_Arrow">
-
-                        <Border.Background>
-                            <ImageBrush ImageSource="{StaticResource Icon_ArrowDown}" Stretch="Uniform" />
-                        </Border.Background>
-
-                    </Border>
-
-                </Grid>
-
-            </Grid>
-
-        </Border>
-        <Border
-            x:Name="ComboBox_Dropdown"
-            Width="400"
-            Height="180"
-            Margin="0,40,0,0"
-            VerticalAlignment="Top"
-            Background="{StaticResource SolidColorBrush_RoyalBlue}"
-            BorderBrush="{StaticResource SolidColorBrush_Gold}"
-            BorderThickness="3"
-            CornerRadius="10"
-            Visibility="Hidden">
-            <Grid>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock
-                    Grid.Row="0"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="Celda 1" />
-
-                <TextBlock
-                    Grid.Row="1"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="Celda 2" />
-
-                <TextBlock
-                    Grid.Row="2"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="Celda 3" />
-
-                <TextBlock
-                    Grid.Row="3"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="Celda 4" />
-
-                <TextBlock
-                    Grid.Row="4"
-                    Padding="20,0,20,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Font_Nunito}"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="Celda 5" />
-
-            </Grid>
-        </Border>
+        <ComboBox
+            x:Name="ComboBoxControlType"
+            Focusable="False"
+            Loaded="ComboBoxControl_Loaded" />
 
     </Grid>
 
