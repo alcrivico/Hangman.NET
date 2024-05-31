@@ -9,31 +9,35 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Game")]
     public class Game
     {
-        [Column (Name = "IdGame", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int IdGame { get; set; }
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int Id { get; set; }
 
         [Column (Name = "CreationDate")]
         public DateTime CreationDate { get; set; }
 
-        [Column (Name = "IdStatus")]
-        public int IdStatus { get; set; }
+        [Column (Name = "GameCode")]
+        public string GameCode { get; set; }
 
-        [Column (Name = "IdCreatorPlayer")]
-        public int IdCreatorPlayer { get; set; }
+        [Column (Name = "StatusId")]
+        public int StatusId { get; set; }
 
-        [Column(Name = "IdChallengerPlayer")]
-        public int? IdChallengerPlayerNullable { get; set; }
+        [Column (Name = "CreatorId")]
+        public int CreatorId { get; set; }
+
+        [Column(Name = "ChallengerId")]
+        public int? ChallengerIdNullable { get; set; }
         //Necesario para aceptar nulos
-        public int IdChallengerPlayer
+        public int ChallengerId
         {
-            get { return IdChallengerPlayerNullable ?? 0; }
-            set { IdChallengerPlayerNullable = value; }
+            get { return ChallengerIdNullable ?? 0; }
+            set { ChallengerIdNullable = value; }
         }
 
-        [Column (Name = "IdWord")]
-        public int IdWord { get; set; }
+        [Column (Name = "WordId")]
+        public int WordId { get; set; }
 
-        [Column (Name = "IdLanguage")]
-        public int IdLanguage { get; set; }
+        [Column (Name = "LanguageId")]
+        public int LanguageId { get; set; }
+
     }
 }

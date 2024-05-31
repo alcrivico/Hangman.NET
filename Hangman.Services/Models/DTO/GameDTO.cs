@@ -66,10 +66,10 @@ namespace Hangman.Services.Models.DTO
                     Table<Game> gameTable = data.GetTable<Game>();
 
                     var query = from game in gameTable
-                                where game.IdChallengerPlayer == idPlayer &&
-                                (game.IdStatus == 3 || 
-                                    game.IdStatus == 4 ||
-                                    game.IdStatus == 6)
+                                where game.ChallengerId == idPlayer &&
+                                (game.StatusId == 3 || 
+                                    game.StatusId == 4 ||
+                                    game.StatusId == 6)
                                 select game;
                     if (query.Any())
                     {
@@ -107,7 +107,7 @@ namespace Hangman.Services.Models.DTO
             {
                 Table<Game> gameTable = data.GetTable<Game>();
                 var query = from game in gameTable
-                            where game.IdStatus == 1
+                            where game.StatusId == 1
                             select game;
                 if (query.Any())
                 {
@@ -136,12 +136,12 @@ namespace Hangman.Services.Models.DTO
             {
                 Table<Game> gameTable = data.GetTable<Game>();
                 var query = from game in gameTable
-                            where game.IdGame == gameId
+                            where game.Id == gameId
                             select game;
                 if (query.Any())
                 {
                     Game game = query.First();
-                    game.IdStatus = StatusID;
+                    game.StatusId = StatusID;
                     data.SubmitChanges();
                     response["Error"] = false;
                     response["Message"] = "Estado de la partida actualizado";
@@ -171,11 +171,11 @@ namespace Hangman.Services.Models.DTO
             {
                 Table<Game> gameTable = data.GetTable<Game>();
                 var query = (from game in gameTable
-                            where game.IdGame == idGame
+                            where game.Id == idGame
                             select game).First();
                 if (query != null)
                 {
-                    query.IdChallengerPlayer = idChallenger;
+                    query.ChallengerId = idChallenger;
                     data.SubmitChanges();
 
                     response["Error"] = false;
@@ -209,14 +209,14 @@ namespace Hangman.Services.Models.DTO
                     Table<Game> gameTable = data.GetTable<Game>();
 
                     var query = from game in gameTable
-                                where game.IdGame == gameId
+                                where game.Id == gameId
                                 select game;
 
                     if (query.Any())
                     {
                         var game = query.First();
 
-                        if(game.IdCreatorPlayer == playerId)
+                        if(game.CreatorId == playerId)
                         {
                             response["PlayerType"] = "Creator";
                         }

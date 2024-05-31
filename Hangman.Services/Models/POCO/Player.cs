@@ -9,11 +9,11 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Player")]
     public class Player
     {
-        [Column (Name = "IdPlayer", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int IdPlayer { get; set; }
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int Id { get; set; }
 
-        [Column (Name = "Name")]
-        public string Name { get; set; }
+        [Column (Name = "FirstName")]
+        public string FirstName { get; set; }
 
         [Column (Name = "FirstLastName")]
         public string FirstLastName { get; set; }

@@ -9,8 +9,8 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Category")]
     public class Category
     {
-        [Column (Name = "IdCategory", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int IdCategory { get; set; }
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int CategoryId { get; set; }
 
         [Column (Name = "CategoryES")]
         public string CategoryES { get; set; }

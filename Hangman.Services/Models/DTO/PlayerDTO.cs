@@ -125,7 +125,7 @@ namespace Hangman.Services.Models.DTO
 
                     if (query != null)
                     {
-                        query.Name = player.Name;
+                        query.FirstName = player.FirstName;
                         query.FirstLastName = player.FirstLastName;
                         query.SecondLastName = player.SecondLastName;
                         query.BirthDate = player.BirthDate;
@@ -174,7 +174,7 @@ namespace Hangman.Services.Models.DTO
                     Table<Player> playerTable = data.GetTable<Player>();
 
                     var query = from player in playerTable
-                                where player.IdPlayer == playerId
+                                where player.Id == playerId
                                 select player;
                     if (query.Any())
                     {
