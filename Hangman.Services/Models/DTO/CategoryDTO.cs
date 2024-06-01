@@ -13,11 +13,8 @@ namespace Hangman.Services.Models.DTO
     {
         public static Dictionary<string, object> GetCategoriesList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            //result 0 = correcto, 1 = sqlEx, 2 = error de conexion
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -26,18 +23,22 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Category> categoryTable = data.GetTable<Category>();
 
-                    var query = from category in categoryTable
-                                select category;
-                    if (query.Any())
+                    var categories = from category in categoryTable
+                                select new
+                                {
+                                    category.CategoryES,
+                                    category.CategoryEN
+                                };
+                    if (categories.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Categorías encontradas";
-                        response.Add("Categories", query.ToList());
+                        response.Add("Result", 0);
+                        response.Add("Data", categories.ToList());
                     }
                 }
                 catch (SqlException sqlEx)
                 {
-                    Console.Write(sqlEx.StackTrace);
+                    response.Add("Result", 1);
+                    Console.WriteLine(sqlEx.Message);
                 }
                 finally
                 {
@@ -46,7 +47,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 2);
             }
 
             return response;
