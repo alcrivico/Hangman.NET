@@ -30,7 +30,7 @@ namespace Hangman.Services.Models.DTO
                     if (languages.Any())
                     {
                         response.Add("Result", 0);
-                        response.Add("Languages", languages.ToList());
+                        response.Add("Data", languages.ToList());
                     }
                     else
                     {
