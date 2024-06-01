@@ -14,12 +14,7 @@ namespace Hangman.Services.Models.DTO
     {
         public static Dictionary<string, object> CreateGame(Game newGame)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
-
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -33,29 +28,29 @@ namespace Hangman.Services.Models.DTO
                     gameTable.InsertOnSubmit(newGame);
                     data.SubmitChanges();
 
-                    response["Error"] = false;
-                    response["Message"] = "Partida creada exitosamente";
+                    response.Add("Result", 0);
                 }
                 catch (SqlException sqlEx)
                 {
-                    response["Message"] = "Error al crear la partida: " + sqlEx.Message;
+                    response.Add("Result", 2);
+                    Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally 
                 { 
                     data.Dispose(); 
                 }
             }
+            else
+            {
+                response.Add("Result", 3);
+            }
 
             return response;
         }
-
+        //Corregir: conseguirlos por email no id, y game status por nombre no id
         public static Dictionary<string, object> GetPlayedGames(int idPlayer)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -64,22 +59,27 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
                     Table<Game> gameTable = data.GetTable<Game>();
+                    Table<GameStatus> gameStatusTable = data.GetTable<GameStatus>();
 
-                    var query = from game in gameTable
+                    var games = from game in gameTable
                                 where game.ChallengerId == idPlayer &&
                                 (game.StatusId == 3 || 
                                     game.StatusId == 4 ||
                                     game.StatusId == 6)
                                 select game;
-                    if (query.Any())
+                    if (games.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Juegos jugados encontrados";
-                        response.Add("Games", query.ToList());
+                        response.Add("Result", 0);
+                        response.Add("Data", games.ToList());
+                    }
+                    else
+                    {
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
@@ -89,117 +89,15 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
             return response;
         }
 
+        //Corregir: status por nombre, no id
         public static Dictionary<string, object> GetWaitingGames()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
-            DataContext data = DBConnection.GetConnection();
-
-            if (data != null)
-            {
-                Table<Game> gameTable = data.GetTable<Game>();
-                var query = from game in gameTable
-                            where game.StatusId == 1
-                            select game;
-                if (query.Any())
-                {
-                    response["Error"] = false;
-                    response["Message"] = "Partidas encontradas";
-                    response.Add("Games", query.ToList());
-                }
-            }
-            else
-            {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
-            }
-            return response;
-        }
-
-        public static Dictionary<string, object> SetGameStatus(int gameId, int StatusID)
-        {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
-            DataContext data = DBConnection.GetConnection();
-
-            if (data != null)
-            {
-                Table<Game> gameTable = data.GetTable<Game>();
-                var query = from game in gameTable
-                            where game.Id == gameId
-                            select game;
-                if (query.Any())
-                {
-                    Game game = query.First();
-                    game.StatusId = StatusID;
-                    data.SubmitChanges();
-                    response["Error"] = false;
-                    response["Message"] = "Estado de la partida actualizado";
-                }
-                else
-                {
-                    response["Message"] = "No se encontró la partida";
-                }
-            }
-            else
-            {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
-            }
-            return response;
-        }
-
-        public static Dictionary<string, object> SetChallenger (int idGame, int idChallenger)
-        {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
-            DataContext data = DBConnection.GetConnection();
-
-            if (data != null)
-            {
-                Table<Game> gameTable = data.GetTable<Game>();
-                var query = (from game in gameTable
-                            where game.Id == idGame
-                            select game).First();
-                if (query != null)
-                {
-                    query.ChallengerId = idChallenger;
-                    data.SubmitChanges();
-
-                    response["Error"] = false;
-                    response["Message"] = "Partida aceptada";
-                }
-                else
-                {
-                    response["Message"] = "No se encontró la partida";
-                }
-            }
-            else
-            {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
-            }
-            return response;
-        }
-        public static Dictionary<string, object> GetPlayerType(int playerId, int gameId)
-        {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
-
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -207,36 +105,23 @@ namespace Hangman.Services.Models.DTO
                 try
                 {
                     Table<Game> gameTable = data.GetTable<Game>();
-
-                    var query = from game in gameTable
-                                where game.Id == gameId
+                    var games = from game in gameTable
+                                where game.StatusId == 1
                                 select game;
-
-                    if (query.Any())
+                    if (games.Any())
                     {
-                        var game = query.First();
-
-                        if(game.CreatorId == playerId)
-                        {
-                            response["PlayerType"] = "Creator";
-                        }
-                        else
-                        {
-                            response["PlayerType"] = "Challenger";
-                        }
-
-                        response["Error"] = false;
-                        response["Message"] = "El tipo de jugador se ha recuperado de forma exitosa";
+                        response.Add("Result", 0);
+                        response.Add("Data", games.ToList());
                     }
                     else
                     {
-                        response["Message"] = "La partida no se ha encontrado";
+                        response.Add("Result", 1);
                     }
-
                 }
                 catch (SqlException sqlEx)
                 {
-                    response["Message"] = "SQL Error: " + sqlEx.Message;
+                    response.Add("Result", 2);
+                    Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
                 {
@@ -245,7 +130,140 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
+            }
+            return response;
+        }
+        //Corregir: no usar StatusId, usar nombres
+        public static Dictionary<string, object> SetGameStatus(string gameCode, int StatusID)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>();
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Game> gameTable = data.GetTable<Game>();
+                    var game = (from g in gameTable
+                                where g.GameCode == gameCode
+                                select g).First();
+                    if (game != null)
+                    {
+                        game.StatusId = StatusID;
+                        data.SubmitChanges();
+                        response.Add("Result", 0);
+                    }
+                    else
+                    {
+                        response.Add("Result", 1);
+                    }
+                }
+                catch
+                {
+                    response.Add("Result", 2);
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+            else
+            {
+                response.Add("Result", 3);
+            }
+            return response;
+        }
+        
+        //Corregir: no usar idChallenger, usar nombres
+        public static Dictionary<string, object> SetChallenger (string gameCode, int idChallenger)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>();
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Game> gameTable = data.GetTable<Game>();
+                    var game = (from g in gameTable
+                                where g.GameCode == gameCode
+                                select g).First();
+                    if (game != null)
+                    {
+                        game.ChallengerId = idChallenger;
+                        data.SubmitChanges();
+                        response.Add("Result", 0);
+                    }
+                    else
+                    {
+                        response.Add("Result", 1);
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    response.Add("Result", 2);
+                    Console.WriteLine(sqlEx.StackTrace);
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+            else
+            {
+                response.Add("Result", 3);
+            }
+            return response;
+        }
+        //Corregir: no usar playerId, usar nombres
+        public static Dictionary<string, object> GetPlayerType(int playerId, string gameCode)
+        {
+            Dictionary<string, object> response = new Dictionary<string, object>();
+            DataContext data = DBConnection.GetConnection();
+
+            if (data != null)
+            {
+                try
+                {
+                    Table<Game> gameTable = data.GetTable<Game>();
+                    var query = from game in gameTable
+                                where game.GameCode == gameCode
+                                select game;
+
+                    if (query.Any())
+                    {
+                        var game = query.First();
+
+                        if(game.CreatorId == playerId)
+                        {
+                            response.Add("Data", "Creator");
+                        }
+                        else
+                        {
+                            response.Add("Data", "Challenger");
+                        }
+
+                        response.Add("Result", 0);
+                    }
+                    else
+                    {
+                        response.Add("Result", 1);
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    response.Add("Result", 2);
+                    Console.WriteLine(sqlEx.StackTrace);
+                }
+                finally
+                {
+                    data.Dispose();
+                }
+            }
+            else
+            {
+                response.Add("Result", 3);
             }
             return response;
         }

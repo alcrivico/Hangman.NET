@@ -151,11 +151,7 @@ namespace Hangman.Services.Models.DTO
 
         public static Dictionary<string, object> GetPlayerById(int playerId)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -164,22 +160,22 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
 
-                    var query = from player in playerTable
-                                where player.Id == playerId
-                                select player;
-                    if (query.Any())
+                    var player = from p in playerTable
+                                where p.Id == playerId
+                                select p;
+                    if (player.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Jugador encontrado";
-                        response.Add("Player", query.First());
+                        response.Add("Result", 0);
+                        response.Add("Data", player.First());
                     }
                     else
                     {
-                        response["Message"] = "No se encontró al jugador";
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
@@ -189,7 +185,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
             return response;
         }
