@@ -11,7 +11,6 @@ namespace Hangman.Services.Models.DTO
 {
     public class PlayerDTO
     {
-        //result 0 = correcto, 1 = sindatos/existente, 2 = sqlEx, 3 = error de conexion
         public static Dictionary<string, object> LogIn(string email, string password)
         {
             Dictionary<string, object> response = new Dictionary<string, object>();

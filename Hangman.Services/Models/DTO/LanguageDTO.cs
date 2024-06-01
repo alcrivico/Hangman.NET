@@ -11,7 +11,6 @@ namespace Hangman.Services.Models.DTO
 {
     public class LanguageDTO
     {
-        //result 0 = correcto, 1 = sin datos, 2 sqlEx, 3 = error de conexion
         public static Dictionary<string, object> GetLanguagesList()
         {
             Dictionary<string, object> response = new Dictionary<string, object>();

@@ -11,7 +11,6 @@ namespace Hangman.Services.Models.DTO
 {
     public class CategoryDTO
     {
-        //result 0 = correcto, 1 = sin datos, 2 sqlEx, 3 = error de conexion
         public static Dictionary<string, object> GetCategoriesList()
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
