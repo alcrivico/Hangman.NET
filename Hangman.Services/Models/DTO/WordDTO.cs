@@ -11,13 +11,10 @@ namespace Hangman.Services.Models.DTO
 {
     public class WordDTO
     {
+        //result 0 = correcto, 1 = sqlEx, 2 = error de conexion
         public static Dictionary<string, object> GetWordsList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -26,17 +23,25 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Word> wordTable = data.GetTable<Word>();
 
-                    var query = from word in wordTable
-                                select word;
-                    if (query.Any())
+                    var words = from word in wordTable
+                                select new
+                                {
+                                    word.WordES,
+                                    word.WordEN,
+                                    word.TipES,
+                                    word.TipEN,
+                                    word.HasNumber,
+                                    word.CategoryId
+                                };
+                    if (words.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Palabras encontradas";
-                        response.Add("Words", query.ToList());
+                        response.Add("Result", 0);
+                        response.Add("Data", words.ToList());
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 1);
                     Console.Write(sqlEx.StackTrace);
                 }
                 finally
@@ -46,7 +51,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 2);
             }
 
             return response;
