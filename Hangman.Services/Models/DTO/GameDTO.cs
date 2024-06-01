@@ -159,9 +159,10 @@ namespace Hangman.Services.Models.DTO
                         response.Add("Result", 1);
                     }
                 }
-                catch
+                catch(SqlException sqlEx)
                 {
                     response.Add("Result", 2);
+                    Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
                 {
