@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.DTO
 {
     public class CategoryDTO
     {
-        //result 0 = correcto, 1 = sqlEx, 2 = error de conexion
+        //result 0 = correcto, 1 = sin datos, 2 sqlEx, 3 = error de conexion
         public static Dictionary<string, object> GetCategoriesList()
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
@@ -34,10 +34,14 @@ namespace Hangman.Services.Models.DTO
                         response.Add("Result", 0);
                         response.Add("Data", categories.ToList());
                     }
+                    else
+                    {
+                        response.Add("Result", 1);
+                    }
                 }
                 catch (SqlException sqlEx)
                 {
-                    response.Add("Result", 1);
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.Message);
                 }
                 finally
@@ -47,7 +51,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response.Add("Result", 2);
+                response.Add("Result", 3);
             }
 
             return response;

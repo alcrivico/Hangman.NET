@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.DTO
 {
     public class WordDTO
     {
-        //result 0 = correcto, 1 = sqlEx, 2 = error de conexion
+        //result 0 = correcto, 1 = sin datos, 2 sqlEx, 3 = error de conexion
         public static Dictionary<string, object> GetWordsList()
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
@@ -38,10 +38,14 @@ namespace Hangman.Services.Models.DTO
                         response.Add("Result", 0);
                         response.Add("Data", words.ToList());
                     }
+                    else
+                    {
+                        response.Add("Result", 1);
+                    }
                 }
                 catch (SqlException sqlEx)
                 {
-                    response.Add("Result", 1);
+                    response.Add("Result", 2);
                     Console.Write(sqlEx.StackTrace);
                 }
                 finally
@@ -51,7 +55,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response.Add("Result", 2);
+                response.Add("Result", 3);
             }
 
             return response;

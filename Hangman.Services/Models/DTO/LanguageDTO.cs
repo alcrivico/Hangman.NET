@@ -11,13 +11,10 @@ namespace Hangman.Services.Models.DTO
 {
     public class LanguageDTO
     {
-        public static Dictionary<string, object> GetLanguages()
+        //result 0 = correcto, 1 = sin datos, 2 sqlEx, 3 = error de conexion
+        public static Dictionary<string, object> GetLanguagesList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -25,21 +22,24 @@ namespace Hangman.Services.Models.DTO
                 try
                 {
                     Table<Language> languageTable = data.GetTable<Language>();
-                    var query = from language in languageTable
-                                select language;
-                    if (query.Any())
+                    var languages = from language in languageTable
+                                select new
+                                {
+                                    language.LanguageName
+                                };
+                    if (languages.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Idiomas obtenidos exitosamente";
-                        response.Add("Languages", query.ToList());
+                        response.Add("Result", 0);
+                        response.Add("Languages", languages.ToList());
                     }
                     else
                     {
-                        response["Message"] = "No se encontraron idiomas";
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
@@ -49,7 +49,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
             return response;
         }
