@@ -11,13 +11,10 @@ namespace Hangman.Services.Models.DTO
 {
     public class PlayerDTO
     {
+        //result 0 = correcto, 1 = sindatos/existente, 2 = sqlEx, 3 = error de conexion
         public static Dictionary<string, object> LogIn(string email, string password)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -26,24 +23,30 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
 
-                    var query = from player in playerTable
-                                where player.Email == email && player.Password == password
-                                select player;
-                    if (query.Any())
+                    var player = from p in playerTable
+                                where p.Email == email && p.Password == password
+                                select new
+                                {
+                                    p.FirstName,
+                                    p.FirstLastName,
+                                    p.SecondLastName,
+                                    p.BirthDate,
+                                    p.Email
+                                };
+                    if (player.Any())
                     {
-                        response["Error"] = false;
-                        response["Message"] = "Inicio de sesión exitoso";
-                        response.Add("Player", query.First());
+                        response.Add("Result", 0);
+                        response.Add("Data", player.First());
                     }
                     else
                     {
-                        response["Message"] = "Correo o contraseña incorrectos. Por favor, verifíquelos";
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
-                    
                 }
                 finally
                 {
@@ -52,19 +55,14 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
-
             return response;
         }
 
-        public static Dictionary<string, object> SignUp(Player player)
+        public static Dictionary<string, object> SignUp(Player newPlayer)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -73,23 +71,23 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
 
-                    var query = from p in playerTable
-                                where p.Email == player.Email
+                    var player = from p in playerTable
+                                where p.Email == newPlayer.Email
                                 select p;
-                    if (!query.Any())
+                    if (!player.Any())
                     {
-                        playerTable.InsertOnSubmit(player);
+                        playerTable.InsertOnSubmit(newPlayer);
                         data.SubmitChanges();
-                        response["Error"] = false;
-                        response["Message"] = "Registro exitoso";
+                        response.Add("Result", 0);
                     }
                     else
                     {
-                        response["Message"] = "Ya existe un jugador registrado con ese correo electrónico";
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
@@ -99,18 +97,14 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
             return response;
         }
 
-        public static Dictionary<string, object> UpdateProfile (Player player)
+        public static Dictionary<string, object> UpdateProfile (Player updatedPlayer)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>
-            {
-                { "Error", true },
-                { "Message", "" }
-            };
+            Dictionary<string, object> response = new Dictionary<string, object>();
             DataContext data = DBConnection.GetConnection();
 
             if (data != null)
@@ -119,31 +113,29 @@ namespace Hangman.Services.Models.DTO
                 {
                     Table<Player> playerTable = data.GetTable<Player>();
 
-                    var query = (from p in playerTable
-                                where p.Email == player.Email
-                                select p).First();
+                    var player = (from p in playerTable
+                                 where p.Email == updatedPlayer.Email
+                                 select p).First();
 
-                    if (query != null)
+                    if (player != null)
                     {
-                        query.FirstName = player.FirstName;
-                        query.FirstLastName = player.FirstLastName;
-                        query.SecondLastName = player.SecondLastName;
-                        query.BirthDate = player.BirthDate;
-                        query.Email = player.Email;
-                        query.Password = player.Password;
+                        player.FirstName = updatedPlayer.FirstName;
+                        player.FirstLastName = updatedPlayer.FirstLastName;
+                        player.SecondLastName = updatedPlayer.SecondLastName;
+                        player.BirthDate = updatedPlayer.BirthDate;
+                        player.Password = updatedPlayer.Password;
 
                         data.SubmitChanges();
-                        response["Error"] = false;
-                        response["Message"] = "Perfil actualizado";
-                        response.Add("Player", query);
+                        response.Add("Result", 0);
                     }
                     else
                     {
-                        response["Message"] = "No se encontró al jugador";
+                        response.Add("Result", 1);
                     }
                 }
                 catch (SqlException sqlEx)
                 {
+                    response.Add("Result", 2);
                     Console.WriteLine(sqlEx.StackTrace);
                 }
                 finally
@@ -153,7 +145,7 @@ namespace Hangman.Services.Models.DTO
             }
             else
             {
-                response["Message"] = Constants.ERROR_CONNECTION_MESSAGE;
+                response.Add("Result", 3);
             }
             return response;
         }
