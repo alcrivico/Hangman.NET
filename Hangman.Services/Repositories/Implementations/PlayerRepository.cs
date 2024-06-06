@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Hangman.Services.Models.POCO;
@@ -30,7 +31,7 @@ namespace Hangman.Services.Repositories.Implementations
                                      where p.Email == email && p.Password == password
                                      select new Player
                                      {
-                                         FirstName = p.FirstName,
+                                         Name = p.Name,
                                          FirstLastName = p.FirstLastName,
                                          SecondLastName = p.SecondLastName,
                                          BirthDate = p.BirthDate,
@@ -49,8 +50,11 @@ namespace Hangman.Services.Repositories.Implementations
                     }
                     catch (Exception ex)
                     {
-                        Console.Write("Error: " + ex.StackTrace);
+
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
+
                     }
 
                 }
@@ -96,7 +100,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.Write("Error: " + ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -127,14 +132,14 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Player> playerTable = dataSource.GetTable<Player>();
 
                         var player = from p in playerTable
-                                     where p.Id == updatedPlayer.Id
+                                     where p.PlayerId == updatedPlayer.PlayerId
                                      select p;
 
                         if (player.Any())
                         {
 
                             Player playerToUpdate = player.First();
-                            playerToUpdate.FirstName = updatedPlayer.FirstName;
+                            playerToUpdate.Name = updatedPlayer.Name;
                             playerToUpdate.FirstLastName = updatedPlayer.FirstLastName;
                             playerToUpdate.SecondLastName = updatedPlayer.SecondLastName;
                             playerToUpdate.BirthDate = updatedPlayer.BirthDate;
@@ -184,7 +189,7 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Player> playerTable = dataSource.GetTable<Player>();
 
                         var player = from p in playerTable
-                                     where p.Id == playerId
+                                     where p.PlayerId == playerId
                                      select p;
 
                         if (player.Any())

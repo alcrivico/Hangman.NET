@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Hangman.Services.Models.POCO;
@@ -28,23 +29,22 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Word> wordTable = dataSource.GetTable<Word>();
 
                         var words = from word in wordTable
-                                    select new Word
-                                    {
-                                        WordES = word.WordES,
-                                        WordEN = word.WordEN,
-                                        TipES = word.TipES,
-                                        TipEN = word.TipEN,
-                                        HasNumber = word.HasNumber,
-                                        CategoryId = word.CategoryId
-                                    };
+                                    select word;
 
-                        return words.ToList();
+                        if (words.Any())
+                        {
+                            return words.ToList();
+                        }
+                        else
+                        {
+                            return null;
+                        }
 
                     }
                     catch (Exception ex)
                     {
 
-                        Console.Write("Error: " + ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
 
                         return null;
 

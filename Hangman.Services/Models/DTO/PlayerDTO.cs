@@ -12,7 +12,7 @@ namespace Hangman.Services.Models.DTO
     public class PlayerDTO
     {
 
-        public int Id { get; set; }
+        public int PlayerId { get; set; }
 
         public string FirstName { get; set; }
 

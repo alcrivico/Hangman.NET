@@ -6,6 +6,7 @@ using System.Web;
 using Hangman.Services.Repositories.Interfaces;
 using System.Data.Linq;
 using Hangman.Services.Utilities;
+using System.Diagnostics;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -37,7 +38,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -87,7 +89,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -132,7 +135,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -184,7 +188,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -236,7 +241,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }
@@ -291,7 +297,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }

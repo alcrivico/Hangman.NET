@@ -12,7 +12,7 @@ namespace Hangman.Services.Models.DTO
 
     public class WordDTO
     {
-        public int Id { get; set; }
+        public int WordId { get; set; }
 
         public string WordES { get; set; }
 
@@ -24,6 +24,7 @@ namespace Hangman.Services.Models.DTO
 
         public bool HasNumber { get; set; }
 
+        public int CategoryId { get; set; }
 
     }
 

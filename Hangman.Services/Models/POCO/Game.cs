@@ -10,8 +10,8 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Game")]
     public class Game
     {
-        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int Id { get; set; }
+        [Column (Name = "IdGame", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int GameId { get; set; }
 
         [Column (Name = "CreationDate")]
         public DateTime CreationDate { get; set; }
@@ -19,19 +19,19 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "GameCode")]
         public string GameCode { get; set; }
 
-        [Column (Name = "StatusId")]
+        [Column (Name = "IdStatus")]
         public int StatusId { get; set; }
 
-        [Column (Name = "CreatorId")]
+        [Column (Name = "IdCreatorPlayer")]
         public int CreatorId { get; set; }
 
-        [Column(Name = "ChallengerId")]
+        [Column(Name = "IdChallengerPlayer")]
         public int? ChallengerId { get; set; }
 
-        [Column (Name = "WordId")]
+        [Column (Name = "IdWord")]
         public int WordId { get; set; }
 
-        [Column (Name = "LanguageId")]
+        [Column (Name = "IdLanguage")]
         public int LanguageId { get; set; }
 
 
@@ -45,7 +45,7 @@ namespace Hangman.Services.Models.POCO
 
                 GameDTO gameDTO = new GameDTO();
 
-                gameDTO.Id = game.Id;
+                gameDTO.GameId = game.GameId;
                 gameDTO.CreationDate = game.CreationDate;
                 gameDTO.GameCode = game.GameCode;
                 gameDTO.StatusId = game.StatusId;
@@ -64,7 +64,7 @@ namespace Hangman.Services.Models.POCO
         {
             GameDTO gameDTO = new GameDTO();
 
-            gameDTO.Id = game.Id;
+            gameDTO.GameId = game.GameId;
             gameDTO.CreationDate = game.CreationDate;
             gameDTO.GameCode = game.GameCode;
             gameDTO.StatusId = game.StatusId;
@@ -78,7 +78,7 @@ namespace Hangman.Services.Models.POCO
         {
             Game game = new Game();
 
-            game.Id = gameDTO.Id;
+            game.GameId = gameDTO.GameId;
             game.CreationDate = gameDTO.CreationDate;
             game.GameCode = gameDTO.GameCode;
             game.StatusId = gameDTO.StatusId;

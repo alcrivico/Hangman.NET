@@ -6,6 +6,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using Hangman.Services.Utilities;
+using System.Diagnostics;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -27,13 +28,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         Table<Language> languageTable = dataSource.GetTable<Language>();
                         var languages = from language in languageTable
-                                        select new Language
-                                        {
-
-                                            Id = language.Id,
-                                            LanguageName = language.LanguageName
-
-                                        };
+                                        select language;
 
                         if (languages.Any())
                         {
@@ -48,7 +43,8 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+
                         return null;
 
                     }

@@ -10,8 +10,8 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Language")]
     public class Language
     {
-        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int Id { get; set; }
+        [Column (Name = "IdLanguage", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int LanguageId { get; set; }
 
         [Column (Name = "LanguageName")]
         public string LanguageName { get; set; }
@@ -25,7 +25,7 @@ namespace Hangman.Services.Models.POCO
             {
                 LanguageDTO languageDTO = new LanguageDTO();
 
-                languageDTO.Id = language.Id;
+                languageDTO.LanguageId = language.LanguageId;
                 languageDTO.LanguageName = language.LanguageName;
 
                 languagesDTO.Add(languageDTO);
