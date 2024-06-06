@@ -53,14 +53,14 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Orientation="Vertical">
-                        <Grid Margin="0,0,0,0">
+                        <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="450" />
+                                <RowDefinition Height="350" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1.5*" />
-                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="3*" />
+
                             </Grid.ColumnDefinitions>
                             <components:HangmanControl
                                 x:Name="Hangman"
@@ -80,28 +80,45 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <components:GameInformationControl
-                                    x:Name="Category"
-                                    Grid.Row="0"
-                                    Width="300"
-                                    Height="100"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center" />
-                                <components:GameInformationControl
-                                    x:Name="Clue"
-                                    Grid.Row="1"
-                                    Width="300"
-                                    Height="100"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center" />
+
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <components:GameInformationControl
+                                        x:Name="Information_Category"
+                                        Grid.Column="0"
+                                        Width="350"
+                                        Height="100"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center" />
+                                    <components:GameInformationControl
+                                        x:Name="Information_Clue"
+                                        Grid.Column="1"
+                                        Width="350"
+                                        Height="100"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center" />
+                                </Grid>
 
                                 <Border
-                                    Grid.Row="3"
-                                    Margin="0,0,0,30"
+                                    Grid.Row="1"
+                                    Margin="0,30,0,0"
                                     Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Alerta" /></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Palabra" /></TextBlock>
+                                </Border>
+
+                                <Border
+                                    Grid.Row="2"
+                                    Margin="0,30,0,0"
+                                    Background="LightGray">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Palabra" /></TextBlock>
                                 </Border>
 
                             </Grid>
@@ -113,34 +130,53 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Row="0" Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Teclado" /></TextBlock>
-                                </Border>
-                                <Border
-                                    Grid.Row="3"
-                                    Margin="0,60,0,30"
-                                    Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Datos creador" /></TextBlock>
-                                </Border>
-
                             </Grid>
                         </Grid>
-                        <Border
-                            Height="60"
-                            Margin="0,0,0,20"
-                            Background="LightGray">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Palabra" /></TextBlock>
-                        </Border>
-                        <components:ButtonControl
-                            x:Name="Button_ExitGame"
-                            Width="240"
-                            Height="55"
-                            Margin="0,0,0,0"
-                            HorizontalAlignment="Right"
-                            ButtonControlClick="Button_ExitGame_ButtonControlClick"
-                            FontSize="24"
-                            Loaded="Button_ExitGame_Loaded"
-                            Text="Abandonar partida" />
+
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="250" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border
+                                Grid.Column="0"
+                                Margin="0,30,0,0"
+                                Background="LightGray">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Teclado" /></TextBlock>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="0.5*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border
+                                    Grid.Row="0"
+                                    Margin="0,30,0,0"
+                                    Background="LightGray">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Creador" /></TextBlock>
+                                </Border>
+                                <components:ButtonControl
+                                    x:Name="Button_ExitGame"
+                                    Grid.Row="1"
+                                    Width="240"
+                                    Height="55"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Right"
+                                    ButtonControlClick="Button_ExitGame_ButtonControlClick"
+                                    FontSize="24"
+                                    Loaded="Button_ExitGame_Loaded"
+                                    Text="Abandonar partida" />
+                            </Grid>
+                        </Grid>
+
                     </StackPanel>
                 </Grid>
 

@@ -22,7 +22,7 @@ namespace Hangman.UI.VisualComponents
         public DatePickerControl()
         {
             InitializeComponent();
-            MySelectedDate = DateTime.Now;
+            
         }
 
         private void CalendarButton_Click(object sender, RoutedEventArgs e)
