@@ -73,5 +73,15 @@ namespace Hangman.UI.Views
         {
 
         }
+
+        private void TitleBarControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DatePickerControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

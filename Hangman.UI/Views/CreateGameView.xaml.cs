@@ -38,5 +38,6 @@ namespace Hangman.UI.Views
         {
             WindowState = e;
         }
+
     }
 }

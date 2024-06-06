@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" Loaded="TitleBarControl_Loaded" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -98,32 +98,12 @@
                                 FieldName="Apellido Materno"
                                 Loaded="TextBoxControl_SecondLastName"
                                 Text="" />
-                            <Grid Grid.Row="1" Grid.Column="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Border Grid.Column="0" Background="LightGray">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Text="Año" />
-                                </Border>
-                                <Border Grid.Column="1" Background="LightGray">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Text="Mes" />
-                                </Border>
-                                <Border Grid.Column="2" Background="LightGray">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Text="Dia" />
-                                </Border>
-                            </Grid>
+                            <components:DatePickerControl
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Width="230"
+                                FieldName="Fecha nacimiento"
+                                Height="50"/>
                             <components:TextBoxControl
                                 Grid.Row="1"
                                 Grid.Column="1"

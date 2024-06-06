@@ -24,7 +24,7 @@
             FontSize="12"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
-            Text="{Binding FieldName, ElementName=TextBox}" />
+            Text="{Binding FieldName, ElementName=TextBox}" Grid.Column="1"/>
 
         <Rectangle
             x:Name="TextBox_Highlight"
