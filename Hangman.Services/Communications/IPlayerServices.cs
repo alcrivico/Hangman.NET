@@ -14,18 +14,18 @@ namespace Hangman.Services.Communications
     [ServiceContract]
     public interface IPlayerServices
     {
-        //CAMBIAR RETORNOS A DICTIONARY
-        [OperationContract]
-        PlayerDTO LogIn(string email, string pass);//Cambiar el retorno
 
         [OperationContract]
-        PlayerDTO SignUp(Player player);//Cambiar el retorno
+        PlayerDTO LogIn(string email, string pass);
 
         [OperationContract]
-        PlayerDTO UpdateProfile(Player player);//Cambiar el retorno
+        PlayerDTO SignUp(Player player);
 
         [OperationContract]
-        List<GameDTO> GetPlayedGames(int idPlayer);//Cambiar el retorno
+        PlayerDTO UpdateProfile(Player player);
+
+        [OperationContract]
+        List<GameDTO> GetPlayedGames(int idPlayer);
 
 
     }

@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Word")]
     public class Word
     {
-        [Column (Name = "IdWord", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int WordId { get; set; }
 
         [Column (Name = "WordES")]
@@ -29,28 +29,33 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "HasNumber")]
         public bool HasNumber { get; set; }
 
-        [Column (Name = "IdCategory")]
+        [Column (Name = "CategoryId")]
         public int CategoryId { get; set; }
 
         public static List<WordDTO> ConvertWordListToDTO(List<Word> words)
         {
 
             List<WordDTO> wordsDTO = new List<WordDTO>();
-            Debug.WriteLine("Comprobación de Consola funcional");
-            foreach (Word word in words)
+
+            if (words != null)
             {
 
-                WordDTO wordDTO = new WordDTO();
+                foreach (Word word in words)
+                {
 
-                wordDTO.WordId = word.WordId;
-                wordDTO.WordES = word.WordES;
-                wordDTO.WordEN = word.WordEN;
-                wordDTO.TipES = word.TipES;
-                wordDTO.TipEN = word.TipEN;
-                wordDTO.HasNumber = word.HasNumber;
-                wordDTO.CategoryId = word.CategoryId;
+                    WordDTO wordDTO = new WordDTO();
 
-                wordsDTO.Add(wordDTO);
+                    wordDTO.WordId = word.WordId;
+                    wordDTO.WordES = word.WordES;
+                    wordDTO.WordEN = word.WordEN;
+                    wordDTO.TipES = word.TipES;
+                    wordDTO.TipEN = word.TipEN;
+                    wordDTO.HasNumber = word.HasNumber;
+                    wordDTO.CategoryId = word.CategoryId;
+
+                    wordsDTO.Add(wordDTO);
+
+                }
 
             }
 

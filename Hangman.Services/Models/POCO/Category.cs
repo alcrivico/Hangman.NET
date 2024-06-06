@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.POCO
     public class Category
     {
 
-        [Column (Name = "IdCategory", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int CategoryId { get; set; }
 
         [Column (Name = "CategoryES")]
@@ -25,16 +25,21 @@ namespace Hangman.Services.Models.POCO
 
             List<CategoryDTO> categoriesDTO = new List<CategoryDTO>();
 
-            foreach (Category category in categories)
+            if (categories != null)
             {
 
-                CategoryDTO categoryDTO = new CategoryDTO();
+                foreach (Category category in categories)
+                {
 
-                categoryDTO.CategoryId = category.CategoryId;
-                categoryDTO.CategoryES = category.CategoryES;
-                categoryDTO.CategoryEN = category.CategoryEN;
+                    CategoryDTO categoryDTO = new CategoryDTO();
 
-                categoriesDTO.Add(categoryDTO);
+                    categoryDTO.CategoryId = category.CategoryId;
+                    categoryDTO.CategoryES = category.CategoryES;
+                    categoryDTO.CategoryEN = category.CategoryEN;
+
+                    categoriesDTO.Add(categoryDTO);
+
+                }
 
             }
 

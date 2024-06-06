@@ -10,7 +10,7 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Language")]
     public class Language
     {
-        [Column (Name = "IdLanguage", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int LanguageId { get; set; }
 
         [Column (Name = "LanguageName")]
@@ -21,14 +21,21 @@ namespace Hangman.Services.Models.POCO
 
             List<LanguageDTO> languagesDTO = new List<LanguageDTO>();
 
-            foreach (Language language in languages)
+            if (languages != null)
             {
-                LanguageDTO languageDTO = new LanguageDTO();
 
-                languageDTO.LanguageId = language.LanguageId;
-                languageDTO.LanguageName = language.LanguageName;
+                foreach (Language language in languages)
+                {
 
-                languagesDTO.Add(languageDTO);
+                    LanguageDTO languageDTO = new LanguageDTO();
+
+                    languageDTO.LanguageId = language.LanguageId;
+                    languageDTO.LanguageName = language.LanguageName;
+
+                    languagesDTO.Add(languageDTO);
+
+                }
+
             }
 
             return languagesDTO;

@@ -10,10 +10,10 @@ namespace Hangman.Services.Models.POCO
     [Table (Name = "Player")]
     public class Player
     {
-        [Column (Name = "IdPlayer", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int PlayerId { get; set; }
 
-        [Column (Name = "Name")]
+        [Column (Name = "FirstName")]
         public string Name { get; set; }
 
         [Column (Name = "FirstLastName")]
@@ -36,12 +36,17 @@ namespace Hangman.Services.Models.POCO
 
             PlayerDTO playerDTO = new PlayerDTO();
 
-            playerDTO.PlayerId = player.PlayerId;
-            playerDTO.FirstName = player.Name;
-            playerDTO.FirstLastName = player.FirstLastName;
-            playerDTO.SecondLastName = player.SecondLastName;
-            playerDTO.BirthDate = player.BirthDate;
-            playerDTO.Email = player.Email;
+            if (player != null)
+            {
+
+                playerDTO.PlayerId = player.PlayerId;
+                playerDTO.Name = player.Name;
+                playerDTO.FirstLastName = player.FirstLastName;
+                playerDTO.SecondLastName = player.SecondLastName;
+                playerDTO.BirthDate = player.BirthDate;
+                playerDTO.Email = player.Email;
+
+            }
 
             return playerDTO;
         }

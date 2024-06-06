@@ -29,14 +29,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var player = from p in playerTable
                                      where p.Email == email && p.Password == password
-                                     select new Player
-                                     {
-                                         Name = p.Name,
-                                         FirstLastName = p.FirstLastName,
-                                         SecondLastName = p.SecondLastName,
-                                         BirthDate = p.BirthDate,
-                                         Email = p.Email
-                                     };
+                                     select p;
 
                         if (player.Any())
                         {

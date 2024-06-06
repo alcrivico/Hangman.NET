@@ -56,11 +56,11 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Ga
 CREATE TABLE [Game] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CreationDate] datetime NOT NULL,
-    [GameCode] varchar(12) NOT NULL,
+    [GameCode] varchar(14) NOT NULL,
     [StatusId] int NOT NULL,
     [CreatorId] int NOT NULL,
     [ChallengerId] int NULL,
-    [WordID] int NOT NULL,
+    [WordId] int NOT NULL,
     [LanguageId] int NOT NULL
 )
 

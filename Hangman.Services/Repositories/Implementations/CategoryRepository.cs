@@ -27,14 +27,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         Table<Category> categoryTable = dataSource.GetTable<Category>();
                         var categories = from category in categoryTable
-                                        select new Category
-                                        {
-
-                                            CategoryId = category.CategoryId,
-                                            CategoryES = category.CategoryES,
-                                            CategoryEN = category.CategoryEN
-
-                                        };
+                                         select category;
 
                         if (categories.Any())
                         {
