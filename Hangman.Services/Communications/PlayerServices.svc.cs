@@ -1,6 +1,7 @@
 ﻿using Hangman.Services.Models.DTO;
 using Hangman.Services.Models.POCO;
 using Hangman.Services.Repositories.Interfaces;
+using Hangman.Services.Repositories.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace Hangman.Services.Communications
             _playerRepository = playerRepository;
             _gameRepository = gameRepository;
 
+        }
+
+        public PlayerServices()
+        {
+            _playerRepository = new PlayerRepository();
+            _gameRepository = new GameRepository();
         }
 
         public PlayerDTO LogIn (string email, string pass)

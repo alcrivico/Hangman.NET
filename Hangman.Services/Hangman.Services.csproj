@@ -77,7 +77,6 @@
     </Compile>
     <Compile Include="Models\DTO\CategoryDTO.cs" />
     <Compile Include="Models\DTO\GameDTO.cs" />
-    <Compile Include="Models\DTO\GameStatusDTO.cs" />
     <Compile Include="Models\DTO\LanguageDTO.cs" />
     <Compile Include="Models\DTO\PlayerDTO.cs" />
     <Compile Include="Models\DTO\WordDTO.cs" />

@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Hangman.Services.Repositories.Interfaces;
+using Hangman.Services.Repositories.Implementations;
 
 namespace Hangman.Services.Communications
 {
@@ -36,6 +37,15 @@ namespace Hangman.Services.Communications
             _categoryRepository = categoryRepository;
             _gameRepository = gameRepository;
 
+        }
+
+        public GameServices()
+        {
+            _wordRepository = new WordRepository();
+            _playerRepository = new PlayerRepository();
+            _languageRepository = new LanguageRepository();
+            _categoryRepository = new CategoryRepository();
+            _gameRepository = new GameRepository();
         }
 
         public GameDTO CreateGame(GameDTO newGame)
