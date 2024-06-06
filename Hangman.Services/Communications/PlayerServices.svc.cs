@@ -1,5 +1,6 @@
 ﻿using Hangman.Services.Models.DTO;
 using Hangman.Services.Models.POCO;
+using Hangman.Services.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,31 +10,56 @@ using System.Text;
 
 namespace Hangman.Services.Communications
 {
-    // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "PlayerServices" en el código, en svc y en el archivo de configuración a la vez.
-    // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione PlayerServices.svc o PlayerServices.svc.cs en el Explorador de soluciones e inicie la depuración.
+
     public class PlayerServices : IPlayerServices
     {
-        //CAMBIAR RETORNOS A DICTIONARY
-        public Player LogIn (string email, string pass)
+
+        private IPlayerRepository _playerRepository;
+        private IGameRepository _gameRepository;
+
+        public PlayerServices(IPlayerRepository playerRepository, IGameRepository gameRepository)
         {
-            return (Player)PlayerDTO.LogIn(email, pass)["Player"];
+
+            _playerRepository = playerRepository;
+            _gameRepository = gameRepository;
+
         }
 
-        public string SignUp(Player player)
+        public PlayerDTO LogIn (string email, string pass)
         {
-            return (string)PlayerDTO.SignUp(player)["Message"];
+
+            Player playerAnswer = _playerRepository.LogIn(email, pass);
+
+            return Player.ConvertPlayerToDTO(playerAnswer);
+
         }
 
-        public Player UpdateProfile(Player player)
+        public PlayerDTO SignUp(Player player)
         {
-            return (Player)PlayerDTO.UpdateProfile(player)["Player"];
+            
+            Player playerAnswer = _playerRepository.SignUp(player);
+
+            return Player.ConvertPlayerToDTO(playerAnswer);
+
         }
 
-        public List<Game> GetPlayedGames(int idPlayer)
+        public PlayerDTO UpdateProfile(Player player)
         {
-            return (List<Game>)GameDTO.GetPlayedGames(idPlayer)["Games"];
+
+            Player playerAnswer = _playerRepository.UpdateProfile(player);
+
+            return Player.ConvertPlayerToDTO(playerAnswer);
+
         }
 
+        public List<GameDTO> GetPlayedGames(int idPlayer)
+        {
+
+            List<Game> playedGames = _gameRepository.GetPlayedGames(idPlayer);
+
+            return Game.ConvertGameListToDTO(playedGames);
+
+        }
 
     }
 }

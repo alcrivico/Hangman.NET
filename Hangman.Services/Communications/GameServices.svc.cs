@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Hangman.Services.Repositories.Interfaces;
 
 namespace Hangman.Services.Communications
 {
@@ -14,48 +15,107 @@ namespace Hangman.Services.Communications
     public class GameServices : IGameServices
     {
         //CAMBIAR RETORNOS A DICTIONARY
-        public string CreateGame(Game newGame)
+
+        private IWordRepository _wordRepository;
+        private IPlayerRepository _playerRepository;
+        private ILanguageRepository _languageRepository;
+        private ICategoryRepository _categoryRepository;
+        private IGameRepository _gameRepository;
+
+        public GameServices(
+            IWordRepository wordRepository, 
+            IPlayerRepository playerRepository,
+            ILanguageRepository languageRepository,
+            ICategoryRepository categoryRepository,
+            IGameRepository gameRepository)
         {
-            return (string)GameDTO.CreateGame(newGame)["Message"];
+
+            _wordRepository = wordRepository;
+            _playerRepository = playerRepository;
+            _languageRepository = languageRepository;
+            _categoryRepository = categoryRepository;
+            _gameRepository = gameRepository;
+
         }
 
-        public List<Category> GetCategoriesList()
+        public GameDTO CreateGame(GameDTO newGame)
         {
-            return (List<Category>)CategoryDTO.GetCategoriesList()["Categories"]; 
+
+            Game game = Game.ConvertDTOToGame(newGame);
+
+            Game gameAnswer = _gameRepository.CreateGame(game);
+
+            return Game.ConvertGameToDTO(gameAnswer);
+
         }
 
-        public List<Word> GetWordsList()
+        public List<CategoryDTO> GetCategoriesList()
         {
-            return (List<Word>)WordDTO.GetWordsList()["Words"];
+
+            List<Category> categories = _categoryRepository.GetCategoriesList();
+
+            return Category.ConvertCategoryListToDTO(categories);
+
         }
 
-        public string SetChallenger(int idGame, int idChallenger)
+        public List<WordDTO> GetWordsList()
         {
-            return (string)GameDTO.SetChallenger(idGame, idChallenger)["Message"];
+
+            List<Word> words = _wordRepository.GetWordsList();
+
+            return Word.ConvertWordListToDTO(words);
+
         }
 
-        public string SetGameStatus(int idGame, int idStatus)
+        public GameDTO SetChallenger(string gameCode, int idChallenger)
         {
-            return (string)GameDTO.SetGameStatus(idGame, idStatus)["Message"];
+
+            Game gameAnswer = _gameRepository.SetChallenger(gameCode, idChallenger);
+
+            return Game.ConvertGameToDTO(gameAnswer);
+
         }
 
-        public List<Game> GetWaitingGames()
+        public GameDTO SetGameStatus(string gameCode, int idStatus)
         {
-            return (List<Game>)GameDTO.GetWaitingGames()["Games"];
-        }
-        public string GetPlayerType(int playerId, int gameId)
-        {
-            return (string)GameDTO.GetPlayerType(playerId, gameId)["PlayerType"];
+
+            Game gameAnswer = _gameRepository.SetGameStatus(gameCode, idStatus);
+
+            return Game.ConvertGameToDTO(gameAnswer);
+
         }
 
-        public Player GetPlayerById(int playerId)
+        public List<GameDTO> GetWaitingGames()
         {
-            return (Player)PlayerDTO.GetPlayerById(playerId)["Player"];
+
+            List<Game> games = _gameRepository.GetWaitingGames();
+
+            return Game.ConvertGameListToDTO(games);
+
         }
 
-        public List<Language> GetLanguages()
+        public string GetPlayerType(int playerId, string gameCode)
         {
-            return (List<Language>)LanguageDTO.GetLanguages()["Languages"];
+            return _gameRepository.GetPlayerType(playerId, gameCode);
         }
+
+        public PlayerDTO GetPlayerById(int playerId)
+        {
+
+            Player playerAnswer = _playerRepository.GetPlayerById(playerId);
+
+            return Player.ConvertPlayerToDTO(playerAnswer);
+
+        }
+
+        public List<LanguageDTO> GetLanguagesList()
+        {
+
+            List<Language> languages = _languageRepository.GetLanguagesList();
+
+            return Language.ConvertLanguageListToDTO(languages);
+
+        }
+
     }
 }

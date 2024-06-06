@@ -1,4 +1,5 @@
 ﻿using Hangman.Services.Models.POCO;
+using Hangman.Services.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,16 @@ namespace Hangman.Services.Communications
     {
         //CAMBIAR RETORNOS A DICTIONARY
         [OperationContract]
-        Player LogIn(string email, string pass);//Cambiar el retorno
+        PlayerDTO LogIn(string email, string pass);//Cambiar el retorno
 
         [OperationContract]
-        string SignUp(Player player);//Cambiar el retorno
+        PlayerDTO SignUp(Player player);//Cambiar el retorno
 
         [OperationContract]
-        Player UpdateProfile(Player player);//Cambiar el retorno
+        PlayerDTO UpdateProfile(Player player);//Cambiar el retorno
 
         [OperationContract]
-        List<Game> GetPlayedGames(int idPlayer);//Cambiar el retorno
+        List<GameDTO> GetPlayedGames(int idPlayer);//Cambiar el retorno
 
 
     }

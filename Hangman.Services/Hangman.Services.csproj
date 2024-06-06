@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="Models\DTO\CategoryDTO.cs" />
     <Compile Include="Models\DTO\GameDTO.cs" />
+    <Compile Include="Models\DTO\GameStatusDTO.cs" />
     <Compile Include="Models\DTO\LanguageDTO.cs" />
     <Compile Include="Models\DTO\PlayerDTO.cs" />
     <Compile Include="Models\DTO\WordDTO.cs" />
@@ -87,6 +88,16 @@
     <Compile Include="Models\POCO\Player.cs" />
     <Compile Include="Models\POCO\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Implementations\CategoryRepository.cs" />
+    <Compile Include="Repositories\Implementations\GameRepository.cs" />
+    <Compile Include="Repositories\Implementations\LanguageRepository.cs" />
+    <Compile Include="Repositories\Implementations\PlayerRepository.cs" />
+    <Compile Include="Repositories\Implementations\WordRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IGameRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ILanguageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPlayerRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IWordRepository.cs" />
     <Compile Include="Utilities\DBConnection.cs" />
   </ItemGroup>
   <ItemGroup>

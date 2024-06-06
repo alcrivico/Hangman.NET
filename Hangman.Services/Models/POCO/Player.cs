@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangman.Services.Models.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Linq;
@@ -29,5 +30,21 @@ namespace Hangman.Services.Models.POCO
 
         [Column (Name = "Password")]
         public string Password { get; set; }
+
+        public static PlayerDTO ConvertPlayerToDTO(Player player)
+        {
+
+            PlayerDTO playerDTO = new PlayerDTO();
+
+            playerDTO.Id = player.Id;
+            playerDTO.FirstName = player.FirstName;
+            playerDTO.FirstLastName = player.FirstLastName;
+            playerDTO.SecondLastName = player.SecondLastName;
+            playerDTO.BirthDate = player.BirthDate;
+            playerDTO.Email = player.Email;
+
+            return playerDTO;
+        }
+
     }
 }

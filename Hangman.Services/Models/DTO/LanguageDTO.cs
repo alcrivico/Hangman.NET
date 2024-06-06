@@ -11,46 +11,10 @@ namespace Hangman.Services.Models.DTO
 {
     public class LanguageDTO
     {
-        public static Dictionary<string, object> GetLanguagesList()
-        {
-            Dictionary<string, object> response = new Dictionary<string, object>();
-            DataContext data = DBConnection.GetConnection();
 
-            if (data != null)
-            {
-                try
-                {
-                    Table<Language> languageTable = data.GetTable<Language>();
-                    var languages = from language in languageTable
-                                select new
-                                {
-                                    language.LanguageName
-                                };
-                    if (languages.Any())
-                    {
-                        response.Add("Result", 0);
-                        response.Add("Data", languages.ToList());
-                    }
-                    else
-                    {
-                        response.Add("Result", 1);
-                    }
-                }
-                catch (SqlException sqlEx)
-                {
-                    response.Add("Result", 2);
-                    Console.WriteLine(sqlEx.StackTrace);
-                }
-                finally
-                {
-                    data.Dispose();
-                }
-            }
-            else
-            {
-                response.Add("Result", 3);
-            }
-            return response;
-        }
+        public int Id { get; set; }
+
+        public string LanguageName { get; set; }
+
     }
 }

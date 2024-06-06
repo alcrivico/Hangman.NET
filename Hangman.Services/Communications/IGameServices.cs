@@ -1,4 +1,5 @@
-﻿using Hangman.Services.Models.POCO;
+﻿using Hangman.Services.Models.POCO; // Eliminar al cambiar todos los POCO por DTOs
+using Hangman.Services.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,36 +9,37 @@ using System.Text;
 
 namespace Hangman.Services.Communications
 {
-    // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de interfaz "IGameServices" en el código y en el archivo de configuración a la vez.
+    
     [ServiceContract]
     public interface IGameServices
     {
-        //CAMBIAR RETORNOS A DICTIONARY
+        
         [OperationContract]
-        string CreateGame(Game newGame);
+        GameDTO CreateGame(GameDTO newGame);
 
         [OperationContract]
-        List<Category> GetCategoriesList();
+        List<CategoryDTO> GetCategoriesList();
 
         [OperationContract]
-        List<Word> GetWordsList();
+        List<WordDTO> GetWordsList();
 
         [OperationContract]
-        string SetChallenger(int idGame, int idChallenger);
+        GameDTO SetChallenger(string gameCode, int idChallenger);
 
         [OperationContract]
-        string SetGameStatus(int idGame, int idStatus);
+        GameDTO SetGameStatus(string gameCode, int idStatus);
 
         [OperationContract]
-        List<Game> GetWaitingGames();
+        List<GameDTO> GetWaitingGames();
 
         [OperationContract]
-        string GetPlayerType(int playerId, int gameId);
+        string GetPlayerType(int playerId, string gameCode);
 
         [OperationContract]
-        Player GetPlayerById(int playerId);
+        PlayerDTO GetPlayerById(int playerId);
 
         [OperationContract]
-        List<Language> GetLanguages();
+        List<LanguageDTO> GetLanguagesList();
+
     }
 }
