@@ -39,7 +39,6 @@ namespace Hangman.Services.Models.POCO
             if (player != null)
             {
 
-                playerDTO.PlayerId = player.PlayerId;
                 playerDTO.Name = player.Name;
                 playerDTO.FirstLastName = player.FirstLastName;
                 playerDTO.SecondLastName = player.SecondLastName;
