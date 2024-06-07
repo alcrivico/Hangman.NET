@@ -77,14 +77,10 @@ namespace Hangman.Services.Repositories.Implementations
                         {
                             return null;
                         }
-
-                        int playerId = player.PlayerId;
-
+                        
                         var games = from game in gameTable
-                                    where game.ChallengerId == playerId &&
-                                    (game.StatusId == 3 ||
-                                        game.StatusId == 4 ||
-                                        game.StatusId == 6)
+                                    join GameStatus in dataSource.GetTable<GameStatus>() on game.StatusId equals GameStatus.StatusId
+                                    where (GameStatus.Status == "")
                                     select game;
 
                         if (games.Any())
