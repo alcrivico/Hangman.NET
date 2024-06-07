@@ -12,8 +12,6 @@ namespace Hangman.Services.Models.DTO
     public class PlayerDTO
     {
 
-        public int PlayerId { get; set; }
-
         public string Name { get; set; }
 
         public string FirstLastName { get; set; }
