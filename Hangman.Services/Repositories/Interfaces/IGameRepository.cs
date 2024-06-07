@@ -18,7 +18,7 @@ namespace Hangman.Services.Repositories.Interfaces
 
         Game SetGameStatus(string gameCode, int StatusID);
 
-        Game SetChallenger(string gameCode, int idChallenger);
+        Game SetChallenger(string gameCode, int challengerName);
 
         String GetPlayerType(string name, string gameCode);
 

@@ -211,7 +211,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Game SetChallenger(string gameCode, int idChallenger)
+        public Game SetChallenger(string gameCode, string challengerName)
         {
             
             using(DataContext dataSource = DBConnection.GetConnection())
@@ -232,7 +232,7 @@ namespace Hangman.Services.Repositories.Implementations
                         if (game != null)
                         {
 
-                            game.ChallengerId = idChallenger;
+                            game.ChallengerName = challengerName;
 
                             dataSource.SubmitChanges();
 
@@ -285,18 +285,7 @@ namespace Hangman.Services.Repositories.Implementations
                         if (game != null)
                         {
 
-                            var player = (from p in dataSource.GetTable<Player>()
-                                          where p.Name == name
-                                          select p).FirstOrDefault();
-
-                            if (player != null)
-                            {
-                                return null;
-                            }
-
-                            int playerId = player.PlayerId;
-
-                            if (game.ChallengerId == playerId)
+                            if (game.ChallengerName == name)
                             {
                                 return "Challenger";
                             }
