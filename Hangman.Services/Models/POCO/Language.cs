@@ -29,7 +29,6 @@ namespace Hangman.Services.Models.POCO
 
                     LanguageDTO languageDTO = new LanguageDTO();
 
-                    languageDTO.LanguageId = language.LanguageId;
                     languageDTO.LanguageName = language.LanguageName;
 
                     languagesDTO.Add(languageDTO);
