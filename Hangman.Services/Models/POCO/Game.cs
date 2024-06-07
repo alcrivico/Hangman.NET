@@ -19,14 +19,14 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "GameCode")]
         public string GameCode { get; set; }
 
-        [Column (Name = "StatusId")]
-        public int StatusId { get; set; }
+        [Column (Name = "Status")]
+        public string Status { get; set; }
 
-        [Column (Name = "CreatorId")]
-        public int CreatorId { get; set; }
+        [Column (Name = "CreatorName")]
+        public string CreatorName { get; set; }
 
-        [Column(Name = "ChallengerId")]
-        public int? ChallengerId { get; set; }
+        [Column(Name = "ChallengerName")]
+        public string ChallengerName { get; set; }
 
         [Column (Name = "WordId")]
         public int WordId { get; set; }
@@ -48,12 +48,11 @@ namespace Hangman.Services.Models.POCO
 
                     GameDTO gameDTO = new GameDTO();
 
-                    gameDTO.GameId = game.GameId;
                     gameDTO.CreationDate = game.CreationDate;
                     gameDTO.GameCode = game.GameCode;
-                    gameDTO.StatusId = game.StatusId;
-                    gameDTO.CreatorId = game.CreatorId;
-                    gameDTO.ChallengerId = game.ChallengerId;
+                    gameDTO.Status = game.Status;
+                    gameDTO.CreatorName = game.CreatorName;
+                    gameDTO.ChallengerName = game.ChallengerName;
 
                     gamesDTO.Add(gameDTO);
 
@@ -72,12 +71,11 @@ namespace Hangman.Services.Models.POCO
             if (game != null)
             {
 
-                gameDTO.GameId = game.GameId;
                 gameDTO.CreationDate = game.CreationDate;
                 gameDTO.GameCode = game.GameCode;
-                gameDTO.StatusId = game.StatusId;
-                gameDTO.CreatorId = game.CreatorId;
-                gameDTO.ChallengerId = game.ChallengerId;
+                gameDTO.Status = game.Status;
+                gameDTO.CreatorName = game.CreatorName;
+                gameDTO.ChallengerName = game.ChallengerName;
 
             }
 
@@ -91,12 +89,11 @@ namespace Hangman.Services.Models.POCO
             if (gameDTO != null)
             {
 
-                game.GameId = gameDTO.GameId;
                 game.CreationDate = gameDTO.CreationDate;
                 game.GameCode = gameDTO.GameCode;
-                game.StatusId = gameDTO.StatusId;
-                game.CreatorId = gameDTO.CreatorId;
-                game.ChallengerId = gameDTO.ChallengerId;
+                game.Status = gameDTO.Status;
+                game.CreatorName = gameDTO.CreatorName;
+                game.ChallengerName = gameDTO.ChallengerName;
 
             }
 

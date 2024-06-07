@@ -33,7 +33,6 @@ namespace Hangman.Services.Models.POCO
 
                     CategoryDTO categoryDTO = new CategoryDTO();
 
-                    categoryDTO.CategoryId = category.CategoryId;
                     categoryDTO.CategoryES = category.CategoryES;
                     categoryDTO.CategoryEN = category.CategoryEN;
 
