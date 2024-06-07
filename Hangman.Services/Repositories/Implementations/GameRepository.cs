@@ -81,7 +81,7 @@ namespace Hangman.Services.Repositories.Implementations
                         //Aqui tengo algunas dudar, ya que los join usualmente se realizan con los id, no se si hacerlo con el nombre del status sea correcto
                         var games = from game in gameTable
                                     join GameStatus in dataSource.GetTable<GameStatus>() on game.Status equals GameStatus.Status
-                                    where (GameStatus.Status == "")
+                                    where (GameStatus.Status == "Won" || GameStatus.Status == "Lost" || GameStatus.Status == "Left")
                                     select game;
                         
                         if (games.Any())
@@ -127,7 +127,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
                         var games = from game in gameTable
-                                    where game.Status == ""
+                                    where game.Status == "Waiting"
                                     select game;
 
                         if (games.Any())
