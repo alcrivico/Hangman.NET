@@ -13,17 +13,15 @@ namespace Hangman.Services.Models.DTO
     public class GameDTO
     {
 
-        public int GameId { get; set; }
-
         public DateTime CreationDate { get; set; }
 
         public string GameCode { get; set; }
 
-        public int StatusId { get; set; }
+        public string Status { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorName { get; set; }
 
-        public int? ChallengerId { get; set; }
+        public string ChallengerName { get; set; }
 
         public int ResponseCode { get; set; }
 
