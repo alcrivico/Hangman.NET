@@ -65,10 +65,9 @@
                             <components:HangmanControl
                                 x:Name="Hangman"
                                 Grid.Row="0"
-                                Width="300"
-                                Height="350"
-                                Margin="0,0,0,0"
-                                HorizontalAlignment="Right"
+                                Width="226"
+                                Height="301"
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 IncorrectGuesses="6"
                                 Loaded="Hangman_Loaded" />
@@ -138,12 +137,12 @@
                                 <RowDefinition Height="250" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.4*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Border
                                 Grid.Column="0"
-                                Margin="211,18,58,18"
+                                Margin="10,18,10,18"
                                 Background="#00296B"
                                 BorderBrush="{StaticResource SolidColorBrush_Gold}"
                                 BorderThickness="3"
@@ -370,7 +369,7 @@
 
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="*" />
                                     <RowDefinition Height="0.5*" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
