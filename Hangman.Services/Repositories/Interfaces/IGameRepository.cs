@@ -12,7 +12,7 @@ namespace Hangman.Services.Repositories.Interfaces
 
         Game CreateGame(Game newGame);
 
-        List<Game> GetPlayedGames(int idPlayer);
+        List<Game> GetPlayedGames(string name);
 
         List<Game> GetWaitingGames();
 

@@ -54,7 +54,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public List<Game> GetPlayedGames(int idPlayer)
+        public List<Game> GetPlayedGames(string name)
         {
             
 
@@ -69,8 +69,19 @@ namespace Hangman.Services.Repositories.Implementations
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
 
+                        var player = (from p in dataSource.GetTable<Player>()
+                                      where p.Name == name
+                                      select p).FirstOrDefault();
+
+                        if (player == null)
+                        {
+                            return null;
+                        }
+
+                        int playerId = player.PlayerId;
+
                         var games = from game in gameTable
-                                    where game.ChallengerId == idPlayer &&
+                                    where game.ChallengerId == playerId &&
                                     (game.StatusId == 3 ||
                                         game.StatusId == 4 ||
                                         game.StatusId == 6)
