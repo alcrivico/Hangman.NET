@@ -12,8 +12,6 @@ namespace Hangman.Services.Models.DTO
     public class LanguageDTO
     {
 
-        public int LanguageId { get; set; }
-
         public string LanguageName { get; set; }
 
         public int ResponseCode { get; set; }
