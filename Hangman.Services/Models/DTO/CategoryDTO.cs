@@ -10,8 +10,6 @@ namespace Hangman.Services.Models.DTO
     public class CategoryDTO
     {
 
-        public int CategoryId { get; set; }
-
         public string CategoryES { get; set; }
 
         public string CategoryEN { get; set; }
