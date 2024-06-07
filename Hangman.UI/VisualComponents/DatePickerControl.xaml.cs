@@ -22,7 +22,6 @@ namespace Hangman.UI.VisualComponents
         public DatePickerControl()
         {
             InitializeComponent();
-            
         }
 
         private void CalendarButton_Click(object sender, RoutedEventArgs e)
