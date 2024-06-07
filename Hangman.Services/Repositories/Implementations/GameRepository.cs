@@ -77,12 +77,13 @@ namespace Hangman.Services.Repositories.Implementations
                         {
                             return null;
                         }
-                        
+
+                        //Aqui tengo algunas dudar, ya que los join usualmente se realizan con los id, no se si hacerlo con el nombre del status sea correcto
                         var games = from game in gameTable
-                                    join GameStatus in dataSource.GetTable<GameStatus>() on game.StatusId equals GameStatus.StatusId
+                                    join GameStatus in dataSource.GetTable<GameStatus>() on game.Status equals GameStatus.Status
                                     where (GameStatus.Status == "")
                                     select game;
-
+                        
                         if (games.Any())
                         {
                             return games.ToList();
@@ -126,7 +127,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
                         var games = from game in gameTable
-                                    where game.StatusId == 1
+                                    where game.Status == ""
                                     select game;
 
                         if (games.Any())
@@ -158,7 +159,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Game SetGameStatus(string gameCode, int StatusID)
+        public Game SetGameStatus(string gameCode, string status)
         {
             
             using(DataContext dataSource = DBConnection.GetConnection())
@@ -179,7 +180,7 @@ namespace Hangman.Services.Repositories.Implementations
                         if (game != null)
                         {
 
-                            game.StatusId = StatusID;
+                            game.Status = status;
 
                             dataSource.SubmitChanges();
                             
