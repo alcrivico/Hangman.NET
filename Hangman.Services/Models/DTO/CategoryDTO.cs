@@ -15,6 +15,8 @@ namespace Hangman.Services.Models.DTO
         public string CategoryES { get; set; }
 
         public string CategoryEN { get; set; }
+
+        public int ResponseCode { get; set; }
  
     }
 }

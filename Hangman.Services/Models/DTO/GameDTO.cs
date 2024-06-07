@@ -25,5 +25,7 @@ namespace Hangman.Services.Models.DTO
 
         public int? ChallengerId { get; set; }
 
+        public int ResponseCode { get; set; }
+
     }
 }

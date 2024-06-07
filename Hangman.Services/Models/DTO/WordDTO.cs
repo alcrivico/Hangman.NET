@@ -26,6 +26,8 @@ namespace Hangman.Services.Models.DTO
 
         public int CategoryId { get; set; }
 
+        public int ResponseCode { get; set; }
+
     }
 
 }
