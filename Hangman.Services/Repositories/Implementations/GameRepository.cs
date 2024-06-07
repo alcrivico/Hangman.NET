@@ -268,7 +268,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public string GetPlayerType(int playerId, string gameCode)
+        public string GetPlayerType(string name, string gameCode)
         {
             
             using(DataContext dataSource = DBConnection.GetConnection())
@@ -288,6 +288,17 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (game != null)
                         {
+
+                            var player = (from p in dataSource.GetTable<Player>()
+                                          where p.Name == name
+                                          select p).FirstOrDefault();
+
+                            if (player != null)
+                            {
+                                return null;
+                            }
+
+                            int playerId = player.PlayerId;
 
                             if (game.ChallengerId == playerId)
                             {

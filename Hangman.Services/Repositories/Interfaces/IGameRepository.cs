@@ -20,7 +20,7 @@ namespace Hangman.Services.Repositories.Interfaces
 
         Game SetChallenger(string gameCode, int idChallenger);
 
-        String GetPlayerType(int playerId, string gameCode);
+        String GetPlayerType(string name, string gameCode);
 
     }
 }
