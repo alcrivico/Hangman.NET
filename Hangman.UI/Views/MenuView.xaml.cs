@@ -49,5 +49,9 @@ namespace Hangman.UI.Views
 
         }
 
+        private void ProfileControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

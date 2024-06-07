@@ -24,9 +24,9 @@ namespace Hangman.UI.Views
             InitializeComponent();
         }
 
-        private void TitleBarControl_WindowStateChangeRequested(object sender, RoutedEventArgs e)
+        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {
-            
+            WindowState = e;
         }
 
         private void TextBoxControl_Name_Loaded(object sender, RoutedEventArgs e)

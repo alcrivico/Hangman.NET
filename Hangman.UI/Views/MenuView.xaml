@@ -56,7 +56,7 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
+                                <RowDefinition Height="90" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
@@ -64,19 +64,17 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Grid.Row="0" Background="LightGray">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Text="Perfil" />
-                            </Border>
+                            <components:ProfileControl
+                                Margin="20,20,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                UserName="{Binding UserName}" Loaded="ProfileControl_Loaded" />
                             <components:HangmanControl
                                 x:Name="Hangman"
-                                Grid.Row="1"
                                 Width="400"
-                                Height="500"
+                                Height="445"
                                 VerticalAlignment="Top"
-                                IncorrectGuesses="6" />
+                                IncorrectGuesses="6" Margin="48,0,48,0" Grid.Row="1" />
                         </Grid>
                     </Grid>
 

@@ -13,13 +13,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <TextBlock
             x:Name="DatePicker_FieldName"
             Padding="5,0,5,0"
-            Margin="15,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Panel.ZIndex="1"
@@ -28,7 +27,7 @@
             FontSize="12"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
-            Text="{Binding FieldName, ElementName=DatePicker}" Grid.Column="1" />
+            Text="{Binding FieldName, ElementName=DatePicker}" Margin="13,0,0,0" Grid.ColumnSpan="2" />
 
         <Rectangle
             x:Name="DatePicker_Highlight"
