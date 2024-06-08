@@ -171,10 +171,12 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Game SetGameStatus(string gameCode, string status)
+        public Dictionary<string, object> SetGameStatus(string gameCode, string status)
         {
-            
-            using(DataContext dataSource = DBConnection.GetConnection())
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
+            using (DataContext dataSource = DBConnection.GetConnection())
             {
 
                 if (dataSource != null)
@@ -193,15 +195,15 @@ namespace Hangman.Services.Repositories.Implementations
                         {
 
                             game.Status = status;
-
                             dataSource.SubmitChanges();
-                            
-                            return game;
+
+                            response.Add("game", game);
+                            response.Add("responseCode", 0);
 
                         }
                         else
                         {
-                            return null;
+                            response.Add("responseCode", 1);
                         }
 
                     }
@@ -209,25 +211,28 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 3);
                 }
 
             }
 
+            return response;
+
         }
 
-        public Game SetChallenger(string gameCode, string challengerName)
+        public Dictionary<string, object> SetChallenger(string gameCode, string challengerName)
         {
-            
-            using(DataContext dataSource = DBConnection.GetConnection())
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
+            using (DataContext dataSource = DBConnection.GetConnection())
             {
 
                 if (dataSource != null)
@@ -246,15 +251,15 @@ namespace Hangman.Services.Repositories.Implementations
                         {
 
                             game.ChallengerName = challengerName;
-
                             dataSource.SubmitChanges();
 
-                            return game;
+                            response.Add("game", game);
+                            response.Add("responseCode", 0);
 
                         }
                         else
                         {
-                            return null;
+                            response.Add("responseCode", 1);
                         }
 
                     }
@@ -262,18 +267,19 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 3);
                 }
 
             }
+
+            return response;
 
         }
 
