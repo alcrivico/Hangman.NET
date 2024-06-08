@@ -26,7 +26,7 @@ namespace Hangman.UI.Views
             InitializeComponent();
 
             Dictionary<string, string>[] columns =
-             {
+             [
                 new Dictionary<string, string> {
                     { "Name", "ID" },
                     { "Width", "150.0" }
@@ -39,7 +39,7 @@ namespace Hangman.UI.Views
                     { "Name", "WaitingTime" },
                     { "Width", "*" }
                 }
-            };
+            ];
 
             GamesTable.DefineColumns(columns);
 

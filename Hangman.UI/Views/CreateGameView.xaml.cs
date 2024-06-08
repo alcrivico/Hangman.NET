@@ -28,7 +28,7 @@ namespace Hangman.UI.Views
              {
                 new Dictionary<string, string> {
                     { "Name", "Palabra" },
-                    { "Width", "150.0" }
+                    { "Width", "*" }
                 },
                 new Dictionary<string, string> {
                     { "Name", "Pista" },
