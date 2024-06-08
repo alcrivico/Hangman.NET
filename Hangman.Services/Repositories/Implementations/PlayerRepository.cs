@@ -63,8 +63,9 @@ namespace Hangman.Services.Repositories.Implementations
                 {
                     response.Add("ResponseCode", 3);
                 }
-                return response;
+                
             }
+            return response;
 
         }
 
