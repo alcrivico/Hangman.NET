@@ -107,15 +107,6 @@ namespace Hangman.Services.Communications
             return _gameRepository.GetPlayerType(playerId, gameCode);
         }
 
-        public PlayerDTO GetPlayerById(int playerId)
-        {
-
-            Player playerAnswer = _playerRepository.GetPlayerById(playerId);
-
-            return Player.ConvertPlayerToDTO(playerAnswer);
-
-        }
-
         public List<LanguageDTO> GetLanguagesList()
         {
 

@@ -36,9 +36,6 @@ namespace Hangman.Services.Communications
         Dictionary<string, object> GetPlayerType(string email, string gameCode);
 
         [OperationContract]
-        Dictionary<string, object> GetPlayerById(int playerId);
-
-        [OperationContract]
         Dictionary<string, object> GetLanguagesList();
 
     }
