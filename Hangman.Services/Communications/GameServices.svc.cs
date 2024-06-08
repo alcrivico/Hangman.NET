@@ -46,74 +46,44 @@ namespace Hangman.Services.Communications
             _gameRepository = new GameRepository();
         }
 
-        public GameDTO CreateGame(GameDTO newGame)
+        public Dictionary<string, object> CreateGame(GameDTO newGame)
         {
-
-            Game game = Game.ConvertDTOToGame(newGame);
-
-            Game gameAnswer = _gameRepository.CreateGame(game);
-
-            return Game.ConvertGameToDTO(gameAnswer);
-
+            return _gameRepository.CreateGame(newGame);
         }
 
-        public List<CategoryDTO> GetCategoriesList()
+        public Dictionary<string, object> GetCategoriesList()
         {
-
-            List<Category> categories = _categoryRepository.GetCategoriesList();
-
-            return Category.ConvertCategoryListToDTO(categories);
-
+            return _categoryRepository.GetCategoriesList();
         }
 
-        public List<WordDTO> GetWordsList()
+        public Dictionary<string, object> GetWordsList()
         {
-
-            List<Word> words = _wordRepository.GetWordsList();
-
-            return Word.ConvertWordListToDTO(words);
-
+            return _wordRepository.GetWordsList();
         }
 
-        public GameDTO SetChallenger(string gameCode, int idChallenger)
+        public Dictionary<string, object> SetChallenger(string gameCode, string email)
         {
-
-            Game gameAnswer = _gameRepository.SetChallenger(gameCode, idChallenger);
-
-            return Game.ConvertGameToDTO(gameAnswer);
-
+            return _gameRepository.SetChallenger(gameCode, email);
         }
 
-        public GameDTO SetGameStatus(string gameCode, int idStatus)
+        public Dictionary<string, object> SetGameStatus(string gameCode, string status)
         {
-
-            Game gameAnswer = _gameRepository.SetGameStatus(gameCode, idStatus);
-
-            return Game.ConvertGameToDTO(gameAnswer);
-
+            return _gameRepository.SetGameStatus(gameCode, status);
         }
 
-        public List<GameDTO> GetWaitingGames()
+        public Dictionary<string, object> GetWaitingGames()
         {
-
-            List<Game> games = _gameRepository.GetWaitingGames();
-
-            return Game.ConvertGameListToDTO(games);
-
+            return _gameRepository.GetWaitingGames();
         }
 
-        public string GetPlayerType(int playerId, string gameCode)
+        public Dictionary<string, object> GetPlayerType(string email, string gameCode)
         {
-            return _gameRepository.GetPlayerType(playerId, gameCode);
+            return _gameRepository.GetPlayerType(email, gameCode);
         }
 
-        public List<LanguageDTO> GetLanguagesList()
+        public Dictionary<string, object> GetLanguagesList()
         {
-
-            List<Language> languages = _languageRepository.GetLanguagesList();
-
-            return Language.ConvertLanguageListToDTO(languages);
-
+            return _languageRepository.GetLanguagesList();
         }
 
     }
