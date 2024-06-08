@@ -14,4 +14,85 @@
         Opacity="0.1"
         Color="{StaticResource Color_Black}" />
 
+    <Style x:Key="GeneralColumnHeader" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="3,0,0,3" />
+        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="InitialColumnHeader" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="0,0,0,3" />
+        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="GeneralRow" TargetType="DataGridRow">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="0,0,0,3" />
+    </Style>
+
+    <Style x:Key="GeneralCell" TargetType="DataGridCell">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="3,0,0,0" />
+        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="InitialCell" TargetType="DataGridCell">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Hangman.UI.VisualComponents;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,26 +24,39 @@ namespace Hangman.UI.Views
         public SearchGameView()
         {
             InitializeComponent();
+
+            Dictionary<string, string>[] columns =
+             {
+                new Dictionary<string, string> {
+                    { "Name", "ID" },
+                    { "Width", "150.0" }
+                },
+                new Dictionary<string, string> {
+                    { "Name", "CreatedBy" },
+                    { "Width", "*" }
+                },
+                new Dictionary<string, string> {
+                    { "Name", "WaitingTime" },
+                    { "Width", "*" }
+                }
+            };
+
+            GamesTable.DefineColumns(columns);
+
+            ObservableCollection<GameDTO> gameDTOs = new ObservableCollection<GameDTO>();
+
+            gameDTOs.Add(new GameDTO { ID = "1", CreatedBy = "User1", WaitingTime = 15 });
+            gameDTOs.Add(new GameDTO { ID = "2", CreatedBy = "User2", WaitingTime = 20 });
+            gameDTOs.Add(new GameDTO { ID = "3", CreatedBy = "User3", WaitingTime = 25 });
+
+
+            //GamesTable.SetItemsSource(gameDTOs);
+
         }
 
-        private void TitleBarControl_WindowStateChangeRequested(object sender, RoutedEventArgs e)
+        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {
-            
-        }
-
-        private void TextBoxControl_IDGame(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Back_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
-        {
-            
+            this.WindowState = e;
         }
     }
 }
