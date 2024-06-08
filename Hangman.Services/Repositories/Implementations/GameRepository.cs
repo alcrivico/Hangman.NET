@@ -54,9 +54,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public List<Game> GetPlayedGames(string name)
+        public Dictionary<string, object> GetPlayedGames(string name)
         {
-            
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -75,7 +76,8 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (player == null)
                         {
-                            return null;
+                            response.Add("responseCode", 1);
+                            return response;
                         }
 
                         //Aqui tengo algunas dudar, ya que los join usualmente se realizan con los id, no se si hacerlo con el nombre del status sea correcto
@@ -86,11 +88,12 @@ namespace Hangman.Services.Repositories.Implementations
                         
                         if (games.Any())
                         {
-                            return games.ToList();
+                            response.Add("games", games.ToList());
+                            response.Add("responseCode", 0);
                         }
                         else
                         {
-                            return null;
+                            response.Add("responseCode", 2);
                         }
 
                     }
@@ -98,18 +101,19 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 3);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 4);
                 }
 
             }
+
+            return response;
 
         }
 
