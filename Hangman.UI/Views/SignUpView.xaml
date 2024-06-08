@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" Loaded="TitleBarControl_Loaded" />
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -80,7 +80,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Nombre"
-                                Loaded="TextBoxControl_Name"
                                 Text="" />
                             <components:TextBoxControl
                                 Grid.Row="0"
@@ -88,7 +87,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Apellido Paterno"
-                                Loaded="TextBoxControl_LastName"
                                 Text="" />
                             <components:TextBoxControl
                                 Grid.Row="0"
@@ -96,21 +94,19 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Apellido Materno"
-                                Loaded="TextBoxControl_SecondLastName"
                                 Text="" />
                             <components:DatePickerControl
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Width="230"
                                 FieldName="Fecha nacimiento"
-                                Height="50" Loaded="DatePickerControl_Loaded"/>
+                                Height="50" />
                             <components:TextBoxControl
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Width="230"
                                 Height="50"
                                 FieldName="Número de Teléfono"
-                                Loaded="TextBoxControl_PhoneNumber"
                                 Text="" />
                             <components:TextBoxControl
                                 Grid.Row="1"
@@ -118,7 +114,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Correo Electrónico"
-                                Loaded="TextBoxControl_Email"
                                 Text="" />
                             <components:TextBoxControl
                                 Grid.Row="2"
@@ -126,7 +121,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Contraseña"
-                                Loaded="TextBoxControl_Password"
                                 Text="" />
                             <components:TextBoxControl
                                 Grid.Row="2"
@@ -134,7 +128,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Confirmar Contraseña"
-                                Loaded="TextBoxControl_Password"
                                 Text="" />
                         </Grid>
                         <components:ButtonControl
@@ -144,7 +137,6 @@
                             Margin="0,0,0,20"
                             ButtonControlClick="Button_SignUp_ButtonControlClick"
                             FontSize="24"
-                            Loaded="Button_SignUp_Loaded"
                             Text="Registrarse" />
 
                         <TextBlock

@@ -14,7 +14,7 @@ namespace Hangman.UI
         public void ApplicationStart(object sender, StartupEventArgs e)
         {
 
-            SearchGameView initialView = new();
+            MenuView initialView = new();
 
             initialView.Show();
 
