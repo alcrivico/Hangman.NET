@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Hangman.UI.Views
 {
@@ -22,6 +23,20 @@ namespace Hangman.UI.Views
         public CreateGameView()
         {
             InitializeComponent();
+            
+            Dictionary<string, string>[] columns =
+             {
+                new Dictionary<string, string> {
+                    { "Name", "Palabra" },
+                    { "Width", "150.0" }
+                },
+                new Dictionary<string, string> {
+                    { "Name", "Pista" },
+                    { "Width", "*" }
+                },
+            };
+
+            WordsTable.DefineColumns(columns);
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
