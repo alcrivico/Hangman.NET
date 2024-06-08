@@ -18,10 +18,10 @@
                             <GeometryDrawing.Geometry>
                                 <CombinedGeometry GeometryCombineMode="Xor">
                                     <CombinedGeometry.Geometry1>
-                                        <RectangleGeometry Rect="0,0,10,10"/>
+                                        <RectangleGeometry Rect="0,0,40,40"/>
                                     </CombinedGeometry.Geometry1>
                                     <CombinedGeometry.Geometry2>
-                                        <RectangleGeometry Rect="10,10,10,10"/>
+                                        <RectangleGeometry Rect="40,40,40,40"/>
                                     </CombinedGeometry.Geometry2>
                                 </CombinedGeometry>
                             </GeometryDrawing.Geometry>

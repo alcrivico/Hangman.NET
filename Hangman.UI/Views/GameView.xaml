@@ -385,13 +385,24 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <components:AlertMessageControl
-                                        Margin="0,0,0,20"
                                         x:Name="AlertMessage"
+                                        Grid.Column="0"
                                         Width="400"
                                         Height="50"
+                                        Margin="0,0,0,20"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         BorderBrushColor="Red"
+                                        MessageFontSize="20" />
+                                    <components:AlertMessageControl
+                                        x:Name="AlertMessage1"
+                                        Grid.Column="1"
+                                        Width="400"
+                                        Height="100"
+                                        Margin="0,0,0,20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        BorderBrushColor="DarkBlue"
                                         MessageFontSize="20" />
                                 </Grid>
                                 <components:ButtonControl

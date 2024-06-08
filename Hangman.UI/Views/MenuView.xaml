@@ -68,13 +68,16 @@
                                 Margin="20,20,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                UserName="{Binding UserName}" Loaded="ProfileControl_Loaded" />
+                                Loaded="ProfileControl_Loaded"
+                                UserName="{Binding UserName}" />
                             <components:HangmanControl
                                 x:Name="Hangman"
+                                Grid.Row="1"
                                 Width="400"
                                 Height="445"
+                                Margin="48,0,48,0"
                                 VerticalAlignment="Top"
-                                IncorrectGuesses="6" Margin="48,0,48,0" Grid.Row="1" />
+                                IncorrectGuesses="6" />
                         </Grid>
                     </Grid>
 
@@ -125,15 +128,31 @@
                                     Foreground="{StaticResource SolidColorBrush_Gold}"
                                     Text="Ahorcado.NET"
                                     TextAlignment="Center" />
-                                <Border
+                                <Button
                                     Grid.Row="0"
                                     Grid.Column="2"
-                                    Background="LightGray">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Text="Salir" />
-                                </Border>
+                                    x:Name="DoorButton"
+                                    Width="40"
+                                    Height="40"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Click="DoorButton_Click" Margin="0,0,0,5">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Image
+                                                x:Name="DoorImage"
+                                                Source="/Resources/Images/closed_door.png"
+                                                Stretch="Fill" />
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="DoorImage" Property="Source" Value="/Resources/Images/open_door.png" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </Grid>
 
                             <components:ButtonControl

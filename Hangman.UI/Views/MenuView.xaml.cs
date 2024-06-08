@@ -53,5 +53,10 @@ namespace Hangman.UI.Views
         {
 
         }
+
+        private void DoorButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
