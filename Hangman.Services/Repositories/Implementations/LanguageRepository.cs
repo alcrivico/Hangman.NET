@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using Hangman.Services.Utilities;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using Hangman.Services.Models.DTO;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -14,8 +16,9 @@ namespace Hangman.Services.Repositories.Implementations
     public class LanguageRepository : ILanguageRepository
     {
 
-        public List<Language> GetLanguagesList()
+        public Dictionary<string, object> GetLanguagesList()
         {
+            Dictionary<string, object> response = new Dictionary<string, object>();
 
             using(DataContext dataSource = DBConnection.GetConnection())
             {
@@ -25,39 +28,38 @@ namespace Hangman.Services.Repositories.Implementations
 
                     try
                     {
-
                         Table<Language> languageTable = dataSource.GetTable<Language>();
-                        var languages = from language in languageTable
-                                        select language;
+
+                        var languages = (from language in languageTable
+                                        select new LanguageDTO
+                                        {
+                                            LanguageName = language.LanguageName
+                                        }).ToList();
 
                         if (languages.Any())
                         {
-                            return languages.ToList();
+                            response.Add("Data", languages);
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            return null;
+                            response.Add("ResponseCode", 1);
                         }
-
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-
-                    return null;
+                    response.Add("ResponseCode", 3);
                 }
 
             }
-
+            return response;
         }
 
     }
