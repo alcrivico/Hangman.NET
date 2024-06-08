@@ -10,13 +10,13 @@ namespace Hangman.Services.Repositories.Interfaces
     public interface IPlayerRepository
     {
 
-        Player LogIn(string email, string password);
+        Dictionary<string, object> LogIn(string email, string password);
 
-        Player SignUp(Player newPlayer);
+        Dictionary<string, object> SignUp(Player newPlayer);
 
-        Player UpdateProfile(Player updatedPlayer);
+        Dictionary<string, object> UpdateProfile(Player updatedPlayer);
 
-        Player GetPlayerById(int playerId);
+        Dictionary<string, object> GetPlayerById(int playerId);
 
     }
 }

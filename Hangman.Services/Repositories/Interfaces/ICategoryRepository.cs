@@ -10,7 +10,7 @@ namespace Hangman.Services.Repositories.Interfaces
     public interface ICategoryRepository
     {
 
-        List<Category> GetCategoriesList();
+        Dictionary<string, object> GetCategoriesList();
 
     }
 }

@@ -9,8 +9,7 @@ namespace Hangman.Services.Repositories.Interfaces
 {
     public interface IWordRepository
     {
-
-        List<Word> GetWordsList();
+        Dictionary<string, object> GetWordsList();
 
     }
 }

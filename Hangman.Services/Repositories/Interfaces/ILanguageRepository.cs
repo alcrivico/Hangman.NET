@@ -10,7 +10,7 @@ namespace Hangman.Services.Repositories.Interfaces
     public interface ILanguageRepository
     {
 
-        List<Language> GetLanguagesList();
+        Dictionary<string, object> GetLanguagesList();
 
     }
 }
