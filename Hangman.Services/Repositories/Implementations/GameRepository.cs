@@ -14,10 +14,12 @@ namespace Hangman.Services.Repositories.Implementations
     public class GameRepository : IGameRepository
     {
 
-        public Game CreateGame(Game newGame)
+        public Dictionary<string, object> CreateGame(Game newGame)
         {
-            
-            using(DataContext dataSource = DBConnection.GetConnection())
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
+            using (DataContext dataSource = DBConnection.GetConnection())
             {
 
                 if (dataSource != null)
@@ -32,25 +34,27 @@ namespace Hangman.Services.Repositories.Implementations
                         gameTable.InsertOnSubmit(newGame);
                         dataSource.SubmitChanges();
 
-                        return newGame;
+                        response.Add("game", newGame);
+                        response.Add("responseCode", 0);
 
                     }
                     catch (Exception ex)
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 3);
                 }
 
             }
+
+            return response;
 
         }
 
@@ -117,9 +121,11 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public List<Game> GetWaitingGames()
+        public Dictionary<string, object> GetWaitingGames()
         {
-            
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
             using (DataContext dataSource = DBConnection.GetConnection())
             {
 
@@ -136,11 +142,12 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (games.Any())
                         {
-                            return games.ToList();
+                            response.Add("games", games.ToList());
+                            response.Add("responseCode", 0);
                         }
                         else
                         {
-                            return null;
+                            response.Add("responseCode", 1);
                         }
 
                     }
@@ -148,18 +155,19 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 3);
                 }
 
             }
+
+            return response;
 
         }
 
