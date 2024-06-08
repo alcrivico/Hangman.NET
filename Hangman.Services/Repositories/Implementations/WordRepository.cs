@@ -30,25 +30,25 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Word> wordTable = dataSource.GetTable<Word>();
+                        Table<Category> categoryTable = dataSource.GetTable<Category>();
 
-                        var words = from word in wordTable
-                                    select word;
+                        var words = (from word in wordTable
+                                    join category in categoryTable
+                                    on word.CategoryId equals category.CategoryId
+                                    select new WordDTO
+                                    {
+                                        WordES = word.WordES,
+                                        WordEN = word.WordEN,
+                                        TipEN = word.TipEN,
+                                        TipES = word.TipES,
+                                        HasNumber = word.HasNumber,
+                                        CategoryEN = category.CategoryEN,
+                                        CategoryES = category.CategoryES,
+                                    }).ToList();
 
                         if (words.Any())
                         {
-                            foreach (Word word in words.ToList())
-                            {
-                                WordDTO wordDTO = new WordDTO()
-                                {
-                                    WordEN = word.WordEN,
-                                    WordES = word.WordES,
-                                    TipEN = word.TipEN,
-                                    TipES = word.TipES,
-                                    HasNumber = word.HasNumber,
-
-                                };
-                            }
-
+                            response.Add("Data", words);
                             response.Add("ResponseCode", 0);
                         }
                         else
