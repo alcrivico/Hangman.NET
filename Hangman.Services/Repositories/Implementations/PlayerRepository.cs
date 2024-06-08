@@ -128,9 +128,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Player UpdateProfile(Player updatedPlayer)
+        public Dictionary<string, object> UpdateProfile(PlayerDTO updatedPlayerDTO)
         {
-            
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
             using(DataContext dataSource = DBConnection.GetConnection())
             {
 
@@ -143,45 +144,43 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Player> playerTable = dataSource.GetTable<Player>();
 
                         var player = from p in playerTable
-                                     where p.PlayerId == updatedPlayer.PlayerId
+                                     where p.Email == updatedPlayerDTO.Email
                                      select p;
 
                         if (player.Any())
                         {
 
                             Player playerToUpdate = player.First();
-                            playerToUpdate.Name = updatedPlayer.Name;
-                            playerToUpdate.FirstLastName = updatedPlayer.FirstLastName;
-                            playerToUpdate.SecondLastName = updatedPlayer.SecondLastName;
-                            playerToUpdate.BirthDate = updatedPlayer.BirthDate;
-                            playerToUpdate.Email = updatedPlayer.Email;
+                            playerToUpdate.Name = updatedPlayerDTO.Name;
+                            playerToUpdate.FirstLastName = updatedPlayerDTO.FirstLastName;
+                            playerToUpdate.SecondLastName = updatedPlayerDTO.SecondLastName;
+                            playerToUpdate.BirthDate = updatedPlayerDTO.BirthDate;
 
                             dataSource.SubmitChanges();
 
-                            return playerToUpdate;
+                            response.Add("ResponseCode", 0);
 
                         }
                         else
                         {
-                            return null;
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Console.Write("Error: " + ex.StackTrace);
-                        return null;
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("ResponseCode", 3);
                 }
 
             }
+            return response;
 
         }
 
