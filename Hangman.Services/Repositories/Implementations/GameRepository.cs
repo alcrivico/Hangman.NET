@@ -265,10 +265,12 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public string GetPlayerType(string name, string gameCode)
+        public Dictionary<string, object> GetPlayerType(string name, string gameCode)
         {
-            
-            using(DataContext dataSource = DBConnection.GetConnection())
+
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
+            using (DataContext dataSource = DBConnection.GetConnection())
             {
 
                 if (dataSource != null)
@@ -278,27 +280,30 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
-
                         var game = (from g in gameTable
                                     where g.GameCode == gameCode
-                                    select g).First();
+                                    select g).FirstOrDefault();
 
                         if (game != null)
                         {
 
+                            string playerType;
                             if (game.ChallengerName == name)
                             {
-                                return "Challenger";
+                                playerType = "Challenger";
                             }
                             else
                             {
-                                return "Creator";
+                                playerType = "Creator";
                             }
+
+                            response.Add("playerType", playerType);
+                            response.Add("ResponseCode", 0);
 
                         }
                         else
                         {
-                            return null;
+                            response.Add("responseCode", 1);
                         }
 
                     }
@@ -306,18 +311,20 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
+                        response.Add("responseCode", 2);
+                        
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("responseCode", 3);
                 }
 
-            }       
+            }
+
+            return response;
 
         }
 
