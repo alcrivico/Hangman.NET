@@ -15,31 +15,31 @@ namespace Hangman.Services.Communications
     {
         
         [OperationContract]
-        GameDTO CreateGame(GameDTO newGame);
+        Dictionary<string, object> CreateGame(GameDTO newGame);
 
         [OperationContract]
-        List<CategoryDTO> GetCategoriesList();
+        Dictionary<string, object> GetCategoriesList();
 
         [OperationContract]
-        List<WordDTO> GetWordsList();
+        Dictionary<string, object> GetWordsList();
 
         [OperationContract]
-        GameDTO SetChallenger(string gameCode, int idChallenger);
+        Dictionary<string, object> SetChallenger(string gameCode, string email);
 
         [OperationContract]
-        GameDTO SetGameStatus(string gameCode, int idStatus);
+        Dictionary<string, object> SetGameStatus(string gameCode, string status);
 
         [OperationContract]
-        List<GameDTO> GetWaitingGames();
+        Dictionary<string, object> GetWaitingGames();
 
         [OperationContract]
-        string GetPlayerType(int playerId, string gameCode);
+        Dictionary<string, object> GetPlayerType(string email, string gameCode);
 
         [OperationContract]
-        PlayerDTO GetPlayerById(int playerId);
+        Dictionary<string, object> GetPlayerById(int playerId);
 
         [OperationContract]
-        List<LanguageDTO> GetLanguagesList();
+        Dictionary<string, object> GetLanguagesList();
 
     }
 }
