@@ -14,6 +14,16 @@
         Opacity="0.1"
         Color="{StaticResource Color_Black}" />
 
+    <Style x:Key="SelectedRowStyle" TargetType="DataGridRow">
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+    </Style>
+
+    <Style x:Key="SelectedCellStyle" TargetType="DataGridCell">
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+    </Style>
+
     <Style x:Key="GeneralColumnHeader" TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_Gold}" />
@@ -21,7 +31,7 @@
         <Setter Property="BorderThickness" Value="3,0,0,3" />
         <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="57" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
     </Style>
@@ -33,9 +43,16 @@
         <Setter Property="BorderThickness" Value="0,0,0,3" />
         <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="57" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="RowHeaderStyle" TargetType="DataGridRowHeader">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
     </Style>
 
     <Style x:Key="GeneralRow" TargetType="DataGridRow">
@@ -43,6 +60,13 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
         <Setter Property="BorderThickness" Value="0,0,0,3" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource SolidColorBrush_RoyalBlue}" />
+                <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="GeneralCell" TargetType="DataGridCell">
@@ -54,7 +78,39 @@
         <Setter Property="BorderThickness" Value="3,0,0,0" />
         <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="57" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource SolidColorBrush_RoyalBlue}" />
+                <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+                <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="InitialCell" TargetType="DataGridCell">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="57" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Template">
             <Setter.Value>
@@ -70,26 +126,81 @@
         </Setter>
     </Style>
 
-    <Style x:Key="InitialCell" TargetType="DataGridCell">
+    <Style x:Key="ScrollBarButtonStyle" TargetType="RepeatButton">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_White}" />
-        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontFamily" Value="{StaticResource Font_Nunito}" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="ScrollBarThumbStyle" TargetType="Thumb">
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SolidColorBrush_Gold}" />
+        <Setter Property="BorderThickness" Value="3" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="DataGridCell">
-                    <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                    </Border>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomScrollBar" TargetType="ScrollBar">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid Width="20" Background="Transparent">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <RepeatButton
+                            Grid.Row="0"
+                            Height="20"
+                            Command="ScrollBar.LineUpCommand"
+                            Content="▲"
+                            Style="{StaticResource ScrollBarButtonStyle}" />
+
+                        <Track
+                            Name="PART_Track"
+                            Grid.Row="1"
+                            IsDirectionReversed="true">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton
+                                    Height="20"
+                                    Command="ScrollBar.LineUpCommand"
+                                    Style="{StaticResource ScrollBarButtonStyle}"
+                                    Visibility="Collapsed" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb
+                                    Height="Auto"
+                                    Background="{StaticResource SolidColorBrush_Gold}"
+                                    Style="{StaticResource ScrollBarThumbStyle}" />
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton
+                                    Height="20"
+                                    Command="ScrollBar.LineDownCommand"
+                                    Style="{StaticResource ScrollBarButtonStyle}"
+                                    Visibility="Collapsed" />
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+
+                        <RepeatButton
+                            Grid.Row="2"
+                            Height="20"
+                            Command="ScrollBar.LineDownCommand"
+                            Content="▼"
+                            Style="{StaticResource ScrollBarButtonStyle}" />
+
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -9,6 +9,7 @@
     d:DesignWidth="750"
     Background="Transparent"
     mc:Ignorable="d">
+
     <Border
         Background="{StaticResource SolidColorBrush_MarianBlue}"
         BorderBrush="{StaticResource SolidColorBrush_Gold}"
@@ -28,9 +29,16 @@
             CanUserResizeRows="False"
             CellStyle="{StaticResource InitialCell}"
             ColumnHeaderStyle="{StaticResource InitialColumnHeader}"
+            GridLinesVisibility="None"
+            RowHeaderStyle="{StaticResource RowHeaderStyle}"
             RowStyle="{StaticResource GeneralRow}"
-            SelectionMode="Extended"
-            SelectionUnit="FullRow" />
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            SelectionMode="Single"
+            SelectionUnit="FullRow">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource CustomScrollBar}" TargetType="ScrollBar" />
+            </DataGrid.Resources>
+        </DataGrid>
 
     </Border>
 </UserControl>

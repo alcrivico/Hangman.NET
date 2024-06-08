@@ -66,13 +66,16 @@
                             TextAlignment="Center" />
 
                         <Grid Margin="0,0,0,20">
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50" />
                             </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
+
                             <components:TextBoxControl
                                 Grid.Row="0"
                                 Grid.Column="0"

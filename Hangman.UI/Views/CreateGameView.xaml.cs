@@ -28,11 +28,13 @@ namespace Hangman.UI.Views
              {
                 new Dictionary<string, string> {
                     { "Name", "Palabra" },
-                    { "Width", "*" }
+                    { "Width", "*" },
+                    { "BindingName", "Word" }
                 },
                 new Dictionary<string, string> {
                     { "Name", "Pista" },
-                    { "Width", "*" }
+                    { "Width", "*" },
+                    { "BindingName", "Hint" }
                 },
             };
 
