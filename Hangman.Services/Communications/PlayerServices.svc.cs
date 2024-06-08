@@ -32,40 +32,24 @@ namespace Hangman.Services.Communications
             _gameRepository = new GameRepository();
         }
 
-        public PlayerDTO LogIn (string email, string pass)
+        public Dictionary<string, object> LogIn (string email, string pass)
         {
-
-            Player playerAnswer = _playerRepository.LogIn(email, pass);
-
-            return Player.ConvertPlayerToDTO(playerAnswer);
-
+            return _playerRepository.LogIn(email, pass);
         }
 
-        public PlayerDTO SignUp(Player player)
+        public Dictionary<string, object> SignUp(PlayerDTO player)
         {
-            
-            Player playerAnswer = _playerRepository.SignUp(player);
-
-            return Player.ConvertPlayerToDTO(playerAnswer);
-
+            return _playerRepository.SignUp(player);
         }
 
-        public PlayerDTO UpdateProfile(Player player)
+        public Dictionary<string, object> UpdateProfile(PlayerDTO player)
         {
-
-            Player playerAnswer = _playerRepository.UpdateProfile(player);
-
-            return Player.ConvertPlayerToDTO(playerAnswer);
-
+            return _playerRepository.UpdateProfile(player);
         }
 
-        public List<GameDTO> GetPlayedGames(int idPlayer)
+        public Dictionary<string, object> GetPlayedGames(string email)
         {
-
-            List<Game> playedGames = _gameRepository.GetPlayedGames(idPlayer);
-
-            return Game.ConvertGameListToDTO(playedGames);
-
+            return _gameRepository.GetPlayedGames(email);
         }
 
     }

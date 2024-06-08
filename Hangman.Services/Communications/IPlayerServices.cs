@@ -25,7 +25,7 @@ namespace Hangman.Services.Communications
         Dictionary<string, object> UpdateProfile(PlayerDTO player);
 
         [OperationContract]
-        Dictionary<string, object> GetPlayedGames(int idPlayer);
+        Dictionary<string, object> GetPlayedGames(string email);
 
 
     }
