@@ -19,10 +19,10 @@ namespace Hangman.Services.Communications
         Dictionary<string, object> LogIn(string email, string pass);
 
         [OperationContract]
-        Dictionary<string, object> SignUp(Player player);
+        Dictionary<string, object> SignUp(PlayerDTO player);
 
         [OperationContract]
-        Dictionary<string, object> UpdateProfile(Player player);
+        Dictionary<string, object> UpdateProfile(PlayerDTO player);
 
         [OperationContract]
         Dictionary<string, object> GetPlayedGames(int idPlayer);
