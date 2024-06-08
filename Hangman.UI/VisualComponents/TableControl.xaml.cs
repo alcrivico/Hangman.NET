@@ -43,7 +43,7 @@ namespace Hangman.UI.VisualComponents
                 
                 DataGridTextColumn dataGridTextColumn = new DataGridTextColumn();
                 dataGridTextColumn.Header = columns[i]["Name"];
-                dataGridTextColumn.Binding = new Binding(columns[i]["Name"]);
+                dataGridTextColumn.Binding = new Binding(columns[i]["BindingName"]);
                 dataGridTextColumn.IsReadOnly = true;
 
                 
@@ -72,11 +72,15 @@ namespace Hangman.UI.VisualComponents
 
         public void SetItemsSource(ObservableCollection<GameDTO> itemsSource)
         {
+
+            DataGridStructure.ItemsSource = null;
             DataGridStructure.ItemsSource = itemsSource;
+
         }
 
     }
 
+    //Este DTO es temporal y deberá ser reemplazado por el DTO correspondiente en Resourses
     public class GameDTO
     {
         public required string ID { get; set; }

@@ -21,42 +21,117 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class SearchGameView : Window
     {
+        private ObservableCollection<GameDTO> _gameDTOs;
+
         public SearchGameView()
         {
-            InitializeComponent();
+            _gameDTOs = new ObservableCollection<GameDTO>();
 
-            Dictionary<string, string>[] columns =
-             [
-                new Dictionary<string, string> {
-                    { "Name", "ID" },
-                    { "Width", "150.0" }
+            List<GameDTO> games = new List<GameDTO> //Esta lista es temporal se recuperará de un Adapter de Servicio
+            {
+
+                new GameDTO
+                {
+
+                    ID = "1",
+                    CreatedBy = "alcrivico",
+                    WaitingTime = 30
+
                 },
-                new Dictionary<string, string> {
-                    { "Name", "CreatedBy" },
-                    { "Width", "*" }
+                new GameDTO
+                {
+
+                    ID = "2",
+                    CreatedBy = "raulh230600",
+                    WaitingTime = 5
+
                 },
-                new Dictionary<string, string> {
-                    { "Name", "WaitingTime" },
-                    { "Width", "*" }
+                new GameDTO
+                {
+
+                    ID = "3",
+                    CreatedBy = "XxJuanProGamerxX",
+                    WaitingTime = 3
+
+                },
+                new GameDTO
+                {
+
+                    ID = "4",
+                    CreatedBy = "miguelmorales2301",
+                    WaitingTime = 1
+
+                },
+                new GameDTO
+                {
+
+                    ID = "5",
+                    CreatedBy = "SoyUnPokemonYTuNo",
+                    WaitingTime = 17
+
                 }
-            ];
 
-            GamesTable.DefineColumns(columns);
+            };
 
-            ObservableCollection<GameDTO> gameDTOs = new ObservableCollection<GameDTO>();
-
-            gameDTOs.Add(new GameDTO { ID = "1", CreatedBy = "User1", WaitingTime = 15 });
-            gameDTOs.Add(new GameDTO { ID = "2", CreatedBy = "User2", WaitingTime = 20 });
-            gameDTOs.Add(new GameDTO { ID = "3", CreatedBy = "User3", WaitingTime = 25 });
-
-
-            //GamesTable.SetItemsSource(gameDTOs);
+            InitializeComponent();
+            DefineGamesTable();
+            SetGames(games);
+            GamesTable.SetItemsSource(_gameDTOs);
 
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {
             this.WindowState = e;
+        }
+        private void DefineGamesTable()         
+        {
+
+            Dictionary<string, string>[] columns =
+            {
+
+                new Dictionary<string, string> {
+
+                    { "Name", "Código de Partida" },
+                    { "Width", "150.0" },
+                    { "BindingName", "ID" }
+
+                },
+                new Dictionary<string, string> {
+
+                    { "Name", "Creada por:" },
+                    { "Width", "*" },
+                    { "BindingName", "CreatedBy" },
+
+                },
+                new Dictionary<string, string> {
+
+                    { "Name", "Tiempo esperando:" },
+                    { "Width", "*" },
+                    { "BindingName", "WaitingTime" },
+
+                }
+
+            };
+
+            GamesTable.DefineColumns(columns);
+
+        }
+
+        private void SetGames(List<GameDTO> games)
+        {
+            _gameDTOs.Clear();
+
+            foreach (GameDTO game in games)
+            {
+                _gameDTOs.Add(game);
+            }
+
+        }
+
+        private void AddGame(GameDTO game)
+        {
+            _gameDTOs.Add(game);
         }
 
     }
