@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Hangman.Services.Models.DTO;
@@ -54,12 +56,10 @@ namespace Hangman.Services.Repositories.Implementations
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Console.WriteLine(ex.StackTrace);
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
                         response.Add("ResponseCode", 2);
-
                     }
 
                 }
