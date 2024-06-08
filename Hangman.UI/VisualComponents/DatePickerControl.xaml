@@ -84,7 +84,7 @@
             Placement="Bottom"
             StaysOpen="False" Grid.ColumnSpan="2">
             <Border
-                BorderBrush="{StaticResource SolidColorBrush_Gold}"
+                BorderBrush="{StaticResource SolidColorBrush_MikadoYellow}"
                 BorderThickness="3"
                 CornerRadius="10"
                 Background="{StaticResource SolidColorBrush_MarianBlue}">

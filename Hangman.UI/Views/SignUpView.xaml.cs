@@ -83,5 +83,10 @@ namespace Hangman.UI.Views
         {
 
         }
+
+        private void CalendarButton_Click(object sender, RoutedEventArgs e)
+        {
+             
+        }
     }
 }

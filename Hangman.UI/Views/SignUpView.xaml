@@ -103,7 +103,7 @@
                                 Grid.Column="0"
                                 Width="230"
                                 FieldName="Fecha nacimiento"
-                                Height="50"/>
+                                Height="50" Loaded="DatePickerControl_Loaded"/>
                             <components:TextBoxControl
                                 Grid.Row="1"
                                 Grid.Column="1"

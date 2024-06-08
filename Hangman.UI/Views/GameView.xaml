@@ -326,7 +326,7 @@
                                             FontSize="16"
                                             Text="Ñ" />
                                     </UniformGrid>
-                                    <UniformGrid Columns="8" Rows="1">
+                                    <UniformGrid Columns="8" Rows="1" HorizontalAlignment="Center">
                                         <components:ButtonControl
                                             Width="30"
                                             Height="30"

@@ -93,27 +93,10 @@
                                 Text="" />
 
                         </Grid>
-                        <Grid>
-                            <DataGrid
-                                MinHeight="320"
-                                Margin="10"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Palabra}"
-                                        Header="Palabra" />
-
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Pista}"
-                                        Header="Pista" />
-
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
+                        <components:TableControl
+                            x:Name="WordsTable"
+                            Height="300"
+                            Margin="0,0,0,20" />
                         <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60" />
