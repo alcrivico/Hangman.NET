@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Web;
+using Hangman.Services.Models.DTO;
 using Hangman.Services.Models.POCO;
 using Hangman.Services.Repositories.Interfaces;
 using Hangman.Services.Utilities;
@@ -13,9 +14,10 @@ namespace Hangman.Services.Repositories.Implementations
     public class CategoryRepository: ICategoryRepository
     {
 
-        public List<Category> GetCategoriesList()
+        public Dictionary<string, object> GetCategoriesList()
         {
-            
+            Dictionary<string, object> response = new Dictionary<string, object>();
+
             using(DataContext dataSource = DBConnection.GetConnection())
             {
 
@@ -31,11 +33,24 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (categories.Any())
                         {
-                            return categories.ToList();
+                            List<CategoryDTO> categoriesList = new List<CategoryDTO>();
+
+                            foreach (Category category in categories.ToList())
+                            {
+                                CategoryDTO categoryDTO = new CategoryDTO
+                                {
+                                    CategoryEN = category.CategoryEN,
+                                    CategoryES = category.CategoryES,
+                                };
+
+                                categoriesList.Add(categoryDTO);
+                            }
+                            response.Add("data", categoriesList);
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            return null;
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
@@ -43,20 +58,20 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Console.WriteLine(ex.StackTrace);
-                        return null;
+                        response.Add("ResponseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("ResponseCode", 3);
                 }
 
             }
-
+            return response;
         }
-
+        
     }
 
 }
