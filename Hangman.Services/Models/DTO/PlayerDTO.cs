@@ -22,7 +22,5 @@ namespace Hangman.Services.Models.DTO
 
         public string Email { get; set; }
 
-        public int ResponseCode { get; set; }
-
     }
 }
