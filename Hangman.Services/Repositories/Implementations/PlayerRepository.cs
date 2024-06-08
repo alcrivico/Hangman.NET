@@ -68,9 +68,9 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Player SignUp(Player newPlayer)
+        public Dictionary<string, object> SignUp(PlayerDTO playerDTO)
         {
-            
+            Dictionary<string, object> response = new Dictionary<string, object>();
             using(DataContext dataSource = DBConnection.GetConnection())
             {
 
@@ -83,38 +83,47 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Player> playerTable = dataSource.GetTable<Player>();
 
                         var player = from p in playerTable
-                                     where p.Email == newPlayer.Email
+                                     where p.Email == playerDTO.Email
                                      select p;
 
                         if (!player.Any())
                         {
+                            Player newPlayer = new Player()
+                            {
+                                Name = playerDTO.Name,
+                                FirstLastName = playerDTO.FirstLastName,
+                                SecondLastName = playerDTO.SecondLastName,
+                                BirthDate = playerDTO.BirthDate,
+                                Email = playerDTO.Email,
+                                Password = playerDTO.Password
+                            };
+
                             playerTable.InsertOnSubmit(newPlayer);
                             dataSource.SubmitChanges();
-                            return newPlayer;
+
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            return null;
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-
-                        return null;
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-                    return null;
+                    response.Add("ResponseCode", 3);
                 
                 }
 
             }
+            return response;
 
         }
 
