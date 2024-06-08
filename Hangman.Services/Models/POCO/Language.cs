@@ -16,30 +16,5 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "LanguageName")]
         public string LanguageName { get; set; }
 
-        public static List<LanguageDTO> ConvertLanguageListToDTO(List<Language> languages)
-        {
-
-            List<LanguageDTO> languagesDTO = new List<LanguageDTO>();
-
-            if (languages != null)
-            {
-
-                foreach (Language language in languages)
-                {
-
-                    LanguageDTO languageDTO = new LanguageDTO();
-
-                    languageDTO.LanguageName = language.LanguageName;
-
-                    languagesDTO.Add(languageDTO);
-
-                }
-
-            }
-
-            return languagesDTO;
-
-        }
-
     }
 }

@@ -31,24 +31,5 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "Password")]
         public string Password { get; set; }
 
-        public static PlayerDTO ConvertPlayerToDTO(Player player)
-        {
-
-            PlayerDTO playerDTO = new PlayerDTO();
-
-            if (player != null)
-            {
-
-                playerDTO.Name = player.Name;
-                playerDTO.FirstLastName = player.FirstLastName;
-                playerDTO.SecondLastName = player.SecondLastName;
-                playerDTO.BirthDate = player.BirthDate;
-                playerDTO.Email = player.Email;
-
-            }
-
-            return playerDTO;
-        }
-
     }
 }

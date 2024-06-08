@@ -20,31 +20,5 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "CategoryEN")]
         public string CategoryEN { get; set; }
 
-        public static List<CategoryDTO> ConvertCategoryListToDTO(List<Category> categories)
-        {
-
-            List<CategoryDTO> categoriesDTO = new List<CategoryDTO>();
-
-            if (categories != null)
-            {
-
-                foreach (Category category in categories)
-                {
-
-                    CategoryDTO categoryDTO = new CategoryDTO();
-
-                    categoryDTO.CategoryES = category.CategoryES;
-                    categoryDTO.CategoryEN = category.CategoryEN;
-
-                    categoriesDTO.Add(categoryDTO);
-
-                }
-
-            }
-
-            return categoriesDTO;
-
-        }
-
     }
 }

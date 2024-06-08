@@ -32,36 +32,5 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "CategoryId")]
         public int CategoryId { get; set; }
 
-        public static List<WordDTO> ConvertWordListToDTO(List<Word> words)
-        {
-
-            List<WordDTO> wordsDTO = new List<WordDTO>();
-
-            if (words != null)
-            {
-
-                foreach (Word word in words)
-                {
-
-                    WordDTO wordDTO = new WordDTO();
-
-                    wordDTO.WordId = word.WordId;
-                    wordDTO.WordES = word.WordES;
-                    wordDTO.WordEN = word.WordEN;
-                    wordDTO.TipES = word.TipES;
-                    wordDTO.TipEN = word.TipEN;
-                    wordDTO.HasNumber = word.HasNumber;
-                    wordDTO.CategoryId = word.CategoryId;
-
-                    wordsDTO.Add(wordDTO);
-
-                }
-
-            }
-
-            return wordsDTO;
-
-        }
-
     }
 }
