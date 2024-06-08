@@ -1,5 +1,4 @@
 CREATE PROCEDURE AddGame
-    @StatusID INT,
     @CreatorID INT,
     @WordId INT,
     @LanguageId INT
@@ -8,9 +7,15 @@ BEGIN
     DECLARE @Email NVARCHAR(100);
     DECLARE @GameCode NVARCHAR(20);
     DECLARE @CreationDate DATETIME;
+    DECLARE @StatusID INT;
 
     -- Obtener la fecha y hora actuales del sistema
     SET @CreationDate = GETDATE();
+
+    -- Obtener el ID del status "Waiting"
+    SELECT @StatusID = ID
+    FROM GameStatus
+    WHERE Status = 'Waiting';
 
     -- Obtener el correo del creador
     SELECT @Email = Email
