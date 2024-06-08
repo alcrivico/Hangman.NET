@@ -30,24 +30,16 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Category> categoryTable = dataSource.GetTable<Category>();
-                        var categories = from category in categoryTable
-                                         select category;
+                        var categories = (from category in categoryTable
+                                         select new CategoryDTO
+                                         {
+                                             CategoryES = category.CategoryES,
+                                             CategoryEN = category.CategoryEN,
+                                         }).ToList();
 
                         if (categories.Any())
                         {
-                            List<CategoryDTO> categoriesList = new List<CategoryDTO>();
-
-                            foreach (Category category in categories.ToList())
-                            {
-                                CategoryDTO categoryDTO = new CategoryDTO
-                                {
-                                    CategoryEN = category.CategoryEN,
-                                    CategoryES = category.CategoryES,
-                                };
-
-                                categoriesList.Add(categoryDTO);
-                            }
-                            response.Add("data", categoriesList);
+                            response.Add("data", categories);
                             response.Add("ResponseCode", 0);
                         }
                         else
