@@ -137,7 +137,7 @@
                                 <RowDefinition Height="250" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*" />
+                                <ColumnDefinition Width="0.45*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Border
@@ -376,12 +376,24 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border
-                                    Grid.Row="0"
-                                    Margin="0,30,0,0"
-                                    Background="LightGray">
-                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"><Run Language="es-mx" Text="Creador" /></TextBlock>
-                                </Border>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <components:AlertMessageControl
+                                        Margin="0,0,0,20"
+                                        x:Name="AlertMessage"
+                                        Width="400"
+                                        Height="50"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        BorderBrushColor="Red"
+                                        MessageFontSize="20" />
+                                </Grid>
                                 <components:ButtonControl
                                     x:Name="Button_ExitGame"
                                     Grid.Row="1"
