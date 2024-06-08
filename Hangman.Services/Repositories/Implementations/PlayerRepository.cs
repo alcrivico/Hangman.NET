@@ -184,7 +184,8 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Player GetPlayerById(int playerId)
+        //Método cantidado a ser eliminado
+        /*public Player GetPlayerById(int playerId)
         {
             
             using(DataContext dataSource = DBConnection.GetConnection())
@@ -228,7 +229,7 @@ namespace Hangman.Services.Repositories.Implementations
 
             }
 
-        }
+        }*/
 
     }
 

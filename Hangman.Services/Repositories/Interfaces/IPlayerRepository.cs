@@ -1,4 +1,5 @@
-﻿using Hangman.Services.Models.POCO;
+﻿using Hangman.Services.Models.DTO;
+using Hangman.Services.Models.POCO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace Hangman.Services.Repositories.Interfaces
 
         Dictionary<string, object> LogIn(string email, string password);
 
-        Dictionary<string, object> SignUp(Player newPlayer);
+        Dictionary<string, object> SignUp(PlayerDTO playerDTO);
 
-        Dictionary<string, object> UpdateProfile(Player updatedPlayer);
+        Dictionary<string, object> UpdateProfile(PlayerDTO updatedPlayerDTO);
 
-        Dictionary<string, object> GetPlayerById(int playerId);
+        //Dictionary<string, object> GetPlayerById(int playerId);
 
     }
 }
