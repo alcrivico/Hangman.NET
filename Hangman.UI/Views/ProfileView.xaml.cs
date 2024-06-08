@@ -22,6 +22,29 @@ namespace Hangman.UI.Views
         public ProfileView()
         {
             InitializeComponent();
+            
+            Dictionary<string, string>[] columns =
+             [
+                new Dictionary<string, string> {
+                    { "Name", "Contrincante" },
+                    { "Width", "150.0" }
+                },
+                new Dictionary<string, string> {
+                    { "Name", "Fecha de Juego" },
+                    { "Width", "*" }
+                },
+                new Dictionary<string, string> {
+                    { "Name", "palabra" },
+                    { "Width", "*" }
+                },
+
+                new Dictionary<string, string> {
+                    { "Name", "Resultado" },
+                    { "Width", "*" }
+                }
+            ];
+
+            GamesTable.DefineColumns(columns);
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
