@@ -15,7 +15,7 @@ namespace Hangman.Services.Communications
     {
         
         [OperationContract]
-        Dictionary<string, object> CreateGame(GameDTO newGame);
+        int CreateGame(GameDTO newGame);
 
         [OperationContract]
         Dictionary<string, object> GetCategoriesList();

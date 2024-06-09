@@ -23,5 +23,9 @@ namespace Hangman.Services.Models.DTO
 
         public string ChallengerName { get; set; }
 
+        public string Word { get; set; }
+
+        public string Language { get; set; }
+
     }
 }

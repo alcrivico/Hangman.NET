@@ -98,6 +98,7 @@
     <Compile Include="Repositories\Interfaces\IPlayerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWordRepository.cs" />
     <Compile Include="Utilities\DBConnection.cs" />
+    <Compile Include="Utilities\YourDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -46,9 +46,9 @@ namespace Hangman.Services.Communications
             _gameRepository = new GameRepository();
         }
 
-        public Dictionary<string, object> CreateGame(GameDTO newGame)
+        public int CreateGame(GameDTO newGame)
         {
-            return _gameRepository.CreateGame(newGame);
+            return (int)_gameRepository.CreateGame(newGame)["ResponseCode"];
         }
 
         public Dictionary<string, object> GetCategoriesList()

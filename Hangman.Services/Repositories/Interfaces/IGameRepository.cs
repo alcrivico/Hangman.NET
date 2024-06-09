@@ -1,4 +1,5 @@
-﻿using Hangman.Services.Models.POCO;
+﻿using Hangman.Services.Models.DTO;
+using Hangman.Services.Models.POCO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Hangman.Services.Repositories.Interfaces
     public interface IGameRepository
     {
 
-        Dictionary<string, object> CreateGame(Game newGame);
+        Dictionary<string, object> CreateGame(GameDTO newGame);
 
         Dictionary<string, object> GetPlayedGames(string name);
 

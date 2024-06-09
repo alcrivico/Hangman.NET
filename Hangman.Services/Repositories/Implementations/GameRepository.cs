@@ -7,6 +7,7 @@ using Hangman.Services.Repositories.Interfaces;
 using System.Data.Linq;
 using Hangman.Services.Utilities;
 using System.Diagnostics;
+using Hangman.Services.Models.DTO;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -14,12 +15,12 @@ namespace Hangman.Services.Repositories.Implementations
     public class GameRepository : IGameRepository
     {
 
-        public Dictionary<string, object> CreateGame(Game newGame)
+        public Dictionary<string, object> CreateGame(GameDTO newGame)
         {
 
             Dictionary<string, object> response = new Dictionary<string, object>();
 
-            using (DataContext dataSource = DBConnection.GetConnection())
+            using (YourDataContext dataSource = new YourDataContext(DBConnection.connectionString))
             {
 
                 if (dataSource != null)
@@ -27,29 +28,39 @@ namespace Hangman.Services.Repositories.Implementations
 
                     try
                     {
+                        Table<Player> playerTable = dataSource.GetTable<Player>();
+                        Table<Word> wordTable = dataSource.GetTable<Word>();
+                        Table<Language> languageTable = dataSource.GetTable<Language>();
 
-                        Table<Game> gameTable = dataSource.GetTable<Game>();
-                        newGame.CreationDate = DateTime.Now;
+                        var playerId = (from player in playerTable
+                                       where player.Name == newGame.CreatorName
+                                       select player.PlayerId).SingleOrDefault();
 
-                        gameTable.InsertOnSubmit(newGame);
-                        dataSource.SubmitChanges();
+                        var wordId = (from word in wordTable
+                                     where word.WordEN == newGame.Word || word.WordES == newGame.Word
+                                     select word.WordId).SingleOrDefault();
 
-                        response.Add("game", newGame);
-                        response.Add("responseCode", 0);
+                        var languageId = (from language in languageTable
+                                         where language.LanguageName == newGame.Language
+                                         select language.LanguageId).SingleOrDefault();
+
+                        dataSource.AddGame(playerId, wordId, languageId);
+
+                        response.Add("ResponseCode", 0);
 
                     }
                     catch (Exception ex)
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 2);
+                        response.Add("ResponseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    response.Add("responseCode", 3);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
