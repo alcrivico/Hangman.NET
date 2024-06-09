@@ -1,11 +1,6 @@
-﻿using Hangman.Services.Models.POCO; // Eliminar al cambiar todos los POCO por DTOs
-using Hangman.Services.Models.DTO;
-using System;
+﻿using Hangman.Services.Models.DTO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace Hangman.Services.Communications
 {
@@ -15,7 +10,7 @@ namespace Hangman.Services.Communications
     {
         
         [OperationContract]
-        int CreateGame(GameDTO newGame);
+        Dictionary<string, object> CreateGame(GameDTO newGame);
 
         [OperationContract]
         Dictionary<string, object> GetCategoriesList();
