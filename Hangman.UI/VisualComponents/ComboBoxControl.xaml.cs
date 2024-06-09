@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,19 @@ namespace Hangman.UI.VisualComponents
     /// </summary>
     public partial class ComboBoxControl : UserControl
     {
+
+        public string FieldName
+        {
+            get { return (string)GetValue(FieldNameProperty); }
+            set { SetValue(FieldNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty FieldNameProperty =
+            DependencyProperty.Register(
+                               "FieldName",
+                               typeof(string),
+                               typeof(ComboBoxControl),
+                               new PropertyMetadata(string.Empty));
 
         public int ComboBoxWidth
         {
@@ -76,6 +90,24 @@ namespace Hangman.UI.VisualComponents
 
         }
 
+        public void SetItemsSource(ObservableCollection<LanguageDTO> itemsSource)
+        {
+            ComboBoxControlType.ItemsSource = null;
+            ComboBoxControlType.ItemsSource = itemsSource;
+        }
+
+    }
+
+    //Este DTO es temporal y deberá ser reemplazado por el DTO correspondiente en Resourses
+    public class LanguageDTO
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 
 }

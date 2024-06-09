@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,34 @@ namespace Hangman.UI.VisualComponents
     /// </summary>
     public partial class TitleBarControl : UserControl
     {
+        private ObservableCollection<LanguageDTO> _languageDTOs;
         public event EventHandler<WindowState>? WindowStateChangeRequested;
 
         public TitleBarControl()
         {
+
             InitializeComponent();
+
+            _languageDTOs = new ObservableCollection<LanguageDTO>();
+
+            List<LanguageDTO> languages = new List<LanguageDTO> //Esta lista es temporal se recuperará de un Adapter de Servicio
+            {
+                new LanguageDTO
+                {
+                    ID = "1",
+                    Name = "Español"
+                },
+                new LanguageDTO
+                {
+                    ID = "2",
+                    Name = "English"
+                }
+            };
+
+            SetLanguages(languages);
+
+            ComboBoxControl_Language.SetItemsSource(_languageDTOs);
+
         }
 
         private void SetWindowState(WindowState newState)
@@ -114,6 +138,17 @@ namespace Hangman.UI.VisualComponents
         private void MinusLogo_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SetWindowState(WindowState.Minimized);
+        }
+
+        private void SetLanguages(List<LanguageDTO> languages)
+        {
+            _languageDTOs.Clear();
+
+            foreach (LanguageDTO language in languages)
+            {
+                _languageDTOs.Add(language);
+            }
+
         }
 
     }

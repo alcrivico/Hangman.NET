@@ -69,6 +69,14 @@ namespace Hangman.UI.Views
                     CreatedBy = "SoyUnPokemonYTuNo",
                     WaitingTime = 17
 
+                },
+                new GameDTO
+                {
+
+                    ID = "6",
+                    CreatedBy = "Alegrao",
+                    WaitingTime = 30
+
                 }
 
             };

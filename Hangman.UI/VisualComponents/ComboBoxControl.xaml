@@ -9,12 +9,40 @@
     d:DesignHeight="{Binding ComboBoxHeight, ElementName=ComboBox}"
     d:DesignWidth="{Binding ComboBoxWidth, ElementName=ComboBox}"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Height="40">
+
+        <TextBlock
+            x:Name="TextBox_FieldName"
+            Grid.Column="1"
+            Margin="15,0,0,0"
+            Padding="5,0,5,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1"
+            Background="{StaticResource SolidColorBrush_MarianBlue}"
+            FontFamily="{StaticResource Font_Nunito}"
+            FontSize="10"
+            FontWeight="Bold"
+            Foreground="{StaticResource SolidColorBrush_Gold}"
+            Text="{Binding FieldName, ElementName=ComboBox}" />
+
+        <Rectangle
+            x:Name="TextBox_Highlight"
+            Panel.ZIndex="2"
+            Fill="{StaticResource SolidColorBrush_Black}"
+            Opacity="0.5"
+            RadiusX="10"
+            RadiusY="10"
+            Visibility="Hidden" />
 
         <ComboBox
             x:Name="ComboBoxControlType"
+            Height="30"
+            VerticalAlignment="Center"
+            Panel.ZIndex="0"
             Focusable="False"
-            Loaded="ComboBoxControl_Loaded" />
+            Loaded="ComboBoxControl_Loaded"
+            Style="{StaticResource ComboBoxControlStyle}" />
 
     </Grid>
 
