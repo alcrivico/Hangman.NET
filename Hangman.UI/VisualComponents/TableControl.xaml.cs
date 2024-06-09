@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hangman.UI.Resources.DTO;
 
 namespace Hangman.UI.VisualComponents
 {
@@ -80,12 +81,4 @@ namespace Hangman.UI.VisualComponents
 
     }
 
-    //Este DTO es temporal y deberá ser reemplazado por el DTO correspondiente en Resourses
-    public class GameDTO
-    {
-        public required string ID { get; set; }
-        public required string CreatedBy { get; set; }
-        public int WaitingTime { get; set; }
-
-    }
 }

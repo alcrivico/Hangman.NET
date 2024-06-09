@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hangman.UI.Resources.DTO;
 
 namespace Hangman.UI.Views
 {
@@ -26,63 +27,56 @@ namespace Hangman.UI.Views
         public SearchGameView()
         {
             _gameDTOs = new ObservableCollection<GameDTO>();
-
-            List<GameDTO> games = new List<GameDTO> //Esta lista es temporal se recuperará de un Adapter de Servicio
-            {
-
-                new GameDTO
-                {
-
-                    ID = "1",
-                    CreatedBy = "alcrivico",
-                    WaitingTime = 30
-
-                },
-                new GameDTO
-                {
-
-                    ID = "2",
-                    CreatedBy = "raulh230600",
-                    WaitingTime = 5
-
-                },
-                new GameDTO
-                {
-
-                    ID = "3",
-                    CreatedBy = "XxJuanProGamerxX",
-                    WaitingTime = 3
-
-                },
-                new GameDTO
-                {
-
-                    ID = "4",
-                    CreatedBy = "miguelmorales2301",
-                    WaitingTime = 1
-
-                },
-                new GameDTO
-                {
-
-                    ID = "5",
-                    CreatedBy = "SoyUnPokemonYTuNo",
-                    WaitingTime = 17
-
-                },
-                new GameDTO
-                {
-
-                    ID = "6",
-                    CreatedBy = "Alegrao",
-                    WaitingTime = 30
-
-                }
-
-            };
+            List<GameDTO> games;
 
             InitializeComponent();
+
             DefineGamesTable();
+
+            // Aquí se hace una llamada al Adaptador de Datos para obtener la lista de DTO de las partidas
+            games = new List<GameDTO>();
+            games.Add(new GameDTO
+            {
+                GameCode = "1",
+                CreatorName = "alcrivico",
+                WaitingTime = 30
+            });
+
+            games.Add(new GameDTO
+            {
+                GameCode = "2",
+                CreatorName = "raulh230600",
+                WaitingTime = 5
+            });
+
+            games.Add(new GameDTO
+            {
+                GameCode = "3",
+                CreatorName = "XxJuanProGamerxX",
+                WaitingTime = 3
+            });
+
+            games.Add(new GameDTO
+            {
+                GameCode = "4",
+                CreatorName = "miguelmorales2301",
+                WaitingTime = 1
+            });
+
+            games.Add(new GameDTO
+            {
+                GameCode = "5",
+                CreatorName = "SoyUnPokemonYTuNo",
+                WaitingTime = 17
+            });
+
+            games.Add(new GameDTO
+            {
+                GameCode = "6",
+                CreatorName = "Alegrao",
+                WaitingTime = 30
+            });
+
             SetGames(games);
             GamesTable.SetItemsSource(_gameDTOs);
 
@@ -102,14 +96,14 @@ namespace Hangman.UI.Views
 
                     { "Name", "Código de Partida" },
                     { "Width", "150.0" },
-                    { "BindingName", "ID" }
+                    { "BindingName", "GameCode" }
 
                 },
                 new Dictionary<string, string> {
 
                     { "Name", "Creada por:" },
                     { "Width", "*" },
-                    { "BindingName", "CreatedBy" },
+                    { "BindingName", "CreatorName" },
 
                 },
                 new Dictionary<string, string> {

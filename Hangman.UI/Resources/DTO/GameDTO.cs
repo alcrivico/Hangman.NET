@@ -17,6 +17,8 @@ namespace Hangman.UI.Resources.DTO
         public string Status { get; set; }
 
         public string CreatorName { get; set; }
+
+        public int WaitingTime { get; set; }
         
         public string CreatorEmail { get; set; }
 
