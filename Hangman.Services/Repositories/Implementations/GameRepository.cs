@@ -35,15 +35,15 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var playerId = (from player in playerTable
                                        where player.Name == newGame.CreatorName
-                                       select player.PlayerId).SingleOrDefault();
+                                       select player.Id).SingleOrDefault();
 
                         var wordId = (from word in wordTable
-                                     where word.WordEN == newGame.Word || word.WordES == newGame.Word
-                                     select word.WordId).SingleOrDefault();
+                                     where word.WordEN == newGame.WordEN || word.WordES == newGame.WordES
+                                     select word.Id).SingleOrDefault();
 
                         var languageId = (from language in languageTable
                                          where language.LanguageName == newGame.Language
-                                         select language.LanguageId).SingleOrDefault();
+                                         select language.Id).SingleOrDefault();
 
                         if(playerId != 0 && wordId != 0 && languageId != 0)
                         {
@@ -75,7 +75,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> GetPlayedGames(string name)
+        public Dictionary<string, object> GetPlayedGames(string email)
         {
 
             Dictionary<string, object> response = new Dictionary<string, object>();
@@ -89,15 +89,33 @@ namespace Hangman.Services.Repositories.Implementations
                     try
                     {
                         Table<Game> gameTable = dataSource.GetTable<Game>();
+                        Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
+                        Table<Player> playerTable = dataSource.GetTable<Player>();
+                        Table<Word> wordTable = dataSource.GetTable<Word>();
+                        Table<Language> languageTable = dataSource.GetTable<Language>();
 
                         var games = (from game in gameTable
-                                    join GameStatus in dataSource.GetTable<GameStatus>() on game.Status equals GameStatus.Status
-                                    where (GameStatus.Status == "Won" || GameStatus.Status == "Lost" || GameStatus.Status == "Left")
-                                    select game).ToList();
+                                    join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                    join challenger in playerTable on game.ChallengerId equals challenger.Id
+                                    join word in wordTable on game.WordId equals word.Id
+                                    join language in languageTable on game.LanguageId equals language.Id
+                                    where (gameStatus.Status == "Won" || gameStatus.Status == "Lost" || gameStatus.Status == "Left")
+                                    && challenger.Email == email
+                                    select new GameDTO
+                                    {
+                                        CreationDate = game.CreationDate,
+                                        GameCode = game.GameCode,
+                                        Status = gameStatus.Status,
+                                        ChallengerName = challenger.Name,
+                                        ChallengerEmail = challenger.Email,
+                                        WordES = word.WordES,
+                                        WordEN = word.WordEN,
+                                        Language = language.LanguageName
+                                    }).ToList();
                         
                         if (games.Any())
                         {
-                            response.Add("Dara", games);
+                            response.Add("Data", games);
                             response.Add("ResponseCode", 0);
                         }
                         else
@@ -138,9 +156,28 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
+                        Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
+                        Table<Player> playerTable = dataSource.GetTable<Player>();
+                        Table<Word> wordTable = dataSource.GetTable<Word>();
+                        Table<Language> languageTable = dataSource.GetTable<Language>();
+
                         var games = (from game in gameTable
-                                    where game.Status == "Waiting"
-                                    select game).ToList();
+                                     join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                     join creator in playerTable on game.CreatorId equals creator.Id
+                                     join word in wordTable on game.WordId equals word.Id
+                                     join language in languageTable on game.LanguageId equals language.Id
+                                     where (gameStatus.Status == "Waiting")
+                                     select new GameDTO
+                                     {
+                                         CreationDate = game.CreationDate,
+                                         GameCode = game.GameCode,
+                                         Status = gameStatus.Status,
+                                         CreatorName = creator.Name,
+                                         CreatorEmail = creator.Email,
+                                         WordES = word.WordES,
+                                         WordEN = word.WordEN,
+                                         Language = language.LanguageName
+                                     }).ToList();
 
                         if (games.Any())
                         {
@@ -193,8 +230,13 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (game != null)
                         {
+                            Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
 
-                            game.Status = status;
+                            var statusId = (from s in statusTable
+                                            where s.Status == status
+                                            select s.Id).First();
+
+                            game.StatusId = statusId;
                             dataSource.SubmitChanges();
 
                             response.Add("ResponseCode", 0);
@@ -206,14 +248,11 @@ namespace Hangman.Services.Repositories.Implementations
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
                         response.Add("ResponseCode", 2);
-
                     }
-
                 }
                 else
                 {
@@ -226,7 +265,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> SetChallenger(string gameCode, string challengerName)
+        public Dictionary<string, object> SetChallenger(string gameCode, string challengerEmail)
         {
 
             Dictionary<string, object> response = new Dictionary<string, object>();
@@ -248,7 +287,13 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (game != null)
                         {
-                            game.ChallengerName = challengerName;
+                            Table<Player> playerTable = dataSource.GetTable<Player>();
+
+                            var challengerId = (from challenger in playerTable
+                                                where challenger.Email == challengerEmail
+                                                select challenger.Id).First();
+                            
+                            game.ChallengerId = challengerId;
                             dataSource.SubmitChanges();
 
                             response.Add("ResponseCode", 0);
@@ -277,7 +322,7 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> GetPlayerType(string name, string gameCode)
+        public Dictionary<string, object> GetPlayerType(string email, string gameCode)
         {
 
             Dictionary<string, object> response = new Dictionary<string, object>();
@@ -292,24 +337,30 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
+                        Table<Player> playerTable = dataSource.GetTable<Player>();
+
                         var game = (from g in gameTable
+                                    join creator in playerTable on g.CreatorId equals creator.Id
+                                    join challenger in playerTable on g.ChallengerId equals challenger.Id into challengers
+                                    from challenger in challengers.DefaultIfEmpty()
                                     where g.GameCode == gameCode
-                                    select g).FirstOrDefault();
+                                    select new GameDTO
+                                    {
+                                        CreatorEmail = creator.Email,
+                                        ChallengerEmail = challenger.Email,
+                                    }).FirstOrDefault();
 
                         if (game != null)
                         {
-
-                            string playerType;
-                            if (game.ChallengerName == name)
+                            if (game.ChallengerEmail == email)
                             {
-                                playerType = "Challenger";
+                                response.Add("Data", "Challenger");
                             }
                             else
                             {
-                                playerType = "Creator";
+                                response.Add("Data", "Creator");
                             }
 
-                            response.Add("data", playerType);
                             response.Add("ResponseCode", 0);
 
                         }
@@ -319,12 +370,11 @@ namespace Hangman.Services.Repositories.Implementations
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
                         response.Add("ResponseCode", 2);
                     }
-
                 }
                 else
                 {

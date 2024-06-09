@@ -11,7 +11,7 @@ namespace Hangman.Services.Models.POCO
     public class Language
     {
         [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int LanguageId { get; set; }
+        public int Id { get; set; }
 
         [Column (Name = "LanguageName")]
         public string LanguageName { get; set; }

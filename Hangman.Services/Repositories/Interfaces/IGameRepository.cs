@@ -8,15 +8,15 @@ namespace Hangman.Services.Repositories.Interfaces
 
         Dictionary<string, object> CreateGame(GameDTO newGame);
 
-        Dictionary<string, object> GetPlayedGames(string name);
+        Dictionary<string, object> GetPlayedGames(string email);
 
         Dictionary<string, object> GetWaitingGames();
 
         Dictionary<string, object> SetGameStatus(string gameCode, string status);
 
-        Dictionary<string, object> SetChallenger(string gameCode, string challengerName);
+        Dictionary<string, object> SetChallenger(string gameCode, string challengerEmail);
 
-        Dictionary<string, object> GetPlayerType(string name, string gameCode);
+        Dictionary<string, object> GetPlayerType(string email, string gameCode);
 
     }
 }

@@ -34,7 +34,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var words = (from word in wordTable
                                     join category in categoryTable
-                                    on word.CategoryId equals category.CategoryId
+                                    on word.CategoryId equals category.Id
                                     select new WordDTO
                                     {
                                         WordES = word.WordES,

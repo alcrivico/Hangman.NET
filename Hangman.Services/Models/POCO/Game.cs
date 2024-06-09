@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.Linq;
-using System.Web;
-using Hangman.Services.Models.DTO;
 
 namespace Hangman.Services.Models.POCO
 {
@@ -11,7 +7,7 @@ namespace Hangman.Services.Models.POCO
     public class Game
     {
         [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int GameId { get; set; }
+        public int Id { get; set; }
 
         [Column (Name = "CreationDate")]
         public DateTime CreationDate { get; set; }
@@ -19,14 +15,14 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "GameCode")]
         public string GameCode { get; set; }
 
-        [Column (Name = "Status")]
-        public string Status { get; set; }
+        [Column (Name = "StatusId")]
+        public int StatusId { get; set; }
 
-        [Column (Name = "CreatorName")]
-        public string CreatorName { get; set; }
+        [Column (Name = "CreatorId")]
+        public int CreatorId { get; set; }
 
-        [Column(Name = "ChallengerName")]
-        public string ChallengerName { get; set; }
+        [Column(Name = "ChallengerId")]
+        public int ChallengerId { get; set; }
 
         [Column (Name = "WordId")]
         public int WordId { get; set; }

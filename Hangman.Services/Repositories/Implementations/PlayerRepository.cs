@@ -200,7 +200,7 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Player> playerTable = dataSource.GetTable<Player>();
 
                         var player = from p in playerTable
-                                     where p.PlayerId == playerId
+                                     where p.Id == playerId
                                      select p;
 
                         if (player.Any())

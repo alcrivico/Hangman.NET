@@ -12,7 +12,7 @@ namespace Hangman.Services.Models.POCO
     public class Word
     {
         [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int WordId { get; set; }
+        public int Id { get; set; }
 
         [Column (Name = "WordES")]
         public string WordES { get; set; }
@@ -29,7 +29,7 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "HasNumber")]
         public bool HasNumber { get; set; }
 
-        [Column (Name = "CategoryId")]
+        [Column (Name = "Id")]
         public int CategoryId { get; set; }
 
     }

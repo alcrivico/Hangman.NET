@@ -10,7 +10,7 @@ namespace Hangman.Services.Models.POCO
     public class GameStatus
     {
         [Column (Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int StatusId { get; set; }
+        public int Id { get; set; }
 
         [Column (Name = "Status")]
         public string Status { get; set; }
