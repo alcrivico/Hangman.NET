@@ -25,10 +25,10 @@
             x:Name="ComboBoxControl_Language"
             Grid.Column="0"
             Width="200"
-            Height="30"
             Margin="30,10,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"
+            FieldName="Idioma" />
 
         <Border
             Name="UvLogo"
