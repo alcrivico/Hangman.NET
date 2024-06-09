@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hangman.UI.Resources.DTO;
 
 namespace Hangman.UI.VisualComponents
 {
@@ -96,18 +97,6 @@ namespace Hangman.UI.VisualComponents
             ComboBoxControlType.ItemsSource = itemsSource;
         }
 
-    }
-
-    //Este DTO es temporal y deberá ser reemplazado por el DTO correspondiente en Resourses
-    public class LanguageDTO
-    {
-        public string ID { get; set; }
-        public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return this.Name;
-        }
     }
 
 }

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Hangman.Services.Models.DTO
+namespace Hangman.UI.Resources.DTO
 {
 
     public class WordDTO

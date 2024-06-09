@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hangman.UI.Resources.DTO;
 
 namespace Hangman.UI.VisualComponents
 {
@@ -31,19 +32,11 @@ namespace Hangman.UI.VisualComponents
 
             _languageDTOs = new ObservableCollection<LanguageDTO>();
 
-            List<LanguageDTO> languages = new List<LanguageDTO> //Esta lista es temporal se recuperará de un Adapter de Servicio
-            {
-                new LanguageDTO
-                {
-                    ID = "1",
-                    Name = "Español"
-                },
-                new LanguageDTO
-                {
-                    ID = "2",
-                    Name = "English"
-                }
-            };
+            List<LanguageDTO> languages = new List<LanguageDTO>();
+
+            // Aquí se hace una llamada al Adaptador de Datos para obtener los DTO de los idiomas
+            languages.Add(new LanguageDTO { LanguageName = "Español" });
+            languages.Add(new LanguageDTO { LanguageName = "Inglés" });
 
             SetLanguages(languages);
 
