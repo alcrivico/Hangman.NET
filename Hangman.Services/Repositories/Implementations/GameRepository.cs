@@ -8,6 +8,7 @@ using System.Data.Linq;
 using Hangman.Services.Utilities;
 using System.Diagnostics;
 using Hangman.Services.Models.DTO;
+using System.Data.SqlClient;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -44,17 +45,22 @@ namespace Hangman.Services.Repositories.Implementations
                                          where language.LanguageName == newGame.Language
                                          select language.LanguageId).SingleOrDefault();
 
-                        dataSource.AddGame(playerId, wordId, languageId);
-
-                        response.Add("ResponseCode", 0);
+                        if(playerId != 0 && wordId != 0 && languageId != 0)
+                        {
+                            dataSource.AddGame(playerId, wordId, languageId);
+                            response.Add("ResponseCode", 0);
+                        }
+                        else
+                        {
+                            response.Add("ResponseCode", 1);
+                        }
+                        
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
                         response.Add("ResponseCode", 2);
-
                     }
 
                 }
@@ -82,48 +88,33 @@ namespace Hangman.Services.Repositories.Implementations
 
                     try
                     {
-
                         Table<Game> gameTable = dataSource.GetTable<Game>();
 
-                        var player = (from p in dataSource.GetTable<Player>()
-                                      where p.Name == name
-                                      select p).FirstOrDefault();
-
-                        if (player == null)
-                        {
-                            response.Add("responseCode", 1);
-                            return response;
-                        }
-
-                        //Aqui tengo algunas dudar, ya que los join usualmente se realizan con los id, no se si hacerlo con el nombre del status sea correcto
-                        var games = from game in gameTable
+                        var games = (from game in gameTable
                                     join GameStatus in dataSource.GetTable<GameStatus>() on game.Status equals GameStatus.Status
                                     where (GameStatus.Status == "Won" || GameStatus.Status == "Lost" || GameStatus.Status == "Left")
-                                    select game;
+                                    select game).ToList();
                         
                         if (games.Any())
                         {
-                            response.Add("games", games.ToList());
-                            response.Add("responseCode", 0);
+                            response.Add("Dara", games);
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            response.Add("responseCode", 2);
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 3);
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
-
                 }
                 else
                 {
-                    response.Add("responseCode", 4);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
@@ -147,33 +138,31 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Table<Game> gameTable = dataSource.GetTable<Game>();
-                        var games = from game in gameTable
+                        var games = (from game in gameTable
                                     where game.Status == "Waiting"
-                                    select game;
+                                    select game).ToList();
 
                         if (games.Any())
                         {
-                            response.Add("games", games.ToList());
-                            response.Add("responseCode", 0);
+                            response.Add("Data", games);
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            response.Add("responseCode", 1);
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 2);
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-                    response.Add("responseCode", 3);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
@@ -208,13 +197,12 @@ namespace Hangman.Services.Repositories.Implementations
                             game.Status = status;
                             dataSource.SubmitChanges();
 
-                            response.Add("game", game);
-                            response.Add("responseCode", 0);
+                            response.Add("ResponseCode", 0);
 
                         }
                         else
                         {
-                            response.Add("responseCode", 1);
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
@@ -222,14 +210,14 @@ namespace Hangman.Services.Repositories.Implementations
                     {
 
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 2);
+                        response.Add("ResponseCode", 2);
 
                     }
 
                 }
                 else
                 {
-                    response.Add("responseCode", 3);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
@@ -260,32 +248,27 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (game != null)
                         {
-
                             game.ChallengerName = challengerName;
                             dataSource.SubmitChanges();
 
-                            response.Add("game", game);
-                            response.Add("responseCode", 0);
-
+                            response.Add("ResponseCode", 0);
                         }
                         else
                         {
-                            response.Add("responseCode", 1);
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (SqlException sqlEx)
                     {
-
-                        Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 2);
-
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-                    response.Add("responseCode", 3);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
@@ -326,35 +309,30 @@ namespace Hangman.Services.Repositories.Implementations
                                 playerType = "Creator";
                             }
 
-                            response.Add("playerType", playerType);
+                            response.Add("data", playerType);
                             response.Add("ResponseCode", 0);
 
                         }
                         else
                         {
-                            response.Add("responseCode", 1);
+                            response.Add("ResponseCode", 1);
                         }
 
                     }
                     catch (Exception ex)
                     {
-
                         Debug.WriteLine("Error: " + ex.Message + ": \n" + ex.StackTrace);
-                        response.Add("responseCode", 2);
-                        
-
+                        response.Add("ResponseCode", 2);
                     }
 
                 }
                 else
                 {
-                    response.Add("responseCode", 3);
+                    response.Add("ResponseCode", 3);
                 }
 
             }
-
             return response;
-
         }
 
     }
