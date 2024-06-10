@@ -13,7 +13,7 @@ namespace Hangman.Services.Communications
         GameDTO CreateGame(GameDTO newGame);
 
         [OperationContract]
-        Dictionary<string, object> GetCategoriesList();
+        List<CategoryDTO> GetCategoriesList();
 
         [OperationContract]
         Dictionary<string, object> GetWordsList();
@@ -31,7 +31,7 @@ namespace Hangman.Services.Communications
         GameDTO GetPlayerType(string email, string gameCode);
 
         [OperationContract]
-        Dictionary<string, object> GetLanguagesList();
+        List<LanguageDTO> GetLanguagesList();
 
     }
 }
