@@ -36,7 +36,8 @@ namespace Hangman.UI.Views
 
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            
+            SearchGameView searchGameView = new SearchGameView();
+            searchGameView.Show();
         }
 
         private void Button_CreateGame_Loaded(object sender, RoutedEventArgs e)
@@ -46,7 +47,8 @@ namespace Hangman.UI.Views
 
         private void Button_CreateGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-
+            CreateGameView createGameView = new CreateGameView();
+            createGameView.Show();
         }
 
         private void ProfileControl_Loaded(object sender, RoutedEventArgs e)
@@ -56,7 +58,12 @@ namespace Hangman.UI.Views
 
         private void DoorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
+        }
+        private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ProfileView profileView = new ProfileView();
+            profileView.Show();
         }
     }
 }
