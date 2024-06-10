@@ -141,10 +141,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> GetWaitingGames()
+        public GameDTO GetWaitingGames()
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -181,25 +181,25 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (games.Any())
                         {
-                            response.Add("Data", games);
-                            response.Add("ResponseCode", 0);
+                            response = games.First();
+                            response.ResponseCode = 0;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
 
             }
@@ -208,10 +208,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> SetGameStatus(string gameCode, string status)
+        public GameDTO SetGameStatus(string gameCode, string status)
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -236,27 +236,26 @@ namespace Hangman.Services.Repositories.Implementations
                                             where s.Status == status
                                             select s.Id).First();
 
-                            game.StatusId = statusId;
+                            game.Status = status;
                             dataSource.SubmitChanges();
-
-                            response.Add("ResponseCode", 0);
+                            response.ResponseCode = 0;
 
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
 
             }
@@ -265,10 +264,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> SetChallenger(string gameCode, string challengerEmail)
+        public GameDTO SetChallenger(string gameCode, string challengerEmail)
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -292,28 +291,27 @@ namespace Hangman.Services.Repositories.Implementations
                             var challengerId = (from challenger in playerTable
                                                 where challenger.Email == challengerEmail
                                                 select challenger.Id).First();
-                            
-                            game.ChallengerId = challengerId;
-                            dataSource.SubmitChanges();
 
-                            response.Add("ResponseCode", 0);
+                            game.ChallengerId = challengerId; 
+                            dataSource.SubmitChanges();
+                            response.ResponseCode = 0;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 1;
                 }
 
             }
@@ -322,10 +320,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> GetPlayerType(string email, string gameCode)
+        public GameDTO GetPlayerType(string email, string gameCode)
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -354,31 +352,33 @@ namespace Hangman.Services.Repositories.Implementations
                         {
                             if (game.ChallengerEmail == email)
                             {
-                                response.Add("Data", "Challenger");
+                                //Respuesta para Challenger
+                                response.ResponseCode = 0;
                             }
                             else
                             {
-                                response.Add("Data", "Creator");
+                                //Respuesta para Creator
+                                response.ResponseCode = 1;
                             }
 
-                            response.Add("ResponseCode", 0);
+                            response.ResponseCode = 0;
 
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 2;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 3;
                     }
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 4;
                 }
 
             }

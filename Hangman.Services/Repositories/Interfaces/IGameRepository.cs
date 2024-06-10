@@ -6,17 +6,17 @@ namespace Hangman.Services.Repositories.Interfaces
     public interface IGameRepository
     {
 
-        Dictionary<string, object> CreateGame(GameDTO newGame);
+        GameDTO CreateGame(GameDTO newGame);
 
-        Dictionary<string, object> GetPlayedGames(string email);
+        GameDTO GetPlayedGames(string email);
 
-        Dictionary<string, object> GetWaitingGames();
+        GameDTO GetWaitingGames();
 
-        Dictionary<string, object> SetGameStatus(string gameCode, string status);
+        GameDTO SetGameStatus(string gameCode, string status);
 
-        Dictionary<string, object> SetChallenger(string gameCode, string challengerEmail);
+        GameDTO SetChallenger(string gameCode, string challengerEmail);
 
-        Dictionary<string, object> GetPlayerType(string email, string gameCode);
+        GameDTO GetPlayerType(string email, string gameCode);
 
     }
 }
