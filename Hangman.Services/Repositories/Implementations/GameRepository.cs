@@ -35,7 +35,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var playerId = (from player in playerTable
                                        where player.Email == newGame.CreatorEmail
-                                       select player.Id).SingleOrDefault();
+                                       select player.Id).FirstOrDefault();
 
                         var wordId = (from word in wordTable
                                      where word.WordEN == newGame.WordEN || word.WordES == newGame.WordES

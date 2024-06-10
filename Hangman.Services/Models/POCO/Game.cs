@@ -22,7 +22,7 @@ namespace Hangman.Services.Models.POCO
         public int CreatorId { get; set; }
 
         [Column(Name = "ChallengerId")]
-        public int ChallengerId { get; set; }
+        public int? ChallengerId { get; set; }
 
         [Column (Name = "WordId")]
         public int WordId { get; set; }
