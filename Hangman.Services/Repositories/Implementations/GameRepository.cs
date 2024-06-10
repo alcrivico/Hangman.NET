@@ -170,7 +170,6 @@ namespace Hangman.Services.Repositories.Implementations
                                      join gameStatus in statusTable on game.StatusId equals gameStatus.Id
                                      join creator in playerTable on game.CreatorId equals creator.Id
                                      join word in wordTable on game.WordId equals word.Id
-                                     join category in categoryTable on word.CategoryId equals category.Id
                                      join language in languageTable on game.LanguageId equals language.Id
                                      where (gameStatus.Status == "Waiting")
                                      select new GameDTO
@@ -183,8 +182,6 @@ namespace Hangman.Services.Repositories.Implementations
                                          WordES = word.WordES,
                                          WordEN = word.WordEN,
                                          Language = language.LanguageName,
-                                         CategoryES = category.CategoryES,
-                                         CategoryEN = category.CategoryEN,
 
                                      }).ToList();
 
