@@ -72,14 +72,12 @@
                                 MouseUp="ProfileControl_MouseUp"
                                 UserName="{Binding PlayerName}" />
 
-                            <components:HangmanControl
-                                x:Name="Hangman"
-                                Grid.Row="1"
-                                Width="220"
-                                Height="370"
-                                Margin="138,30,126,0"
-                                VerticalAlignment="Top"
-                                IncorrectGuesses="6" />
+                            <Border x:Name="Hangman" Grid.Row="1">
+                                <Image
+                                    Margin="96,24,136,24"
+                                    Source="../Resources/Images/Ahorcado.png"
+                                    Stretch="UniformToFill" />
+                            </Border>
                         </Grid>
                     </Grid>
 

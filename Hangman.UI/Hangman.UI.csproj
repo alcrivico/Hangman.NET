@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Resources\Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
     <None Remove="Resources\Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
+    <None Remove="Resources\Images\Ahorcado.png" />
     <None Remove="Resources\Images\calendar_icon.png" />
     <None Remove="Resources\Images\closed_door.png" />
     <None Remove="Resources\Images\Head.png" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <Resource Include="Resources\Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
     <Resource Include="Resources\Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
+    <Resource Include="Resources\Images\Ahorcado.png" />
     <Resource Include="Resources\Images\calendar_icon.png" />
     <Resource Include="Resources\Images\closed_door.png" />
     <Resource Include="Resources\Images\Head.png" />

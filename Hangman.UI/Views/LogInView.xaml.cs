@@ -17,7 +17,6 @@ namespace Hangman.UI.Views
         public LogInView()
         {
             InitializeComponent();
-            Hangman.SetHangmanElements();
             logInAdapter = new LogInAdapter();
         }
 
@@ -43,22 +42,22 @@ namespace Hangman.UI.Views
                 }
                 else
                 {
-                    ShowAlert("Correo y/o contraseña incorrectos. Por favor, verifíquelos", Brushes.Yellow, Brushes.Black);
+                    //ShowAlert("Correo y/o contraseña incorrectos. Por favor, verifíquelos", Brushes.Yellow, Brushes.Black);
                 }
             }
             catch (Exception ex)
             {
-                ShowAlert(ex.Message, Brushes.Red, Brushes.White);
+                //ShowAlert(ex.Message, Brushes.Red, Brushes.White);
             }
         }
 
-        private void ShowAlert(string message, SolidColorBrush borderColor, SolidColorBrush textColor)
+        /*private void ShowAlert(string message, SolidColorBrush borderColor, SolidColorBrush textColor)
         {
             AlertTextBlock.Text = message;
             AlertBorder.Background = borderColor;
             AlertTextBlock.Foreground = textColor;
             AlertBorder.Visibility = Visibility.Visible;
-        }
+        }*/
 
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
