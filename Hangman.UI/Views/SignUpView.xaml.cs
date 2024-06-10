@@ -1,52 +1,105 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
-    namespace Hangman.UI.Views
+namespace Hangman.UI.Views
+{
+    public partial class SignUpView : Window
     {
-        
-        public partial class SignUpView : Window
+        public SignUpView()
         {
-            public SignUpView()
-            {
-                InitializeComponent();
-            }
+            InitializeComponent();
+        }
 
-            private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
-            {
-                WindowState = e;
-            }
+        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
+        {
+            WindowState = e;
+        }
 
-            private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
+        private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+            var playerDTO = new PlayerDTO
             {
-                
-            }
+                Name = TextBox_Name.Text,
+                FirstLastName = TextBox_FirstLastName.Text,
+                SecondLastName = TextBox_SecondLastName.Text,
+                BirthDate = DatePicker_BirthDate.SelectedDate ?? DateTime.MinValue,
+                Email = TextBox_Email.Text,
+                Password = PasswordBox_Password.PasswordText
+            };
 
-            private void TextBlock_LogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-            {
-                LogInView logInView = new();
-                logInView.Show();
-                this.Close();
-            }
+            string confirmPassword = PasswordBox_ConfirmPassword.PasswordText;
 
-            private void TextBlock_LogIn_MouseEnter(object sender, MouseEventArgs e)
+            if (ValidatePlayerDTO(playerDTO, confirmPassword))
             {
-                TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_MikadoYellow") as SolidColorBrush;
-            }
-
-            private void TextBlock_LogIn_MouseLeave(object sender, MouseEventArgs e)
-            {
-                TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
+                try
+                {
+                    var signUpAdapter = new SignUpAdapter();
+                    PlayerDTO response = signUpAdapter.SignUp(playerDTO);
+                    MessageBox.Show("Registro exitoso. Puedes iniciar sesión ahora.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
+
+        private bool ValidatePlayerDTO(PlayerDTO playerDTO, string confirmPassword)
+        {
+            if (string.IsNullOrWhiteSpace(playerDTO.Name) ||
+                string.IsNullOrWhiteSpace(playerDTO.FirstLastName) ||
+                string.IsNullOrWhiteSpace(playerDTO.SecondLastName) ||
+                string.IsNullOrWhiteSpace(playerDTO.Email) ||
+                string.IsNullOrWhiteSpace(playerDTO.Password) ||
+                string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (playerDTO.Name.Length > 50 || playerDTO.FirstLastName.Length > 50 || playerDTO.SecondLastName.Length > 50 || playerDTO.Email.Length > 50 || playerDTO.Password.Length > 50)
+            {
+                MessageBox.Show("Los campos no deben exceder los 50 caracteres.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!Regex.IsMatch(playerDTO.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("El formato del correo electrónico no es válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!playerDTO.Password.Equals(confirmPassword))
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void TextBlock_LogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LogInView logInView = new LogInView();
+            logInView.Show();
+            Close();
+        }
+
+        private void TextBlock_LogIn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_MikadoYellow") as SolidColorBrush;
+        }
+
+        private void TextBlock_LogIn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
+        }
     }
+}
