@@ -47,7 +47,7 @@ namespace Hangman.Services.Communications
             return _playerRepository.UpdateProfile(player);
         }
 
-        public Dictionary<string, object> GetPlayedGames(string email)
+        public List<GameDTO> GetPlayedGames(string email)
         {
             return _gameRepository.GetPlayedGames(email);
         }
