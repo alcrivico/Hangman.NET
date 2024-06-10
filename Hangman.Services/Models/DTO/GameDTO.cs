@@ -35,10 +35,6 @@ namespace Hangman.Services.Models.DTO
 
         public string Language { get; set; }
 
-        public string CategoryEN { get; set; }
-
-        public string CategoryES { get; set; }
-
         public int ResponseCode { get; set; }
 
         public override string ToString()
