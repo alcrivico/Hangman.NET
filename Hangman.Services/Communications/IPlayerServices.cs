@@ -16,13 +16,13 @@ namespace Hangman.Services.Communications
     {
 
         [OperationContract]
-        Dictionary<string, object> LogIn(string email, string pass);
+        PlayerDTO LogIn(string email, string pass);
 
         [OperationContract]
-        Dictionary<string, object> SignUp(PlayerDTO player);
+        PlayerDTO SignUp(PlayerDTO player);
 
         [OperationContract]
-        Dictionary<string, object> UpdateProfile(PlayerDTO player);
+        PlayerDTO UpdateProfile(PlayerDTO player);
 
         [OperationContract]
         Dictionary<string, object> GetPlayedGames(string email);

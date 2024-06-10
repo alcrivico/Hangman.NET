@@ -32,17 +32,17 @@ namespace Hangman.Services.Communications
             _gameRepository = new GameRepository();
         }
 
-        public Dictionary<string, object> LogIn (string email, string pass)
+        public PlayerDTO LogIn (string email, string pass)
         {
             return _playerRepository.LogIn(email, pass);
         }
 
-        public Dictionary<string, object> SignUp(PlayerDTO player)
+        public PlayerDTO SignUp(PlayerDTO player)
         {
             return _playerRepository.SignUp(player);
         }
 
-        public Dictionary<string, object> UpdateProfile(PlayerDTO player)
+        public PlayerDTO UpdateProfile(PlayerDTO player)
         {
             return _playerRepository.UpdateProfile(player);
         }
