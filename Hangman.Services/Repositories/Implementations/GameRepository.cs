@@ -240,7 +240,7 @@ namespace Hangman.Services.Repositories.Implementations
                                             where s.Status == status
                                             select s.Id).First();
 
-                            game.Status = status;
+                            game.StatusId = statusId;
                             dataSource.SubmitChanges();
                             response.ResponseCode = 0;
 
