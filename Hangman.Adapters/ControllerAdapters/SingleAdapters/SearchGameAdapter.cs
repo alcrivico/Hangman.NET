@@ -11,11 +11,11 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
     public class SearchGameAdapter
     {
 
-        public List<GameDTO>? GetWaitingGames() 
+        public List<GameDTO> GetWaitingGames() 
         {
-            var conexion = new GameServicesClient();
+            var service = new GameServicesClient();
 
-            List<GameDTO> response = conexion.GetWaitingGamesAsync().Result;
+            List<GameDTO> response = service.GetWaitingGamesAsync().Result;
 
             foreach (var game in response)
             {
@@ -45,6 +45,42 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
             foreach (var game in response)
             {
                 game.WaitingTime = (DateTime.Now - game.CreationDate).Minutes;
+            }
+
+            return response;
+
+        }
+
+        public List<LanguageDTO> GetLanguagesList()
+        {
+
+            var service = new GameServicesClient();
+
+            List<LanguageDTO> response = service.GetLanguagesListAsync().Result;
+
+            foreach (var language in response)
+            {
+
+                if (language.ResponseCode == 1)
+                {
+                    throw new Exception("No se encontró información de la entidad en la base de datos");
+                }
+
+                if (language.ResponseCode == 2)
+                {
+                    throw new Exception("Error en la consulta, verifique el error en el servidor");
+                }
+
+                if (language.ResponseCode == 3)
+                {
+                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
+                }
+
+                if (language.ResponseCode < 0 && language.ResponseCode > 3)
+                {
+                    throw new Exception("Error de conexión");
+                }
+
             }
 
             return response;
