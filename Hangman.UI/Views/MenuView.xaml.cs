@@ -60,6 +60,7 @@ namespace Hangman.UI.Views
         {
             Application.Current.Shutdown();
         }
+
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ProfileView profileView = new ProfileView();
