@@ -65,11 +65,12 @@
                             </Grid.ColumnDefinitions>
 
                             <components:ProfileControl
+                                x:Name="ProfileControl"
                                 Margin="20,25,0,5"
                                 HorizontalAlignment="Left"
                                 Loaded="ProfileControl_Loaded"
                                 MouseUp="ProfileControl_MouseUp"
-                                UserName="{Binding UserName}" />
+                                UserName="{Binding PlayerName}"/>
 
                             <components:HangmanControl
                                 x:Name="Hangman"

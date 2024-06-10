@@ -5,10 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
+    x:Name="Profile"
     mc:Ignorable="d"
     Height="60"
     Cursor="Hand"
-    MouseUp="ProfileControl_MouseUp">
+    MouseUp="ProfileControl_MouseUp" Width="312">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,6 +35,6 @@
             FontSize="18"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
-            Text="{Binding UserName}" />
+            Text="{Binding UserName, ElementName=Profile}" />
     </Grid>
 </UserControl>

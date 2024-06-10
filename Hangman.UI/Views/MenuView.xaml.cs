@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.UI.VisualComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,13 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class MenuView : Window
     {
-        public MenuView()
+        private PlayerDTO player;
+
+        public MenuView(PlayerDTO player)
         {
             InitializeComponent();
+            this.player = player;
+            this.ProfileControl.UserName = $"{player.Name} {player.FirstLastName} {player.SecondLastName}";
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -63,7 +69,7 @@ namespace Hangman.UI.Views
 
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ProfileView profileView = new ProfileView();
+            ProfileView profileView = new ProfileView(player);
             profileView.Show();
         }
     }

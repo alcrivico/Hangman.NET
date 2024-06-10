@@ -25,11 +25,7 @@ namespace Hangman.UI.VisualComponents
         }
 
         public static readonly DependencyProperty UserNameProperty =
-            DependencyProperty.Register(
-                "UserName",
-                typeof(string),
-                typeof(ProfileControl),
-                new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("UserName", typeof(string), typeof(ProfileControl));
 
         public string UserName
         {

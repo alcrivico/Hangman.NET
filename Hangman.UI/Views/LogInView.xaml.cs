@@ -1,4 +1,5 @@
-﻿using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -32,11 +33,11 @@ namespace Hangman.UI.Views
 
             try
             {
-                var response = logInAdapter.LogIn(username, password);
+                PlayerDTO response = logInAdapter.LogIn(username, password);
 
                 if (response.ResponseCode == 0)
                 {
-                    MenuView menuView = new MenuView();
+                    MenuView menuView = new MenuView(response);
                     menuView.Show();
                     this.Close();
                 }

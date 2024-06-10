@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,24 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class ProfileView : Window
     {
+        private PlayerDTO player;
+
         public ProfileView()
         {
             InitializeComponent();
-            
+            InitializeTable();
+
+        }
+
+        public ProfileView(PlayerDTO player)
+        {
+            InitializeComponent();
+            InitializeTable();
+            this.player = player;
+        }
+
+        private void InitializeTable()
+        {
             Dictionary<string, string>[] columns =
              [
                 new Dictionary<string, string> {
