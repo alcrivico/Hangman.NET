@@ -28,6 +28,11 @@ namespace Hangman.Services.Models.DTO
         public string CategoryEN { get; set; }
 
         public int ResponseCode { get; set; }
+
+        public string ToString()
+        {
+            return WordEN;
+        }
     }
 
 }
