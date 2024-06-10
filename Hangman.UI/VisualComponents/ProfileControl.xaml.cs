@@ -37,10 +37,10 @@ namespace Hangman.UI.VisualComponents
             set { SetValue(UserNameProperty, value); }
         }
 
-        // Manejar el evento MouseUp para actuar como botón
-        private void ProfileControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        public event EventHandler ProfileClicked;
+        private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            // agregar la lógica para navegar al perfil del usuario
+            ProfileClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

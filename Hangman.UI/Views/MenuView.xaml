@@ -65,10 +65,10 @@
                             </Grid.ColumnDefinitions>
 
                             <components:ProfileControl
-                                Margin="20,20,0,0"
+                                Margin="20,25,0,5"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
                                 Loaded="ProfileControl_Loaded"
+                                MouseUp="ProfileControl_MouseUp"
                                 UserName="{Binding UserName}" />
                             <components:HangmanControl
                                 x:Name="Hangman"
@@ -113,9 +113,6 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
 
-                                <!--  TextBlock en la esquina superior izquierda  -->
-
-                                <!--  Celda en la parte superior  -->
                                 <TextBlock
                                     Grid.Row="1"
                                     Grid.Column="1"
@@ -129,16 +126,17 @@
                                     Text="Ahorcado.NET"
                                     TextAlignment="Center" />
                                 <Button
+                                    x:Name="DoorButton"
                                     Grid.Row="0"
                                     Grid.Column="2"
-                                    x:Name="DoorButton"
                                     Width="40"
                                     Height="40"
+                                    Margin="0,0,0,5"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Click="DoorButton_Click" Margin="0,0,0,5">
+                                    Click="DoorButton_Click">
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
                                             <Image
