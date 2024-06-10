@@ -130,235 +130,47 @@
                                 <ColumnDefinition Width="0.45*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Border
-                                Grid.Column="0"
-                                Margin="10,18,10,18"
-                                Background="{StaticResource SolidColorBrush_RoyalBlue}"
-                                BorderBrush="{StaticResource SolidColorBrush_Gold}"
-                                BorderThickness="3"
-                                CornerRadius="10">
-                                <StackPanel
-                                    Margin="10"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Vertical">
-                                    <TextBlock
-                                        Margin="0,0,0,10"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontFamily="{StaticResource Font_Nunito}"
-                                        FontSize="16"
-                                        FontWeight="Bold"
-                                        Foreground="{StaticResource SolidColorBrush_Gold}"
-                                        Text="Enviar Letras" />
-                                    <UniformGrid
-                                        Margin="0,0,0,10"
-                                        Columns="10"
-                                        Rows="1">
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="1" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="2" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="3" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="4" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="5" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="6" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="7" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="8" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="9" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="0" />
-                                    </UniformGrid>
-                                    <UniformGrid
-                                        Margin="0,0,0,10"
-                                        Columns="10"
-                                        Rows="1">
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="Q" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="W" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="E" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="R" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="T" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="Y" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="U" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="I" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="O" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="P" />
-                                    </UniformGrid>
-                                    <UniformGrid
-                                        Margin="0,0,0,10"
-                                        Columns="10"
-                                        Rows="1">
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="A" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="S" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="D" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="F" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="G" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="H" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="J" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="K" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="L" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="Ñ" />
-                                    </UniformGrid>
-                                    <UniformGrid
-                                        HorizontalAlignment="Center"
-                                        Columns="8"
-                                        Rows="1">
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="Z" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="X" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="C" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="V" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="B" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="N" />
-                                        <components:ButtonControl
-                                            Width="30"
-                                            Height="30"
-                                            FontSize="16"
-                                            Text="M" />
-                                    </UniformGrid>
-                                </StackPanel>
-                            </Border>
 
+
+                            <components:KeyboardControl
+                                x:Name="Keyboard"
+                                Btn0Click="Keyboard_Btn0Click"
+                                Btn1Click="Keyboard_Btn1Click"
+                                Btn2Click="Keyboard_Btn2Click"
+                                Btn3Click="Keyboard_Btn3Click"
+                                Btn4Click="Keyboard_Btn4Click"
+                                Btn5Click="Keyboard_Btn5Click"
+                                Btn6Click="Keyboard_Btn6Click"
+                                Btn7Click="Keyboard_Btn7Click"
+                                Btn8Click="Keyboard_Btn8Click"
+                                Btn9Click="Keyboard_Btn9Click"
+                                BtnAClick="Keyboard_BtnAClick"
+                                BtnBClick="Keyboard_BtnBClick"
+                                BtnCClick="Keyboard_BtnCClick"
+                                BtnDClick="Keyboard_BtnDClick"
+                                BtnEClick="Keyboard_BtnEClick"
+                                BtnFClick="Keyboard_BtnFClick"
+                                BtnGClick="Keyboard_BtnGClick"
+                                BtnHClick="Keyboard_BtnHClick"
+                                BtnIClick="Keyboard_BtnIClick"
+                                BtnJClick="Keyboard_BtnJClick"
+                                BtnKClick="Keyboard_BtnKClick"
+                                BtnLClick="Keyboard_BtnLClick"
+                                BtnMClick="Keyboard_BtnMClick"
+                                BtnNClick="Keyboard_BtnNClick"
+                                BtnOClick="Keyboard_BtnOClick"
+                                BtnPClick="Keyboard_BtnPClick"
+                                BtnQClick="Keyboard_BtnQClick"
+                                BtnRClick="Keyboard_BtnRClick"
+                                BtnSClick="Keyboard_BtnSClick"
+                                BtnTClick="Keyboard_BtnTClick"
+                                BtnUClick="Keyboard_BtnUClick"
+                                BtnVClick="Keyboard_BtnVClick"
+                                BtnWClick="Keyboard_BtnWClick"
+                                BtnXClick="Keyboard_BtnXClick"
+                                BtnYClick="Keyboard_BtnYClick"
+                                BtnZClick="Keyboard_BtnZClick"
+                                BtnÑClick="Keyboard_BtnÑClick" />
 
                             <Grid Grid.Column="1">
 

@@ -79,6 +79,11 @@ namespace Hangman.UI.VisualComponents
 
         }
 
+        public Object GetSelectedItem()
+        {
+            return DataGridStructure.SelectedItem;
+        }
+
     }
 
 }

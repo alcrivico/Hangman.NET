@@ -1,0 +1,360 @@
+﻿<UserControl
+    x:Class="Hangman.UI.VisualComponents.KeyboardControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="240"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid>
+        <Border
+            Grid.Column="0"
+            Margin="5,18,5,18"
+            Background="{StaticResource SolidColorBrush_RoyalBlue}"
+            BorderBrush="{StaticResource SolidColorBrush_Gold}"
+            BorderThickness="3"
+            CornerRadius="10">
+
+            <StackPanel
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource Font_Nunito}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource SolidColorBrush_Gold}"
+                    Text="Enviar Letras" />
+
+                <UniformGrid
+                    Margin="0,0,0,10"
+                    Columns="10"
+                    Rows="1">
+
+                    <local:ButtonControl
+                        x:Name="Btn1"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn1_ButtonControlClick"
+                        FontSize="16"
+                        Text="1" />
+
+                    <local:ButtonControl
+                        x:Name="Btn2"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn2_ButtonControlClick"
+                        FontSize="16"
+                        Text="2" />
+
+                    <local:ButtonControl
+                        x:Name="Btn3"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn3_ButtonControlClick"
+                        FontSize="16"
+                        Text="3" />
+
+                    <local:ButtonControl
+                        x:Name="Btn4"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn4_ButtonControlClick"
+                        FontSize="16"
+                        Text="4" />
+
+                    <local:ButtonControl
+                        x:Name="Btn5"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn5_ButtonControlClick"
+                        FontSize="16"
+                        Text="5" />
+
+                    <local:ButtonControl
+                        x:Name="Btn6"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn6_ButtonControlClick"
+                        FontSize="16"
+                        Text="6" />
+
+                    <local:ButtonControl
+                        x:Name="Btn7"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn7_ButtonControlClick"
+                        FontSize="16"
+                        Text="7" />
+                    <local:ButtonControl
+                        x:Name="Btn8"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn8_ButtonControlClick"
+                        FontSize="16"
+                        Text="8" />
+
+                    <local:ButtonControl
+                        x:Name="Btn9"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn9_ButtonControlClick"
+                        FontSize="16"
+                        Text="9" />
+                    <local:ButtonControl
+                        x:Name="Btn0"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="Btn0_ButtonControlClick"
+                        FontSize="16"
+                        Text="0" />
+
+                </UniformGrid>
+
+                <UniformGrid
+                    Margin="0,0,0,10"
+                    Columns="10"
+                    Rows="1">
+                    <local:ButtonControl
+                        x:Name="BtnQ"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnQ_ButtonControlClick"
+                        FontSize="16"
+                        Text="Q" />
+
+                    <local:ButtonControl
+                        x:Name="BtnW"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnW_ButtonControlClick"
+                        FontSize="16"
+                        Text="W" />
+
+                    <local:ButtonControl
+                        x:Name="BtnE"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnE_ButtonControlClick"
+                        FontSize="16"
+                        Text="E" />
+
+                    <local:ButtonControl
+                        x:Name="BtnR"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnR_ButtonControlClick"
+                        FontSize="16"
+                        Text="R" />
+
+                    <local:ButtonControl
+                        x:Name="BtnT"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnT_ButtonControlClick"
+                        FontSize="16"
+                        Text="T" />
+
+                    <local:ButtonControl
+                        x:Name="BtnY"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnY_ButtonControlClick"
+                        FontSize="16"
+                        Text="Y" />
+
+                    <local:ButtonControl
+                        x:Name="BtnU"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnU_ButtonControlClick"
+                        FontSize="16"
+                        Text="U" />
+
+                    <local:ButtonControl
+                        x:Name="BtnI"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnI_ButtonControlClick"
+                        FontSize="16"
+                        Text="I" />
+
+                    <local:ButtonControl
+                        x:Name="BtnO"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnO_ButtonControlClick"
+                        FontSize="16"
+                        Text="O" />
+
+                    <local:ButtonControl
+                        x:Name="BtnP"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnP_ButtonControlClick"
+                        FontSize="16"
+                        Text="P" />
+
+                </UniformGrid>
+
+                <UniformGrid
+                    Margin="0,0,0,10"
+                    Columns="10"
+                    Rows="1">
+
+                    <local:ButtonControl
+                        x:Name="BtnA"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnA_ButtonControlClick"
+                        FontSize="16"
+                        Text="A" />
+
+                    <local:ButtonControl
+                        x:Name="BtnS"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnS_ButtonControlClick"
+                        FontSize="16"
+                        Text="S" />
+
+                    <local:ButtonControl
+                        x:Name="BtnD"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnD_ButtonControlClick"
+                        FontSize="16"
+                        Text="D" />
+
+                    <local:ButtonControl
+                        x:Name="BtnF"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnF_ButtonControlClick"
+                        FontSize="16"
+                        Text="F" />
+
+                    <local:ButtonControl
+                        x:Name="BtnG"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnG_ButtonControlClick"
+                        FontSize="16"
+                        Text="G" />
+
+                    <local:ButtonControl
+                        x:Name="BtnH"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnH_ButtonControlClick"
+                        FontSize="16"
+                        Text="H" />
+
+                    <local:ButtonControl
+                        x:Name="BtnJ"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnJ_ButtonControlClick"
+                        FontSize="16"
+                        Text="J" />
+
+                    <local:ButtonControl
+                        x:Name="BtnK"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnK_ButtonControlClick"
+                        FontSize="16"
+                        Text="K" />
+
+                    <local:ButtonControl
+                        x:Name="BtnL"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnL_ButtonControlClick"
+                        FontSize="16"
+                        Text="L" />
+
+                    <local:ButtonControl
+                        x:Name="BtnÑ"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnÑ_ButtonControlClick"
+                        FontSize="16"
+                        Text="Ñ" />
+
+                </UniformGrid>
+
+                <UniformGrid
+                    Margin="32,0,0,0"
+                    HorizontalAlignment="Center"
+                    Columns="8"
+                    Rows="1">
+
+                    <local:ButtonControl
+                        x:Name="BtnZ"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnZ_ButtonControlClick"
+                        FontSize="16"
+                        Text="Z" />
+
+                    <local:ButtonControl
+                        x:Name="BtnX"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnX_ButtonControlClick"
+                        FontSize="16"
+                        Text="X" />
+
+                    <local:ButtonControl
+                        x:Name="BtnC"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnC_ButtonControlClick"
+                        FontSize="16"
+                        Text="C" />
+
+                    <local:ButtonControl
+                        x:Name="BtnV"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnV_ButtonControlClick"
+                        FontSize="16"
+                        Text="V" />
+
+                    <local:ButtonControl
+                        x:Name="BtnB"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnB_ButtonControlClick"
+                        FontSize="16"
+                        Text="B" />
+
+                    <local:ButtonControl
+                        x:Name="BtnN"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnN_ButtonControlClick"
+                        FontSize="16"
+                        Text="N" />
+
+                    <local:ButtonControl
+                        x:Name="BtnM"
+                        Width="30"
+                        Height="30"
+                        ButtonControlClick="BtnM_ButtonControlClick"
+                        FontSize="16"
+                        Text="M" />
+
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

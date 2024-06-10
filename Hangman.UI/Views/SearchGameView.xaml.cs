@@ -183,5 +183,13 @@ namespace Hangman.UI.Views
             }
 
         }
+
+        private void Button_Join_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+            GameView gameView = new GameView((Adapters.ControllerAdapters.Services.Game.GameDTO) GamesTable.GetSelectedItem(), _player);
+            gameView.Show();
+            this.Close();
+        }
+
     }
 }
