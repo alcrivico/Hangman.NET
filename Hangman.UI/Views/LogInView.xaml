@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl Loaded="TitleBarControl_Loaded" WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
 
@@ -59,7 +59,12 @@
 
                     <Grid Grid.Column="0">
 
-                        <components:HangmanControl x:Name="Hangman" IncorrectGuesses="6" />
+                        <Border x:Name="Hangman" Margin="30,28,30,28">
+                            <Image
+                                Margin="181,24,182,24"
+                                Source="../Resources/Images/Ahorcado.png"
+                                Stretch="UniformToFill" />
+                        </Border>
 
                     </Grid>
 
@@ -101,7 +106,7 @@
                                 </Grid.RowDefinitions>
 
                                 <components:TextBoxControl
-                                    x:Name="TextBoxControl"
+                                    x:Name="TextBoxControl_Email"
                                     Grid.Row="0"
                                     Width="400"
                                     Height="50"
