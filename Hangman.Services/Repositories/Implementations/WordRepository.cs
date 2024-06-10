@@ -16,9 +16,11 @@ namespace Hangman.Services.Repositories.Implementations
     public class WordRepository : IWordRepository
     {
 
-        public Dictionary<string, object> GetWordsList()
+        public List<WordDTO> GetWordsList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            List<WordDTO> response = new List<WordDTO>();
+            WordDTO responseCode = new WordDTO();
+            response.Add(responseCode);
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -44,28 +46,28 @@ namespace Hangman.Services.Repositories.Implementations
                                         HasNumber = word.HasNumber,
                                         CategoryEN = category.CategoryEN,
                                         CategoryES = category.CategoryES,
+                                        ResponseCode = 0
                                     }).ToList();
 
                         if (words.Any())
                         {
-                            response.Add("Data", words);
-                            response.Add("ResponseCode", 0);
+                            response = words;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response[0].ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response[0].ResponseCode = 2;
                     }
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response[0].ResponseCode = 3;
                 }
 
             }
