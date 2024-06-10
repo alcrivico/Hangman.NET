@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,12 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class GameView : Window
     {
+        GameAdapter gameAdapter = new GameAdapter();
+        GameDTO gameDTO = new GameDTO();
+
         public GameView()
         {
+            
             InitializeComponent();
         }
 
@@ -41,7 +47,13 @@ namespace Hangman.UI.Views
 
         private void Button_ExitGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea salir del juego?", "Salir del juego", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                gameAdapter.LeftGame(gameDTO.GameCode);
+                this.Close();
+            }
         }
 
     }

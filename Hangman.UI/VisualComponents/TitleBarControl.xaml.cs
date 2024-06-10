@@ -21,11 +21,6 @@ namespace Hangman.UI.VisualComponents
     /// <summary>
     /// Interaction logic for TitleBarControl.xaml
     /// </summary>
-    /// 
-    public class LanguageDTO
-    {
-        public required string LanguageName { get; set; }
-    }
 
     public partial class TitleBarControl : UserControl
     {
@@ -35,25 +30,28 @@ namespace Hangman.UI.VisualComponents
         public TitleBarControl()
         {
 
-            //SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
+            SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
             _languageDTOs = new ObservableCollection<Object>();
 
-            List<LanguageDTO> languages = new List<LanguageDTO>();
-            languages.Add(new LanguageDTO { LanguageName = "Español" });
-            languages.Add(new LanguageDTO { LanguageName = "English" });
+            List<LanguageDTO> languages = null;
 
             InitializeComponent();
 
-            /*try
+            try
             {
                 languages = searchGameAdapter.GetLanguagesList();
             }
             catch (Exception e)
             {
+
+                Window parentWindow = Window.GetWindow(this);
+                
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }*/
+                parentWindow.Close();
+                Application.Current.Shutdown();
+
+            }
 
             SetLanguages(languages);
 
