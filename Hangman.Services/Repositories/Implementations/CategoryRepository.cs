@@ -16,11 +16,13 @@ namespace Hangman.Services.Repositories.Implementations
     public class CategoryRepository: ICategoryRepository
     {
 
-        public Dictionary<string, object> GetCategoriesList()
+        public List<CategoryDTO> GetCategoriesList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            List<CategoryDTO> response = new List<CategoryDTO>();
+            CategoryDTO responseCode = new CategoryDTO();
+            response.Add(responseCode);
 
-            using(DataContext dataSource = DBConnection.GetConnection())
+            using (DataContext dataSource = DBConnection.GetConnection())
             {
 
                 if (dataSource != null)
@@ -35,29 +37,29 @@ namespace Hangman.Services.Repositories.Implementations
                                          {
                                              CategoryES = category.CategoryES,
                                              CategoryEN = category.CategoryEN,
+                                             ResponseCode = 0
                                          }).ToList();
 
                         if (categories.Any())
                         {
-                            response.Add("data", categories);
-                            response.Add("ResponseCode", 0);
+                            response = categories;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response[0].ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response[0].ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response[0].ResponseCode = 3;
                 }
 
             }
