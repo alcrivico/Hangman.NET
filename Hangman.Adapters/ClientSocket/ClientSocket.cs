@@ -54,12 +54,23 @@ namespace Hangman.Adapters.ClientSocket
 
         public string ReceiveMessage()
         {
-            byte[] receiveBytes = new byte[1024];
-            int numBytes = _clientSocket.Receive(receiveBytes);
-            string serverMessage = Encoding.UTF8.GetString(receiveBytes, 0, numBytes);
-            Console.WriteLine("Received from server: " + serverMessage);
+            if(_clientSocket.Connected)
+            {
+                byte[] receiveBytes = new byte[1024];
+                try
+                {
+                    int numBytes = _clientSocket.Receive(receiveBytes);
+                    string serverMessage = Encoding.UTF8.GetString(receiveBytes, 0, numBytes);
+                    Console.WriteLine("Received from server: " + serverMessage);
 
-            return serverMessage;
+                    return serverMessage;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error receiving message: " + ex.Message);
+                }
+            }
+            return "Error";
         }
 
         public void CloseConnection()
