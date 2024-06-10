@@ -36,7 +36,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         }
 
-        public List<LanguagesDTO> GetLanguagesList()
+        public List<LanguageDTO> GetLanguagesList()
         {
 
            var conexion = new GameServicesClient();
@@ -47,7 +47,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
             {
 
                 case 0:
-                    return response["Data"] as List<LanguagesDTO>;
+                    return response["Data"] as List<LanguageDTO>;
                 case 1:
                     throw new Exception("No se encontró información de la entidad en la base de datos");
                 case 2:
