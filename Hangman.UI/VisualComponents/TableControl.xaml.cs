@@ -71,7 +71,7 @@ namespace Hangman.UI.VisualComponents
 
         }
 
-        public void SetItemsSource(ObservableCollection<GameDTO> itemsSource)
+        public void SetItemsSource(ObservableCollection<Object> itemsSource)
         {
 
             DataGridStructure.ItemsSource = null;

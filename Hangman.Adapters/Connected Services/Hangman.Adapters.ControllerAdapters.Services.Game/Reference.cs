@@ -32,7 +32,11 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         
         private string LanguageField;
         
+        private int ResponseCodeField;
+        
         private string StatusField;
+        
+        private int WaitingTimeField;
         
         private string WordENField;
         
@@ -130,6 +134,19 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Status
         {
             get
@@ -139,6 +156,19 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
             set
             {
                 this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaitingTime
+        {
+            get
+            {
+                return this.WaitingTimeField;
+            }
+            set
+            {
+                this.WaitingTimeField = value;
             }
         }
         
@@ -169,34 +199,250 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CategoryDTO", Namespace="http://schemas.datacontract.org/2004/07/Hangman.Services.Models.DTO")]
+    public partial class CategoryDTO : object
+    {
+        
+        private string CategoryENField;
+        
+        private string CategoryESField;
+        
+        private int ResponseCodeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CategoryEN
+        {
+            get
+            {
+                return this.CategoryENField;
+            }
+            set
+            {
+                this.CategoryENField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CategoryES
+        {
+            get
+            {
+                return this.CategoryESField;
+            }
+            set
+            {
+                this.CategoryESField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WordDTO", Namespace="http://schemas.datacontract.org/2004/07/Hangman.Services.Models.DTO")]
+    public partial class WordDTO : object
+    {
+        
+        private string CategoryENField;
+        
+        private string CategoryESField;
+        
+        private bool HasNumberField;
+        
+        private int ResponseCodeField;
+        
+        private string TipENField;
+        
+        private string TipESField;
+        
+        private string WordENField;
+        
+        private string WordESField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CategoryEN
+        {
+            get
+            {
+                return this.CategoryENField;
+            }
+            set
+            {
+                this.CategoryENField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CategoryES
+        {
+            get
+            {
+                return this.CategoryESField;
+            }
+            set
+            {
+                this.CategoryESField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasNumber
+        {
+            get
+            {
+                return this.HasNumberField;
+            }
+            set
+            {
+                this.HasNumberField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipEN
+        {
+            get
+            {
+                return this.TipENField;
+            }
+            set
+            {
+                this.TipENField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipES
+        {
+            get
+            {
+                return this.TipESField;
+            }
+            set
+            {
+                this.TipESField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WordEN
+        {
+            get
+            {
+                return this.WordENField;
+            }
+            set
+            {
+                this.WordENField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WordES
+        {
+            get
+            {
+                return this.WordESField;
+            }
+            set
+            {
+                this.WordESField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LanguageDTO", Namespace="http://schemas.datacontract.org/2004/07/Hangman.Services.Models.DTO")]
+    public partial class LanguageDTO : object
+    {
+        
+        private string LanguageNameField;
+        
+        private int ResponseCodeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LanguageName
+        {
+            get
+            {
+                return this.LanguageNameField;
+            }
+            set
+            {
+                this.LanguageNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Hangman.Adapters.ControllerAdapters.Services.Game.IGameServices")]
     public interface IGameServices
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/CreateGame", ReplyAction="http://tempuri.org/IGameServices/CreateGameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> CreateGameAsync(Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO newGame);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> CreateGameAsync(Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO newGame);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetCategoriesList", ReplyAction="http://tempuri.org/IGameServices/GetCategoriesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetCategoriesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.CategoryDTO>> GetCategoriesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetWordsList", ReplyAction="http://tempuri.org/IGameServices/GetWordsListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetWordsListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.WordDTO>> GetWordsListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SetChallenger", ReplyAction="http://tempuri.org/IGameServices/SetChallengerResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SetChallengerAsync(string gameCode, string email);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SetGameStatus", ReplyAction="http://tempuri.org/IGameServices/SetGameStatusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SetGameStatusAsync(string gameCode, string status);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> SetGameStatusAsync(string gameCode, string status);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetWaitingGames", ReplyAction="http://tempuri.org/IGameServices/GetWaitingGamesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetWaitingGamesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO>> GetWaitingGamesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetPlayerType", ReplyAction="http://tempuri.org/IGameServices/GetPlayerTypeResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetPlayerTypeAsync(string email, string gameCode);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> GetPlayerTypeAsync(string email, string gameCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetLanguagesList", ReplyAction="http://tempuri.org/IGameServices/GetLanguagesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetLanguagesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -249,42 +495,42 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> CreateGameAsync(Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO newGame)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> CreateGameAsync(Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO newGame)
         {
             return base.Channel.CreateGameAsync(newGame);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetCategoriesListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.CategoryDTO>> GetCategoriesListAsync()
         {
             return base.Channel.GetCategoriesListAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetWordsListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.WordDTO>> GetWordsListAsync()
         {
             return base.Channel.GetWordsListAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SetChallengerAsync(string gameCode, string email)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail)
         {
-            return base.Channel.SetChallengerAsync(gameCode, email);
+            return base.Channel.SetChallengerAsync(gameCode, challengerEmail);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SetGameStatusAsync(string gameCode, string status)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> SetGameStatusAsync(string gameCode, string status)
         {
             return base.Channel.SetGameStatusAsync(gameCode, status);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetWaitingGamesAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO>> GetWaitingGamesAsync()
         {
             return base.Channel.GetWaitingGamesAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetPlayerTypeAsync(string email, string gameCode)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> GetPlayerTypeAsync(string email, string gameCode)
         {
             return base.Channel.GetPlayerTypeAsync(email, gameCode);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetLanguagesListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync()
         {
             return base.Channel.GetLanguagesListAsync();
         }

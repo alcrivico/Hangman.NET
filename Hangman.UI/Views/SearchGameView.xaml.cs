@@ -23,15 +23,15 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class SearchGameView : Window
     {
-        private ObservableCollection<GameDTO> _gameDTOs;
+        private ObservableCollection<Object> _gameDTOs;
 
         public SearchGameView()
         {
-            _gameDTOs = new ObservableCollection<GameDTO>();
+            _gameDTOs = new ObservableCollection<Object>();
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
-            List<GameDTO> games;
+            List<GameDTO> games = null;
 
             InitializeComponent();
 
@@ -44,7 +44,7 @@ namespace Hangman.UI.Views
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                this.Close();
             }
 
             SetGames(games);
