@@ -40,6 +40,7 @@
             Height="30"
             VerticalAlignment="Center"
             Panel.ZIndex="0"
+            DisplayMemberPath="{Binding MemberPath, ElementName=ComboBox}"
             Focusable="False"
             Loaded="ComboBoxControl_Loaded"
             Style="{StaticResource ComboBoxControlStyle}" />

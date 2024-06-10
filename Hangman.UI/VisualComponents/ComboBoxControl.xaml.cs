@@ -37,6 +37,19 @@ namespace Hangman.UI.VisualComponents
                                typeof(ComboBoxControl),
                                new PropertyMetadata(string.Empty));
 
+        public string MemberPath
+        {
+            get { return (string)GetValue(MemberPathProperty); }
+            set { SetValue(MemberPathProperty, value); }
+        }
+
+        public static readonly DependencyProperty MemberPathProperty =
+            DependencyProperty.Register(
+                "MemberPath",
+                typeof(string),
+                typeof(ComboBoxControl),
+                new PropertyMetadata(string.Empty));
+
         public int ComboBoxWidth
         {
             get { return (int)GetValue(ComboBoxWidthProperty); }
@@ -91,10 +104,12 @@ namespace Hangman.UI.VisualComponents
 
         }
 
-        public void SetItemsSource(ObservableCollection<Object> itemsSource)
+        public void SetItemsSource(ObservableCollection<Object> itemsSource, String ItemPath)
         {
             ComboBoxControlType.ItemsSource = null;
             ComboBoxControlType.ItemsSource = itemsSource;
+
+            ComboBoxControlType.DisplayMemberPath = ItemPath;
         }
 
     }

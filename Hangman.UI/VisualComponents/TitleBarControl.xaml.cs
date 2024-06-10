@@ -55,7 +55,7 @@ namespace Hangman.UI.VisualComponents
 
             SetLanguages(languages);
 
-            ComboBoxControl_Language.SetItemsSource(_languageDTOs);
+            ComboBoxControl_Language.SetItemsSource(_languageDTOs, "LanguageName");
 
         }
 
