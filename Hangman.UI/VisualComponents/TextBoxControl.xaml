@@ -14,6 +14,7 @@
 
         <TextBlock
             x:Name="TextBox_FieldName"
+            Grid.Column="1"
             Margin="15,0,0,0"
             Padding="5,0,5,0"
             HorizontalAlignment="Left"
@@ -24,7 +25,7 @@
             FontSize="12"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
-            Text="{Binding FieldName, ElementName=TextBox}" Grid.Column="1"/>
+            Text="{Binding FieldName, ElementName=TextBox}" />
 
         <Rectangle
             x:Name="TextBox_Highlight"
@@ -45,6 +46,7 @@
             CornerRadius="10">
 
             <TextBox
+                x:Name="TextBox_Text"
                 Padding="10,0,10,0"
                 VerticalAlignment="Center"
                 Background="Transparent"
@@ -54,8 +56,9 @@
                 FontSize="18"
                 FontWeight="Bold"
                 Foreground="{StaticResource SolidColorBrush_White}"
-                Text="{Binding Text, ElementName=TextBox}"
-                TextAlignment="Left" />
+                Text="{Binding Text, ElementName=TextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                TextAlignment="Left"
+                TextChanged="TextBox_Text_TextChanged" />
 
         </Border>
 
