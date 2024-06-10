@@ -122,14 +122,30 @@
 
                             </Grid>
 
-                            <TextBlock
+                            <Border
+                                x:Name="AlertBorder"
                                 Grid.Row="2"
-                                Margin="0,40,0,40"
-                                Background="#002255"
-                                FontFamily="{StaticResource Font_Nunito}"
-                                Foreground="{StaticResource SolidColorBrush_Gold}"
-                                Text="Correo y/o contraseña incorrectos. Por favor, verifíquelos."
-                                TextAlignment="Center" />
+                                Width="280"
+                                Height="30"
+                                VerticalAlignment="Bottom"
+                                Background="{StaticResource SolidColorBrush_Gold}"
+                                BorderThickness="0"
+                                CornerRadius="10"
+                                Visibility="Hidden">
+                                <TextBlock
+                                    x:Name="AlertTextBlock"
+                                    Margin="1"
+                                    Padding="10,0,10,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    FontFamily="{StaticResource Font_Nunito}"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource SolidColorBrush_MarianBlue}"
+                                    Text="Correo y/o contraseña incorrectos. Por favor, verifíquelos."
+                                    TextAlignment="Center" />
+                            </Border>
 
                             <components:ButtonControl
                                 x:Name="Button_LogIn"
@@ -149,6 +165,7 @@
                                 Cursor="Hand"
                                 FontFamily="{StaticResource Font_Nunito}"
                                 FontSize="14"
+                                FontWeight="Bold"
                                 Foreground="{StaticResource SolidColorBrush_Gold}"
                                 MouseEnter="TextBlock_SingUp_MouseEnter"
                                 MouseLeave="TextBlock_SingUp_MouseLeave"

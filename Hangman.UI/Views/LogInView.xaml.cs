@@ -42,27 +42,36 @@ namespace Hangman.UI.Views
                 }
                 else
                 {
-                    //ShowAlert("Correo y/o contraseña incorrectos. Por favor, verifíquelos", Brushes.Yellow, Brushes.Black);
+                    ShowAlert(
+                        "Correo y/o contraseña incorrectos. Por favor, verifíquelos", 
+                        FindResource("SolidColorBrush_Gold") as SolidColorBrush, 
+                        FindResource("SolidColorBrush_MarianBlue") as SolidColorBrush
+                    );
                 }
             }
             catch (Exception ex)
             {
-                //ShowAlert(ex.Message, Brushes.Red, Brushes.White);
+                ShowAlert(
+                        ex.Message,
+                        FindResource("SolidColorBrush_RustyRed") as SolidColorBrush,
+                        FindResource("SolidColorBrush_White") as SolidColorBrush
+                    );
             }
         }
 
-        /*private void ShowAlert(string message, SolidColorBrush borderColor, SolidColorBrush textColor)
+        private void ShowAlert(string message, SolidColorBrush borderColor, SolidColorBrush textColor)
         {
             AlertTextBlock.Text = message;
             AlertBorder.Background = borderColor;
             AlertTextBlock.Foreground = textColor;
             AlertBorder.Visibility = Visibility.Visible;
-        }*/
+        }
 
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SignUpView signUpView = new SignUpView();
             signUpView.Show();
+            this.Close();
         }
 
         private void TextBlock_SingUp_MouseEnter(object sender, MouseEventArgs e)

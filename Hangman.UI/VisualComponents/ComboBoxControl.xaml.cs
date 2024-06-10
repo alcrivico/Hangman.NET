@@ -110,6 +110,13 @@ namespace Hangman.UI.VisualComponents
             ComboBoxControlType.ItemsSource = itemsSource;
 
             ComboBoxControlType.DisplayMemberPath = ItemPath;
+
+            ComboBoxControlType.SelectedIndex = 0;
+        }
+
+        public void SelectDefaultItem(int index)
+        {
+            ComboBoxControlType.SelectedIndex = index;
         }
 
     }

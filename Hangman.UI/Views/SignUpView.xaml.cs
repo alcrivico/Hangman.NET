@@ -20,7 +20,6 @@
             public SignUpView()
             {
                 InitializeComponent();
-                TextBlock_LogIn.Text = "Ya tengo una cuenta";
             }
 
             private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -35,6 +34,8 @@
 
             private void TextBlock_LogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
             {
+                LogInView logInView = new();
+                logInView.Show();
                 this.Close();
             }
 

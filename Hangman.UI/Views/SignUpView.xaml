@@ -152,7 +152,7 @@
                             MouseEnter="TextBlock_LogIn_MouseEnter"
                             MouseLeave="TextBlock_LogIn_MouseLeave"
                             MouseLeftButtonDown="TextBlock_LogIn_MouseLeftButtonDown"
-                            Text="Registrar Usuario"
+                            Text="Ya tengo una cuenta"
                             TextAlignment="Center" />
                         <TextBlock
                             Margin="10"
