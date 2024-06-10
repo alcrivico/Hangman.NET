@@ -46,42 +46,42 @@ namespace Hangman.Services.Communications
             _gameRepository = new GameRepository();
         }
 
-        public Dictionary<string, object> CreateGame(GameDTO newGame)
+        public GameDTO CreateGame(GameDTO newGame)
         {
             return _gameRepository.CreateGame(newGame);
         }
 
-        public Dictionary<string, object> GetCategoriesList()
+        public List<CategoryDTO> GetCategoriesList()
         {
             return _categoryRepository.GetCategoriesList();
         }
 
-        public Dictionary<string, object> GetWordsList()
+        public List<WordDTO> GetWordsList()
         {
             return _wordRepository.GetWordsList();
         }
 
-        public Dictionary<string, object> SetChallenger(string gameCode, string email)
+        public GameDTO SetChallenger(string gameCode, string email)
         {
             return _gameRepository.SetChallenger(gameCode, email);
         }
 
-        public Dictionary<string, object> SetGameStatus(string gameCode, string status)
+        public GameDTO SetGameStatus(string gameCode, string status)
         {
             return _gameRepository.SetGameStatus(gameCode, status);
         }
 
-        public Dictionary<string, object> GetWaitingGames()
+        public List<GameDTO> GetWaitingGames()
         {
             return _gameRepository.GetWaitingGames();
         }
 
-        public Dictionary<string, object> GetPlayerType(string email, string gameCode)
+        public GameDTO GetPlayerType(string email, string gameCode)
         {
             return _gameRepository.GetPlayerType(email, gameCode);
         }
 
-        public Dictionary<string, object> GetLanguagesList()
+        public List<LanguageDTO> GetLanguagesList()
         {
             return _languageRepository.GetLanguagesList();
         }
