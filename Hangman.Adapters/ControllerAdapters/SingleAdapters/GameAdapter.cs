@@ -9,7 +9,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 {
     public class GameAdapter
     {
-        public int LeftGame(string gameCode)
+        public void LeftGame(string gameCode)
         {
             var service = new GameServicesClient();
 
@@ -25,8 +25,6 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
                     throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
 
             }
-
-            return response.ResponseCode;
         }
     }
 }
