@@ -10,7 +10,7 @@ namespace Hangman.Services.Communications
     {
         
         [OperationContract]
-        Dictionary<string, object> CreateGame(GameDTO newGame);
+        GameDTO CreateGame(GameDTO newGame);
 
         [OperationContract]
         Dictionary<string, object> GetCategoriesList();
@@ -19,16 +19,16 @@ namespace Hangman.Services.Communications
         Dictionary<string, object> GetWordsList();
 
         [OperationContract]
-        Dictionary<string, object> SetChallenger(string gameCode, string email);
+        GameDTO SetChallenger(string gameCode, string challengerEmail);
 
         [OperationContract]
-        Dictionary<string, object> SetGameStatus(string gameCode, string status);
+        GameDTO SetGameStatus(string gameCode, string status);
 
         [OperationContract]
-        Dictionary<string, object> GetWaitingGames();
+        List<GameDTO> GetWaitingGames();
 
         [OperationContract]
-        Dictionary<string, object> GetPlayerType(string email, string gameCode);
+        GameDTO GetPlayerType(string email, string gameCode);
 
         [OperationContract]
         Dictionary<string, object> GetLanguagesList();
