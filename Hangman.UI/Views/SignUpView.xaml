@@ -43,7 +43,7 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested"/>
+                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -99,8 +99,8 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Width="230"
-                                FieldName="Fecha nacimiento"
-                                Height="50" />
+                                Height="50"
+                                FieldName="Fecha nacimiento" />
                             <components:TextBoxControl
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -140,12 +140,18 @@
                             Text="Registrarse" />
 
                         <TextBlock
-                            Margin="10"
+                            x:Name="TextBlock_LogIn"
+                            Grid.Row="4"
+                            Margin="0,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
+                            Cursor="Hand"
                             FontFamily="{StaticResource Font_Nunito}"
                             FontSize="14"
                             Foreground="{StaticResource SolidColorBrush_Gold}"
+                            MouseEnter="TextBlock_LogIn_MouseEnter"
+                            MouseLeave="TextBlock_LogIn_MouseLeave"
+                            MouseLeftButtonDown="TextBlock_LogIn_MouseLeftButtonDown"
                             Text="Registrar Usuario"
                             TextAlignment="Center" />
                         <TextBlock

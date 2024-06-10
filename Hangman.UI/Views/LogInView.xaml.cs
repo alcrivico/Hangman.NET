@@ -62,8 +62,8 @@ namespace Hangman.UI.Views
 
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Comportamiento de Prueba para el TextBlock de SingUp - Resultado Esperado: LLevará a la ventana SignUpView
-            MessageBox.Show("SingUp");
+            SignUpView signUpView = new SignUpView();
+            signUpView.Show();
         }
 
         private void TextBlock_SingUp_MouseEnter(object sender, MouseEventArgs e)

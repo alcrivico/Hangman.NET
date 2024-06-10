@@ -1,38 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
 
-namespace Hangman.UI.Views
-{
-    /// <summary>
-    /// Lógica de interacción para SignUpView.xaml
-    /// </summary>
-    public partial class SignUpView : Window
+    namespace Hangman.UI.Views
     {
-        public SignUpView()
+        
+        public partial class SignUpView : Window
         {
-            InitializeComponent();
+            public SignUpView()
+            {
+                InitializeComponent();
+                TextBlock_LogIn.Text = "Ya tengo una cuenta";
+            }
+
+            private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
+            {
+                WindowState = e;
+            }
+
+            private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
+            {
+                
+            }
+
+            private void TextBlock_LogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            {
+                this.Close();
+            }
+
+            private void TextBlock_LogIn_MouseEnter(object sender, MouseEventArgs e)
+            {
+                TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_MikadoYellow") as SolidColorBrush;
+            }
+
+            private void TextBlock_LogIn_MouseLeave(object sender, MouseEventArgs e)
+            {
+                TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
+            }
         }
-
-        private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
-        {
-            WindowState = e;
-        }
-
-        private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
-}

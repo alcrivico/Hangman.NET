@@ -1,4 +1,7 @@
-﻿using Hangman.UI.VisualComponents;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,9 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Hangman.Adapters.ControllerAdapters.SingleAdapters;
-using Hangman.Adapters.ControllerAdapters.Services.Game;
-using Hangman.Adapters.ControllerAdapters.Services.Player;
+
 
 namespace Hangman.UI.Views
 {
@@ -33,7 +34,7 @@ namespace Hangman.UI.Views
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
-            List<GameDTO> games = null;
+            List<Adapters.ControllerAdapters.Services.Game.GameDTO> games = null;
 
             InitializeComponent();
 
@@ -99,18 +100,18 @@ namespace Hangman.UI.Views
 
         }
 
-        private void SetGames(List<GameDTO> games)
+        private void SetGames(List<Adapters.ControllerAdapters.Services.Game.GameDTO> games)
         {
             _gameDTOs.Clear();
 
-            foreach (GameDTO game in games)
+            foreach (Adapters.ControllerAdapters.Services.Game.GameDTO game in games)
             {
                 _gameDTOs.Add(game);
             }
 
         }
 
-        private void AddGame(GameDTO game)
+        private void AddGame(Adapters.ControllerAdapters.Services.Game.GameDTO game)
         {
             _gameDTOs.Add(game);
         }
