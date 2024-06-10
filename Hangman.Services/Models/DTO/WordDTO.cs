@@ -29,7 +29,7 @@ namespace Hangman.Services.Models.DTO
 
         public int ResponseCode { get; set; }
 
-        public string ToString()
+        public override string ToString()
         {
             return WordEN;
         }
