@@ -91,7 +91,7 @@ namespace Hangman.UI.VisualComponents
 
         }
 
-        public void SetItemsSource(ObservableCollection<LanguageDTO> itemsSource)
+        public void SetItemsSource(ObservableCollection<Object> itemsSource)
         {
             ComboBoxControlType.ItemsSource = null;
             ComboBoxControlType.ItemsSource = itemsSource;

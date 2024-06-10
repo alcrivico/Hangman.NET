@@ -11,56 +11,46 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
     public class SearchGameAdapter
     {
 
-        public List<GameDTO> GetWaitingGames() 
+        public List<GameDTO>? GetWaitingGames() 
         {
             var conexion = new GameServicesClient();
 
-            Dictionary<string, Object> response = conexion.GetWaitingGamesAsync().Result;
+            List<GameDTO> response = conexion.GetWaitingGamesAsync().Result;
 
-            switch ((int) response["ResponseCode"])
+            foreach (var game in response)
             {
 
-                case 0:
-                    return response["Data"] as List<GameDTO>;
-                case 1:
+                if (game.ResponseCode == 1)
+                {
                     throw new Exception("No se encontró información de la entidad en la base de datos");
-                case 2:
+                }
+
+                if (game.ResponseCode == 2)
+                {
                     throw new Exception("Error en la consulta, verifique el error en el servidor");
-                case 3:
+                }
+
+                if (game.ResponseCode == 3)
+                {
                     throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
-                default:
+                }
+
+                if (game.ResponseCode < 0 && game.ResponseCode > 3)
+                {
                     throw new Exception("Error de conexión");
+                }
 
             }
 
-
-        }
-
-        public List<LanguageDTO> GetLanguagesList()
-        {
-
-           var conexion = new GameServicesClient();
-
-            Dictionary<string, Object> response = conexion.GetLanguagesListAsync().Result;
-
-            switch ((int) response["ResponseCode"])
+            foreach (var game in response)
             {
-
-                case 0:
-                    return response["Data"] as List<LanguageDTO>;
-                case 1:
-                    throw new Exception("No se encontró información de la entidad en la base de datos");
-                case 2:
-                    throw new Exception("Error en la consulta, verifique el error en el servidor");
-                case 3:
-                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
-                default:
-                    throw new Exception("Error de conexión");
-
+                game.WaitingTime = (DateTime.Now - game.CreationDate).Minutes;
             }
 
-        }
+            return response;
 
+        }
+        
     }
 
 }

@@ -28,6 +28,8 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         
         private string PasswordField;
         
+        private int ResponseCodeField;
+        
         private string SecondLastNameField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -96,6 +98,19 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string SecondLastName
         {
             get
@@ -109,22 +124,209 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameDTO", Namespace="http://schemas.datacontract.org/2004/07/Hangman.Services.Models.DTO")]
+    public partial class GameDTO : object
+    {
+        
+        private string ChallengerEmailField;
+        
+        private string ChallengerNameField;
+        
+        private System.DateTime CreationDateField;
+        
+        private string CreatorEmailField;
+        
+        private string CreatorNameField;
+        
+        private string GameCodeField;
+        
+        private string LanguageField;
+        
+        private int ResponseCodeField;
+        
+        private string StatusField;
+        
+        private int WaitingTimeField;
+        
+        private string WordENField;
+        
+        private string WordESField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ChallengerEmail
+        {
+            get
+            {
+                return this.ChallengerEmailField;
+            }
+            set
+            {
+                this.ChallengerEmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ChallengerName
+        {
+            get
+            {
+                return this.ChallengerNameField;
+            }
+            set
+            {
+                this.ChallengerNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreationDate
+        {
+            get
+            {
+                return this.CreationDateField;
+            }
+            set
+            {
+                this.CreationDateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatorEmail
+        {
+            get
+            {
+                return this.CreatorEmailField;
+            }
+            set
+            {
+                this.CreatorEmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatorName
+        {
+            get
+            {
+                return this.CreatorNameField;
+            }
+            set
+            {
+                this.CreatorNameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GameCode
+        {
+            get
+            {
+                return this.GameCodeField;
+            }
+            set
+            {
+                this.GameCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Language
+        {
+            get
+            {
+                return this.LanguageField;
+            }
+            set
+            {
+                this.LanguageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ResponseCode
+        {
+            get
+            {
+                return this.ResponseCodeField;
+            }
+            set
+            {
+                this.ResponseCodeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WaitingTime
+        {
+            get
+            {
+                return this.WaitingTimeField;
+            }
+            set
+            {
+                this.WaitingTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WordEN
+        {
+            get
+            {
+                return this.WordENField;
+            }
+            set
+            {
+                this.WordENField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WordES
+        {
+            get
+            {
+                return this.WordESField;
+            }
+            set
+            {
+                this.WordESField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Hangman.Adapters.ControllerAdapters.Services.Player.IPlayerServices")]
     public interface IPlayerServices
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerServices/LogIn", ReplyAction="http://tempuri.org/IPlayerServices/LogInResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> LogInAsync(string email, string pass);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> LogInAsync(string email, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerServices/SignUp", ReplyAction="http://tempuri.org/IPlayerServices/SignUpResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SignUpAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> SignUpAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerServices/UpdateProfile", ReplyAction="http://tempuri.org/IPlayerServices/UpdateProfileResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> UpdateProfileAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player);
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> UpdateProfileAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerServices/GetPlayedGames", ReplyAction="http://tempuri.org/IPlayerServices/GetPlayedGamesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetPlayedGamesAsync(string email);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Player.GameDTO>> GetPlayedGamesAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -177,22 +379,22 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> LogInAsync(string email, string pass)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> LogInAsync(string email, string pass)
         {
             return base.Channel.LogInAsync(email, pass);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> SignUpAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> SignUpAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player)
         {
             return base.Channel.SignUpAsync(player);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> UpdateProfileAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player)
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO> UpdateProfileAsync(Hangman.Adapters.ControllerAdapters.Services.Player.PlayerDTO player)
         {
             return base.Channel.UpdateProfileAsync(player);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, object>> GetPlayedGamesAsync(string email)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Player.GameDTO>> GetPlayedGamesAsync(string email)
         {
             return base.Channel.GetPlayedGamesAsync(email);
         }
