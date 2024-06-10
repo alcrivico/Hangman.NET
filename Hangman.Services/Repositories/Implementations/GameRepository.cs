@@ -16,10 +16,10 @@ namespace Hangman.Services.Repositories.Implementations
     public class GameRepository : IGameRepository
     {
 
-        public Dictionary<string, object> CreateGame(GameDTO newGame)
+        public GameDTO CreateGame(GameDTO newGame)
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (YourDataContext dataSource = new YourDataContext(DBConnection.connectionString))
             {
@@ -48,11 +48,11 @@ namespace Hangman.Services.Repositories.Implementations
                         if(playerId != 0 && wordId != 0 && languageId != 0)
                         {
                             dataSource.AddGame(playerId, wordId, languageId);
-                            response.Add("ResponseCode", 0);
+                            response.ResponseCode = 0;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
                         
 
@@ -60,13 +60,13 @@ namespace Hangman.Services.Repositories.Implementations
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
 
             }
@@ -75,10 +75,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> GetPlayedGames(string email)
+        public GameDTO GetPlayedGames(string email)
         {
 
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            GameDTO response = new GameDTO();
 
             using (DataContext dataSource = DBConnection.GetConnection())
             {
@@ -115,24 +115,24 @@ namespace Hangman.Services.Repositories.Implementations
                         
                         if (games.Any())
                         {
-                            response.Add("Data", games);
-                            response.Add("ResponseCode", 0);
+                            response = games.First();
+                            response.ResponseCode = 0;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
 
             }
