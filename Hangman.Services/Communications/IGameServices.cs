@@ -16,7 +16,7 @@ namespace Hangman.Services.Communications
         List<CategoryDTO> GetCategoriesList();
 
         [OperationContract]
-        Dictionary<string, object> GetWordsList();
+        List<WordDTO> GetWordsList();
 
         [OperationContract]
         GameDTO SetChallenger(string gameCode, string challengerEmail);
