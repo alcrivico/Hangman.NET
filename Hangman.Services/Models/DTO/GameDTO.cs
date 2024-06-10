@@ -35,5 +35,6 @@ namespace Hangman.Services.Models.DTO
 
         public string Language { get; set; }
 
+        public int ResponseCode { get; set; }
     }
 }
