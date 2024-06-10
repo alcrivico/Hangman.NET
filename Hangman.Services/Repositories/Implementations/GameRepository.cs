@@ -34,7 +34,7 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Language> languageTable = dataSource.GetTable<Language>();
 
                         var playerId = (from player in playerTable
-                                       where player.Name == newGame.CreatorName
+                                       where player.Email == newGame.CreatorEmail
                                        select player.Id).SingleOrDefault();
 
                         var wordId = (from word in wordTable
