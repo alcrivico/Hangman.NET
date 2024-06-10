@@ -60,7 +60,7 @@ namespace Hangman.UI.Views
                 string.IsNullOrWhiteSpace(playerDTO.Password) ||
                 string.IsNullOrWhiteSpace(confirmPassword))
             {
-                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Faltan campos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -72,7 +72,7 @@ namespace Hangman.UI.Views
 
             if (!Regex.IsMatch(playerDTO.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("El formato del correo electrónico no es válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El formato del correo es incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
