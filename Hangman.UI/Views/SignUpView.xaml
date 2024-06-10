@@ -106,24 +106,17 @@
                                 Height="50"
                                 FieldName="Fecha nacimiento" />
                             <components:TextBoxControl
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Width="230"
-                                Height="50"
-                                FieldName="Número de Teléfono"
-                                Text="" />
-                            <components:TextBoxControl
                                 x:Name="TextBox_Email"
                                 Grid.Row="1"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 Width="230"
                                 Height="50"
                                 FieldName="Correo Electrónico"
                                 Text="" />
                             <components:PasswordBoxControl
                                 x:Name="PasswordBox_Password"
-                                Grid.Row="2"
-                                Grid.Column="0"
+                                Grid.Row="1"
+                                Grid.Column="2"
                                 Width="230"
                                 Height="50"
                                 FieldName="Contraseña"/>

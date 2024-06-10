@@ -66,9 +66,14 @@ namespace Hangman.UI.Views
 
         private void DoorButton_Click(object sender, RoutedEventArgs e)
         {
-            LogInView logInView = new LogInView();
-            logInView.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea cerrar sesión?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                LogInView logInView = new LogInView();
+                logInView.Show();
+                this.Close();
+            }
         }
 
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
