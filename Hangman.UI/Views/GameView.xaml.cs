@@ -30,19 +30,17 @@ namespace Hangman.UI.Views
             InitializeComponent();
         }
 
+        public GameView(GameDTO gameDTO)
+        {
+
+            this.gameDTO = gameDTO;
+            InitializeComponent();
+
+        }
+
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {
             this.WindowState = e;
-        }
-
-        private void Hangman_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Button_ExitGame_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void Button_ExitGame_ButtonControlClick(object sender, RoutedEventArgs e)

@@ -64,13 +64,11 @@
                             </Grid.ColumnDefinitions>
                             <components:HangmanControl
                                 x:Name="Hangman"
-                                Grid.Row="0"
-                                Width="226"
-                                Height="301"
+                                Width="220"
+                                Height="370"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                IncorrectGuesses="0"
-                                Loaded="Hangman_Loaded" />
+                                VerticalAlignment="Center"
+                                IncorrectGuesses="5" />
 
                             <Grid Grid.Column="1" Margin="0,0,0,0">
                                 <Grid.RowDefinitions>
@@ -415,7 +413,6 @@
                                     HorizontalAlignment="Right"
                                     ButtonControlClick="Button_ExitGame_ButtonControlClick"
                                     FontSize="24"
-                                    Loaded="Button_ExitGame_Loaded"
                                     Text="Abandonar partida" />
                             </Grid>
                         </Grid>

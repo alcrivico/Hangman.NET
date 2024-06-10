@@ -64,7 +64,8 @@ namespace Hangman.UI.Views
 
         private void DoorButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            LogInView logInView = new LogInView();
+            logInView.Show();
         }
 
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)

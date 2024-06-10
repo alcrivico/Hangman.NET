@@ -70,14 +70,14 @@
                                 HorizontalAlignment="Left"
                                 Loaded="ProfileControl_Loaded"
                                 MouseUp="ProfileControl_MouseUp"
-                                UserName="{Binding PlayerName}"/>
+                                UserName="{Binding PlayerName}" />
 
                             <components:HangmanControl
                                 x:Name="Hangman"
                                 Grid.Row="1"
-                                Width="400"
-                                Height="445"
-                                Margin="48,0,48,0"
+                                Width="220"
+                                Height="370"
+                                Margin="138,30,126,0"
                                 VerticalAlignment="Top"
                                 IncorrectGuesses="6" />
                         </Grid>

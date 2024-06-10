@@ -5,97 +5,104 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Hangman.UI.VisualComponents"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="320"
-    d:DesignHeight="485"
+    x:Name="Hangman"
+    Width="220"
+    Height="380"
     mc:Ignorable="d">
 
-    <Viewbox Stretch="Uniform">
-        <Grid Margin="80,0,-20,0">
 
-            <Border
-                x:Name="Hangman_Pole"
-                Width="252"
-                Height="474"
-                Margin="-57,12,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Visibility="Visible">
 
-                <Image
-                    Margin="4,56,-11,-56"
-                    Source="../Resources/Images/Pole.png"
-                    Stretch="UniformToFill" />
+    <Grid Margin="0,0,0,0">
 
-            </Border>
+        <Border
+            x:Name="Hangman_Pole"
+            Width="220"
+            Height="360"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="Visible">
 
-            <Border
-                x:Name="Hangman_RightArm"
-                Width="93.03"
-                Height="155.83"
-                Margin="135,171,32,158"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_RightArm}" />
-                </Border.Background>
-            </Border>
+            <Image
+                Margin="0,0,30,9"
+                Source="../Resources/Images/Pole.png"
+                Stretch="UniformToFill" />
 
-            <Border
-                x:Name="Hangman_RightLeg"
-                Width="72.67"
-                Height="157.4"
-                Margin="107,286,80,41"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_RightLeg}" />
-                </Border.Background>
-            </Border>
+        </Border>
 
-            <Border
-                x:Name="Hangman_LeftLeg"
-                Width="73.78"
-                Height="156.4"
-                Margin="55,269,131,59"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_LeftLeg}" />
-                </Border.Background>
-            </Border>
+        <Border
+            x:Name="Hangman_RightArm"
+            Margin="51,130,-27,68"
+            Visibility="Visible">
+            <Image
+                Margin="60,-30,-23,50"
+                Source="../Resources/Images/RightArm.png"
+                Stretch="UniformToFill" />
+        </Border>
 
-            <Border
-                x:Name="Hangman_Torso"
-                Width="103"
-                Height="175"
-                Margin="81,156,76,154"
-                Effect="{StaticResource HangmanDropShadow}"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_Torso}" />
-                </Border.Background>
-            </Border>
+        <Border
+            x:Name="Hangman_RightLeg"
+            Margin="93,225,69,39"
+            Visibility="Visible">
+            <Image
+                Margin="-11,-7,15,7"
+                Source="../Resources/Images/RightLeg.png"
+                Stretch="UniformToFill" />
+        </Border>
 
-            <Border
-                x:Name="Hangman_Head"
-                Width="80"
-                Height="99"
-                Margin="125,77,55,309"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_Head}" />
-                </Border.Background>
-            </Border>
+        <Border
+            x:Name="Hangman_LeftLeg"
+            Margin="130,204,26,46"
+            Visibility="Visible">
+            <Image
+                Margin="-2,10,6,0"
+                Source="../Resources/Images/LeftLeg.png"
+                Stretch="UniformToFill" />
+        </Border>
 
-            <Border
-                x:Name="Hangman_LeftArm"
-                Width="78.48"
-                Height="154.36"
-                Margin="59,170,123,160"
-                Effect="{StaticResource HangmanDropShadow}"
-                Visibility="Hidden">
-                <Border.Background>
-                    <ImageBrush ImageSource="{StaticResource Icon_LeftArm}" />
-                </Border.Background>
-            </Border>
+        <Border
+            x:Name="Hangman_Torso"
+            Margin="101,124,-35,100"
+            Effect="{StaticResource HangmanDropShadow}"
+            Visibility="Visible">
+            <Image
+                Margin="-27,-37,17,23"
+                Source="../Resources/Images/Torso.png"
+                Stretch="UniformToFill" />
+        </Border>
 
-        </Grid>
-    </Viewbox>
+        <Border
+            x:Name="Hangman_Head"
+            Margin="138,59,19,238"
+            RenderTransformOrigin="0.504,0.538"
+            Visibility="Visible">
+            <Image
+                Margin="-7,6,12,5"
+                RenderTransformOrigin="0.5,0.5"
+                Source="../Resources/Images/Head.png"
+                Stretch="UniformToFill">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="9.114" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+
+        <Border
+            x:Name="Hangman_LeftArm"
+            Margin="63,117,10,106"
+            Effect="{StaticResource HangmanDropShadow}"
+            Visibility="Visible">
+            <Image
+                Margin="-11,-26,21,34"
+                Source="../Resources/Images/LeftArm.png"
+                Stretch="UniformToFill" />
+        </Border>
+
+    </Grid>
+
+
 </UserControl>

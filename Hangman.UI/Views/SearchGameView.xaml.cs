@@ -26,10 +26,12 @@ namespace Hangman.UI.Views
     public partial class SearchGameView : Window
     {
         private ObservableCollection<Object> _gameDTOs;
-        private PlayerDTO player;
+        private PlayerDTO _player;
 
+        // Constructor de Prueba
         public SearchGameView()
         {
+
             _gameDTOs = new ObservableCollection<Object>();
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
@@ -55,11 +57,34 @@ namespace Hangman.UI.Views
 
         }
 
+        //Constructor de Desarrollo
         public SearchGameView(PlayerDTO player)
         {
+
+            _player = player;
+            _gameDTOs = new ObservableCollection<Object>();
+
+            SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
+
+            List<Adapters.ControllerAdapters.Services.Game.GameDTO> games = null;
+
             InitializeComponent();
+
             DefineGamesTable();
-            this.player = player;
+
+            try
+            {
+                games = searchGameAdapter.GetWaitingGames();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
+
+            SetGames(games);
+            GamesTable.SetItemsSource(_gameDTOs);
+
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
