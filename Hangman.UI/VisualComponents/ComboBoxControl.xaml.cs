@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Hangman.UI.Resources.DTO;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 
 namespace Hangman.UI.VisualComponents
 {

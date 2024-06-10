@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Hangman.UI.Resources.DTO;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 
 namespace Hangman.UI.VisualComponents
 {
@@ -28,15 +29,23 @@ namespace Hangman.UI.VisualComponents
         public TitleBarControl()
         {
 
-            InitializeComponent();
+            SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
             _languageDTOs = new ObservableCollection<LanguageDTO>();
 
-            List<LanguageDTO> languages = new List<LanguageDTO>();
+            List<LanguageDTO> languages;
 
-            // Aquí se hace una llamada al Adaptador de Datos para obtener los DTO de los idiomas
-            languages.Add(new LanguageDTO { LanguageName = "Español" });
-            languages.Add(new LanguageDTO { LanguageName = "Inglés" });
+            InitializeComponent();
+
+            try
+            {
+                languages = searchGameAdapter.GetLanguagesList();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             SetLanguages(languages);
 

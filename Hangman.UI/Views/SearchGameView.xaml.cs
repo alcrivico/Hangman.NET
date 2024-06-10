@@ -13,7 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Hangman.UI.Resources.DTO;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 
 namespace Hangman.UI.Views
 {
@@ -27,55 +28,24 @@ namespace Hangman.UI.Views
         public SearchGameView()
         {
             _gameDTOs = new ObservableCollection<GameDTO>();
+
+            SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
+
             List<GameDTO> games;
 
             InitializeComponent();
 
             DefineGamesTable();
 
-            // Aquí se hace una llamada al Adaptador de Datos para obtener la lista de DTO de las partidas
-            games = new List<GameDTO>();
-            games.Add(new GameDTO
+            try
             {
-                GameCode = "1",
-                CreatorName = "alcrivico",
-                WaitingTime = 30
-            });
-
-            games.Add(new GameDTO
+                games = searchGameAdapter.GetWaitingGames();
+            }
+            catch (Exception e)
             {
-                GameCode = "2",
-                CreatorName = "raulh230600",
-                WaitingTime = 5
-            });
-
-            games.Add(new GameDTO
-            {
-                GameCode = "3",
-                CreatorName = "XxJuanProGamerxX",
-                WaitingTime = 3
-            });
-
-            games.Add(new GameDTO
-            {
-                GameCode = "4",
-                CreatorName = "miguelmorales2301",
-                WaitingTime = 1
-            });
-
-            games.Add(new GameDTO
-            {
-                GameCode = "5",
-                CreatorName = "SoyUnPokemonYTuNo",
-                WaitingTime = 17
-            });
-
-            games.Add(new GameDTO
-            {
-                GameCode = "6",
-                CreatorName = "Alegrao",
-                WaitingTime = 30
-            });
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             SetGames(games);
             GamesTable.SetItemsSource(_gameDTOs);

@@ -23,6 +23,8 @@ namespace Hangman.Services.Models.DTO
         
         public string CreatorEmail { get; set; }
 
+        public int WaitingTime { get; set; }
+
         public string ChallengerName { get; set; }
 
         public string ChallengerEmail { get; set; }

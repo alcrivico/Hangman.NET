@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hangman.Adapters\Hangman.Adapters.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
     <Resource Include="Resources\Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
     <Resource Include="Resources\Images\calendar_icon.png" />
