@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.ControllerAdapters.Services.Player;
 
 namespace Hangman.UI.Views
 {
@@ -24,6 +25,7 @@ namespace Hangman.UI.Views
     public partial class SearchGameView : Window
     {
         private ObservableCollection<Object> _gameDTOs;
+        private PlayerDTO player;
 
         public SearchGameView()
         {
@@ -50,6 +52,13 @@ namespace Hangman.UI.Views
             SetGames(games);
             GamesTable.SetItemsSource(_gameDTOs);
 
+        }
+
+        public SearchGameView(PlayerDTO player)
+        {
+            InitializeComponent();
+            DefineGamesTable();
+            this.player = player;
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)

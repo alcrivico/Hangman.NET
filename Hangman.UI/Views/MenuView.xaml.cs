@@ -42,7 +42,7 @@ namespace Hangman.UI.Views
 
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            SearchGameView searchGameView = new SearchGameView();
+            SearchGameView searchGameView = new SearchGameView(player);
             searchGameView.Show();
         }
 
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
 
         private void Button_CreateGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            CreateGameView createGameView = new CreateGameView();
+            CreateGameView createGameView = new CreateGameView(player);
             createGameView.Show();
         }
 
