@@ -54,9 +54,62 @@ namespace Hangman.Services.ServerSocket
                 try
                 {
                     byte[] receivedBytes = new byte[1024];
-                    
+                    int receivedBytesCount = clientSocket.Receive(receivedBytes);
+                    if (receivedBytesCount == 0)
+                        return;
+
+                    string text = Encoding.UTF8.GetString(receivedBytes, 0, receivedBytesCount);
+                    Console.WriteLine("Message received: " + text);
+
+                    foreach (var socket in _clientSockets)
+                    {
+                        if (socket != clientSocket)
+                        {
+                            socket.Send(receivedBytes, receivedBytesCount, SocketFlags.None);
+                        }
+                    }
+                }
+                catch (SocketException socketEx)
+                {
+                    Console.WriteLine("Error: " + socketEx.Message);
+                    _clientSockets.Remove(clientSocket);
+                    clientSocket.Close();
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    _clientSockets.Remove(clientSocket);
+                    clientSocket.Close();
+                    break;
                 }
             }
+        }
+
+        public void StopServerSocket()
+        {
+            _isRunning = false;
+            foreach (var clientSocket in _clientSockets)
+            {
+                try
+                {
+                    clientSocket.Shutdown(SocketShutdown.Both);
+                }
+                catch (SocketException ex)
+                {
+                    Console.WriteLine("Socket error shutting down: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("General error shutting down: " + ex.Message);
+                }
+                finally
+                {
+                    clientSocket.Close();
+                }
+            }
+            _serverSocket.Close();
+            Console.WriteLine("Server stopped");
         }
     }
 }
