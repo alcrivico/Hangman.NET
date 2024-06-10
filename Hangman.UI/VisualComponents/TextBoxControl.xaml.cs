@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,21 +20,25 @@ namespace Hangman.UI.VisualComponents
     /// <summary>
     /// Interaction logic for TextBoxControl.xaml
     /// </summary>
-    public partial class TextBoxControl : UserControl
+    public partial class TextBoxControl : UserControl, INotifyPropertyChanged
     {
 
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            set
+            {
+                SetValue(TextProperty, value);
+                OnPropertyChanged(nameof(Text));
+            }
         }
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
-                               "Text",
-                               typeof(string),
-                               typeof(TextBoxControl),
-                               new PropertyMetadata(string.Empty));
+                "Text",
+                typeof(string),
+                typeof(TextBoxControl),
+                new PropertyMetadata(string.Empty));
 
         public string FieldName
         {
@@ -89,6 +94,37 @@ namespace Hangman.UI.VisualComponents
         {
             TextBox.IsEnabled = true;
             TextBox_Highlight.Visibility = Visibility.Hidden;
+        }
+
+        private static void OnTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TextBoxControl control = (TextBoxControl)d;
+            control.OnPropertyChanged(nameof(Text));
+        }
+
+        public static RoutedEvent TextBoxControlTextChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(TextBoxControlTextChanged),
+                RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler),
+                typeof(TextBoxControl));
+
+        public event RoutedEventHandler TextBoxControlTextChanged
+        {
+            add { AddHandler(TextBoxControlTextChangedEvent, value); }
+            remove { RemoveHandler(TextBoxControlTextChangedEvent, value); }
+        }
+
+        private void TextBox_Text_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(TextBoxControlTextChangedEvent));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }

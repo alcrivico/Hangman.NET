@@ -75,6 +75,7 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <components:TextBoxControl
+                                x:Name="TextBox_Name"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Width="230"
@@ -82,6 +83,7 @@
                                 FieldName="Nombre"
                                 Text="" />
                             <components:TextBoxControl
+                                x:Name="TextBox_FirstLastName"
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Width="230"
@@ -89,6 +91,7 @@
                                 FieldName="Apellido Paterno"
                                 Text="" />
                             <components:TextBoxControl
+                                x:Name="TextBox_SecondLastName"
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Width="230"
@@ -96,6 +99,7 @@
                                 FieldName="Apellido Materno"
                                 Text="" />
                             <components:DatePickerControl
+                                x:Name="DatePicker_BirthDate"
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Width="230"
@@ -109,26 +113,27 @@
                                 FieldName="Número de Teléfono"
                                 Text="" />
                             <components:TextBoxControl
+                                x:Name="TextBox_Email"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Width="230"
                                 Height="50"
                                 FieldName="Correo Electrónico"
                                 Text="" />
-                            <components:TextBoxControl
+                            <components:PasswordBoxControl
+                                x:Name="PasswordBox_Password"
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 Width="230"
                                 Height="50"
-                                FieldName="Contraseña"
-                                Text="" />
-                            <components:TextBoxControl
+                                FieldName="Contraseña"/>
+                            <components:PasswordBoxControl
+                                x:Name="PasswordBox_ConfirmPassword"
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 Width="230"
                                 Height="50"
-                                FieldName="Confirmar Contraseña"
-                                Text="" />
+                                FieldName="Confirmar Contraseña"/>
                         </Grid>
                         <components:ButtonControl
                             x:Name="Button_SignUp"
@@ -152,7 +157,7 @@
                             MouseEnter="TextBlock_LogIn_MouseEnter"
                             MouseLeave="TextBlock_LogIn_MouseLeave"
                             MouseLeftButtonDown="TextBlock_LogIn_MouseLeftButtonDown"
-                            Text="Registrar Usuario"
+                            Text="Ya tengo una cuenta"
                             TextAlignment="Center" />
                         <TextBlock
                             Margin="10"

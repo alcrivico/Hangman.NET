@@ -25,18 +25,17 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class SearchGameView : Window
     {
+        SearchGameAdapter searchGameAdapter;
         private ObservableCollection<Object> _gameDTOs;
+        private List<Adapters.ControllerAdapters.Services.Game.GameDTO> _games;
         private PlayerDTO _player;
 
         // Constructor de Prueba
         public SearchGameView()
         {
 
+            searchGameAdapter = new SearchGameAdapter();
             _gameDTOs = new ObservableCollection<Object>();
-
-            SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
-
-            List<Adapters.ControllerAdapters.Services.Game.GameDTO> games = null;
 
             InitializeComponent();
 
@@ -44,7 +43,7 @@ namespace Hangman.UI.Views
 
             try
             {
-                games = searchGameAdapter.GetWaitingGames();
+                _games = searchGameAdapter.GetWaitingGames();
             }
             catch (Exception e)
             {
@@ -52,7 +51,7 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            SetGames(games);
+            SetGames(_games);
             GamesTable.SetItemsSource(_gameDTOs);
 
         }
@@ -66,15 +65,13 @@ namespace Hangman.UI.Views
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
-            List<Adapters.ControllerAdapters.Services.Game.GameDTO> games = null;
-
             InitializeComponent();
 
             DefineGamesTable();
 
             try
             {
-                games = searchGameAdapter.GetWaitingGames();
+                _games = searchGameAdapter.GetWaitingGames();
             }
             catch (Exception e)
             {
@@ -82,7 +79,7 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            SetGames(games);
+            SetGames(_games);
             GamesTable.SetItemsSource(_gameDTOs);
 
         }
@@ -91,6 +88,17 @@ namespace Hangman.UI.Views
         {
             this.WindowState = e;
         }
+
+        private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
+        {
+
+            MenuView menuView = new MenuView(_player);
+
+            menuView.Show();
+            this.Close();
+
+        }
+
         private void DefineGamesTable()         
         {
 
@@ -141,5 +149,39 @@ namespace Hangman.UI.Views
             _gameDTOs.Add(game);
         }
 
+        private void TextBox_GameCode_TextBoxControlTextChanged(object sender, RoutedEventArgs e)
+        {
+            searchGameAdapter = new SearchGameAdapter();
+
+            if (TextBox_GameCode.Text != "")
+            {
+                var filtered_gameDTOs = from game in _games
+                                        where game.GameCode.Contains(TextBox_GameCode.Text.ToUpper())
+                                        select game;
+
+                SetGames(filtered_gameDTOs.ToList());
+                GamesTable.SetItemsSource(_gameDTOs);
+            } 
+            else
+            {
+
+                try
+                {
+                    _games = searchGameAdapter.GetWaitingGames();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.Close();
+
+                }
+
+                SetGames(_games);
+                GamesTable.SetItemsSource(_gameDTOs);
+
+            }
+
+        }
     }
 }
