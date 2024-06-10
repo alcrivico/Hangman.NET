@@ -16,9 +16,9 @@ namespace Hangman.Services.Repositories.Implementations
     public class PlayerRepository : IPlayerRepository
     {
 
-        public Dictionary<string, object> LogIn(string email, string password)
+        public PlayerDTO LogIn(string email, string password)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            PlayerDTO response = new PlayerDTO();
 
             using(DataContext dataSource = DBConnection.GetConnection())
             {
@@ -39,29 +39,29 @@ namespace Hangman.Services.Repositories.Implementations
                                          SecondLastName = p.SecondLastName,
                                          BirthDate = p.BirthDate,
                                          Email = p.Email,
+                                         ResponseCode = 0
                                      };
 
                         if (player.Any())
                         {
-                            response.Add("Data", player);
-                            response.Add("ResponseCode", 0);
+                            response = player.First();
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
                 
             }
@@ -69,9 +69,10 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> SignUp(PlayerDTO playerDTO)
+        public PlayerDTO SignUp(PlayerDTO playerDTO)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            PlayerDTO response = new PlayerDTO();
+
             using(DataContext dataSource = DBConnection.GetConnection())
             {
 
@@ -102,24 +103,24 @@ namespace Hangman.Services.Repositories.Implementations
                             playerTable.InsertOnSubmit(newPlayer);
                             dataSource.SubmitChanges();
 
-                            response.Add("ResponseCode", 0);
+                            response.ResponseCode = 0;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 
                 }
 
@@ -128,9 +129,9 @@ namespace Hangman.Services.Repositories.Implementations
 
         }
 
-        public Dictionary<string, object> UpdateProfile(PlayerDTO updatedPlayerDTO)
+        public PlayerDTO UpdateProfile(PlayerDTO updatedPlayerDTO)
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            PlayerDTO response = new PlayerDTO();
 
             using(DataContext dataSource = DBConnection.GetConnection())
             {
@@ -158,25 +159,25 @@ namespace Hangman.Services.Repositories.Implementations
 
                             dataSource.SubmitChanges();
 
-                            response.Add("ResponseCode", 0);
+                            response.ResponseCode = 0;
 
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response.ResponseCode = 1;
                         }
 
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response.ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response.ResponseCode = 3;
                 }
 
             }
