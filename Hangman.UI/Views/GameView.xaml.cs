@@ -41,7 +41,9 @@ namespace Hangman.UI.Views
 
         private void Button_ExitGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            
+
+
+            this.Close();
         }
 
     }
