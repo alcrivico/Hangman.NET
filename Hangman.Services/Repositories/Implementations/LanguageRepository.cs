@@ -16,9 +16,11 @@ namespace Hangman.Services.Repositories.Implementations
     public class LanguageRepository : ILanguageRepository
     {
 
-        public Dictionary<string, object> GetLanguagesList()
+        public List<LanguageDTO> GetLanguagesList()
         {
-            Dictionary<string, object> response = new Dictionary<string, object>();
+            List<LanguageDTO> response = new List<LanguageDTO>();
+            LanguageDTO responseCode = new LanguageDTO();
+            response.Add(responseCode);
 
             using(DataContext dataSource = DBConnection.GetConnection())
             {
@@ -33,29 +35,29 @@ namespace Hangman.Services.Repositories.Implementations
                         var languages = (from language in languageTable
                                         select new LanguageDTO
                                         {
-                                            LanguageName = language.LanguageName
+                                            LanguageName = language.LanguageName,
+                                            ResponseCode = 0
                                         }).ToList();
 
                         if (languages.Any())
                         {
-                            response.Add("Data", languages);
-                            response.Add("ResponseCode", 0);
+                            response = languages;
                         }
                         else
                         {
-                            response.Add("ResponseCode", 1);
+                            response[0].ResponseCode=1;
                         }
                     }
                     catch (SqlException sqlEx)
                     {
                         Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.Add("ResponseCode", 2);
+                        response[0].ResponseCode = 2;
                     }
 
                 }
                 else
                 {
-                    response.Add("ResponseCode", 3);
+                    response[0].ResponseCode = 3;
                 }
 
             }
