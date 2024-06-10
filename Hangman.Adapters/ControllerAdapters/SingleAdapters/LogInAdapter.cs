@@ -15,11 +15,6 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
             PlayerDTO response = conexion.LogInAsync(username, password).Result;
 
-            if (response.ResponseCode == 1)
-            {
-                throw new Exception("No se encontró información de la entidad en la base de datos");
-            }
-
             if (response.ResponseCode == 2)
             {
                 throw new Exception("Error en la consulta, verifique el error en el servidor");
