@@ -70,6 +70,7 @@
                                 Loaded="ProfileControl_Loaded"
                                 MouseUp="ProfileControl_MouseUp"
                                 UserName="{Binding UserName}" />
+
                             <components:HangmanControl
                                 x:Name="Hangman"
                                 Grid.Row="1"
