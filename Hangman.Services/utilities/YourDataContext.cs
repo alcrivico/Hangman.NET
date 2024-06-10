@@ -10,8 +10,8 @@ namespace Hangman.Services.Utilities
 
         [Function(Name = "dbo.AddGame")]
         public int AddGame([Parameter(Name = "CreatorID", DbType = "int")] int creatorID,
-                            [Parameter(Name = "Id", DbType = "int")] int wordID,
-                            [Parameter(Name = "Id", DbType = "int")] int languageID)
+                            [Parameter(Name = "WordId", DbType = "int")] int wordID,
+                            [Parameter(Name = "LanguageId", DbType = "int")] int languageID)
         {
             var result = ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), creatorID, wordID, languageID);
             return (int)result.ReturnValue;

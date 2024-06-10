@@ -35,15 +35,15 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var playerId = (from player in playerTable
                                        where player.Email == newGame.CreatorEmail
-                                       select player.Id).FirstOrDefault();
+                                       select player.Id).First();
 
                         var wordId = (from word in wordTable
                                      where word.WordEN == newGame.WordEN || word.WordES == newGame.WordES
-                                     select word.Id).SingleOrDefault();
+                                     select word.Id).First();
 
                         var languageId = (from language in languageTable
                                          where language.LanguageName == newGame.Language
-                                         select language.Id).SingleOrDefault();
+                                         select language.Id).First();
 
                         if(playerId != 0 && wordId != 0 && languageId != 0)
                         {
