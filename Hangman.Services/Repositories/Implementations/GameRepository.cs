@@ -21,7 +21,7 @@ namespace Hangman.Services.Repositories.Implementations
 
             Dictionary<string, object> response = new Dictionary<string, object>();
 
-            using (YourDataContext dataSource = new YourDataContext(DBConnection.ConnectionString))
+            using (YourDataContext dataSource = new YourDataContext(DBConnection.connectionString))
             {
 
                 if (dataSource != null)
