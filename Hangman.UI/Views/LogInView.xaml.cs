@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hangman.UI.Views
 {
     /// <summary>
-    /// Interaction logic for LogInView.xaml
+    /// Lógica de interacción para LogInView.xaml
     /// </summary>
     public partial class LogInView : Window
     {
+        private LogInAdapter logInAdapter;
 
         public LogInView()
         {
             InitializeComponent();
             Hangman.SetHangmanElements();
-            TextBoxControl.Disable();
+            logInAdapter = new LogInAdapter();
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -34,16 +27,41 @@ namespace Hangman.UI.Views
 
         private void Button_LogIn_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            //Comportamiento de Prueba para el botón de LogIn - Resultado Esperado: Verificará el usuario y contraseña y llevará a la ventana MenuView
-            //Temporal
-            MessageBox.Show("Password: " + PasswordBoxControl.PasswordText);
-            TextBoxControl.Enable();
+            string username = TextBoxControl_Email.Text;
+            string password = PasswordBoxControl.PasswordText;
+
+            try
+            {
+                var response = logInAdapter.LogIn(username, password);
+
+                if (response.ResponseCode == 0)
+                {
+                    MenuView menuView = new MenuView();
+                    menuView.Show();
+                    this.Close();
+                }
+                else
+                {
+                    ShowAlert("Correo y/o contraseña incorrectos. Por favor, verifíquelos", Brushes.Yellow, Brushes.Black);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowAlert(ex.Message, Brushes.Red, Brushes.White);
+            }
+        }
+
+        private void ShowAlert(string message, SolidColorBrush borderColor, SolidColorBrush textColor)
+        {
+            AlertTextBlock.Text = message;
+            AlertBorder.Background = borderColor;
+            AlertTextBlock.Foreground = textColor;
+            AlertBorder.Visibility = Visibility.Visible;
         }
 
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //Comportamiento de Prueba para el TextBlock de SingUp - Resultado Esperado: LLevará a la ventana SignUpView
-            //Temporal
+            // Comportamiento de Prueba para el TextBlock de SingUp - Resultado Esperado: LLevará a la ventana SignUpView
             MessageBox.Show("SingUp");
         }
 
@@ -55,11 +73,6 @@ namespace Hangman.UI.Views
         private void TextBlock_SingUp_MouseLeave(object sender, MouseEventArgs e)
         {
             TextBlock_SingUp.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
-        }
-
-        private void TitleBarControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
