@@ -86,5 +86,10 @@ namespace Hangman.Services.Communications
             return _languageRepository.GetLanguagesList();
         }
 
+        public WordDTO SearchWord(string word)
+        {
+            return _wordRepository.SearchWord(word);
+        }
+
     }
 }

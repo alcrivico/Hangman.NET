@@ -33,5 +33,8 @@ namespace Hangman.Services.Communications
         [OperationContract]
         List<LanguageDTO> GetLanguagesList();
 
+        [OperationContract]
+        WordDTO SearchWord(string word);
+
     }
 }

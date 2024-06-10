@@ -12,5 +12,7 @@ namespace Hangman.Services.Repositories.Interfaces
     {
         List<WordDTO> GetWordsList();
 
+        WordDTO SearchWord(string word);
+
     }
 }

@@ -13,40 +13,72 @@ namespace Hangman.Adapters.ClientSocket
         const string SERVER_IP = "127.0.0.1";
         const int SERVER_PORT = 1002;
 
+        private Socket _clientSocket;
+        private IPEndPoint _serverAddress;
+
+        public ClientSocket()
+        {
+            _serverAddress = new IPEndPoint(IPAddress.Parse(SERVER_IP), SERVER_PORT);
+            _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        }
+
         public void StartClientSocket()
         {
-            IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse(SERVER_IP), SERVER_PORT);
-            Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             try
             {
-                clientSocket.Connect(serverAddress);
+                _clientSocket.Connect(_serverAddress);
                 Console.WriteLine("Connected to the server");
-                string clientMessage = "";
-
-                do
-                {
-                    Console.Write("Enter a message to send to the server: ");
-                    clientMessage = Console.ReadLine();
-                    byte[] sendBytes = Encoding.UTF8.GetBytes(clientMessage);
-                    clientSocket.Send(sendBytes);
-
-                    byte[] receiveBytes = new byte[1024];
-                    clientSocket.Receive(receiveBytes, 0, receiveBytes.Length, 0);
-                    string serverMessage = Encoding.UTF8.GetString(receiveBytes);
-                    Console.WriteLine("Server says: " + serverMessage);
-
-                } while (clientMessage != "exit");
-
-                clientSocket.Shutdown(SocketShutdown.Both);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-            finally
+        }
+
+        public void SendMessage(string message)
+        {
+            if (_clientSocket.Connected)
             {
-                clientSocket.Close();
+                byte[] sendBytes = Encoding.UTF8.GetBytes(message);
+                try
+                {
+                    _clientSocket.Send(sendBytes);
+                    Console.WriteLine("Message sent: " + message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error sending message: " + ex.Message);
+                }
+            }
+        }
+
+        public string ReceiveMessage()
+        {
+            if(_clientSocket.Connected)
+            {
+                byte[] receiveBytes = new byte[1024];
+                try
+                {
+                    int numBytes = _clientSocket.Receive(receiveBytes);
+                    string serverMessage = Encoding.UTF8.GetString(receiveBytes, 0, numBytes);
+                    Console.WriteLine("Received from server: " + serverMessage);
+
+                    return serverMessage;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error receiving message: " + ex.Message);
+                }
+            }
+            return "Error";
+        }
+
+        public void CloseConnection()
+        {
+            if (_clientSocket.Connected)
+            {
+                _clientSocket.Shutdown(SocketShutdown.Both);
+                _clientSocket.Close();
             }
         }
     }

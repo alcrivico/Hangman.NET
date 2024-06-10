@@ -74,6 +74,63 @@ namespace Hangman.Services.Repositories.Implementations
             return response;
         }
 
+        public WordDTO SearchWord(string word)
+        {
+            WordDTO response = new WordDTO();
+
+            using (DataContext dataSource = DBConnection.GetConnection())
+            {
+
+                if (dataSource != null)
+                {
+
+                    try
+                    {
+
+                        Table<Word> wordTable = dataSource.GetTable<Word>();
+                        Table<Category> categoryTable = dataSource.GetTable<Category>();
+
+                        var foundWord = (from wordRow in wordTable
+                                    join category in categoryTable
+                                    on wordRow.CategoryId equals category.Id
+                                    where wordRow.WordEN == word || wordRow.WordES == word
+                                    select new WordDTO
+                                    {
+                                        WordES = wordRow.WordES,
+                                        WordEN = wordRow.WordEN,
+                                        TipEN = wordRow.TipEN,
+                                        TipES = wordRow.TipES,
+                                        HasNumber = wordRow.HasNumber,
+                                        CategoryEN = category.CategoryEN,
+                                        CategoryES = category.CategoryES,
+                                        ResponseCode = 0
+                                    }).FirstOrDefault();
+
+                        if (foundWord != null)
+                        {
+                            response = foundWord;
+                        }
+                        else
+                        {
+                            response.ResponseCode = 1;
+                        }
+
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
+                        response.ResponseCode = 2;
+                    }
+                }
+                else
+                {
+                    response.ResponseCode = 3;
+                }
+
+            }
+            return response;
+        }
+
     }
 
 }
