@@ -8,9 +8,9 @@ namespace Hangman.Services.Repositories.Interfaces
 
         GameDTO CreateGame(GameDTO newGame);
 
-        GameDTO GetPlayedGames(string email);
+        List<GameDTO> GetPlayedGames(string email);
 
-        GameDTO GetWaitingGames();
+        List<GameDTO> GetWaitingGames();
 
         GameDTO SetGameStatus(string gameCode, string status);
 
