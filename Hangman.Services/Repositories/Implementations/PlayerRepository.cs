@@ -156,6 +156,7 @@ namespace Hangman.Services.Repositories.Implementations
                             playerToUpdate.FirstLastName = updatedPlayerDTO.FirstLastName;
                             playerToUpdate.SecondLastName = updatedPlayerDTO.SecondLastName;
                             playerToUpdate.BirthDate = updatedPlayerDTO.BirthDate;
+                            playerToUpdate.Password = updatedPlayerDTO.Password;
 
                             dataSource.SubmitChanges();
 
