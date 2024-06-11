@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 {
-    internal class CreateGameAdapter
+    public class CreateGameAdapter
     {
-        public void CreateGame(GameDTO newGame)
+
+        public GameDTO CreateGame(GameDTO newGame)
         {
             var service = new GameServicesClient();
 
@@ -30,22 +31,42 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
                 default:
                     throw new Exception("Se recibió un código de respuesta inesperado: " + response.ResponseCode);
             }
+
+            return response;
         }
 
         public List<LanguageDTO> GetLanguagesList()
         {
             var service = new GameServicesClient();
 
-            List<LanguageDTO> languages = service.GetLanguagesListAsync().Result;
+            List<LanguageDTO> response = service.GetLanguagesListAsync().Result;
 
-            if (languages != null && languages.Count > 0)
+            foreach (var language in response)
             {
-                return languages;
+
+                if (language.ResponseCode == 1)
+                {
+                    throw new Exception("No se encontró información de la entidad en la base de datos");
+                }
+
+                if (language.ResponseCode == 2)
+                {
+                    throw new Exception("Error en la consulta, verifique el error en el servidor");
+                }
+
+                if (language.ResponseCode == 3)
+                {
+                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
+                }
+
+                if (language.ResponseCode < 0 && language.ResponseCode > 3)
+                {
+                    throw new Exception("Error de conexión");
+                }
+
             }
-            else
-            {
-                throw new Exception("No se pudieron obtener los idiomas del servicio.");
-            }
+
+            return response;
         }
     }
 }
