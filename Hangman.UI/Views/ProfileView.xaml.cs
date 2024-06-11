@@ -64,7 +64,14 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            SetGames(_games);
+            if (_games[0].GameCode != null)
+            {
+                SetGames(_games);
+            }
+            if (_games[0].ResponseCode == 1)
+            {
+                MessageBox.Show("No se encontrarón partidas jugadas", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             
             GamesTable.SetItemsSource(_gameDTOs);
         }
@@ -104,13 +111,14 @@ namespace Hangman.UI.Views
         private int CalculateGlobalScore(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
             int scorePerGame = 10;
-            int totalScore = games.Count(game => game.Status == "Win") * scorePerGame;
+            int totalScore = games.Count(game => game.Status == "Won") * scorePerGame;
             return totalScore;
         }
 
         private void SetGames(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
             _gameDTOs.Clear();
+
 
             foreach (Adapters.ControllerAdapters.Services.Player.GameDTO game in games)
             {

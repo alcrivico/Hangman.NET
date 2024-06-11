@@ -23,11 +23,6 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
             foreach (var game in response)
             {
 
-                if (game.ResponseCode == 1)
-                {
-                    throw new Exception("No se encontró información de la entidad en la base de datos");
-                }
-
                 if (game.ResponseCode == 2)
                 {
                     throw new Exception("Error en la consulta, verifique el error en el servidor");
