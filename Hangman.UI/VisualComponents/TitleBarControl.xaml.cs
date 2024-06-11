@@ -67,6 +67,44 @@ namespace Hangman.UI.VisualComponents
                 typeof(TitleBarControl),
                 new PropertyMetadata(1.0));
 
+        public string FieldName
+        {
+
+            get { return (string)GetValue(FieldNameProperty); }
+
+            set
+            {
+                SetValue(FieldNameProperty, value);
+            }
+
+        }
+
+        public static readonly DependencyProperty FieldNameProperty =
+            DependencyProperty.Register(
+                nameof(FieldName),
+                typeof(string),
+                typeof(TitleBarControl),
+                new PropertyMetadata(""));
+
+        public object SelectedItem
+        {
+            get { return ComboBoxControl_Language.SelectedItem; }
+            set { ComboBoxControl_Language.SelectedItem = value; }
+        }
+
+        public static readonly RoutedEvent LanguageChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(LanguageChanged),
+                RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler),
+                typeof(TitleBarControl));
+
+        public event RoutedEventHandler LanguageChanged
+        {
+            add { AddHandler(LanguageChangedEvent, value); }
+            remove { RemoveHandler(LanguageChangedEvent, value); }
+        }
+
         public TitleBarControl()
         {
 
@@ -199,5 +237,9 @@ namespace Hangman.UI.VisualComponents
 
         }
 
+        private void ComboBoxControl_Language_SelectedItemChanged(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(LanguageChangedEvent));
+        }
     }
 }

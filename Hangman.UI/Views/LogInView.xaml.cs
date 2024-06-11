@@ -4,6 +4,8 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Resources;
+using System.Globalization;
 
 namespace Hangman.UI.Views
 {
@@ -12,11 +14,15 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class LogInView : Window
     {
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
         private LogInAdapter logInAdapter;
 
         public LogInView()
         {
             InitializeComponent();
+            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
+            SetLanguage("en");
             logInAdapter = new LogInAdapter();
         }
 
@@ -83,5 +89,38 @@ namespace Hangman.UI.Views
         {
             TextBlock_SingUp.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
         }
+
+        private void SetLanguage(string language)
+        {
+            cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            TextBlock_Title.Text = resourceManager.GetString("RN_Title", cultureInfo);
+            TextBoxControl_Email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
+            PasswordBoxControl.FieldName = resourceManager.GetString("RN_Password", cultureInfo);
+            AlertTextBlock.Text = resourceManager.GetString("RN_AlertLogIn", cultureInfo);
+            Button_LogIn.Text = resourceManager.GetString("RN_BtnLogin", cultureInfo);
+            TextBlock_SingUp.Text = resourceManager.GetString("RN_BtnRegister", cultureInfo);
+            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
+            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+        }
+
+        private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
+        {
+            if (TitleBarControl.SelectedItem != null)
+            {
+
+                if (TitleBarControl.SelectedItem == "Spanish")
+                {
+                    SetLanguage("es-MX");
+                }
+                if (TitleBarControl.SelectedItem == "English")
+                {
+                    SetLanguage("en-US");
+                }
+
+            }   
+        }
+
     }
 }

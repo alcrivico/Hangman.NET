@@ -29,9 +29,10 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Cursor="Hand"
-            FieldName="Idioma"
+            FieldName="{Binding FieldName, ElementName=TitleBar}"
             ListEnabled="{Binding ChangeLanguage, ElementName=TitleBar}"
-            ListOpacity="{Binding ChangeOpacity, ElementName=TitleBar}" />
+            ListOpacity="{Binding ChangeOpacity, ElementName=TitleBar}"
+            SelectedItemChanged="ComboBoxControl_Language_SelectedItemChanged" />
 
         <Border
             Name="UvLogo"
