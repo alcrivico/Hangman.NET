@@ -4,6 +4,7 @@ using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +75,6 @@ namespace Hangman.UI.Views
                         Information_Tip.GameInformation = "Tip: " + _tips[0];
                         InformationMessage.AlertMessageText = "Creador de la partida: " + _gameDTO.CreatorName  + "\nCódigo de Partida: " + _gameDTO.GameCode;
                         HangmanWord.Word = _word.WordES;
-
                     }
                     else
                     {
