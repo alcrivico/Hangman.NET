@@ -32,10 +32,36 @@ namespace Hangman.UI.VisualComponents
 
         public static readonly DependencyProperty FieldNameProperty =
             DependencyProperty.Register(
-                               "FieldName",
+                               nameof(FieldName),
                                typeof(string),
                                typeof(ComboBoxControl),
                                new PropertyMetadata(string.Empty));
+
+        public bool ListEnabled         
+        {
+            get { return (bool)GetValue(ListEnabledProperty); }
+            set { SetValue(ListEnabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty ListEnabledProperty =
+            DependencyProperty.Register(
+                nameof(ListEnabled),
+                typeof(bool),
+                typeof(ComboBoxControl),
+                new PropertyMetadata(true));
+        
+        public double ListOpacity
+        {
+            get { return (double)GetValue(ListOpacityProperty); }
+            set { SetValue(ListOpacityProperty, value); }
+        }
+
+        public static readonly DependencyProperty ListOpacityProperty =
+            DependencyProperty.Register(
+                nameof(ListOpacity),
+                typeof(double),
+                typeof(ComboBoxControl),
+                new PropertyMetadata(1.0));
 
         public string MemberPath
         {
@@ -76,9 +102,28 @@ namespace Hangman.UI.VisualComponents
                 typeof(ComboBoxControl),
                 new PropertyMetadata(40));
 
+        public object SelectedItem
+        {
+            get { return ComboBoxControlType.SelectedItem; }
+            set { ComboBoxControlType.SelectedItem = value; }
+        }
+
         public ComboBoxControl()
         {
             InitializeComponent();
+        }
+
+        public static readonly RoutedEvent SelectedItemChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(SelectedItemChanged), 
+                RoutingStrategy.Bubble,                
+                typeof(RoutedEventHandler), 
+                typeof(ComboBoxControl));
+
+        public event RoutedEventHandler SelectedItemChanged
+        {
+            add { AddHandler(SelectedItemChangedEvent, value); }
+            remove { RemoveHandler(SelectedItemChangedEvent, value); }
         }
 
         private void ComboBoxControl_Loaded(object sender, RoutedEventArgs e)
@@ -117,6 +162,11 @@ namespace Hangman.UI.VisualComponents
         public void SelectDefaultItem(int index)
         {
             ComboBoxControlType.SelectedIndex = index;
+        }
+
+        private void ComboBoxControlType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(SelectedItemChangedEvent));
         }
 
     }

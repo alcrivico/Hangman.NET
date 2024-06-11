@@ -43,7 +43,10 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl
+                        ChangeLanguage="False"
+                        ChangeOpacity="0.5"
+                        WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,0,0">
@@ -104,7 +107,8 @@
                                         Height="100"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
-                                        GameInformation="Pista: " />
+                                        GameInformation="Pista: "
+                                        Visibility="Hidden" />
 
                                 </Grid>
 

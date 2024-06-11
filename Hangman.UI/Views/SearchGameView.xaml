@@ -43,7 +43,10 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl
+                        ChangeLanguage="False"
+                        ChangeOpacity="0.5"
+                        WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -92,7 +95,8 @@
                         <components:TableControl
                             x:Name="GamesTable"
                             Height="355"
-                            Margin="0,0,0,20" />
+                            Margin="0,0,0,20"
+                            SelectedItemChanged="GamesTable_SelectedItemChanged" />
 
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 
@@ -104,6 +108,8 @@
                                 HorizontalAlignment="Center"
                                 ButtonControlClick="Button_Join_ButtonControlClick"
                                 FontSize="18"
+                                IsButtonEnabled="False"
+                                Opacity="0.5"
                                 Text="Ingresar" />
 
                             <components:ButtonControl

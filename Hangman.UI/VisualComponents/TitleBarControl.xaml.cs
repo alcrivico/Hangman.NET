@@ -27,6 +27,46 @@ namespace Hangman.UI.VisualComponents
         private ObservableCollection<Object> _languageDTOs;
         public event EventHandler<WindowState>? WindowStateChangeRequested;
 
+        public bool ChangeLanguage
+        {
+
+            get { return (bool)GetValue(ChangeLanguageProperty); }
+
+            set 
+            { 
+
+                SetValue(ChangeLanguageProperty, value);
+
+            }
+
+        }
+
+        public static readonly DependencyProperty ChangeLanguageProperty =
+            DependencyProperty.Register(
+                nameof(ChangeLanguage),
+                typeof(bool),
+                typeof(TitleBarControl),
+                new PropertyMetadata(true));
+
+        public double ChangeOpacity
+        {
+
+            get { return (double)GetValue(ChangeOpacityProperty); }
+
+            set
+            {
+                SetValue(ChangeOpacityProperty, value);
+            }
+
+        }
+
+        public static readonly DependencyProperty ChangeOpacityProperty =
+            DependencyProperty.Register(
+                nameof(ChangeOpacity),
+                typeof(double),
+                typeof(TitleBarControl),
+                new PropertyMetadata(1.0));
+
         public TitleBarControl()
         {
 

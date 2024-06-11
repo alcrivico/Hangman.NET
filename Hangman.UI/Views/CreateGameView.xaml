@@ -48,7 +48,10 @@
 
 
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl
+                        ChangeLanguage="False"
+                        ChangeOpacity="0.5"
+                        WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -78,10 +81,13 @@
                             </Grid.ColumnDefinitions>
 
                             <components:ComboBoxControl
+                                x:Name="CategoryList"
                                 Grid.Column="0"
                                 Width="200"
                                 Height="40"
-                                HorizontalAlignment="Left" />
+                                HorizontalAlignment="Left"
+                                FieldName="Categorías"
+                                SelectedItemChanged="CategoryList_SelectedItemChanged" />
 
                             <components:TextBoxControl
                                 Grid.Row="0"
@@ -89,7 +95,7 @@
                                 Width="200"
                                 Height="50"
                                 HorizontalAlignment="Right"
-                                FieldName="ID de la Partida"
+                                FieldName="Código de la Partida"
                                 Text="" />
 
                         </Grid>

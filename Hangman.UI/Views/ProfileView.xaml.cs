@@ -71,8 +71,10 @@ namespace Hangman.UI.Views
 
         private void InitializeTable()
         {
+
             Dictionary<string, string>[] columns =
              {
+
                 new Dictionary<string, string> {
                     { "Name", "Contrincante" },
                     { "Width", "150.0" },
@@ -93,6 +95,7 @@ namespace Hangman.UI.Views
                     { "Width", "*" },
                     { "BindingName", "Status" }
                 }
+
             };
 
             GamesTable.DefineColumns(columns);

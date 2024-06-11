@@ -9,6 +9,7 @@
     d:DesignHeight="{Binding ButtonHeight, ElementName=Button}"
     d:DesignWidth="{Binding ButtonWidth, ElementName=Button}"
     Cursor="Hand"
+    IsEnabled="{Binding IsButtonEnabled, ElementName=Button}"
     MouseEnter="Button_MouseEnter"
     MouseLeave="Button_MouseLeave"
     MouseLeftButtonDown="Button_MouseLeftButtonDown"
@@ -28,10 +29,10 @@
                 FontFamily="{StaticResource Font_Nunito}"
                 FontSize="{Binding FontSize, ElementName=Button}"
                 FontWeight="Bold"
-                TextWrapping="Wrap"
                 Foreground="{StaticResource SolidColorBrush_RoyalBlue}"
                 Text="{Binding Text, ElementName=Button}"
-                TextAlignment="Center" />
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
         </Border>
 
         <Rectangle

@@ -191,5 +191,12 @@ namespace Hangman.UI.Views
             this.Close();
         }
 
+        private void GamesTable_SelectedItemChanged(object sender, RoutedEventArgs e)
+        {
+
+            Button_Join.IsButtonEnabled = true;
+            Button_Join.Opacity = 1;
+
+        }
     }
 }

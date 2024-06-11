@@ -35,6 +35,19 @@ namespace Hangman.UI.VisualComponents
                 typeof(ButtonControl), 
                 new PropertyMetadata(string.Empty));
 
+        public static readonly DependencyProperty IsButtonEnabledProperty =
+            DependencyProperty.Register(
+                "IsButtonEnabled", 
+                typeof(bool), 
+                typeof(ButtonControl), 
+                new PropertyMetadata(true));
+
+        public bool IsButtonEnabled
+        {
+            get { return (bool)GetValue(IsButtonEnabledProperty); }
+            set { SetValue(IsButtonEnabledProperty, value); }
+        }
+
         public int ButtonWidth
         {
             get { return (int)GetValue(ButtonWidthProperty); }
