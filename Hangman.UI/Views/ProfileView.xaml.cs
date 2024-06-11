@@ -70,7 +70,7 @@ namespace Hangman.UI.Views
             }
             if (_games[0].ResponseCode == 1)
             {
-                MessageBox.Show("No se encontrarón partidas jugadas", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No se encontrarón partidas jugadas", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             
             GamesTable.SetItemsSource(_gameDTOs);
