@@ -10,7 +10,7 @@ namespace Hangman.Adapters.ClientSocket
 {
     public class ClientSocket
     {
-        const string SERVER_IP = "127.0.0.1";
+        const string SERVER_IP = "192.168.0.103";
         const int SERVER_PORT = 1002;
 
         private Socket _clientSocket;

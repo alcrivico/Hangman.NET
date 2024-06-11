@@ -31,7 +31,7 @@ namespace Hangman.UI.Views
         PlayerDTO _playerDTO;
         WordDTO _word;
         int _wrongLetters;
-        //ClientSocket _clientSocket = new ClientSocket();
+        ClientSocket _clientSocket = new ClientSocket();
 
         public GameView()
         {
@@ -100,11 +100,11 @@ namespace Hangman.UI.Views
             {
                 Keyboard.Visibility = Visibility.Hidden;
             }
-            //_clientSocket.StartClientSocket(_gameDTO.GameCode);
-            //Task.Run(() => ReceiveMessagesLoop());
+            _clientSocket.StartClientSocket(_gameDTO.GameCode);
+            Task.Run(() => ReceiveMessagesLoop());
         }
 
-        /*private async Task ReceiveMessagesLoop()
+        private async Task ReceiveMessagesLoop()
         {
             while (true)
             {
@@ -118,7 +118,7 @@ namespace Hangman.UI.Views
                     });
                 }
             }
-        }*/
+        }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
         {

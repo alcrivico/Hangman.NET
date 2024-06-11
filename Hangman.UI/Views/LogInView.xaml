@@ -31,25 +31,23 @@
                 </LinearGradientBrush>
 
             </Border.Background>
+
             <Grid>
 
                 <Grid.RowDefinitions>
-
                     <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="50" />
-
                 </Grid.RowDefinitions>
 
-
                 <Grid Name="TitleBar" Grid.Row="0">
+
                     <components:TitleBarControl
                         x:Name="TitleBarControl"
                         LanguageChanged="TitleBarControl_LanguageChanged"
                         WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+
                 </Grid>
-
-
 
                 <Grid
                     Name="CaseContent"
@@ -77,6 +75,7 @@
                         BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
                         BorderThickness="5"
                         CornerRadius="30">
+
                         <Grid>
 
                             <Grid.RowDefinitions>
@@ -178,6 +177,7 @@
                                 TextAlignment="Center" />
 
                         </Grid>
+
                     </Border>
 
                 </Grid>
