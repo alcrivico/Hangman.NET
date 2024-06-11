@@ -98,7 +98,7 @@
                                         GameInformation="Categoría: " />
 
                                     <components:GameInformationControl
-                                        x:Name="Information_Clue"
+                                        x:Name="Information_Tip"
                                         Grid.Column="1"
                                         Width="350"
                                         Height="100"
@@ -112,25 +112,30 @@
 
                             </Grid>
                             <Grid Grid.Column="2" Margin="0,0,0,0">
+
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
+
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*" />
                                 </Grid.ColumnDefinitions>
+
                             </Grid>
+
                         </Grid>
 
                         <Grid Margin="0,0,0,0">
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="250" />
                             </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.45*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
 
                             <components:KeyboardControl
                                 x:Name="Keyboard"
@@ -170,7 +175,8 @@
                                 BtnXClick="Keyboard_BtnXClick"
                                 BtnYClick="Keyboard_BtnYClick"
                                 BtnZClick="Keyboard_BtnZClick"
-                                BtnÑClick="Keyboard_BtnÑClick" />
+                                BtnÑClick="Keyboard_BtnÑClick"
+                                Visibility="Visible" />
 
                             <Grid Grid.Column="1">
 
@@ -202,20 +208,28 @@
                                         Margin="0,18,0,20"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
-                                        BorderBrushColor="Red"
-                                        MessageFontSize="25" />
+                                        BorderBrushColor="{StaticResource SolidColorBrush_RustyRed}"
+                                        Foreground="{StaticResource SolidColorBrush_White}"
+                                        MessageFontSize="18"
+                                        RestBorderBrushColor="{StaticResource SolidColorBrush_Gold}"
+                                        Visibility="Hidden" />
 
                                     <components:AlertMessageControl
-                                        x:Name="AlertMessage1"
+                                        x:Name="InformationMessage"
                                         Grid.Column="1"
                                         Width="400"
-                                        Height="100"
-                                        Margin="0,14,0,20"
-                                        HorizontalAlignment="Right"
+                                        Height="80"
+                                        Margin="0,18,0,20"
+                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
-                                        BorderBrushColor="DarkBlue"
-                                        MessageFontSize="20" />
+                                        BorderBrushColor="{StaticResource SolidColorBrush_RoyalBlue}"
+                                        Foreground="{StaticResource SolidColorBrush_White}"
+                                        MessageFontSize="18"
+                                        RestBorderBrushColor="{StaticResource SolidColorBrush_Gold}"
+                                        Visibility="Visible" />
+
                                 </Grid>
+
                                 <components:ButtonControl
                                     x:Name="Button_ExitGame"
                                     Grid.Row="1"
@@ -226,17 +240,22 @@
                                     ButtonControlClick="Button_ExitGame_ButtonControlClick"
                                     FontSize="24"
                                     Text="Abandonar partida" />
+
                             </Grid>
+
                         </Grid>
 
                     </StackPanel>
+
                 </Grid>
 
                 <Grid Name="Footer" Grid.Row="2">
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="282*" />
                         <ColumnDefinition Width="353*" />
                     </Grid.ColumnDefinitions>
+
                     <TextBlock
                         Grid.ColumnSpan="2"
                         Margin="491,0,0,0"
@@ -245,6 +264,7 @@
                         Foreground="{StaticResource SolidColorBrush_White}"
                         Text="© 2024 Universidad Veracruzana. Derechos reservados"
                         TextAlignment="Center" />
+
                 </Grid>
 
             </Grid>
@@ -252,4 +272,5 @@
         </Border>
 
     </Grid>
+
 </Window>

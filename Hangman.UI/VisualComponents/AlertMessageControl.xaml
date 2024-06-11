@@ -4,35 +4,60 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     x:Name="AlertMessage"
     d:DesignHeight="100"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    mc:Ignorable="d">
 
-    <Border Background="#FFD500" BorderThickness="5" CornerRadius="10">
-        <Border.BorderBrush>
-            <DrawingBrush Viewport="0,0,10,10" ViewportUnits="Absolute" TileMode="Tile">
-                <DrawingBrush.Drawing>
-                    <DrawingGroup>
-                        <GeometryDrawing Brush="{Binding BorderBrushColor, ElementName=AlertMessage}">
-                            <GeometryDrawing.Geometry>
-                                <CombinedGeometry GeometryCombineMode="Xor">
-                                    <CombinedGeometry.Geometry1>
-                                        <RectangleGeometry Rect="0,0,40,40"/>
-                                    </CombinedGeometry.Geometry1>
-                                    <CombinedGeometry.Geometry2>
-                                        <RectangleGeometry Rect="40,40,40,40"/>
-                                    </CombinedGeometry.Geometry2>
-                                </CombinedGeometry>
-                            </GeometryDrawing.Geometry>
-                        </GeometryDrawing>
-                    </DrawingGroup>
-                </DrawingBrush.Drawing>
-            </DrawingBrush>
-        </Border.BorderBrush>
+    <UserControl.Resources>
+        <!--  Define a striped pattern for the border brush  -->
+        <DrawingBrush
+            x:Key="StripedBrush"
+            TileMode="Tile"
+            Viewport="0,0,20,10"
+            ViewportUnits="Absolute">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <!--  Geometry for the first color stripe  -->
+                    <GeometryDrawing Brush="{Binding BorderBrushColor, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,10,10" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{Binding BorderBrushColor, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="10,10,10,10" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <!--  Geometry for the second color stripe  -->
+                    <GeometryDrawing Brush="{Binding RestBorderBrushColor, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="10,0,10,10" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{Binding RestBorderBrushColor, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,10,10,10" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+    </UserControl.Resources>
 
-        <TextBlock Text="{Binding AlertMessageText, ElementName=AlertMessage}" Margin="10"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="{Binding MessageFontSize, ElementName=AlertMessage}" Foreground="Black"/>
+    <Border
+        Background="{StaticResource SolidColorBrush_Gold}"
+        BorderBrush="{StaticResource StripedBrush}"
+        BorderThickness="5"
+        CornerRadius="20">
+
+        <TextBlock
+            Margin="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="{Binding MessageFontSize, ElementName=AlertMessage}"
+            Foreground="{StaticResource SolidColorBrush_White}"
+            Text="{Binding AlertMessageText, ElementName=AlertMessage}" />
     </Border>
+
 </UserControl>

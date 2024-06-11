@@ -24,12 +24,21 @@ namespace Hangman.UI.VisualComponents
         }
 
         public static readonly DependencyProperty BorderBrushColorProperty =
-            DependencyProperty.Register("BorderBrushColor", typeof(Brush), typeof(AlertMessageControl), new PropertyMetadata(Brushes.Red));
+            DependencyProperty.Register("BorderBrushColor", typeof(Brush), typeof(AlertMessageControl), new PropertyMetadata(Brushes.Black));
 
         public Brush BorderBrushColor
         {
             get { return (Brush)GetValue(BorderBrushColorProperty); }
             set { SetValue(BorderBrushColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty RestBorderBrushColorProperty =
+            DependencyProperty.Register("RestBorderBrushColor", typeof(Brush), typeof(AlertMessageControl), new PropertyMetadata(Brushes.White));
+
+        public Brush RestBorderBrushColor
+        {
+            get { return (Brush)GetValue(RestBorderBrushColorProperty); }
+            set { SetValue(RestBorderBrushColorProperty, value); }
         }
 
         public static readonly DependencyProperty MessageFontSizeProperty =

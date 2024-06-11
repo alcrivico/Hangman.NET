@@ -1,4 +1,6 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +57,11 @@ namespace Hangman.UI.Views
             };
 
             WordsTable.DefineColumns(columns);
+        }
+
+        private void InitializeComboBox()
+        {
+            
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)

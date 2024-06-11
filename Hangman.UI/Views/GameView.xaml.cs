@@ -1,5 +1,4 @@
-﻿using Hangman.Adapters.ClientSocket;
-using Hangman.Adapters.ControllerAdapters.Services.Game;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
@@ -23,16 +22,16 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class GameView : Window
     {
-        GameAdapter _gameAdapter;
+        GameAdapter _gameAdapter ;
+        List<string> _categories;
+        List<string> _tips;
         Adapters.ControllerAdapters.Services.Game.GameDTO _gameDTO;
         PlayerDTO _playerDTO;
-        ClientSocket _clientSocket = new ClientSocket();
+        WordDTO _word;
 
         public GameView()
         {
             InitializeComponent();
-            
-            _clientSocket.StartClientSocket();
         }
 
         public GameView(Adapters.ControllerAdapters.Services.Game.GameDTO gameDTO, PlayerDTO playerDTO)
@@ -41,8 +40,9 @@ namespace Hangman.UI.Views
             _gameAdapter = new GameAdapter();
             _gameDTO = gameDTO;
             _playerDTO = playerDTO;
-
-
+            _categories = new List<string>();
+            _tips = new List<string>();
+            _word = new WordDTO();
 
             InitializeComponent();
 
@@ -54,6 +54,29 @@ namespace Hangman.UI.Views
 
                     _gameAdapter.SetChallenger(_gameDTO.GameCode, _playerDTO.Email);
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Playing");
+
+                    _word = _gameAdapter.SearchWord(_gameDTO.WordEN);
+
+                    _categories.Add(_word.CategoryES);
+                    _categories.Add(_word.CategoryEN);
+                    _tips.Add(_word.TipES);
+                    _tips.Add(_word.TipEN);
+
+                    if(_gameDTO.Language == "Spanish") 
+                    {
+
+                        Information_Category.GameInformation = "Categoría: " + _categories[0];
+                        Information_Tip.GameInformation = "Tip: " + _tips[0];
+                        InformationMessage.AlertMessageText = "Creador de la partida: " + _gameDTO.CreatorName  + "\nCódigo de Partida: " + _gameDTO.GameCode;
+                    }
+                    else
+                    {
+
+                        Information_Category.GameInformation = "Category: " + _categories[1];
+                        Information_Tip.GameInformation = "Tip: " + _tips[1];
+                        InformationMessage.AlertMessageText = "Game Creator: " + _gameDTO.CreatorName + "\nGame Code: " + _gameDTO.GameCode;
+
+                    }
 
                 }
                 catch (Exception e)
@@ -67,9 +90,8 @@ namespace Hangman.UI.Views
             }
             else
             {
-                //Ocultar componentes innecesarios para el creador de la partida
+                Keyboard.Visibility = Visibility.Hidden;
             }
-            _clientSocket.StartClientSocket();
 
         }
 
@@ -96,8 +118,7 @@ namespace Hangman.UI.Views
 
             //TEST - Cambiar implementación para hacer consulta de la letra en la palabra
             MessageBox.Show("Letra: " + letter, "Letra", MessageBoxButton.OK, MessageBoxImage.Information);
-            
-            _clientSocket.SendMessage(letter);
+
         }
 
         private void Keyboard_Btn0Click(object sender, RoutedEventArgs e)
