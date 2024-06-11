@@ -54,14 +54,14 @@ namespace Hangman.Adapters.ClientSocket
             }
         }
 
-        public string ReceiveMessage()
+        public async Task<string> ReceiveMessage()
         {
             if(_clientSocket.Connected)
             {
                 byte[] receiveBytes = new byte[1024];
                 try
                 {
-                    int numBytes = _clientSocket.Receive(receiveBytes);
+                    int numBytes = await _clientSocket.ReceiveAsync(receiveBytes);
                     string serverMessage = Encoding.UTF8.GetString(receiveBytes, 0, numBytes);
                     Console.WriteLine("Received from server: " + serverMessage);
 

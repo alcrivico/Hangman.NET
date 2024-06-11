@@ -95,6 +95,23 @@ namespace Hangman.UI.Views
                 Keyboard.Visibility = Visibility.Hidden;
             }
             _clientSocket.StartClientSocket(_gameDTO.GameCode);
+            Task.Run(() => ReceiveMessagesLoop());
+        }
+
+        private async Task ReceiveMessagesLoop()
+        {
+            while (true)
+            {
+                string message = await _clientSocket.ReceiveMessage();
+                if (message != null)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        //Aqui meter lo que pasa cuando se recibe el mensaje
+                        MessageBox.Show(message);
+                    });
+                }
+            }
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
