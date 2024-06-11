@@ -17,15 +17,24 @@ namespace Hangman.UI.Views
 
         public MenuView(PlayerDTO player)
         {
+
             InitializeComponent();
+
             this.player = player;
-            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(MenuView).Assembly);
+            resourceManager = new ResourceManager(
+                "Hangman.UI.Resources.I18n.Strings", 
+                typeof(MenuView).Assembly);
+
             SetLanguage("es");
-            this.ProfileControl.UserName = $"{player.Name} {player.FirstLastName} {player.SecondLastName}";
+
+            this.ProfileControl.UserName = 
+                $"{player.Name} {player.FirstLastName} {player.SecondLastName}";
+
         }
 
         private void SetLanguage(string language)
         {
+
             cultureInfo = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
@@ -34,12 +43,14 @@ namespace Hangman.UI.Views
             Button_CreateGame.Text = resourceManager.GetString("RN_BtnCreateGame", cultureInfo);
             Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
             TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+
         }
 
         private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
         {
             if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
             {
+
                 if (languageDTO.LanguageName.Equals("Spanish"))
                 {
                     SetLanguage("es");
@@ -48,7 +59,9 @@ namespace Hangman.UI.Views
                 {
                     SetLanguage("en");
                 }
+
             }
+
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -60,9 +73,12 @@ namespace Hangman.UI.Views
 
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+
             SearchGameView searchGameView = new SearchGameView(player);
+
             searchGameView.Show();
             this.Close();
+
         }
 
         private void Button_CreateGame_Loaded(object sender, RoutedEventArgs e) { }
@@ -70,14 +86,17 @@ namespace Hangman.UI.Views
         private void Button_CreateGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             CreateGameView createGameView = new CreateGameView(player);
+
             createGameView.Show();
             this.Close();
+
         }
 
         private void ProfileControl_Loaded(object sender, RoutedEventArgs e) { }
 
         private void DoorButton_Click(object sender, RoutedEventArgs e)
         {
+
             MessageBoxResult result = MessageBox.Show(
                 resourceManager.GetString("RN_ConfirmLogout", cultureInfo),
                 resourceManager.GetString("RN_Confirmation", cultureInfo),
@@ -91,13 +110,18 @@ namespace Hangman.UI.Views
                 logInView.Show();
                 this.Close();
             }
+
         }
 
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
+
             ProfileView profileView = new ProfileView(player);
             profileView.Show();
             this.Close();
+
         }
+
     }
+
 }
