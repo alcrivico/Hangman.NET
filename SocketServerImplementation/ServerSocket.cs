@@ -96,8 +96,10 @@ namespace SocketServerImplementation
         public void StopServerSocket()
         {
             _isRunning = false;
-            foreach (var clientSocket in _clientSockets)
+            
+            foreach (var socket in _clientSockets)
             {
+                Socket clientSocket = socket.Value;
                 try
                 {
                     clientSocket.Shutdown(SocketShutdown.Both);

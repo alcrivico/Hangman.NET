@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameServiceReference
+namespace GameServicesReference
 {
     using System.Runtime.Serialization;
     
@@ -416,46 +416,46 @@ namespace GameServiceReference
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServiceReference.IGameServices")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServicesReference.IGameServices")]
     public interface IGameServices
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/CreateGame", ReplyAction="http://tempuri.org/IGameServices/CreateGameResponse")]
-        System.Threading.Tasks.Task<GameServiceReference.GameDTO> CreateGameAsync(GameServiceReference.GameDTO newGame);
+        System.Threading.Tasks.Task<GameServicesReference.GameDTO> CreateGameAsync(GameServicesReference.GameDTO newGame);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetCategoriesList", ReplyAction="http://tempuri.org/IGameServices/GetCategoriesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.CategoryDTO>> GetCategoriesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.CategoryDTO>> GetCategoriesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetWordsList", ReplyAction="http://tempuri.org/IGameServices/GetWordsListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.WordDTO>> GetWordsListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.WordDTO>> GetWordsListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SetChallenger", ReplyAction="http://tempuri.org/IGameServices/SetChallengerResponse")]
-        System.Threading.Tasks.Task<GameServiceReference.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail);
+        System.Threading.Tasks.Task<GameServicesReference.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SetGameStatus", ReplyAction="http://tempuri.org/IGameServices/SetGameStatusResponse")]
-        System.Threading.Tasks.Task<GameServiceReference.GameDTO> SetGameStatusAsync(string gameCode, string status);
+        System.Threading.Tasks.Task<GameServicesReference.GameDTO> SetGameStatusAsync(string gameCode, string status);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetWaitingGames", ReplyAction="http://tempuri.org/IGameServices/GetWaitingGamesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.GameDTO>> GetWaitingGamesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.GameDTO>> GetWaitingGamesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetPlayerType", ReplyAction="http://tempuri.org/IGameServices/GetPlayerTypeResponse")]
-        System.Threading.Tasks.Task<GameServiceReference.GameDTO> GetPlayerTypeAsync(string email, string gameCode);
+        System.Threading.Tasks.Task<GameServicesReference.GameDTO> GetPlayerTypeAsync(string email, string gameCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetLanguagesList", ReplyAction="http://tempuri.org/IGameServices/GetLanguagesListResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.LanguageDTO>> GetLanguagesListAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.LanguageDTO>> GetLanguagesListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SearchWord", ReplyAction="http://tempuri.org/IGameServices/SearchWordResponse")]
-        System.Threading.Tasks.Task<GameServiceReference.WordDTO> SearchWordAsync(string word);
+        System.Threading.Tasks.Task<GameServicesReference.WordDTO> SearchWordAsync(string word);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public interface IGameServicesChannel : GameServiceReference.IGameServices, System.ServiceModel.IClientChannel
+    public interface IGameServicesChannel : GameServicesReference.IGameServices, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public partial class GameServicesClient : System.ServiceModel.ClientBase<GameServiceReference.IGameServices>, GameServiceReference.IGameServices
+    public partial class GameServicesClient : System.ServiceModel.ClientBase<GameServicesReference.IGameServices>, GameServicesReference.IGameServices
     {
         
         /// <summary>
@@ -498,47 +498,47 @@ namespace GameServiceReference
         {
         }
         
-        public System.Threading.Tasks.Task<GameServiceReference.GameDTO> CreateGameAsync(GameServiceReference.GameDTO newGame)
+        public System.Threading.Tasks.Task<GameServicesReference.GameDTO> CreateGameAsync(GameServicesReference.GameDTO newGame)
         {
             return base.Channel.CreateGameAsync(newGame);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.CategoryDTO>> GetCategoriesListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.CategoryDTO>> GetCategoriesListAsync()
         {
             return base.Channel.GetCategoriesListAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.WordDTO>> GetWordsListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.WordDTO>> GetWordsListAsync()
         {
             return base.Channel.GetWordsListAsync();
         }
         
-        public System.Threading.Tasks.Task<GameServiceReference.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail)
+        public System.Threading.Tasks.Task<GameServicesReference.GameDTO> SetChallengerAsync(string gameCode, string challengerEmail)
         {
             return base.Channel.SetChallengerAsync(gameCode, challengerEmail);
         }
         
-        public System.Threading.Tasks.Task<GameServiceReference.GameDTO> SetGameStatusAsync(string gameCode, string status)
+        public System.Threading.Tasks.Task<GameServicesReference.GameDTO> SetGameStatusAsync(string gameCode, string status)
         {
             return base.Channel.SetGameStatusAsync(gameCode, status);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.GameDTO>> GetWaitingGamesAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.GameDTO>> GetWaitingGamesAsync()
         {
             return base.Channel.GetWaitingGamesAsync();
         }
         
-        public System.Threading.Tasks.Task<GameServiceReference.GameDTO> GetPlayerTypeAsync(string email, string gameCode)
+        public System.Threading.Tasks.Task<GameServicesReference.GameDTO> GetPlayerTypeAsync(string email, string gameCode)
         {
             return base.Channel.GetPlayerTypeAsync(email, gameCode);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServiceReference.LanguageDTO>> GetLanguagesListAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<GameServicesReference.LanguageDTO>> GetLanguagesListAsync()
         {
             return base.Channel.GetLanguagesListAsync();
         }
         
-        public System.Threading.Tasks.Task<GameServiceReference.WordDTO> SearchWordAsync(string word)
+        public System.Threading.Tasks.Task<GameServicesReference.WordDTO> SearchWordAsync(string word)
         {
             return base.Channel.SearchWordAsync(word);
         }
