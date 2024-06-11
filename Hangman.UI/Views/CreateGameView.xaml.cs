@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Hangman.UI.Views
 {
@@ -25,25 +26,116 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class CreateGameView : Window
     {
-        private PlayerDTO player;
-        private List<WordDTO> wordsList;
-        public ObservableCollection<CategoryDTO> Categories { get; set; }
-        private ObservableCollection<object> categoriesCollection;
+        private CreateGameAdapter _createGameAdapter;
+        private PlayerDTO _player;
+        private List<WordDTO> _words;
+        public List<CategoryDTO> _categories;
+        private ObservableCollection<Object> _categoryDTOs;
+        private ObservableCollection<Object> _wordDTOs;
 
         public CreateGameView()
         {
+            _createGameAdapter = new CreateGameAdapter();
+            _categories = null;
+
+            _categoryDTOs = new ObservableCollection<Object>();
+
             InitializeComponent();
+
+            try
+            {
+                _categories = _createGameAdapter.GetCategoriesList();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MenuView menuView = new MenuView(_player);
+                menuView.Show();
+                this.Close();
+
+            }
+
             InitializeTable();
-            Categories = new ObservableCollection<CategoryDTO>();
-            LoadCategories();
+
+            SetCategories(_categories);
+
+            CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
+
         }
 
         public CreateGameView(PlayerDTO player)
         {
+            _createGameAdapter = new CreateGameAdapter();
+            _player = player;
+            _words = null;
+            _categories = null;
+            _wordDTOs = new ObservableCollection<Object>();
+            _categoryDTOs = new ObservableCollection<Object>();
+
             InitializeComponent();
+
+            try
+            {
+                _categories = _createGameAdapter.GetCategoriesList();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MenuView menuView = new MenuView(_player);
+                menuView.Show();
+                this.Close();
+
+            }
+
+            SetCategories(_categories);
+            
+            CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
+
             InitializeTable();
-            LoadCategories();
-            this.player = player;
+
+            try
+            {
+                _words = _createGameAdapter.GetWordsList();
+                Debug.WriteLine("Word is: " + _words);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MenuView menuView = new MenuView(_player);
+                menuView.Show();
+                this.Close();
+
+            }
+
+            SetWords(_words);
+
+            WordsTable.SetItemsSource(_wordDTOs);
+
+        }
+
+        private void SetCategories(List<CategoryDTO> categories)
+        {
+
+            _categoryDTOs.Clear();
+
+            foreach (CategoryDTO category in categories)
+            {
+                _categoryDTOs.Add(category);
+            }
+
+        }
+
+        private void SetWords(List<WordDTO> words)
+        {
+
+            foreach (WordDTO word in words)
+            {
+                _wordDTOs.Add(word);
+            }
+
         }
 
         private void InitializeTable()
@@ -65,24 +157,7 @@ namespace Hangman.UI.Views
             };
 
             WordsTable.DefineColumns(columns);
-        }
 
-        private void LoadCategories()
-        {
-            try
-            {
-                CreateGameAdapter adapter = new CreateGameAdapter();
-                List<CategoryDTO> categories = adapter.GetCategoriesList();
-
-                foreach (var category in categories)
-                {
-                    Categories.Add(category);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar las categorías: " + ex.Message);
-            }
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
@@ -92,7 +167,11 @@ namespace Hangman.UI.Views
 
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            //
+
+            MenuView menuView = new MenuView(_player);
+            menuView.Show();
+            this.Close();
+
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -100,5 +179,13 @@ namespace Hangman.UI.Views
             WindowState = e;
         }
 
+        private void CategoryList_SelectedItemChanged(object sender, RoutedEventArgs e)
+        {
+
+            SetWords(_words);
+            WordsTable.SetItemsSource(_wordDTOs);
+
+        }
     }
+
 }

@@ -23,6 +23,19 @@ namespace Hangman.UI.VisualComponents
     public partial class TableControl : UserControl
     {
 
+        public static readonly RoutedEvent SelectedItemChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(SelectedItemChanged), 
+                RoutingStrategy.Bubble,                          
+                typeof(RoutedEventHandler), 
+                typeof(TableControl));
+
+        public event RoutedEventHandler SelectedItemChanged 
+        {
+            add { AddHandler(SelectedItemChangedEvent, value); }
+            remove { RemoveHandler(SelectedItemChangedEvent, value); }
+        }
+
         public TableControl()
         {
             InitializeComponent();
@@ -84,6 +97,10 @@ namespace Hangman.UI.VisualComponents
             return DataGridStructure.SelectedItem;
         }
 
+        private void DataGridStructure_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(SelectedItemChangedEvent));
+        }
     }
 
 }

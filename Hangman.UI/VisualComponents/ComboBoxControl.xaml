@@ -8,6 +8,8 @@
     x:Name="ComboBox"
     d:DesignHeight="{Binding ComboBoxHeight, ElementName=ComboBox}"
     d:DesignWidth="{Binding ComboBoxWidth, ElementName=ComboBox}"
+    IsEnabled="{Binding ListEnabled, ElementName=ComboBox}"
+    Opacity="{Binding ListOpacity, ElementName=ComboBox}"
     mc:Ignorable="d">
     <Grid Height="40">
 
@@ -43,6 +45,7 @@
             DisplayMemberPath="{Binding MemberPath, ElementName=ComboBox}"
             Focusable="False"
             Loaded="ComboBoxControl_Loaded"
+            SelectionChanged="ComboBoxControlType_SelectionChanged"
             Style="{StaticResource ComboBoxControlStyle}" />
 
     </Grid>

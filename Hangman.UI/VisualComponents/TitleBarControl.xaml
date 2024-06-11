@@ -29,7 +29,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Cursor="Hand"
-            FieldName="Idioma" />
+            FieldName="Idioma"
+            ListEnabled="{Binding ChangeLanguage, ElementName=TitleBar}"
+            ListOpacity="{Binding ChangeOpacity, ElementName=TitleBar}" />
 
         <Border
             Name="UvLogo"

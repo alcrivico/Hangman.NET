@@ -33,6 +33,7 @@
             RowHeaderStyle="{StaticResource RowHeaderStyle}"
             RowStyle="{StaticResource GeneralRow}"
             SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            SelectionChanged="DataGridStructure_SelectionChanged"
             SelectionMode="Single"
             SelectionUnit="FullRow">
             <DataGrid.Resources>

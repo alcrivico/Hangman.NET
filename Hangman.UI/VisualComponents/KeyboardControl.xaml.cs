@@ -473,186 +473,297 @@ namespace Hangman.UI.VisualComponents
         private void BtnM_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnMClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnN_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnNClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnB_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnBClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnV_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnVClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnC_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnCClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnX_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnXClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnZ_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnZClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnÑ_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnÑClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnL_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnLClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnK_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnKClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnJ_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnJClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnH_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnHClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnG_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnGClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnF_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnFClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnD_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnDClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnS_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnSClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnA_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnAClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnP_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnPClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnO_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnOClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnI_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnIClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnU_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnUClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnY_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnYClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnT_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnTClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnR_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnRClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnE_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnEClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnW_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnWClicEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void BtnQ_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(BtnQClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn0_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn0ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn9_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn9ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn8_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn8ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn7_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn7ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn6_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn6ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn5_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn5ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn4_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn4ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn3_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn3ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn2_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn2ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
         private void Btn1_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(Btn1ClickEvent));
+            ButtonControl button = (ButtonControl)sender;
+            button.IsButtonEnabled = false;
+            button.Opacity = 0.5;
         }
 
     }
