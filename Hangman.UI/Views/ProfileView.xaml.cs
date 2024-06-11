@@ -1,30 +1,26 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
-using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Resources;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {
-    /// <summary>
-    /// Lógica de interacción para ProfileView.xaml
-    /// </summary>
     public partial class ProfileView : Window
     {
-        ProfileAdapter profileAdapter;
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
+        private ProfileAdapter profileAdapter;
         private PlayerDTO _player;
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
@@ -37,7 +33,10 @@ namespace Hangman.UI.Views
 
         public ProfileView(PlayerDTO player)
         {
-            
+            InitializeComponent();
+            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
+            SetLanguage("es");
+
             _player = player;
             profileAdapter = new ProfileAdapter();
             _gameDTOs = new ObservableCollection<Object>();
@@ -58,7 +57,7 @@ namespace Hangman.UI.Views
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 MenuView menuView = new MenuView(_player);
                 menuView.Show();
                 this.Close();
@@ -70,39 +69,72 @@ namespace Hangman.UI.Views
             }
             if (_games[0].ResponseCode == 1)
             {
-                MessageBox.Show("No se encontrarón partidas jugadas", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(resourceManager.GetString("RN_NoGamesFound", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            
+
             GamesTable.SetItemsSource(_gameDTOs);
+        }
+
+        private void SetLanguage(string language)
+        {
+            cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            Title.Text = resourceManager.GetString("RN_UserInfo", cultureInfo);
+            Button_Back.Text = resourceManager.GetString("RN_Back", cultureInfo);
+            score.FieldName = resourceManager.GetString("RN_GlobalScore", cultureInfo);
+            Button_ModifyProfile.Text = resourceManager.GetString("RN_ModifyProfile", cultureInfo);
+            name.FieldName = resourceManager.GetString("RN_Name", cultureInfo);
+            firstLastName.FieldName = resourceManager.GetString("RN_FirstLastName", cultureInfo);
+            secondLastName.FieldName = resourceManager.GetString("RN_SecondLastName", cultureInfo);
+            email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
+            birhtDate.FieldName = resourceManager.GetString("RN_BirthDate", cultureInfo);
+            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
+            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+
+            // Actualiza los encabezados de la tabla
+            InitializeTable();
+        }
+
+        private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
+        {
+            if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
+            {
+                if (languageDTO.LanguageName.Equals("Spanish"))
+                {
+                    SetLanguage("es");
+                }
+                else if (languageDTO.LanguageName.Equals("English"))
+                {
+                    SetLanguage("en");
+                }
+            }
         }
 
         private void InitializeTable()
         {
-
             Dictionary<string, string>[] columns =
-             {
-
+            {
                 new Dictionary<string, string> {
-                    { "Name", "Contrincante" },
+                    { "Name", resourceManager.GetString("RN_Opponent", cultureInfo) },
                     { "Width", "150.0" },
                     { "BindingName", "CreatorName" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", "Fecha de Juego" },
+                    { "Name", resourceManager.GetString("RN_GameDate", cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "CreationDate" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", "Palabra" },
+                    { "Name", resourceManager.GetString("RN_Word", cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "WordEN" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", "Resultado" },
+                    { "Name", resourceManager.GetString("RN_Result", cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "Status" }
                 }
-
             };
 
             GamesTable.DefineColumns(columns);
@@ -118,13 +150,10 @@ namespace Hangman.UI.Views
         private void SetGames(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
             _gameDTOs.Clear();
-
-
             foreach (Adapters.ControllerAdapters.Services.Player.GameDTO game in games)
             {
                 _gameDTOs.Add(game);
             }
-
         }
 
         private void AddGame(Adapters.ControllerAdapters.Services.Game.GameDTO game)
@@ -139,20 +168,17 @@ namespace Hangman.UI.Views
 
         private void Button_Back_Loaded(object sender, RoutedEventArgs e)
         {
-            
         }
 
         private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             MenuView menuView = new MenuView(_player);
-
             menuView.Show();
             this.Close();
         }
 
         private void Button_ModifyProfile_Loaded(object sender, RoutedEventArgs e)
         {
-            
         }
 
         private void Button_ModifyProfile_ButtonControlClick(object sender, RoutedEventArgs e)
@@ -211,9 +237,8 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = _player.BirthDate.Day.ToString() + "/" + _player.BirthDate.Month.ToString()+"/"+_player.BirthDate.Year.ToString();
+                textBox.Text = _player.BirthDate.ToString("dd/MM/yyyy");
             }
         }
-
     }
 }

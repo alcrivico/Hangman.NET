@@ -123,6 +123,9 @@
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Correo y/o contraseña incorrectos. Por favor, verifíquelos.</value>
   </data>
+  <data name="RN_Back" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
   <data name="RN_BirthDate" xml:space="preserve">
     <value>Fecha nacimiento</value>
   </data>
@@ -165,6 +168,12 @@
   <data name="RN_FirstLastName" xml:space="preserve">
     <value>Apellido Paterno</value>
   </data>
+  <data name="RN_GameDate" xml:space="preserve">
+    <value>Fecha de Juego</value>
+  </data>
+  <data name="RN_GlobalScore" xml:space="preserve">
+    <value>Puntuación Global</value>
+  </data>
   <data name="RN_InvalidEmailFormat" xml:space="preserve">
     <value>El formato del correo es incorrecto</value>
   </data>
@@ -177,8 +186,17 @@
   <data name="RN_MissingFields" xml:space="preserve">
     <value>Faltan campos por llenar</value>
   </data>
+  <data name="RN_ModifyProfile" xml:space="preserve">
+    <value>Modificar perfil</value>
+  </data>
   <data name="RN_Name" xml:space="preserve">
     <value>Nombre</value>
+  </data>
+  <data name="RN_NoGamesFound" xml:space="preserve">
+    <value>No se encontraron partidas jugadas</value>
+  </data>
+  <data name="RN_Opponent" xml:space="preserve">
+    <value>Contrincante</value>
   </data>
   <data name="RN_Password" xml:space="preserve">
     <value>Contraseña</value>
@@ -188,6 +206,9 @@
   </data>
   <data name="RN_ProfileUpdateSuccess" xml:space="preserve">
     <value>Perfil actualizado correctamente.</value>
+  </data>
+  <data name="RN_Result" xml:space="preserve">
+    <value>Resultado</value>
   </data>
   <data name="RN_SaveChanges" xml:space="preserve">
     <value>Guardar Cambios</value>
@@ -207,7 +228,13 @@
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Registrar Usuario</value>
   </data>
+  <data name="RN_UserInfo" xml:space="preserve">
+    <value>Información del Usuario</value>
+  </data>
   <data name="RN_WelcomeMessage" xml:space="preserve">
     <value>¡Bienvenido al juego del ahorcado!</value>
+  </data>
+  <data name="RN_Word" xml:space="preserve">
+    <value>Palabra</value>
   </data>
 </root>

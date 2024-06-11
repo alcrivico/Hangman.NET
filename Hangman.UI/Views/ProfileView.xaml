@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Hangman.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="LogIn"
+    Title="ProfileView"
     Width="1280"
     Height="720"
     AllowsTransparency="True"
@@ -17,33 +17,25 @@
     mc:Ignorable="d">
 
     <Grid>
-
-        <Border
-            BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}"
-            BorderThickness="5"
-            CornerRadius="30">
-
+        <Border BorderBrush="{StaticResource SolidColorBrush_RoyalBlue}" BorderThickness="5" CornerRadius="30">
             <Border.Background>
-
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                     <GradientStop Offset="0" Color="{StaticResource Color_Black}" />
                     <GradientStop Offset="1" Color="{StaticResource Color_PolynesianBlue}" />
                 </LinearGradientBrush>
-
             </Border.Background>
             <Grid>
-
                 <Grid.RowDefinitions>
-
                     <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="50" />
-
                 </Grid.RowDefinitions>
 
-
                 <Grid Name="TitleBar" Grid.Row="0">
-                    <components:TitleBarControl WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
+                    <components:TitleBarControl
+                        x:Name="TitleBarControl"
+                        LanguageChanged="TitleBarControl_LanguageChanged"
+                        WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="0,0,30,0">
@@ -54,6 +46,7 @@
                         VerticalAlignment="Center"
                         Orientation="Vertical">
                         <TextBlock
+                            x:Name="Title"
                             Margin="0,0,0,20"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -137,7 +130,6 @@
                                 Width="230"
                                 Height="50"
                                 FieldName="Apellido Materno"
-                                Loaded="TextBoxControl_SecondLastName"
                                 Text="" />
                         </Grid>
                         <components:TextBoxControl
@@ -145,7 +137,6 @@
                             Width="230"
                             Height="50"
                             FieldName="Correo Electrónico"
-                            Loaded="TextBoxControl_Email"
                             Text="" />
                         <components:TextBoxControl
                             x:Name="birhtDate"
@@ -153,7 +144,6 @@
                             Height="50"
                             Margin="0,20,0,20"
                             FieldName="Fecha de nacimiento"
-                            Loaded="TextBoxControl_BirthDate"
                             Text="" />
                         <components:TableControl
                             x:Name="GamesTable"
@@ -164,17 +154,14 @@
 
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock
+                        x:Name="Footer_Text"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Foreground="{StaticResource SolidColorBrush_White}"
                         Text="© 2024 Universidad Veracruzana. Derechos reservados"
                         TextAlignment="Center" />
                 </Grid>
-
             </Grid>
-
         </Border>
-
     </Grid>
-
 </Window>
