@@ -35,6 +35,70 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
             return response;
         }
 
+        public List<CategoryDTO> GetCategoriesList()
+        {
+            var service = new GameServicesClient();
+
+            List<CategoryDTO> response = service.GetCategoriesListAsync().Result;
+
+            foreach (var category in response)
+            {
+                if (category.ResponseCode == 1)
+                {
+                    throw new Exception();
+                }
+
+                if (category.ResponseCode == 2)
+                {
+                    throw new Exception("Error en la consulta, verifique el error en el servidor");
+                }
+
+                if (category.ResponseCode == 3)
+                {
+                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
+                }
+
+                if (category.ResponseCode < 0 && category.ResponseCode > 3)
+                {
+                    throw new Exception("Error de conexión");
+                }
+            }
+
+            return response;
+        }
+
+        public List<WordDTO> GetWordsList()
+        {
+            var service = new GameServicesClient(); 
+
+            List<WordDTO> response = service.GetWordsListAsync().Result;
+
+            foreach (var word in response)
+            {
+                if (word.ResponseCode == 1)
+                {
+                    throw new Exception("No se encontró información de la entidad en la base de datos");
+                }
+
+                if (word.ResponseCode == 2)
+                {
+                    throw new Exception("Error en la consulta, verifique el error en el servidor");
+                }
+
+                if (word.ResponseCode == 3)
+                {
+                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
+                }
+
+                if (word.ResponseCode < 0 && word.ResponseCode > 3)
+                {
+                    throw new Exception("Error de conexión");
+                }
+            }
+
+            return response;
+        }
+
         public List<LanguageDTO> GetLanguagesList()
         {
             var service = new GameServicesClient();
