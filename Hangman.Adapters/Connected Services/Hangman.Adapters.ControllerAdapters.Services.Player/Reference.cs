@@ -31,6 +31,7 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         private int ResponseCodeField;
         
         private string SecondLastNameField;
+
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime BirthDate

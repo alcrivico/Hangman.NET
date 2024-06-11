@@ -11,6 +11,7 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
 {
     using System.Runtime.Serialization;
     
+
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
