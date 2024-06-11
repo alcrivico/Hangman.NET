@@ -124,7 +124,9 @@ namespace Hangman.UI.Views
 
         private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            
+            MenuView menuView = new MenuView(_player);
+
+            menuView.Show();
             this.Close();
         }
 
