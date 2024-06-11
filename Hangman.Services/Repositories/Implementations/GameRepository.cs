@@ -98,6 +98,7 @@ namespace Hangman.Services.Repositories.Implementations
 
                         var games = (from game in gameTable
                                     join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                    join creator in playerTable on game.CreatorId equals creator.Id
                                     join challenger in playerTable on game.ChallengerId equals challenger.Id
                                     join word in wordTable on game.WordId equals word.Id
                                     join language in languageTable on game.LanguageId equals language.Id
@@ -108,6 +109,8 @@ namespace Hangman.Services.Repositories.Implementations
                                         CreationDate = game.CreationDate,
                                         GameCode = game.GameCode,
                                         Status = gameStatus.Status,
+                                        CreatorName = creator.Name,
+                                        CreatorEmail = creator.Email,
                                         ChallengerName = challenger.Name,
                                         ChallengerEmail = challenger.Email,
                                         WordES = word.WordES,
