@@ -85,10 +85,13 @@ namespace Hangman.UI.Views
 
         private void Button_CreateGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            CreateGameView createGameView = new CreateGameView(player);
-
-            createGameView.Show();
-            this.Close();
+            LanguageDTO selectedLanguage = TitleBarControl.SelectedItem as LanguageDTO;
+            if (selectedLanguage != null)
+            {
+                CreateGameView createGameView = new CreateGameView(player, selectedLanguage);
+                createGameView.Show();
+                this.Close();
+            }
 
         }
 

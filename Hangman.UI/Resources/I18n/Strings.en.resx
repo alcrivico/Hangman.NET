@@ -177,6 +177,9 @@
   <data name="RN_FirstLastName" xml:space="preserve">
     <value>First Last Name</value>
   </data>
+  <data name="RN_GameCode" xml:space="preserve">
+    <value>Game Code</value>
+  </data>
   <data name="RN_GameDate" xml:space="preserve">
     <value>Game Date</value>
   </data>

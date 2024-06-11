@@ -33,7 +33,6 @@ namespace Hangman.UI.Views
 
         public ProfileView(PlayerDTO player)
         {
-            InitializeComponent();
             resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
             SetLanguage("es");
 

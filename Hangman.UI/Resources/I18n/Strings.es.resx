@@ -177,6 +177,9 @@
   <data name="RN_FirstLastName" xml:space="preserve">
     <value>Apellido Paterno</value>
   </data>
+  <data name="RN_GameCode" xml:space="preserve">
+    <value>Código de la partida</value>
+  </data>
   <data name="RN_GameDate" xml:space="preserve">
     <value>Fecha de Juego</value>
   </data>
