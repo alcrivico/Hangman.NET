@@ -1,4 +1,5 @@
-﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+﻿using Hangman.Adapters.ClientSocket;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
@@ -29,6 +30,7 @@ namespace Hangman.UI.Views
         PlayerDTO _playerDTO;
         WordDTO _word;
         int _wrongLetters;
+        ClientSocket _clientSocket = new ClientSocket();
 
         public GameView()
         {
@@ -98,7 +100,24 @@ namespace Hangman.UI.Views
             {
                 Keyboard.Visibility = Visibility.Hidden;
             }
+            _clientSocket.StartClientSocket(_gameDTO.GameCode);
+            Task.Run(() => ReceiveMessagesLoop());
+        }
 
+        private async Task ReceiveMessagesLoop()
+        {
+            while (true)
+            {
+                string message = await _clientSocket.ReceiveMessage();
+                if (message != null)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        //Aqui meter lo que pasa cuando se recibe el mensaje
+                        MessageBox.Show("El mensaje recibido es: " + message);
+                    });
+                }
+            }
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -256,6 +275,7 @@ namespace Hangman.UI.Views
         private void Keyboard_Btn0Click(object sender, RoutedEventArgs e)
         {
             ReceiveLetter("0");
+
         }
 
         private void Keyboard_Btn1Click(object sender, RoutedEventArgs e)

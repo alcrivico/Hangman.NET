@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
+using System.Net;
 using System.Text;
-using System.Threading;
-using System.Web;
+using System.Threading.Tasks;
 
-namespace Hangman.Services.ServerSocket
+namespace SocketServerImplementation
 {
-    
-    public class ServerSocket
+    internal class ServerSocket
     {
         private const string SERVER_IP = "127.0.0.1";
         private const int SERVER_PORT = 1002;
 
         private Socket _serverSocket;
-        private List<Socket> _clientSockets = new List<Socket>();
+        private Dictionary<String, Socket> _clientSockets = new Dictionary<string, Socket>();
         private bool _isRunning = false;
 
         public void StartServerSocket()
@@ -24,7 +22,7 @@ namespace Hangman.Services.ServerSocket
             IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse(SERVER_IP), SERVER_PORT);
             _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _serverSocket.Bind(serverAddress);
-            _serverSocket.Listen(10);
+            _serverSocket.Listen();
 
             _isRunning = true;
             Console.WriteLine("Server is listening for incoming connections");
@@ -33,8 +31,9 @@ namespace Hangman.Services.ServerSocket
             {
                 try
                 {
+                    
                     Socket clientSocket = _serverSocket.Accept();
-                    _clientSockets.Add(clientSocket);
+                    //string clientIP = ((IPEndPoint)clientSocket.RemoteEndPoint).Address.ToString();
                     Console.WriteLine("Client connected");
 
                     Thread clientThread = new Thread(() => HandleClient(clientSocket));
@@ -61,25 +60,33 @@ namespace Hangman.Services.ServerSocket
                     string text = Encoding.UTF8.GetString(receivedBytes, 0, receivedBytesCount);
                     Console.WriteLine("Message received: " + text);
 
-                    foreach (var socket in _clientSockets)
+                    if (text.Length > 10)
                     {
-                        if (socket != clientSocket)
+                        _clientSockets.Add(text, clientSocket);
+                    }
+                    else
+                    {
+                        foreach (var socket in _clientSockets)
                         {
-                            socket.Send(receivedBytes, receivedBytesCount, SocketFlags.None);
+                            if (socket.Value != clientSocket && socket.Key == text)
+                            {
+                                socket.Value.Send(receivedBytes, receivedBytesCount, SocketFlags.None);
+                            }
                         }
                     }
+
                 }
                 catch (SocketException socketEx)
                 {
                     Console.WriteLine("Error: " + socketEx.Message);
-                    _clientSockets.Remove(clientSocket);
-                    clientSocket.Close();
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                    _clientSockets.Remove(clientSocket);
+                    foreach (var socket in _clientSockets)
+                    {
+                        if (socket.Value == clientSocket)
+                        {
+                            _clientSockets.Remove(socket.Key);
+                            break;
+                        }
+                    }
                     clientSocket.Close();
                     break;
                 }
@@ -89,8 +96,10 @@ namespace Hangman.Services.ServerSocket
         public void StopServerSocket()
         {
             _isRunning = false;
-            foreach (var clientSocket in _clientSockets)
+            
+            foreach (var socket in _clientSockets)
             {
+                Socket clientSocket = socket.Value;
                 try
                 {
                     clientSocket.Shutdown(SocketShutdown.Both);

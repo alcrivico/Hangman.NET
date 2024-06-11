@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hangman.Adapters.ClientSocket
 {
-    internal class ClientSocket
+    public class ClientSocket
     {
         const string SERVER_IP = "127.0.0.1";
         const int SERVER_PORT = 1002;
@@ -22,12 +22,14 @@ namespace Hangman.Adapters.ClientSocket
             _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
 
-        public void StartClientSocket()
+        public void StartClientSocket(string gameCode)
         {
             try
             {
                 _clientSocket.Connect(_serverAddress);
                 Console.WriteLine("Connected to the server");
+                byte[] infoBytes = Encoding.UTF8.GetBytes(gameCode);
+                _clientSocket.Send(infoBytes);
             }
             catch (Exception ex)
             {
@@ -52,14 +54,14 @@ namespace Hangman.Adapters.ClientSocket
             }
         }
 
-        public string ReceiveMessage()
+        public async Task<string> ReceiveMessage()
         {
             if(_clientSocket.Connected)
             {
                 byte[] receiveBytes = new byte[1024];
                 try
                 {
-                    int numBytes = _clientSocket.Receive(receiveBytes);
+                    int numBytes = await _clientSocket.ReceiveAsync(receiveBytes);
                     string serverMessage = Encoding.UTF8.GetString(receiveBytes, 0, numBytes);
                     Console.WriteLine("Received from server: " + serverMessage);
 

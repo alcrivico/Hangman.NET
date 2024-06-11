@@ -87,6 +87,11 @@
     <Compile Include="Models\POCO\Player.cs" />
     <Compile Include="Models\POCO\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Implementations\CategoryRepository.cs" />
     <Compile Include="Repositories\Implementations\GameRepository.cs" />
     <Compile Include="Repositories\Implementations\LanguageRepository.cs" />
@@ -97,7 +102,6 @@
     <Compile Include="Repositories\Interfaces\ILanguageRepository.cs" />
     <Compile Include="Repositories\Interfaces\IPlayerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWordRepository.cs" />
-    <Compile Include="ServerSocket\ServerSocket.cs" />
     <Compile Include="Utilities\DBConnection.cs" />
     <Compile Include="Utilities\YourDataContext.cs" />
   </ItemGroup>
@@ -105,6 +109,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

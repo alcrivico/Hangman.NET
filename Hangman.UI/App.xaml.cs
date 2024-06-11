@@ -13,7 +13,7 @@ namespace Hangman.UI
 
         public void ApplicationStart(object sender, StartupEventArgs e)
         {
-
+            //Cambiar
            LogInView initialView = new();
 
             initialView.Show();
