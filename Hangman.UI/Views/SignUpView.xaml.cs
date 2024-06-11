@@ -1,38 +1,80 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
-using System.Linq;
-using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Resources;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 using System.Windows.Media;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 
 namespace Hangman.UI.Views
 {
     public partial class SignUpView : Window
     {
         private bool isEdit = false;
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
+
         public SignUpView()
         {
             InitializeComponent();
+            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
+            SetLanguage("es");
         }
 
         public SignUpView(PlayerDTO player)
         {
             isEdit = true;
             InitializeComponent();
-            Title.Text = "Editar Perfil";
+            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
+            SetLanguage("es");
+            Title.Text = resourceManager.GetString("RN_EditProfile", cultureInfo);
             TextBox_Email.IsEnabled = false;
             TextBox_Email.Text = player.Email;
             TextBox_Name.Text = player.Name;
             TextBox_FirstLastName.Text = player.FirstLastName;
             TextBox_SecondLastName.Text = player.SecondLastName;
             DatePicker_BirthDate.SelectedDate = player.BirthDate;
-            Button_SignUp.Text = "Guardar Cambios";
+            Button_SignUp.Text = resourceManager.GetString("RN_SaveChanges", cultureInfo);
             Button_SignUp.FontSize = 20;
             TextBlock_LogIn.Visibility = Visibility.Collapsed;
+        }
 
+        private void SetLanguage(string language)
+        {
+            cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            Title.Text = resourceManager.GetString("RN_TitleSignUp", cultureInfo);
+            TextBox_Name.FieldName = resourceManager.GetString("RN_Name", cultureInfo);
+            TextBox_FirstLastName.FieldName = resourceManager.GetString("RN_FirstLastName", cultureInfo);
+            TextBox_SecondLastName.FieldName = resourceManager.GetString("RN_SecondLastName", cultureInfo);
+            DatePicker_BirthDate.FieldName = resourceManager.GetString("RN_BirthDate", cultureInfo);
+            TextBox_Email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
+            PasswordBox_Password.FieldName = resourceManager.GetString("RN_Password", cultureInfo);
+            PasswordBox_ConfirmPassword.FieldName = resourceManager.GetString("RN_ConfirmPassword", cultureInfo);
+            Button_SignUp.Text = resourceManager.GetString("RN_BtnSignUp", cultureInfo);
+            TextBlock_LogIn.Text = resourceManager.GetString("RN_LogIn", cultureInfo);
+            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
+            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+        }
+
+        private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
+        {
+            if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
+            {
+                if (languageDTO.LanguageName.Equals("Spanish"))
+                {
+                    SetLanguage("es");
+                }
+                else if (languageDTO.LanguageName.Equals("English"))
+                {
+                    SetLanguage("en");
+                }
+            }
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -62,7 +104,7 @@ namespace Hangman.UI.Views
                     {
                         var signUpAdapter = new SignUpAdapter();
                         PlayerDTO response = signUpAdapter.SignUp(playerDTO);
-                        MessageBox.Show("Registro exitoso. Puedes iniciar sesión ahora.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(resourceManager.GetString("RN_SignUpSuccess", cultureInfo), resourceManager.GetString("RN_Success", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
                         LogInView logInView = new LogInView();
                         logInView.Show();
                         this.Close();
@@ -71,16 +113,15 @@ namespace Hangman.UI.Views
                     {
                         var updateProfileAdapter = new UpdateProfileAdapter();
                         PlayerDTO response = updateProfileAdapter.UpdatePlayer(playerDTO);
-                        MessageBox.Show("Perfil actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(resourceManager.GetString("RN_ProfileUpdateSuccess", cultureInfo), resourceManager.GetString("RN_Success", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
                         ProfileView profileView = new ProfileView(playerDTO);
                         profileView.Show();
                         this.Close();
                     }
-                   
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -94,25 +135,25 @@ namespace Hangman.UI.Views
                 string.IsNullOrWhiteSpace(playerDTO.Password) ||
                 string.IsNullOrWhiteSpace(confirmPassword))
             {
-                MessageBox.Show("Faltan campos por llenar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(resourceManager.GetString("RN_MissingFields", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (playerDTO.Name.Length > 50 || playerDTO.FirstLastName.Length > 50 || playerDTO.SecondLastName.Length > 50 || playerDTO.Email.Length > 50 || playerDTO.Password.Length > 50)
             {
-                MessageBox.Show("Los campos no deben exceder los 50 caracteres.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(resourceManager.GetString("RN_FieldLengthError", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!Regex.IsMatch(playerDTO.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("El formato del correo es incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(resourceManager.GetString("RN_InvalidEmailFormat", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!playerDTO.Password.Equals(confirmPassword))
             {
-                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(resourceManager.GetString("RN_PasswordMismatch", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

@@ -120,6 +120,9 @@
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Incorrect email and/or password. Please verify them.</value>
   </data>
+  <data name="RN_BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
   <data name="RN_BtnCreateGame" xml:space="preserve">
     <value>Create Game</value>
   </data>
@@ -132,26 +135,77 @@
   <data name="RN_BtnSearchGame" xml:space="preserve">
     <value>Join Game</value>
   </data>
+  <data name="RN_BtnSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
   <data name="RN_Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
   <data name="RN_ConfirmLogout" xml:space="preserve">
     <value>Are you sure you want to log out?</value>
   </data>
+  <data name="RN_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Copyright</value>
+  </data>
+  <data name="RN_EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
   </data>
   <data name="RN_Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="RN_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="RN_FieldLengthError" xml:space="preserve">
+    <value>Fields must not exceed 50 characters.</value>
+  </data>
+  <data name="RN_FirstLastName" xml:space="preserve">
+    <value>First Last Name</value>
+  </data>
+  <data name="RN_InvalidEmailFormat" xml:space="preserve">
+    <value>The email format is incorrect</value>
+  </data>
   <data name="RN_LanguageField" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="RN_LogIn" xml:space="preserve">
+    <value>I already have an account</value>
+  </data>
+  <data name="RN_MissingFields" xml:space="preserve">
+    <value>Missing fields</value>
+  </data>
+  <data name="RN_Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="RN_Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="RN_PasswordMismatch" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="RN_ProfileUpdateSuccess" xml:space="preserve">
+    <value>Profile updated successfully.</value>
+  </data>
+  <data name="RN_SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="RN_SecondLastName" xml:space="preserve">
+    <value>Second Last Name</value>
+  </data>
+  <data name="RN_SignUpSuccess" xml:space="preserve">
+    <value>Registration successful. You can log in now.</value>
+  </data>
+  <data name="RN_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="RN_Title" xml:space="preserve">
     <value>Hangman.NET</value>
+  </data>
+  <data name="RN_TitleSignUp" xml:space="preserve">
+    <value>Register User</value>
   </data>
   <data name="RN_WelcomeMessage" xml:space="preserve">
     <value>Welcome to the Hangman Game!</value>

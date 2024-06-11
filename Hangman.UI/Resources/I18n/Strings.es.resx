@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Faltan campos por llenar" xml:space="preserve">
+    <value>Los campos no deben exceder los 50 caracteres.</value>
+  </data>
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Correo y/o contraseña incorrectos. Por favor, verifíquelos.</value>
+  </data>
+  <data name="RN_BirthDate" xml:space="preserve">
+    <value>Fecha nacimiento</value>
   </data>
   <data name="RN_BtnCreateGame" xml:space="preserve">
     <value>Crear partida</value>
@@ -132,26 +138,74 @@
   <data name="RN_BtnSearchGame" xml:space="preserve">
     <value>Ingresar a partida</value>
   </data>
+  <data name="RN_BtnSignUp" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
   <data name="RN_Confirmation" xml:space="preserve">
     <value>Confirmación</value>
   </data>
   <data name="RN_ConfirmLogout" xml:space="preserve">
     <value>¿Está seguro de que desea cerrar sesión?</value>
   </data>
+  <data name="RN_ConfirmPassword" xml:space="preserve">
+    <value>Confirmar Contraseña</value>
+  </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Derechos Reservados</value>
+  </data>
+  <data name="RN_EditProfile" xml:space="preserve">
+    <value>Editar Perfil</value>
   </data>
   <data name="RN_Email" xml:space="preserve">
     <value>Correo Electrónico</value>
   </data>
+  <data name="RN_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="RN_FirstLastName" xml:space="preserve">
+    <value>Apellido Paterno</value>
+  </data>
+  <data name="RN_InvalidEmailFormat" xml:space="preserve">
+    <value>El formato del correo es incorrecto</value>
+  </data>
   <data name="RN_LanguageField" xml:space="preserve">
     <value>Idioma</value>
+  </data>
+  <data name="RN_LogIn" xml:space="preserve">
+    <value>Ya tengo una cuenta</value>
+  </data>
+  <data name="RN_MissingFields" xml:space="preserve">
+    <value>Faltan campos por llenar</value>
+  </data>
+  <data name="RN_Name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
   <data name="RN_Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>
+  <data name="RN_PasswordMismatch" xml:space="preserve">
+    <value>Las contraseñas no coinciden</value>
+  </data>
+  <data name="RN_ProfileUpdateSuccess" xml:space="preserve">
+    <value>Perfil actualizado correctamente.</value>
+  </data>
+  <data name="RN_SaveChanges" xml:space="preserve">
+    <value>Guardar Cambios</value>
+  </data>
+  <data name="RN_SecondLastName" xml:space="preserve">
+    <value>Apellido Materno</value>
+  </data>
+  <data name="RN_SignUpSuccess" xml:space="preserve">
+    <value>Registro exitoso. Puedes iniciar sesión ahora.</value>
+  </data>
+  <data name="RN_Success" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
   <data name="RN_Title" xml:space="preserve">
     <value>Ahorcado.NET</value>
+  </data>
+  <data name="RN_TitleSignUp" xml:space="preserve">
+    <value>Registrar Usuario</value>
   </data>
   <data name="RN_WelcomeMessage" xml:space="preserve">
     <value>¡Bienvenido al juego del ahorcado!</value>
