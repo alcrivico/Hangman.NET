@@ -56,7 +56,7 @@ namespace Hangman.UI.Views
             }
 
             //Sabes por que me sale este error?
-            SetGames(games);
+            //SetGames(games);
             GamesTable.SetItemsSource(gameDTOs);
         }
 
