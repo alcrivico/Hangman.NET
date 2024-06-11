@@ -108,7 +108,7 @@ namespace Hangman.UI.Views
                     Dispatcher.Invoke(() =>
                     {
                         //Aqui meter lo que pasa cuando se recibe el mensaje
-                        MessageBox.Show(message);
+                        MessageBox.Show("El mensaje recibido es: " + message);
                     });
                 }
             }
