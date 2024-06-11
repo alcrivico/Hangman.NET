@@ -64,14 +64,11 @@ namespace SocketServerImplementation
                     {
                         _clientSockets.Add(text, clientSocket);
                     }
-                    else
+                    foreach (var socket in _clientSockets)
                     {
-                        foreach (var socket in _clientSockets)
+                        if (socket.Value != clientSocket && socket.Key == text)
                         {
-                            if (socket.Value != clientSocket && socket.Key == text)
-                            {
-                                socket.Value.Send(receivedBytes, receivedBytesCount, SocketFlags.None);
-                            }
+                            socket.Value.Send(receivedBytes, receivedBytesCount, SocketFlags.None);
                         }
                     }
 
