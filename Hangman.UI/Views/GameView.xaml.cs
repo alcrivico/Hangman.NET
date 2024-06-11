@@ -1,4 +1,5 @@
-﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+﻿using Hangman.Adapters.ClientSocket;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;
@@ -22,13 +23,16 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class GameView : Window
     {
-        GameAdapter _gameAdapter ;
+        GameAdapter _gameAdapter;
         Adapters.ControllerAdapters.Services.Game.GameDTO _gameDTO;
         PlayerDTO _playerDTO;
+        ClientSocket _clientSocket = new ClientSocket();
 
         public GameView()
         {
             InitializeComponent();
+            
+            _clientSocket.StartClientSocket();
         }
 
         public GameView(Adapters.ControllerAdapters.Services.Game.GameDTO gameDTO, PlayerDTO playerDTO)
@@ -37,6 +41,8 @@ namespace Hangman.UI.Views
             _gameAdapter = new GameAdapter();
             _gameDTO = gameDTO;
             _playerDTO = playerDTO;
+
+
 
             InitializeComponent();
 
@@ -63,6 +69,7 @@ namespace Hangman.UI.Views
             {
                 //Ocultar componentes innecesarios para el creador de la partida
             }
+            _clientSocket.StartClientSocket();
 
         }
 
@@ -89,7 +96,8 @@ namespace Hangman.UI.Views
 
             //TEST - Cambiar implementación para hacer consulta de la letra en la palabra
             MessageBox.Show("Letra: " + letter, "Letra", MessageBoxButton.OK, MessageBoxImage.Information);
-
+            
+            _clientSocket.SendMessage(letter);
         }
 
         private void Keyboard_Btn0Click(object sender, RoutedEventArgs e)
