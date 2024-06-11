@@ -1,4 +1,5 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,10 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public List<GameDTO> GetPlayedGames(string email)
         {
-            var service = new PlayerServicesClient();
+            var conexion = new PlayerServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointPlayerServices));
 
-            List<GameDTO> response = service.GetPlayedGamesAsync(email).Result;
+
+            List<GameDTO> response = conexion.GetPlayedGamesAsync(email).Result;
 
             foreach (var game in response)
             {

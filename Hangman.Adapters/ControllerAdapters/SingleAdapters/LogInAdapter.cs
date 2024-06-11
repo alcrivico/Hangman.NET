@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.Utilities;
 
 namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 {
@@ -11,7 +12,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
     {
         public PlayerDTO LogIn(string username, string password)
         {
-            var conexion = new PlayerServicesClient();
+            var conexion = new PlayerServicesClient(new System.ServiceModel.BasicHttpsBinding(),new System.ServiceModel.EndpointAddress(Constants.endPointPlayerServices));
 
             PlayerDTO response = conexion.LogInAsync(username, password).Result;
 

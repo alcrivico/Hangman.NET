@@ -1,4 +1,5 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
         public void LeftGame(string gameCode)
         {
 
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             GameDTO response = service.SetGameStatusAsync(gameCode, "Left").Result;
 
@@ -33,7 +34,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
         public void SetChallenger(string gameCode, string challengerEmail)
         {
 
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             GameDTO response = service.SetChallengerAsync(gameCode, challengerEmail).Result;
 
@@ -53,7 +54,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public void SetGameStatus(string gameCode, string status)
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             GameDTO response = service.SetGameStatusAsync(gameCode, status).Result;
 
@@ -73,7 +74,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public WordDTO SearchWord(string word)
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             WordDTO response = service.SearchWordAsync(word).Result;
 

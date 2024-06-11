@@ -1,7 +1,7 @@
 {
   "ExtendedData": {
     "inputs": [
-      "http://localhost:51239/Communications/PlayerServices.svc"
+      "https://hangmanservices.azurewebsites.net/Communications/PlayerServices.svc"
     ],
     "collectionTypes": [
       "System.Collections.Generic.Dictionary`2",

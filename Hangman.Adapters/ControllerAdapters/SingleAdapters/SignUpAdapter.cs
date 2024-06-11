@@ -1,5 +1,6 @@
 ﻿using System;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.Utilities;
 
 namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 {
@@ -7,7 +8,8 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
     {
         public PlayerDTO SignUp(PlayerDTO playerDTO)
         {
-            var conexion = new PlayerServicesClient();
+            var conexion = new PlayerServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointPlayerServices));
+
 
             PlayerDTO response = conexion.SignUpAsync(playerDTO).Result;
 
