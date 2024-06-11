@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {
@@ -36,20 +37,15 @@ namespace Hangman.UI.Views
             LoadPlayedGames();
         }
 
-        public ProfileView(string email)
-        {
-            InitializeComponent();
-            InitializeTable();
-
-            LoadPlayedGames();
-        }
-
         public ProfileView(PlayerDTO player)
         {
             InitializeComponent();
             InitializeTable();
             this.player = player;
 
+            profileAdapter = new ProfileAdapter();
+            gameDTOs = new ObservableCollection<Object>();
+            games = new List<Adapters.ControllerAdapters.Services.Player.GameDTO>();
             LoadPlayedGames();
         }
 
@@ -81,6 +77,13 @@ namespace Hangman.UI.Views
             ];
 
             GamesTable.DefineColumns(columns);
+        }
+
+        private int CalculateGlobalScore(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
+        {
+            int scorePerGame = 10;
+            int totalScore = games.Count(game => game.Status == "Win") * scorePerGame;
+            return totalScore;
         }
 
         private void LoadPlayedGames()
@@ -135,27 +138,47 @@ namespace Hangman.UI.Views
 
         private void TextBoxControl_GlobalScore(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = CalculateGlobalScore(games).ToString();
+            }
         }
 
         private void TextBoxControl_Name(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = player.Name;
+            }
         }
 
         private void TextBoxControl_LastName(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = player.FirstLastName;
+            }
         }
 
         private void TextBoxControl_SecondLastName(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = player.SecondLastName;
+            }
         }
 
         private void TextBoxControl_Email(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = player.Email;
+            }
         }
 
     }
