@@ -25,9 +25,9 @@ namespace Hangman.UI.Views
     public partial class ProfileView : Window
     {
         ProfileAdapter profileAdapter;
-        private PlayerDTO player;
-        private ObservableCollection<Object> gameDTOs;
-        private List<Adapters.ControllerAdapters.Services.Player.GameDTO> games;
+        private PlayerDTO _player;
+        private ObservableCollection<Object> _gameDTOs;
+        private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
 
         public ProfileView()
         {
@@ -37,17 +37,17 @@ namespace Hangman.UI.Views
 
         public ProfileView(PlayerDTO player)
         {
+            
+            _player = player;
+            profileAdapter = new ProfileAdapter();
+            _gameDTOs = new ObservableCollection<Object>();
+
             InitializeComponent();
             InitializeTable();
-            this.player = player;
-
-            profileAdapter = new ProfileAdapter();
-            gameDTOs = new ObservableCollection<Object>();
-            games = new List<Adapters.ControllerAdapters.Services.Player.GameDTO>();
 
             try
             {
-                games = profileAdapter.GetPlayedGames(player.Email);
+                _games = profileAdapter.GetPlayedGames(player.Email);
             }
             catch (Exception e)
             {
@@ -55,15 +55,14 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            //Sabes por que me sale este error?
-            //SetGames(games);
-            GamesTable.SetItemsSource(gameDTOs);
+            SetGames(_games);  
+            GamesTable.SetItemsSource(_gameDTOs);
         }
 
         private void InitializeTable()
         {
             Dictionary<string, string>[] columns =
-             [
+             {
                 new Dictionary<string, string> {
                     { "Name", "Contrincante" },
                     { "Width", "150.0" },
@@ -85,7 +84,7 @@ namespace Hangman.UI.Views
                     { "Width", "*" },
                     { "BindingName", "Result" }
                 }
-            ];
+            };
 
             GamesTable.DefineColumns(columns);
         }
@@ -97,20 +96,20 @@ namespace Hangman.UI.Views
             return totalScore;
         }
 
-        private void SetGames(List<Adapters.ControllerAdapters.Services.Game.GameDTO> games)
+        private void SetGames(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
-            gameDTOs.Clear();
+            _gameDTOs.Clear();
 
-            foreach (Adapters.ControllerAdapters.Services.Game.GameDTO game in games)
+            foreach (Adapters.ControllerAdapters.Services.Player.GameDTO game in games)
             {
-                gameDTOs.Add(game);
+                _gameDTOs.Add(game);
             }
 
         }
 
         private void AddGame(Adapters.ControllerAdapters.Services.Game.GameDTO game)
         {
-            gameDTOs.Add(game);
+            _gameDTOs.Add(game);
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -145,7 +144,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = CalculateGlobalScore(games).ToString();
+                textBox.Text = CalculateGlobalScore(_games).ToString();
             }
         }
 
@@ -154,7 +153,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = player.Name;
+                textBox.Text = _player.Name;
             }
         }
 
@@ -163,7 +162,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = player.FirstLastName;
+                textBox.Text = _player.FirstLastName;
             }
         }
 
@@ -172,7 +171,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = player.SecondLastName;
+                textBox.Text = _player.SecondLastName;
             }
         }
 
@@ -181,7 +180,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = player.Email;
+                textBox.Text = _player.Email;
             }
         }
 
