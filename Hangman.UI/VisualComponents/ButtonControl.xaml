@@ -9,7 +9,7 @@
     d:DesignHeight="{Binding ButtonHeight, ElementName=Button}"
     d:DesignWidth="{Binding ButtonWidth, ElementName=Button}"
     Cursor="Hand"
-    IsEnabled="{Binding IsButtonEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
+    IsEnabled="{Binding IsButtonEnabled, ElementName=Button}"
     MouseEnter="Button_MouseEnter"
     MouseLeave="Button_MouseLeave"
     MouseLeftButtonDown="Button_MouseLeftButtonDown"
