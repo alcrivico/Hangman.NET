@@ -30,7 +30,22 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
                 default:
                     throw new Exception("Se recibió un código de respuesta inesperado: " + response.ResponseCode);
             }
+        }
 
+        public List<LanguageDTO> GetLanguagesList()
+        {
+            var service = new GameServicesClient();
+
+            List<LanguageDTO> languages = service.GetLanguagesListAsync().Result;
+
+            if (languages != null && languages.Count > 0)
+            {
+                return languages;
+            }
+            else
+            {
+                throw new Exception("No se pudieron obtener los idiomas del servicio.");
+            }
         }
     }
 }
