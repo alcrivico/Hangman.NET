@@ -8,7 +8,7 @@
       "System.Collections.Generic.List`1"
     ],
     "namespaceMappings": [
-      "*, Hangman.Services.ControllerAdapters.Services.Player"
+      "*, Hangman.Adapters.ControllerAdapters.Services.Player"
     ],
     "references": [
       "Microsoft.Extensions.ObjectPool, {Microsoft.Extensions.ObjectPool, 6.0.16}",
