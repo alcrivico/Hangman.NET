@@ -30,6 +30,9 @@ namespace Hangman.UI.Views
             TextBox_SecondLastName.Text = player.SecondLastName;
             DatePicker_BirthDate.SelectedDate = player.BirthDate;
             Button_SignUp.Text = "Guardar Cambios";
+            Button_SignUp.FontSize = 20;
+            TextBlock_LogIn.Visibility = Visibility.Collapsed;
+
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
