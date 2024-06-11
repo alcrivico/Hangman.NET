@@ -109,6 +109,7 @@ namespace Hangman.UI.Views
         {
             _gameDTOs.Clear();
 
+
             foreach (Adapters.ControllerAdapters.Services.Player.GameDTO game in games)
             {
                 _gameDTOs.Add(game);

@@ -58,6 +58,9 @@ namespace Hangman.UI.Views
                     var signUpAdapter = new SignUpAdapter();
                     PlayerDTO response = signUpAdapter.SignUp(playerDTO);
                     MessageBox.Show("Registro exitoso. Puedes iniciar sesión ahora.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LogInView logInView = new LogInView();
+                    logInView.Show();
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
