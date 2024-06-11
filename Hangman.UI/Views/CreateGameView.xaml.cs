@@ -176,7 +176,7 @@ namespace Hangman.UI.Views
                 GameDTO response = _createGameAdapter.CreateGame(newGame);
 
                 //pasar palabradto?
-                GameView gameView = new GameView();
+                GameView gameView = new GameView(response, _player);
                 gameView.Show();
                 this.Close();
             }

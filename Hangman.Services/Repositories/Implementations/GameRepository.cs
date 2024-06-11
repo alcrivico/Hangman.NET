@@ -29,6 +29,8 @@ namespace Hangman.Services.Repositories.Implementations
 
                     try
                     {
+                        Table<Game> gameTable = dataSource.GetTable<Game>();
+                        Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
                         Table<Player> playerTable = dataSource.GetTable<Player>();
                         Table<Word> wordTable = dataSource.GetTable<Word>();
                         Table<Language> languageTable = dataSource.GetTable<Language>();
@@ -48,7 +50,30 @@ namespace Hangman.Services.Repositories.Implementations
                         if(playerId != 0 && wordId != 0 && languageId != 0)
                         {
                             dataSource.AddGame(playerId, wordId, languageId);
-                            response.ResponseCode = 0;
+
+                            var games = (from game in gameTable
+                                         join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                         join creator in playerTable on game.CreatorId equals creator.Id
+                                         join challenger in playerTable on game.ChallengerId equals challenger.Id
+                                         join word in wordTable on game.WordId equals word.Id
+                                         join language in languageTable on game.LanguageId equals language.Id
+                                         where playerId == game.CreatorId && wordId == game.WordId && languageId == game.LanguageId
+                                         select new GameDTO
+                                         {
+                                             CreationDate = game.CreationDate,
+                                             GameCode = game.GameCode,
+                                             Status = gameStatus.Status,
+                                             CreatorName = creator.Name,
+                                             CreatorEmail = creator.Email,
+                                             ChallengerName = challenger.Name,
+                                             ChallengerEmail = challenger.Email,
+                                             WordES = word.WordES,
+                                             WordEN = word.WordEN,
+                                             Language = language.LanguageName,
+                                             ResponseCode = 0
+                                         }).Last();
+
+                            response = games;
                         }
                         else
                         {
