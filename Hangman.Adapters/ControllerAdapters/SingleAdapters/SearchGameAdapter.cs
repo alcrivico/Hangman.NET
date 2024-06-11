@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.Utilities;
 
 namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 {
@@ -13,7 +14,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public List<GameDTO> GetWaitingGames() 
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             List<GameDTO> response = service.GetWaitingGamesAsync().Result;
 
@@ -54,7 +55,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
         public List<LanguageDTO> GetLanguagesList()
         {
 
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             List<LanguageDTO> response = service.GetLanguagesListAsync().Result;
 

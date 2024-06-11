@@ -59,11 +59,13 @@ namespace Hangman.UI.Views
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MenuView menuView = new MenuView(_player);
+                menuView.Show();
                 this.Close();
             }
 
             SetGames(_games);
-             
+            
             GamesTable.SetItemsSource(_gameDTOs);
         }
 

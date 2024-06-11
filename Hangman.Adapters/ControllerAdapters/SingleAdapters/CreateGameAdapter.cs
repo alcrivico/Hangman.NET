@@ -1,4 +1,5 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.Adapters.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public GameDTO CreateGame(GameDTO newGame)
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
+
 
             GameDTO response = service.CreateGameAsync(newGame).Result;
 
@@ -37,7 +39,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public List<CategoryDTO> GetCategoriesList()
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             List<CategoryDTO> response = service.GetCategoriesListAsync().Result;
 
@@ -69,7 +71,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public List<WordDTO> GetWordsList()
         {
-            var service = new GameServicesClient(); 
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             List<WordDTO> response = service.GetWordsListAsync().Result;
 
@@ -101,7 +103,7 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         public List<LanguageDTO> GetLanguagesList()
         {
-            var service = new GameServicesClient();
+            var service = new GameServicesClient(new System.ServiceModel.BasicHttpsBinding(), new System.ServiceModel.EndpointAddress(Constants.endPointGameServices));
 
             List<LanguageDTO> response = service.GetLanguagesListAsync().Result;
 
