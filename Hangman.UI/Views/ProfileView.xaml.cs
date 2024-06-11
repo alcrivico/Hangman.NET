@@ -1,6 +1,9 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +23,25 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class ProfileView : Window
     {
+        ProfileAdapter profileAdapter;
         private PlayerDTO player;
+        private ObservableCollection<Object> gameDTOs;
+        private List<Adapters.ControllerAdapters.Services.Player.GameDTO> games;
 
         public ProfileView()
         {
             InitializeComponent();
             InitializeTable();
 
+            LoadPlayedGames();
+        }
+
+        public ProfileView(string email)
+        {
+            InitializeComponent();
+            InitializeTable();
+
+            LoadPlayedGames();
         }
 
         public ProfileView(PlayerDTO player)
@@ -34,6 +49,8 @@ namespace Hangman.UI.Views
             InitializeComponent();
             InitializeTable();
             this.player = player;
+
+            LoadPlayedGames();
         }
 
         private void InitializeTable()
@@ -64,6 +81,29 @@ namespace Hangman.UI.Views
             ];
 
             GamesTable.DefineColumns(columns);
+        }
+
+        private void LoadPlayedGames()
+        {
+            try
+            {
+                games = profileAdapter.GetPlayedGames(player.Email);
+                SetGames(games);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetGames(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
+        {
+            gameDTOs.Clear();
+
+            foreach (var game in games)
+            {
+                gameDTOs.Add(game);
+            }
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
