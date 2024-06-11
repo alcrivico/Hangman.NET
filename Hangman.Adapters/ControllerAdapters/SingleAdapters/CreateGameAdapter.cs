@@ -75,18 +75,29 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
             List<WordDTO> response = service.GetWordsListAsync().Result;
 
-            WordDTO responseCode = response[0];
-
-            switch(responseCode.ResponseCode)
+            foreach (var word in response)
             {
-                case 1:
+
+                if (word.ResponseCode == 1)
+                {
                     throw new Exception("No se encontró información de la entidad en la base de datos");
-                case 2:
+                }
+
+                if (word.ResponseCode == 2)
+                {
                     throw new Exception("Error en la consulta, verifique el error en el servidor");
-                case 3:
+                }
+
+                if (word.ResponseCode == 3)
+                {
                     throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
-                case 4:
+                }
+
+                if (word.ResponseCode < 0 && word.ResponseCode > 3)
+                {
                     throw new Exception("Error de conexión");
+                }
+
             }
 
             return response;

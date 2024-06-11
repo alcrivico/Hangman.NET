@@ -18,6 +18,7 @@ using System.Xml;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using GameDTO = Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO;
 
 namespace Hangman.UI.Views
 {
@@ -68,7 +69,7 @@ namespace Hangman.UI.Views
         {
             _createGameAdapter = new CreateGameAdapter();
             _player = player;
-            _words = null;
+            _words = new List<WordDTO>();
             _categories = null;
             _wordDTOs = new ObservableCollection<Object>();
             _categoryDTOs = new ObservableCollection<Object>();
@@ -146,13 +147,13 @@ namespace Hangman.UI.Views
                 {
                     { "Name", "Palabra" },
                     { "Width", "*" },
-                    { "BindingName", "Word" }
+                    { "BindingName", "WordES" }
                 },
                 new Dictionary<string, string>
                 {
                     { "Name", "Pista" },
                     { "Width", "*" },
-                    { "BindingName", "Tip" }
+                    { "BindingName", "TipES" }
                 },
             };
 
@@ -162,7 +163,27 @@ namespace Hangman.UI.Views
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            //
+            //TODO
+            GameDTO newGame = new GameDTO();
+            WordDTO selectedWord = WordsTable.GetSelectedItem() as WordDTO;
+
+            newGame.CreatorEmail = _player.Email;            
+            newGame.WordES = selectedWord.WordES;
+            newGame.WordEN = selectedWord.WordEN;
+            newGame.Language = "Spanish";
+            try
+            {
+                GameDTO response = _createGameAdapter.CreateGame(newGame);
+
+                //pasar palabradto?
+                GameView gameView = new GameView();
+                gameView.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
@@ -181,10 +202,21 @@ namespace Hangman.UI.Views
 
         private void CategoryList_SelectedItemChanged(object sender, RoutedEventArgs e)
         {
+              
+            CategoryDTO selectedCategory = CategoryList.SelectedItem as CategoryDTO;
 
-            SetWords(_words);
-            WordsTable.SetItemsSource(_wordDTOs);
+            if (selectedCategory != null)
+            {
+                List<WordDTO> filteredWords = _words.Where(word => word.CategoryES == selectedCategory.CategoryES).ToList();
+                _wordDTOs.Clear();
 
+                foreach (var word in filteredWords)
+                {
+                    _wordDTOs.Add(word);
+                }
+
+                WordsTable.SetItemsSource(_wordDTOs);
+            }
         }
     }
 
