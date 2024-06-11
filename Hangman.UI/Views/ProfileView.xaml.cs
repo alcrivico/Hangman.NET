@@ -55,7 +55,11 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            SetGames(_games);  
+            if(_games.Any())
+            {
+                SetGames(_games);
+            }
+             
             GamesTable.SetItemsSource(_gameDTOs);
         }
 
