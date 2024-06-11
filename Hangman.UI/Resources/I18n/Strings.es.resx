@@ -120,11 +120,23 @@
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Correo y/o contraseña incorrectos. Por favor, verifíquelos.</value>
   </data>
+  <data name="RN_BtnCreateGame" xml:space="preserve">
+    <value>Crear partida</value>
+  </data>
   <data name="RN_BtnLogin" xml:space="preserve">
     <value>Entrar</value>
   </data>
   <data name="RN_BtnRegister" xml:space="preserve">
     <value>Registrar Usuario</value>
+  </data>
+  <data name="RN_BtnSearchGame" xml:space="preserve">
+    <value>Ingresar a partida</value>
+  </data>
+  <data name="RN_Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="RN_ConfirmLogout" xml:space="preserve">
+    <value>¿Está seguro de que desea cerrar sesión?</value>
   </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Derechos Reservados</value>
