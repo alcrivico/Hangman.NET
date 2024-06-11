@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Resources;
 using System.Globalization;
+using Hangman.Adapters.ControllerAdapters.Services.Game;
 
 namespace Hangman.UI.Views
 {
@@ -22,7 +23,7 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
             resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
-            SetLanguage("en");
+            SetLanguage("es");
             logInAdapter = new LogInAdapter();
         }
 
@@ -107,16 +108,18 @@ namespace Hangman.UI.Views
 
         private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
         {
-            if (TitleBarControl.SelectedItem != null)
+            TitleBarControl.FieldName = "Hola";
+            if (TitleBarControl.SelectedItem is LanguageDTO)
             {
+                LanguageDTO languageDTO = (LanguageDTO) TitleBarControl.SelectedItem;
 
-                if (TitleBarControl.SelectedItem == "Spanish")
+                if (languageDTO.LanguageName.Equals("Spanish"))
                 {
-                    SetLanguage("es-MX");
+                    SetLanguage("es");
                 }
-                if (TitleBarControl.SelectedItem == "English")
+                if (languageDTO.LanguageName.Equals("English"))
                 {
-                    SetLanguage("en-US");
+                    SetLanguage("en");
                 }
 
             }   
