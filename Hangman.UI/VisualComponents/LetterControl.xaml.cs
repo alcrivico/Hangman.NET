@@ -23,7 +23,7 @@ namespace Hangman.UI.VisualComponents
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            set { SetValue(TextProperty, value.ToUpper()); }
         }
 
         public static readonly DependencyProperty TextProperty = 
@@ -33,18 +33,18 @@ namespace Hangman.UI.VisualComponents
                 typeof(LetterControl), 
                 new PropertyMetadata(string.Empty));
 
-        public int Clarity
+        public double LetterOpacity
         {
-            get { return (int)GetValue(ClarityProperty); }
-            set { SetValue(ClarityProperty, value); }
+            get { return (double)GetValue(LetterOpacityProperty); }
+            set { SetValue(LetterOpacityProperty, value); }
         }
 
-        public static readonly DependencyProperty ClarityProperty =
+        public static readonly DependencyProperty LetterOpacityProperty =
             DependencyProperty.Register(
-                               "Clarity",
-                               typeof(int),
+                               "LetterOpacity",
+                               typeof(double),
                                typeof(LetterControl),
-                               new PropertyMetadata(1));
+                               new PropertyMetadata(1.0));
 
         public LetterControl()
         {

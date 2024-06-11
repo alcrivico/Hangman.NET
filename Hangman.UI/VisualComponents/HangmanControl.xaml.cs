@@ -24,7 +24,11 @@ namespace Hangman.UI.VisualComponents
         public int IncorrectGuesses
         {
             get { return (int)GetValue(IncorrectGuessesProperty); }
-            set { SetValue(IncorrectGuessesProperty, value); }
+            set 
+            { 
+                SetValue(IncorrectGuessesProperty, value); 
+                SetHangmanElements();
+            }
         }
 
         public static readonly DependencyProperty IncorrectGuessesProperty =
@@ -38,15 +42,6 @@ namespace Hangman.UI.VisualComponents
         {
 
             InitializeComponent();
-            SetHangmanElements();
-
-        }
-
-        public void AddIncorrectGuess()
-        {
-
-            IncorrectGuesses++;
-
             SetHangmanElements();
 
         }

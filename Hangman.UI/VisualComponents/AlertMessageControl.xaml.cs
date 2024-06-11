@@ -35,6 +35,18 @@ namespace Hangman.UI.VisualComponents
         public static readonly DependencyProperty RestBorderBrushColorProperty =
             DependencyProperty.Register("RestBorderBrushColor", typeof(Brush), typeof(AlertMessageControl), new PropertyMetadata(Brushes.White));
 
+        public SolidColorBrush FontColor
+        {
+            get { return (SolidColorBrush)GetValue(FontColorProperty); }
+            set { SetValue(FontColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty FontColorProperty =
+            DependencyProperty.Register("FontColor",
+                typeof(SolidColorBrush),
+                typeof(AlertMessageControl),
+                new PropertyMetadata(new SolidColorBrush(Colors.White)));
+
         public Brush RestBorderBrushColor
         {
             get { return (Brush)GetValue(RestBorderBrushColorProperty); }
@@ -49,6 +61,8 @@ namespace Hangman.UI.VisualComponents
             get { return (double)GetValue(MessageFontSizeProperty); }
             set { SetValue(MessageFontSizeProperty, value); }
         }
+
+
 
     }
 }

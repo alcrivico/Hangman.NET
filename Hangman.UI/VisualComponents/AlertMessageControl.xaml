@@ -55,9 +55,12 @@
             Margin="10"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            FontFamily="{StaticResource Font_Nunito}"
             FontSize="{Binding MessageFontSize, ElementName=AlertMessage}"
-            Foreground="{StaticResource SolidColorBrush_White}"
+            FontWeight="Bold"
+            Foreground="{Binding FontColor, ElementName=AlertMessage}"
             Text="{Binding AlertMessageText, ElementName=AlertMessage}" />
+
     </Border>
 
 </UserControl>

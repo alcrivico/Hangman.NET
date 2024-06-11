@@ -108,7 +108,10 @@
 
                                 </Grid>
 
-                                <components:WordControl Grid.Row="1" VerticalAlignment="Center" />
+                                <components:WordControl
+                                    x:Name="HangmanWord"
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center" />
 
                             </Grid>
                             <Grid Grid.Column="2" Margin="0,0,0,0">
@@ -209,7 +212,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         BorderBrushColor="{StaticResource SolidColorBrush_RustyRed}"
-                                        Foreground="{StaticResource SolidColorBrush_White}"
+                                        FontColor="{StaticResource SolidColorBrush_RoyalBlue}"
                                         MessageFontSize="18"
                                         RestBorderBrushColor="{StaticResource SolidColorBrush_Gold}"
                                         Visibility="Hidden" />
@@ -223,7 +226,7 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Top"
                                         BorderBrushColor="{StaticResource SolidColorBrush_RoyalBlue}"
-                                        Foreground="{StaticResource SolidColorBrush_White}"
+                                        FontColor="{StaticResource SolidColorBrush_RoyalBlue}"
                                         MessageFontSize="18"
                                         RestBorderBrushColor="{StaticResource SolidColorBrush_Gold}"
                                         Visibility="Visible" />

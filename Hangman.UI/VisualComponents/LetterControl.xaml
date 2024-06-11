@@ -8,13 +8,20 @@
     Name="Letter"
     d:DesignHeight="40"
     d:DesignWidth="40"
-    Opacity="{Binding Clarity, ElementName=Letter}"
+    Opacity="1"
     mc:Ignorable="d">
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
         <TextBox
             x:Name="TextBox_Letter"
+            Grid.Row="0"
             HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
             Background="Transparent"
             BorderBrush="Transparent"
             BorderThickness="0"
@@ -22,10 +29,12 @@
             FontSize="24"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
+            Opacity="{Binding LetterOpacity, ElementName=Letter}"
             Text="{Binding Text, ElementName=Letter}" />
 
         <Border
             x:Name="Border_Line"
+            Grid.Row="1"
             Width="39"
             Height="10"
             HorizontalAlignment="Center"

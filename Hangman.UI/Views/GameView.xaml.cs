@@ -28,6 +28,7 @@ namespace Hangman.UI.Views
         Adapters.ControllerAdapters.Services.Game.GameDTO _gameDTO;
         PlayerDTO _playerDTO;
         WordDTO _word;
+        int _wrongLetters;
 
         public GameView()
         {
@@ -43,6 +44,8 @@ namespace Hangman.UI.Views
             _categories = new List<string>();
             _tips = new List<string>();
             _word = new WordDTO();
+            _wrongLetters = 0;
+
 
             InitializeComponent();
 
@@ -68,6 +71,8 @@ namespace Hangman.UI.Views
                         Information_Category.GameInformation = "Categoría: " + _categories[0];
                         Information_Tip.GameInformation = "Tip: " + _tips[0];
                         InformationMessage.AlertMessageText = "Creador de la partida: " + _gameDTO.CreatorName  + "\nCódigo de Partida: " + _gameDTO.GameCode;
+                        HangmanWord.Word = _word.WordES;
+
                     }
                     else
                     {
@@ -75,6 +80,7 @@ namespace Hangman.UI.Views
                         Information_Category.GameInformation = "Category: " + _categories[1];
                         Information_Tip.GameInformation = "Tip: " + _tips[1];
                         InformationMessage.AlertMessageText = "Game Creator: " + _gameDTO.CreatorName + "\nGame Code: " + _gameDTO.GameCode;
+                        HangmanWord.Word = _word.WordEN;
 
                     }
 
@@ -116,8 +122,134 @@ namespace Hangman.UI.Views
         private void ReceiveLetter(String letter)
         {
 
-            //TEST - Cambiar implementación para hacer consulta de la letra en la palabra
-            MessageBox.Show("Letra: " + letter, "Letra", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (_gameDTO.CreatorName != _playerDTO.Name)
+            {
+
+                try
+                {
+
+                    if (_gameDTO.Language == "Spanish")
+                    {
+
+                        if (_word.WordES.ToUpper().Contains(letter))
+                        {
+                            AlertMessage.Visibility = Visibility.Hidden;
+
+                            HangmanWord.DiscoverLetter(letter);
+
+                            if (HangmanWord.IsWordDiscovered)
+                            {
+
+                                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Won");
+
+                                MessageBox.Show("¡Felicidades! Has ganado la partida", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                                
+                                MenuView menuView = new MenuView(_playerDTO);
+
+                                menuView.Show();
+
+                                this.Close();
+
+                            }
+
+                        }
+                        else
+                        {
+
+                            AlertMessage.AlertMessageText = "La letra " + letter + " no forma parte de la palabra";
+                            AlertMessage.Visibility = Visibility.Visible;
+
+                            _wrongLetters++;
+
+                            Hangman.IncorrectGuesses = _wrongLetters;
+
+                            if (_wrongLetters == 6)
+                            {
+
+                                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Lost");
+
+                                MessageBox.Show("La palabra secreta era\n" + _word.WordES, "Derrota", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                                MenuView menuView = new MenuView(_playerDTO);
+
+                                menuView.Show();
+
+                                this.Close();
+
+                            }
+
+                        }
+
+                    }
+                    else if (_gameDTO.Language == "English")
+                    {
+
+                        if (_word.WordEN.ToUpper().Contains(letter))
+                        {
+
+                            AlertMessage.Visibility = Visibility.Hidden;
+
+                            HangmanWord.DiscoverLetter(letter);
+
+                            if (HangmanWord.IsWordDiscovered)
+                            {
+
+                                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Won");
+
+                                MessageBox.Show("Congratulations! You have won the game", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                MenuView menuView = new MenuView(_playerDTO);
+
+                                menuView.Show();
+
+                                this.Close();
+
+                            }
+
+                        }
+                        else
+                        {
+
+                            AlertMessage.AlertMessageText = "The letter " + letter + " is not part of the word";
+                            AlertMessage.Visibility = Visibility.Visible;
+
+                            _wrongLetters++;
+                            Hangman.IncorrectGuesses = _wrongLetters;
+
+                            if (_wrongLetters == 6)
+                            {
+
+                                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Lost");
+
+                                MessageBox.Show("The secret word was\n" + _word.WordEN, "Defeat", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                                MenuView menuView = new MenuView(_playerDTO);
+
+                                menuView.Show();
+
+                                this.Close();
+
+                            }
+
+                        }
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    MenuView menuView = new MenuView(_playerDTO);
+
+                    menuView.Show();
+
+                    this.Close();
+
+                }
+
+            }
 
         }
 
