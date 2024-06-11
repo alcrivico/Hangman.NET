@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using System.Collections.ObjectModel;
 
 namespace Hangman.UI.Views
 {
@@ -24,17 +26,23 @@ namespace Hangman.UI.Views
     public partial class CreateGameView : Window
     {
         private PlayerDTO player;
+        private List<WordDTO> wordsList;
+        public ObservableCollection<CategoryDTO> Categories { get; set; }
+        private ObservableCollection<object> categoriesCollection;
 
         public CreateGameView()
         {
             InitializeComponent();
             InitializeTable();
+            Categories = new ObservableCollection<CategoryDTO>();
+            LoadCategories();
         }
 
         public CreateGameView(PlayerDTO player)
         {
             InitializeComponent();
             InitializeTable();
+            LoadCategories();
             this.player = player;
         }
 
@@ -52,16 +60,29 @@ namespace Hangman.UI.Views
                 {
                     { "Name", "Pista" },
                     { "Width", "*" },
-                    { "BindingName", "Hint" }
+                    { "BindingName", "Tip" }
                 },
             };
 
             WordsTable.DefineColumns(columns);
         }
 
-        private void InitializeComboBox()
+        private void LoadCategories()
         {
-            
+            try
+            {
+                CreateGameAdapter adapter = new CreateGameAdapter();
+                List<CategoryDTO> categories = adapter.GetCategoriesList();
+
+                foreach (var category in categories)
+                {
+                    Categories.Add(category);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las categorías: " + ex.Message);
+            }
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
