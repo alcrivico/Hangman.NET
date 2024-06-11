@@ -133,6 +133,8 @@ namespace Hangman.UI.Views
             {
 
                 _gameAdapter.LeftGame(_gameDTO.GameCode);
+                MenuView menuView = new MenuView(_playerDTO);
+                menuView.Show();
                 this.Close();
 
             }
