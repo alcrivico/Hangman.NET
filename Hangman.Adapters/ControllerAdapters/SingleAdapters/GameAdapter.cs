@@ -71,5 +71,26 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
         }
 
+        public WordDTO SearchWord(string word)
+        {
+            var service = new GameServicesClient();
+
+            WordDTO response = service.SearchWordAsync(word).Result;
+
+            switch (response.ResponseCode)
+            {
+
+                case 1:
+                    throw new Exception("No se encontró información de la entidad en la base de datos");
+                case 2:
+                    throw new Exception("Error en la consulta, verifique el error en el servidor");
+                case 3:
+                    throw new Exception("No se ha podido conectar con la base de datos. Por favor, intente más tarde");
+
+            }
+
+            return response;
+        }
+
     }
 }

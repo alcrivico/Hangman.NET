@@ -443,6 +443,9 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetLanguagesList", ReplyAction="http://tempuri.org/IGameServices/GetLanguagesListResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/SearchWord", ReplyAction="http://tempuri.org/IGameServices/SearchWordResponse")]
+        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.WordDTO> SearchWordAsync(string word);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -533,6 +536,11 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync()
         {
             return base.Channel.GetLanguagesListAsync();
+        }
+        
+        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.WordDTO> SearchWordAsync(string word)
+        {
+            return base.Channel.SearchWordAsync(word);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
