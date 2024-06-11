@@ -141,6 +141,12 @@
   <data name="RN_BtnSignUp" xml:space="preserve">
     <value>Sign Up</value>
   </data>
+  <data name="RN_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RN_Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
   <data name="RN_Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Copyright</value>
+  </data>
+  <data name="RN_CreateGame" xml:space="preserve">
+    <value>Create Game</value>
   </data>
   <data name="RN_EditProfile" xml:space="preserve">
     <value>Edit Profile</value>
@@ -173,6 +182,9 @@
   </data>
   <data name="RN_GlobalScore" xml:space="preserve">
     <value>Global Score</value>
+  </data>
+  <data name="RN_Hint" xml:space="preserve">
+    <value>Hint</value>
   </data>
   <data name="RN_InvalidEmailFormat" xml:space="preserve">
     <value>The email format is incorrect</value>
@@ -218,6 +230,9 @@
   </data>
   <data name="RN_SignUpSuccess" xml:space="preserve">
     <value>Registration successful. You can log in now.</value>
+  </data>
+  <data name="RN_StartGame" xml:space="preserve">
+    <value>Start Game</value>
   </data>
   <data name="RN_Success" xml:space="preserve">
     <value>Success</value>
