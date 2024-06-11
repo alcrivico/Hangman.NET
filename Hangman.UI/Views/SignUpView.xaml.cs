@@ -29,7 +29,7 @@ namespace Hangman.UI.Views
             TextBox_FirstLastName.Text = player.FirstLastName;
             TextBox_SecondLastName.Text = player.SecondLastName;
             DatePicker_BirthDate.SelectedDate = player.BirthDate;
-            Button_SignUp.Content = "Guardar Cambios";
+            Button_SignUp.Text = "Guardar Cambios";
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -55,12 +55,25 @@ namespace Hangman.UI.Views
             {
                 try
                 {
-                    var signUpAdapter = new SignUpAdapter();
-                    PlayerDTO response = signUpAdapter.SignUp(playerDTO);
-                    MessageBox.Show("Registro exitoso. Puedes iniciar sesión ahora.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LogInView logInView = new LogInView();
-                    logInView.Show();
-                    this.Close();
+                    if (!isEdit)
+                    {
+                        var signUpAdapter = new SignUpAdapter();
+                        PlayerDTO response = signUpAdapter.SignUp(playerDTO);
+                        MessageBox.Show("Registro exitoso. Puedes iniciar sesión ahora.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LogInView logInView = new LogInView();
+                        logInView.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        var updateProfileAdapter = new UpdateProfileAdapter();
+                        PlayerDTO response = updateProfileAdapter.UpdatePlayer(playerDTO);
+                        MessageBox.Show("Perfil actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ProfileView profileView = new ProfileView(playerDTO);
+                        profileView.Show();
+                        this.Close();
+                    }
+                   
                 }
                 catch (Exception ex)
                 {
