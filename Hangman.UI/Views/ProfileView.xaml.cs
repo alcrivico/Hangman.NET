@@ -55,10 +55,7 @@ namespace Hangman.UI.Views
                 this.Close();
             }
 
-            if(_games.Any())
-            {
-                SetGames(_games);
-            }
+            SetGames(_games);
              
             GamesTable.SetItemsSource(_gameDTOs);
         }
@@ -70,23 +67,22 @@ namespace Hangman.UI.Views
                 new Dictionary<string, string> {
                     { "Name", "Contrincante" },
                     { "Width", "150.0" },
-                    { "BindingName", "Opponent" }
+                    { "BindingName", "CreatorName" }
                 },
                 new Dictionary<string, string> {
                     { "Name", "Fecha de Juego" },
                     { "Width", "*" },
-                    { "BindingName", "GameDate" }
+                    { "BindingName", "CreationDate" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", "palabra" },
+                    { "Name", "Palabra" },
                     { "Width", "*" },
-                    { "BindingName", "Word" }
+                    { "BindingName", "WordEN" }
                 },
-
                 new Dictionary<string, string> {
                     { "Name", "Resultado" },
                     { "Width", "*" },
-                    { "BindingName", "Result" }
+                    { "BindingName", "Status" }
                 }
             };
 
