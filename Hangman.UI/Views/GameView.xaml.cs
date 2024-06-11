@@ -140,7 +140,7 @@ namespace Hangman.UI.Views
 
         private void ReceiveLetter(String letter)
         {
-
+            _clientSocket.SendMessage(letter);
             if (_gameDTO.CreatorName != _playerDTO.Name)
             {
 

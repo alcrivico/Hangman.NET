@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {
@@ -24,86 +25,91 @@ namespace Hangman.UI.Views
     public partial class ProfileView : Window
     {
         ProfileAdapter profileAdapter;
-        private PlayerDTO player;
-        private ObservableCollection<Object> gameDTOs;
-        private List<Adapters.ControllerAdapters.Services.Player.GameDTO> games;
+        private PlayerDTO _player;
+        private ObservableCollection<Object> _gameDTOs;
+        private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
 
         public ProfileView()
         {
             InitializeComponent();
             InitializeTable();
-
-            LoadPlayedGames();
-        }
-
-        public ProfileView(string email)
-        {
-            InitializeComponent();
-            InitializeTable();
-
-            LoadPlayedGames();
         }
 
         public ProfileView(PlayerDTO player)
         {
+            
+            _player = player;
+            profileAdapter = new ProfileAdapter();
+            _gameDTOs = new ObservableCollection<Object>();
+
             InitializeComponent();
             InitializeTable();
-            this.player = player;
 
-            LoadPlayedGames();
+            try
+            {
+                _games = profileAdapter.GetPlayedGames(player.Email);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
+
+            SetGames(_games);
+             
+            GamesTable.SetItemsSource(_gameDTOs);
         }
 
         private void InitializeTable()
         {
             Dictionary<string, string>[] columns =
-             [
+             {
                 new Dictionary<string, string> {
                     { "Name", "Contrincante" },
                     { "Width", "150.0" },
-                    { "BindingName", "Opponent" }
+                    { "BindingName", "CreatorName" }
                 },
                 new Dictionary<string, string> {
                     { "Name", "Fecha de Juego" },
                     { "Width", "*" },
-                    { "BindingName", "GameDate" }
+                    { "BindingName", "CreationDate" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", "palabra" },
+                    { "Name", "Palabra" },
                     { "Width", "*" },
-                    { "BindingName", "Word" }
+                    { "BindingName", "WordEN" }
                 },
-
                 new Dictionary<string, string> {
                     { "Name", "Resultado" },
                     { "Width", "*" },
-                    { "BindingName", "Result" }
+                    { "BindingName", "Status" }
                 }
-            ];
+            };
 
             GamesTable.DefineColumns(columns);
         }
 
-        private void LoadPlayedGames()
+        private int CalculateGlobalScore(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
-            try
-            {
-                games = profileAdapter.GetPlayedGames(player.Email);
-                SetGames(games);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            int scorePerGame = 10;
+            int totalScore = games.Count(game => game.Status == "Win") * scorePerGame;
+            return totalScore;
         }
 
         private void SetGames(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
-            gameDTOs.Clear();
+            _gameDTOs.Clear();
 
-            foreach (var game in games)
+            foreach (Adapters.ControllerAdapters.Services.Player.GameDTO game in games)
             {
-                gameDTOs.Add(game);
+                _gameDTOs.Add(game);
             }
+
+        }
+
+        private void AddGame(Adapters.ControllerAdapters.Services.Game.GameDTO game)
+        {
+            _gameDTOs.Add(game);
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -135,27 +141,47 @@ namespace Hangman.UI.Views
 
         private void TextBoxControl_GlobalScore(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = CalculateGlobalScore(_games).ToString();
+            }
         }
 
         private void TextBoxControl_Name(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = _player.Name;
+            }
         }
 
         private void TextBoxControl_LastName(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = _player.FirstLastName;
+            }
         }
 
         private void TextBoxControl_SecondLastName(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = _player.SecondLastName;
+            }
         }
 
         private void TextBoxControl_Email(object sender, RoutedEventArgs e)
         {
-            
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = _player.Email;
+            }
         }
 
     }
