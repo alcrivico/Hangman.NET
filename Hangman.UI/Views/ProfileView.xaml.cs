@@ -45,6 +45,13 @@ namespace Hangman.UI.Views
             InitializeComponent();
             InitializeTable();
 
+            birhtDate.IsEnabled = false;
+            email.IsEnabled = false;
+            name.IsEnabled = false;
+            firstLastName.IsEnabled = false;
+            secondLastName.IsEnabled = false;
+            score.IsEnabled = false;
+
             try
             {
                 _games = profileAdapter.GetPlayedGames(player.Email);
@@ -137,7 +144,7 @@ namespace Hangman.UI.Views
 
         private void Button_ModifyProfile_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            SignUpView profileView = new SignUpView();
+            SignUpView profileView = new SignUpView(_player);
             profileView.Show();
         }
 
@@ -183,6 +190,15 @@ namespace Hangman.UI.Views
             if (textBox != null)
             {
                 textBox.Text = _player.Email;
+            }
+        }
+
+        private void TextBoxControl_BirthDate(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBoxControl;
+            if (textBox != null)
+            {
+                textBox.Text = _player.BirthDate.Day.ToString() + "/" + _player.BirthDate.Month.ToString()+"/"+_player.BirthDate.Year.ToString();
             }
         }
 

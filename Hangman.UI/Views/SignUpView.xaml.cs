@@ -12,9 +12,24 @@ namespace Hangman.UI.Views
 {
     public partial class SignUpView : Window
     {
+        private bool isEdit = false;
         public SignUpView()
         {
             InitializeComponent();
+        }
+
+        public SignUpView(PlayerDTO player)
+        {
+            isEdit = true;
+            InitializeComponent();
+            Title.Text = "Editar Perfil";
+            TextBox_Email.IsEnabled = false;
+            TextBox_Email.Text = player.Email;
+            TextBox_Name.Text = player.Name;
+            TextBox_FirstLastName.Text = player.FirstLastName;
+            TextBox_SecondLastName.Text = player.SecondLastName;
+            DatePicker_BirthDate.SelectedDate = player.BirthDate;
+            Button_SignUp.Content = "Guardar Cambios";
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
