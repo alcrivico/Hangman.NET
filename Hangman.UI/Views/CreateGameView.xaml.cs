@@ -3,30 +3,22 @@ using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Xml;
-using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using GameDTO = Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO;
+using System.Globalization;
+using System.Linq;
+using System.Resources;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 
 namespace Hangman.UI.Views
 {
-    /// <summary>
-    /// Lógica de interacción para CreateGameView.xaml
-    /// </summary>
     public partial class CreateGameView : Window
     {
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
         private CreateGameAdapter _createGameAdapter;
         private PlayerDTO _player;
         private List<WordDTO> _words;
@@ -43,29 +35,12 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
-            try
-            {
-                _categories = _createGameAdapter.GetCategoriesList();
-            }
-            catch (Exception ex)
-            {
+            InitializeComponents();
 
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                MenuView menuView = new MenuView(_player);
-                menuView.Show();
-                this.Close();
-
-            }
-
-            InitializeTable();
-
-            SetCategories(_categories);
-
-            CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
-
+            LoadData();
         }
 
-        public CreateGameView(PlayerDTO player)
+        public CreateGameView(PlayerDTO player, LanguageDTO language)
         {
             _createGameAdapter = new CreateGameAdapter();
             _player = player;
@@ -76,67 +51,87 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
+            InitializeComponents();
+
+            LoadData();
+            TitleBarControl.SelectedItem = language;
+               
+        }
+
+        private void InitializeComponents()
+        {
+            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(CreateGameView).Assembly);
+            SetLanguage("es"); 
+            InitializeTable();
+
+        }
+
+        private void LoadData()
+        {
             try
             {
                 _categories = _createGameAdapter.GetCategoriesList();
+                SetCategories(_categories);
+                CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
+
+                _words = _createGameAdapter.GetWordsList();
+                SetWords(_words);
+                WordsTable.SetItemsSource(_wordDTOs);
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
                 MenuView menuView = new MenuView(_player);
                 menuView.Show();
                 this.Close();
-
             }
+        }
 
-            SetCategories(_categories);
-            
-            CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
+        private void SetLanguage(string language)
+        {
+            cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            Title.Text = resourceManager.GetString("RN_CreateGame", cultureInfo);
+            CategoryList.FieldName = resourceManager.GetString("RN_Categories", cultureInfo);
+            Button_StartGame.Text = resourceManager.GetString("RN_StartGame", cultureInfo);
+            Button_Cancel.Text = resourceManager.GetString("RN_Cancel", cultureInfo);
+            TextBoxControl_GameCode.FieldName = resourceManager.GetString("RN_GameCode", cultureInfo);
 
             InitializeTable();
+        }
 
-            try
+        private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
+        {
+            if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
             {
-                _words = _createGameAdapter.GetWordsList();
-                Debug.WriteLine("Word is: " + _words);
+                if (languageDTO.LanguageName.Equals("Spanish"))
+                {
+                    SetLanguage("es");
+                }
+                else if (languageDTO.LanguageName.Equals("English"))
+                {
+                    SetLanguage("en");
+                }
             }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                MenuView menuView = new MenuView(_player);
-                menuView.Show();
-                this.Close();
-
-            }
-
-            SetWords(_words);
-
-            WordsTable.SetItemsSource(_wordDTOs);
-
         }
 
         private void SetCategories(List<CategoryDTO> categories)
         {
-
             _categoryDTOs.Clear();
-
             foreach (CategoryDTO category in categories)
             {
                 _categoryDTOs.Add(category);
             }
-
         }
 
         private void SetWords(List<WordDTO> words)
         {
-
+            _wordDTOs.Clear();
             foreach (WordDTO word in words)
             {
                 _wordDTOs.Add(word);
             }
-
         }
 
         private void InitializeTable()
@@ -145,54 +140,49 @@ namespace Hangman.UI.Views
             {
                 new Dictionary<string, string>
                 {
-                    { "Name", "Palabra" },
+                    { "Name", resourceManager.GetString("RN_Word", cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "WordES" }
                 },
                 new Dictionary<string, string>
                 {
-                    { "Name", "Pista" },
+                    { "Name", resourceManager.GetString("RN_Hint", cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "TipES" }
                 },
             };
 
             WordsTable.DefineColumns(columns);
-
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            //TODO
-            GameDTO newGame = new GameDTO();
+            Adapters.ControllerAdapters.Services.Game.GameDTO newGame = new Adapters.ControllerAdapters.Services.Game.GameDTO();
             WordDTO selectedWord = WordsTable.GetSelectedItem() as WordDTO;
 
-            newGame.CreatorEmail = _player.Email;            
+            newGame.CreatorEmail = _player.Email;
             newGame.WordES = selectedWord.WordES;
             newGame.WordEN = selectedWord.WordEN;
             newGame.Language = "Spanish";
+
             try
             {
-                GameDTO response = _createGameAdapter.CreateGame(newGame);
-
-                //pasar palabradto?
+                Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
                 GameView gameView = new GameView();
                 gameView.Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-
             MenuView menuView = new MenuView(_player);
             menuView.Show();
             this.Close();
-
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -202,7 +192,6 @@ namespace Hangman.UI.Views
 
         private void CategoryList_SelectedItemChanged(object sender, RoutedEventArgs e)
         {
-              
             CategoryDTO selectedCategory = CategoryList.SelectedItem as CategoryDTO;
 
             if (selectedCategory != null)
@@ -219,5 +208,4 @@ namespace Hangman.UI.Views
             }
         }
     }
-
 }

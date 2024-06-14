@@ -33,7 +33,7 @@ namespace Hangman.UI.VisualComponents
             get { return (bool)GetValue(ChangeLanguageProperty); }
 
             set 
-            { 
+            {   
 
                 SetValue(ChangeLanguageProperty, value);
 
@@ -105,6 +105,19 @@ namespace Hangman.UI.VisualComponents
             remove { RemoveHandler(LanguageChangedEvent, value); }
         }
 
+        public object SelectedLanguage
+        {
+            get { return ComboBoxControl_Language.SelectedItem; }
+            set { ComboBoxControl_Language.SelectedItem = value; }
+        }
+
+        public static readonly DependencyProperty SelectedLanguageProperty =
+            DependencyProperty.Register(
+                nameof(SelectedLanguage),
+                typeof(object),
+                typeof(TitleBarControl),
+                new PropertyMetadata(null));
+
         public TitleBarControl()
         {
 
@@ -134,6 +147,13 @@ namespace Hangman.UI.VisualComponents
             SetLanguages(languages);
 
             ComboBoxControl_Language.SetItemsSource(_languageDTOs, "LanguageName");
+
+            ComboBoxControl_Language.SetBinding(ComboBox.SelectedItemProperty, new Binding
+            {
+                Path = new PropertyPath(nameof(SelectedLanguage)),
+                Mode = BindingMode.TwoWay,
+                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(TitleBarControl), 1)
+            });
 
         }
 
