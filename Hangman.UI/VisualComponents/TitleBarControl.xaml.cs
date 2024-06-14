@@ -241,5 +241,10 @@ namespace Hangman.UI.VisualComponents
         {
             RaiseEvent(new RoutedEventArgs(LanguageChangedEvent));
         }
+
+        public void SetSelectedItem(object item)
+        {
+            ComboBoxControl_Language.SelectedItem = item;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Hangman.UI.Views
     public partial class InformationView : Window
     {
 
-        public static readonly DependencyProperty InformationHeader =
+        public static DependencyProperty InformationHeader =
             DependencyProperty.Register(
             nameof(InformationHeader),
             typeof(string),
@@ -34,7 +34,7 @@ namespace Hangman.UI.Views
             set { SetValue(InformationHeader, value); }
         }
 
-        public static readonly DependencyProperty InformationContent =
+        public static DependencyProperty InformationContent =
             DependencyProperty.Register(
             nameof(InformationContent),
             typeof(string),
@@ -48,7 +48,7 @@ namespace Hangman.UI.Views
             set { SetValue(InformationContent, value); }
         }
 
-        public static readonly DependencyProperty InformationButton =
+        public static DependencyProperty InformationButton =
             DependencyProperty.Register(
             nameof(InformationButton),
             typeof(string),

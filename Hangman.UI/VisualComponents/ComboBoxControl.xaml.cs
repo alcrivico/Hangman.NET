@@ -164,6 +164,11 @@ namespace Hangman.UI.VisualComponents
             ComboBoxControlType.SelectedIndex = index;
         }
 
+        public void SetSelectedItem(Object item)
+        {
+            ComboBoxControlType.SelectedItem = item;
+        }
+
         private void ComboBoxControlType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(SelectedItemChangedEvent));

@@ -20,7 +20,7 @@ namespace Hangman.UI.Views
     public partial class ConfirmationView : Window
     {
 
-        public static readonly DependencyProperty ConfirmationHeader = 
+        public static DependencyProperty ConfirmationHeader = 
             DependencyProperty.Register(
             nameof(ConfirmationHeader),
             typeof(string),
@@ -34,7 +34,7 @@ namespace Hangman.UI.Views
             set { SetValue(ConfirmationHeader, value); }
         }
 
-        public static readonly DependencyProperty ConfirmationContent = 
+        public static DependencyProperty ConfirmationContent = 
             DependencyProperty.Register(
             nameof(ConfirmationContent),
             typeof(string),
@@ -48,7 +48,7 @@ namespace Hangman.UI.Views
             set { SetValue(ConfirmationContent, value); }
         }
 
-        public static readonly DependencyProperty ConfirmationButton = 
+        public static DependencyProperty ConfirmationButton = 
             DependencyProperty.Register(
             nameof(ConfirmationButton),
             typeof(string),
@@ -62,7 +62,7 @@ namespace Hangman.UI.Views
             set { SetValue(ConfirmationButton, value); }
         }
 
-        public static readonly DependencyProperty CancelButton = 
+        public static DependencyProperty CancelButton = 
             DependencyProperty.Register(
             nameof(CancelButton),
             typeof(string),
@@ -79,6 +79,7 @@ namespace Hangman.UI.Views
         public ConfirmationView()
         {
             InitializeComponent();
+
         }
 
         public static readonly RoutedEvent ConfirmationClick = 
