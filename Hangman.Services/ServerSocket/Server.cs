@@ -9,6 +9,7 @@ using System.Web;
 
 namespace Hangman.Services.ServerSocket
 {
+
     public class Server
     {
 
