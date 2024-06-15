@@ -8,7 +8,7 @@ namespace Hangman.Services.Utilities
 {
     public class DBConnection
     {
-        public static string connectionString = "Data Source=hangman-uv.database.windows.net;Initial Catalog=Hangman.data;Persist Security Info=True;User ID=hangman;Password=soyunpockemonytuno123#";
+        public static string connectionString = "Data Source=MSI\\SQLEXPRESS;Initial Catalog=Hangman.Data;Integrated Security=True;Encrypt=False";
 
         public static DataContext GetConnection()
         {
