@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
-namespace Hangman.Services.ServerSocket
+namespace Hangman.ServerSocket
 {
 
     public class Server
