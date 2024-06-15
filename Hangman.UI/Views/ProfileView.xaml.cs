@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using Hangman.UI.VisualComponents;
+using System.Xml;
 
 namespace Hangman.UI.Views
 {
@@ -25,22 +26,17 @@ namespace Hangman.UI.Views
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
 
-        public ProfileView()
-        {
-            InitializeComponent();
-            InitializeTable();
-        }
-
         public ProfileView(PlayerDTO player)
         {
+            InitializeComponent();
+
             resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
-            SetLanguage("es");
 
             _player = player;
             profileAdapter = new ProfileAdapter();
             _gameDTOs = new ObservableCollection<Object>();
 
-            InitializeComponent();
+            SetLanguage("es");
             InitializeTable();
 
             birhtDate.IsEnabled = false;
@@ -88,6 +84,7 @@ namespace Hangman.UI.Views
             secondLastName.FieldName = resourceManager.GetString("RN_SecondLastName", cultureInfo);
             email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
             birhtDate.FieldName = resourceManager.GetString("RN_BirthDate", cultureInfo);
+            birhtDate.Text = _player.BirthDate.ToString("d", cultureInfo);
             Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
             TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
 
@@ -236,7 +233,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = _player.BirthDate.ToString("dd/MM/yyyy");
+                textBox.Text = _player.BirthDate.ToString("d", cultureInfo);
             }
         }
     }

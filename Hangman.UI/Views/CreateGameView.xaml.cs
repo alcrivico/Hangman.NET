@@ -26,20 +26,6 @@ namespace Hangman.UI.Views
         private ObservableCollection<Object> _categoryDTOs;
         private ObservableCollection<Object> _wordDTOs;
 
-        public CreateGameView()
-        {
-            _createGameAdapter = new CreateGameAdapter();
-            _categories = null;
-
-            _categoryDTOs = new ObservableCollection<Object>();
-
-            InitializeComponent();
-
-            InitializeComponents();
-
-            LoadData();
-        }
-
         public CreateGameView(PlayerDTO player, LanguageDTO language)
         {
             _createGameAdapter = new CreateGameAdapter();
@@ -51,14 +37,14 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
-            InitializeComponents();
+            setComponents();
 
             LoadData();
             TitleBarControl.SelectedItem = language;
                
         }
 
-        private void InitializeComponents()
+        private void setComponents()
         {
             resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(CreateGameView).Assembly);
             SetLanguage("es"); 
@@ -168,7 +154,7 @@ namespace Hangman.UI.Views
             try
             {
                 Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
-                GameView gameView = new GameView();
+                GameView gameView = new GameView(response, _player);
                 gameView.Show();
                 this.Close();
             }
