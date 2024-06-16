@@ -45,7 +45,13 @@ namespace Hangman.Adapters.ControllerAdapters.SingleAdapters
 
             foreach (var game in response)
             {
+
+                TimeSpan waitingTime = DateTime.Now - game.CreationDate;
+
+                int minutes = (int) waitingTime.TotalMinutes;
+
                 game.WaitingTime = (DateTime.Now - game.CreationDate).Minutes;
+
             }
 
             return response;
