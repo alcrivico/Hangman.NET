@@ -38,17 +38,20 @@
                     FontSize="32"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
+                    TextAlignment="Center"
                     TextWrapping="Wrap" />
 
                 <TextBlock
                     x:Name="Information_Content"
                     Grid.Row="1"
+                    Padding="20,0,20,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource Font_Nunito}"
                     FontSize="24"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
+                    TextAlignment="Center"
                     TextWrapping="Wrap" />
 
             </Grid>
@@ -73,7 +76,8 @@
                     FontFamily="{StaticResource Font_Nunito}"
                     FontSize="32"
                     FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}" />
+                    Foreground="{StaticResource SolidColorBrush_White}"
+                    TextAlignment="Center" />
             </Border>
 
         </Grid>

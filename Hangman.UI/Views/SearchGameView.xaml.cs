@@ -200,5 +200,7 @@ namespace Hangman.UI.Views
             Button_Join.Opacity = 1;
 
         }
+
     }
+
 }
