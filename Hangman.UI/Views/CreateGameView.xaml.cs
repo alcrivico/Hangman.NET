@@ -116,25 +116,6 @@ namespace Hangman.UI.Views
 
         }
 
-        private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
-        {
-
-            if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
-            {
-
-                if (languageDTO.LanguageName.Equals("Spanish"))
-                {
-                    SetLanguage("es");
-                }
-                else if (languageDTO.LanguageName.Equals("English"))
-                {
-                    SetLanguage("en");
-                }
-
-            }
-
-        }
-
         private void SetCategories(List<CategoryDTO> categories)
         {
 
