@@ -91,16 +91,6 @@
                                 FieldName="Categorías"
                                 SelectedItemChanged="CategoryList_SelectedItemChanged" />
 
-                            <components:TextBoxControl
-                                x:Name="TextBoxControl_GameCode"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Width="200"
-                                Height="50"
-                                HorizontalAlignment="Right"
-                                FieldName="Código de la Partida"
-                                Text="" />
-
                         </Grid>
                         <components:TableControl
                             x:Name="WordsTable"

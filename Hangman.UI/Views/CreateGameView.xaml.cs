@@ -106,7 +106,7 @@ namespace Hangman.UI.Views
             CategoryList.FieldName = _resourceManager.GetString("RN_Categories", _cultureInfo);
             Button_StartGame.Text = _resourceManager.GetString("RN_StartGame", _cultureInfo);
             Button_Cancel.Text = _resourceManager.GetString("RN_Cancel", _cultureInfo);
-            TextBoxControl_GameCode.FieldName = _resourceManager.GetString("RN_GameCode", _cultureInfo);
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
             InitializeTable();
 
