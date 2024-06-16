@@ -7,6 +7,8 @@ using System.Windows.Media;
 using System.Resources;
 using System.Globalization;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Microsoft.VisualBasic;
+using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {
@@ -15,20 +17,20 @@ namespace Hangman.UI.Views
     /// </summary>
     public partial class LogInView : Window
     {
-        private ResourceManager resourceManager;
-        private CultureInfo cultureInfo;
-        private LogInAdapter logInAdapter;
+        private ResourceManager _resourceManager;
+        private CultureInfo _cultureInfo;
+        private LogInAdapter _logInAdapter;
 
         public LogInView()
         {
 
             InitializeComponent();
 
-            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
+            _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
             
             SetLanguage("es");
 
-            logInAdapter = new LogInAdapter();
+            _logInAdapter = new LogInAdapter();
 
         }
 
@@ -46,7 +48,7 @@ namespace Hangman.UI.Views
             try
             {
 
-                PlayerDTO response = logInAdapter.LogIn(username, password);
+                PlayerDTO response = _logInAdapter.LogIn(username, password);
 
                 if (response.ResponseCode == 0)
                 {
@@ -58,7 +60,7 @@ namespace Hangman.UI.Views
                 {
 
                     ShowAlert(
-                        "Correo y/o contraseña incorrectos. Por favor, verifíquelos", 
+                        _resourceManager.GetString("RN_AlertLogIn", _cultureInfo), 
                         FindResource("SolidColorBrush_Gold") as SolidColorBrush, 
                         FindResource("SolidColorBrush_MarianBlue") as SolidColorBrush
                     );
@@ -70,7 +72,7 @@ namespace Hangman.UI.Views
             {
 
                 ShowAlert(
-                        ex.Message,
+                        _resourceManager.GetString("RN_AlertDatabase", _cultureInfo),
                         FindResource("SolidColorBrush_RustyRed") as SolidColorBrush,
                         FindResource("SolidColorBrush_White") as SolidColorBrush
                     );
@@ -111,17 +113,17 @@ namespace Hangman.UI.Views
         private void SetLanguage(string language)
         {
 
-            cultureInfo = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            _cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
 
-            TextBlock_Title.Text = resourceManager.GetString("RN_Title", cultureInfo);
-            TextBoxControl_Email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
-            PasswordBoxControl.FieldName = resourceManager.GetString("RN_Password", cultureInfo);
-            AlertTextBlock.Text = resourceManager.GetString("RN_AlertLogIn", cultureInfo);
-            Button_LogIn.Text = resourceManager.GetString("RN_BtnLogin", cultureInfo);
-            TextBlock_SingUp.Text = resourceManager.GetString("RN_BtnRegister", cultureInfo);
-            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
-            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+            TextBlock_Title.Text = _resourceManager.GetString("RN_Title", _cultureInfo);
+            TextBoxControl_Email.FieldName = _resourceManager.GetString("RN_Email", _cultureInfo);
+            PasswordBoxControl.FieldName = _resourceManager.GetString("RN_Password", _cultureInfo);
+            AlertTextBlock.Text = _resourceManager.GetString("RN_AlertLogIn", _cultureInfo);
+            Button_LogIn.Text = _resourceManager.GetString("RN_BtnLogin", _cultureInfo);
+            TextBlock_SingUp.Text = _resourceManager.GetString("RN_BtnRegister", _cultureInfo);
+            Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
         }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Globalization;
 
 
 namespace Hangman.UI.Views
@@ -29,39 +31,15 @@ namespace Hangman.UI.Views
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Game.GameDTO> _games;
         private PlayerDTO _player;
+        private ResourceManager _resourceManager;
+        private CultureInfo _cultureInfo;
 
-        // Constructor de Prueba
-        public SearchGameView()
-        {
-
-            searchGameAdapter = new SearchGameAdapter();
-            _gameDTOs = new ObservableCollection<Object>();
-
-            InitializeComponent();
-
-            DefineGamesTable();
-
-            try
-            {
-                _games = searchGameAdapter.GetWaitingGames();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                this.Close();
-            }
-
-            SetGames(_games);
-            GamesTable.SetItemsSource(_gameDTOs);
-
-        }
-
-        //Constructor de Desarrollo
         public SearchGameView(PlayerDTO player)
         {
 
             _player = player;
             _gameDTOs = new ObservableCollection<Object>();
+            _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SearchGameView).Assembly);
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
@@ -75,12 +53,33 @@ namespace Hangman.UI.Views
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo), 
+                    _resourceManager.GetString("RN_NoWaitingGamesFound", _cultureInfo), 
+                    _resourceManager.GetString("RN_Accept", _cultureInfo));
                 this.Close();
+
             }
 
             SetGames(_games);
             GamesTable.SetItemsSource(_gameDTOs);
+
+        }
+
+        private void SetLanguage(string language)
+        {
+            _cultureInfo = new CultureInfo(language);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = _cultureInfo;
+
+            Title.Text = _resourceManager.GetString("RN_TitleSearchGame", _cultureInfo);
+            TextBox_GameCode.FieldName = _resourceManager.GetString("RN_GameCode", _cultureInfo);
+            Button_Join.Text = _resourceManager.GetString("RN_BtnSearchGame", _cultureInfo);
+            Button_Back.Text = _resourceManager.GetString("RN_Back", _cultureInfo);
+            Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+
+            DefineGamesTable();
 
         }
 
@@ -107,21 +106,21 @@ namespace Hangman.UI.Views
 
                 new Dictionary<string, string> {
 
-                    { "Name", "Código de Partida" },
+                    { "Name", _resourceManager.GetString("RN_GameCode", _cultureInfo) },
                     { "Width", "150.0" },
                     { "BindingName", "GameCode" }
 
                 },
                 new Dictionary<string, string> {
 
-                    { "Name", "Creada por:" },
+                    { "Name", _resourceManager.GetString("RN_CreatedBy", _cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "CreatorName" },
 
                 },
                 new Dictionary<string, string> {
 
-                    { "Name", "Tiempo esperando:" },
+                    { "Name", _resourceManager.GetString("RN_TimeWaiting", _cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "WaitingTime" },
 
@@ -172,7 +171,10 @@ namespace Hangman.UI.Views
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    InformationControl.Show(
+                        _resourceManager.GetString("RN_Error", _cultureInfo), 
+                        _resourceManager.GetString("RN_NoWaitingGamesFound", _cultureInfo), 
+                        _resourceManager.GetString("RN_Accept", _cultureInfo));
                     this.Close();
 
                 }
@@ -198,5 +200,7 @@ namespace Hangman.UI.Views
             Button_Join.Opacity = 1;
 
         }
+
     }
+
 }

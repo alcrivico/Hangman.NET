@@ -44,6 +44,7 @@
 
                 <Grid Name="TitleBar" Grid.Row="0">
                     <components:TitleBarControl
+                        x:Name="TitleBarControl"
                         ChangeLanguage="False"
                         ChangeOpacity="0.5"
                         WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
@@ -57,6 +58,7 @@
                         VerticalAlignment="Center"
                         Orientation="Vertical">
                         <TextBlock
+                            x:Name="Title"
                             Grid.Row="0"
                             Margin="0,0,0,20"
                             HorizontalAlignment="Center"
@@ -128,6 +130,7 @@
 
                 <Grid Name="Footer" Grid.Row="2">
                     <TextBlock
+                        x:Name="Footer_Text"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Foreground="{StaticResource SolidColorBrush_White}"

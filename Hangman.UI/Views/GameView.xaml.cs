@@ -1,7 +1,7 @@
-﻿using Hangman.Adapters.ClientSocket;
-using Hangman.Adapters.ControllerAdapters.Services.Game;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,7 +44,7 @@ namespace Hangman.UI.Views
             _challengerClient = new TcpClient("127.0.0.1", 5000);
             _challengerStream = _challengerClient.GetStream();
 
-            SendLetter("Game Start");
+            SendLetter(_gameDTO.GameCode);
 
         }
 
@@ -54,8 +54,15 @@ namespace Hangman.UI.Views
             _creatorClient = new TcpClient("127.0.0.1", 5000);
             _creatorStream = _creatorClient.GetStream();
 
+            SendGameCode(_gameDTO.GameCode);
             ListenForLetters();
 
+        }
+
+        public void SendGameCode(string gameCode)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(gameCode);
+            _creatorStream.Write(data, 0, data.Length);
         }
 
         private void SendLetter(string letter)
@@ -86,7 +93,7 @@ namespace Hangman.UI.Views
 
                     string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                    if (letter == "Game Start")
+                    if (letter == _gameDTO.GameCode)
                     {
                         MessageBox.Show("Se ha conectado el Challenger", "Game Start", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -170,7 +177,7 @@ namespace Hangman.UI.Views
             catch (Exception e)
             {
 
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                InformationControl.Show("Error", e.Message, "Aceptar");
                 this.Close();
 
             }
@@ -445,6 +452,7 @@ namespace Hangman.UI.Views
                 {
 
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     MenuView menuView = new MenuView(_playerDTO);
