@@ -43,8 +43,6 @@ namespace Hangman.UI.Views
             SetComponents();
 
             LoadData();
-
-            TitleBarControl.SelectedItem = language;
                
         }
 

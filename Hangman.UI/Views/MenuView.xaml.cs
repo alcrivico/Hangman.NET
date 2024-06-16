@@ -75,10 +75,17 @@ namespace Hangman.UI.Views
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
 
-            SearchGameView searchGameView = new SearchGameView(_player);
+            LanguageDTO selectedLanguage = TitleBarControl.SelectedItem as LanguageDTO;
 
-            searchGameView.Show();
-            this.Close();
+            if (selectedLanguage != null)
+            {
+
+                SearchGameView createGameView = new SearchGameView(_player, selectedLanguage);
+
+                createGameView.Show();
+                this.Close();
+
+            }
 
         }
 
