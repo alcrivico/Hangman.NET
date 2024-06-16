@@ -1,5 +1,4 @@
-﻿using Hangman.Adapters.ClientSocket;
-using Hangman.Adapters.ControllerAdapters.Services.Game;
+﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
 using System;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangman.UI.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,21 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hangman.UI.Views
+namespace Hangman.UI.VisualComponents
 {
     /// <summary>
-    /// Interaction logic for InformationView.xaml
+    /// Interaction logic for InformationControl.xaml
     /// </summary>
-    public partial class InformationView : Window
+    public partial class InformationControl : UserControl
     {
+
+        Window _window;
 
         public static DependencyProperty InformationHeader =
             DependencyProperty.Register(
             nameof(InformationHeader),
             typeof(string),
-            typeof(InformationView),
+            typeof(InformationControl),
             new PropertyMetadata("Information")
         );
 
@@ -38,7 +42,7 @@ namespace Hangman.UI.Views
             DependencyProperty.Register(
             nameof(InformationContent),
             typeof(string),
-            typeof(InformationView),
+            typeof(InformationControl),
             new PropertyMetadata("Are you sure?")
         );
 
@@ -52,7 +56,7 @@ namespace Hangman.UI.Views
             DependencyProperty.Register(
             nameof(InformationButton),
             typeof(string),
-            typeof(InformationView),
+            typeof(InformationControl),
             new PropertyMetadata("Ok")
         );
 
@@ -62,28 +66,59 @@ namespace Hangman.UI.Views
             set { SetValue(InformationButton, value); }
         }
 
-        public InformationView()
+        public InformationControl()
         {
             InitializeComponent();
         }
 
-        public static readonly RoutedEvent InformationClick =
-            EventManager.RegisterRoutedEvent(
-            nameof(InformationClick),
-            RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler),
-            typeof(InformationView)
-        );
-
-        public event RoutedEventHandler InformationClickEvent
+        public static void Show(string header, string content, string buttontext)
         {
-            add { AddHandler(InformationClick, value); }
-            remove { RemoveHandler(InformationClick, value); }
+
+            var messageBox = new InformationControl
+            {
+
+                InformationHeaderProperty = header,
+                InformationContentProperty = content,
+                InformationButtonProperty = buttontext
+
+            };
+
+            var window = new Window
+            {
+                Content = messageBox,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                WindowStyle = WindowStyle.ToolWindow,
+                Background = Brushes.Transparent,
+                AllowsTransparency = true
+            };
+
+            messageBox._window = window;
+
+            window.ShowDialog();
+
+        }
+
+        private void Information_Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Information_Button.Background = FindResource("SolidColorBrush_PolynesianBlue") as SolidColorBrush;
+        }
+
+        private void Information_Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Information_Button.Background = FindResource("SolidColorBrush_RoyalBlue") as SolidColorBrush;
         }
 
         private void Information_Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(InformationClick));
+
+            if (_window != null)
+            {
+                _window.DialogResult = true;
+            }
+
         }
+
     }
 }

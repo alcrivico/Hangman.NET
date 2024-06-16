@@ -1,0 +1,164 @@
+﻿using Hangman.UI.Views;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Hangman.UI.VisualComponents
+{
+    /// <summary>
+    /// Interaction logic for ConfirmationControl.xaml
+    /// </summary>
+    public partial class ConfirmationControl : UserControl
+    {
+
+        Window _window;
+
+        public static DependencyProperty ConfirmationHeader =
+            DependencyProperty.Register(
+            nameof(ConfirmationHeader),
+            typeof(string),
+            typeof(ConfirmationControl),
+            new PropertyMetadata("Confirmation")
+        );
+
+        public string ConfirmationHeaderProperty
+        {
+            get { return (string)GetValue(ConfirmationHeader); }
+            set { SetValue(ConfirmationHeader, value); }
+        }
+
+        public static DependencyProperty ConfirmationContent =
+            DependencyProperty.Register(
+            nameof(ConfirmationContent),
+            typeof(string),
+            typeof(ConfirmationControl),
+            new PropertyMetadata("Are you sure?")
+        );
+
+        public string ConfirmationContentProperty
+        {
+            get { return (string)GetValue(ConfirmationContent); }
+            set { SetValue(ConfirmationContent, value); }
+        }
+
+        public static DependencyProperty ConfirmationButton =
+            DependencyProperty.Register(
+            nameof(ConfirmationButton),
+            typeof(string),
+            typeof(ConfirmationControl),
+            new PropertyMetadata("Ok")
+        );
+
+        public string ConfirmationButtonProperty
+        {
+            get { return (string)GetValue(ConfirmationButton); }
+            set { SetValue(ConfirmationButton, value); }
+        }
+
+        public static DependencyProperty CancelButton =
+            DependencyProperty.Register(
+            nameof(CancelButton),
+            typeof(string),
+            typeof(ConfirmationControl),
+            new PropertyMetadata("Cancel")
+        );
+
+        public string CancelButtonProperty
+        {
+            get { return (string)GetValue(CancelButton); }
+            set { SetValue(CancelButton, value); }
+        }
+
+        public ConfirmationControl()
+        {
+            InitializeComponent();
+        }
+
+        public static bool? Show(string header, string content, string okButtonText, string cancelButtonText)
+        {
+
+           var messageBox = new ConfirmationControl
+            {
+
+                ConfirmationHeaderProperty = header,
+                ConfirmationContentProperty = content,
+                ConfirmationButtonProperty = okButtonText,
+                CancelButtonProperty = cancelButtonText
+
+            };
+
+            var window = new Window
+            {
+
+                Content = messageBox,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                WindowStyle = WindowStyle.None,
+                Background = Brushes.Transparent,
+                AllowsTransparency = true
+
+            };
+
+            messageBox._window = window;
+
+            bool? result = window.ShowDialog();
+
+            return result;
+
+        }
+
+        private void Confirmation_Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+            if (_window != null)
+            {
+                _window.DialogResult = true;
+            }
+
+        }
+
+        private void Cancel_Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+            if (_window != null)
+            {
+                _window.DialogResult = false;
+            }
+
+        }
+
+        private void Confirmation_Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Confirmation_Button.Background = FindResource("SolidColorBrush_PolynesianBlue") as SolidColorBrush;
+        }
+
+        private void Confirmation_Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Confirmation_Button.Background = FindResource("SolidColorBrush_RoyalBlue") as SolidColorBrush;
+        }
+
+        private void Cancel_Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Cancel_Button.Background = FindResource("SolidColorBrush_RustyRed") as SolidColorBrush;
+        }
+
+        private void Cancel_Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Cancel_Button.Background = FindResource("SolidColorBrush_RoyalBlue") as SolidColorBrush;
+        }
+
+    }
+
+}
