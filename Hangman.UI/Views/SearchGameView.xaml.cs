@@ -102,10 +102,8 @@ namespace Hangman.UI.Views
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
-            TitleBarControl.SelectComboBoxLanguageName(_language.LanguageName);
-            DefineGamesTable();
-
             TitleBarControl.SetSelectedLanguage(_language);
+            DefineGamesTable();
 
         }
 
