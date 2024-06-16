@@ -29,16 +29,8 @@ namespace Hangman.UI.VisualComponents
 
         public bool ChangeLanguage
         {
-
             get { return (bool)GetValue(ChangeLanguageProperty); }
-
-            set 
-            {   
-
-                SetValue(ChangeLanguageProperty, value);
-
-            }
-
+            set { SetValue(ChangeLanguageProperty, value); }
         }
 
         public static readonly DependencyProperty ChangeLanguageProperty =
@@ -255,6 +247,15 @@ namespace Hangman.UI.VisualComponents
                 _languageDTOs.Add(language);
             }
 
+        }
+
+        public void SetSelectedLanguage(LanguageDTO languageDTO)
+        {
+            var language = _languageDTOs.OfType<LanguageDTO>().FirstOrDefault(l => l.LanguageName == languageDTO.LanguageName);
+            if (language != null)
+            {
+                ComboBoxControl_Language.SelectedItem = language;
+            }
         }
 
         private void ComboBoxControl_Language_SelectedItemChanged(object sender, RoutedEventArgs e)

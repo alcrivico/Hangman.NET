@@ -112,6 +112,8 @@ namespace Hangman.UI.Views
 
             InitializeTable();
 
+            TitleBarControl.SetSelectedLanguage(_language);
+
         }
 
         private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
