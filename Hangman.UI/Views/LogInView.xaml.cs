@@ -7,6 +7,8 @@ using System.Windows.Media;
 using System.Resources;
 using System.Globalization;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Microsoft.VisualBasic;
+using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {

@@ -24,46 +24,22 @@ namespace Hangman.UI.VisualComponents
 
         Window _window;
 
-        public static DependencyProperty InformationHeader =
-            DependencyProperty.Register(
-            nameof(InformationHeader),
-            typeof(string),
-            typeof(InformationControl),
-            new PropertyMetadata("Information")
-        );
-
-        public string InformationHeaderProperty
+        public string InformationHeader
         {
-            get { return (string)GetValue(InformationHeader); }
-            set { SetValue(InformationHeader, value); }
+            get { return Information_Header.Text; }
+            set { Information_Header.Text = value; }
         }
 
-        public static DependencyProperty InformationContent =
-            DependencyProperty.Register(
-            nameof(InformationContent),
-            typeof(string),
-            typeof(InformationControl),
-            new PropertyMetadata("Are you sure?")
-        );
-
-        public string InformationContentProperty
+        public string InformationContent
         {
-            get { return (string)GetValue(InformationContent); }
-            set { SetValue(InformationContent, value); }
+            get { return Information_Content.Text; }
+            set { Information_Content.Text = value; }
         }
 
-        public static DependencyProperty InformationButton =
-            DependencyProperty.Register(
-            nameof(InformationButton),
-            typeof(string),
-            typeof(InformationControl),
-            new PropertyMetadata("Ok")
-        );
-
-        public string InformationButtonProperty
+        public string InformationButton
         {
-            get { return (string)GetValue(InformationButton); }
-            set { SetValue(InformationButton, value); }
+            get { return Information_Button_Text.Text; }
+            set { Information_Button_Text.Text = value; }
         }
 
         public InformationControl()
@@ -77,19 +53,20 @@ namespace Hangman.UI.VisualComponents
             var messageBox = new InformationControl
             {
 
-                InformationHeaderProperty = header,
-                InformationContentProperty = content,
-                InformationButtonProperty = buttontext
+                InformationHeader = header,
+                InformationContent = content,
+                InformationButton = buttontext
 
             };
 
             var window = new Window
             {
                 Content = messageBox,
-                SizeToContent = SizeToContent.WidthAndHeight,
+                Height = 292,
+                Width = 600,
                 ResizeMode = ResizeMode.NoResize,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                WindowStyle = WindowStyle.ToolWindow,
+                WindowStyle = WindowStyle.None,
                 Background = Brushes.Transparent,
                 AllowsTransparency = true
             };

@@ -38,7 +38,6 @@
                     FontSize="32"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
-                    Text="{Binding InformationHeader, ElementName=Information}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -50,7 +49,6 @@
                     FontSize="24"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
-                    Text="{Binding InformationContent, ElementName=Information}"
                     TextWrapping="Wrap" />
 
             </Grid>
@@ -75,8 +73,7 @@
                     FontFamily="{StaticResource Font_Nunito}"
                     FontSize="32"
                     FontWeight="Bold"
-                    Foreground="{StaticResource SolidColorBrush_White}"
-                    Text="{Binding InformationButton, ElementName=Information}" />
+                    Foreground="{StaticResource SolidColorBrush_White}" />
             </Border>
 
         </Grid>

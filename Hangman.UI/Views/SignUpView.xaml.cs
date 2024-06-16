@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
+using Hangman.UI.VisualComponents;
 
 namespace Hangman.UI.Views
 {
@@ -104,7 +105,7 @@ namespace Hangman.UI.Views
                     {
                         var signUpAdapter = new SignUpAdapter();
                         PlayerDTO response = signUpAdapter.SignUp(playerDTO);
-                        MessageBox.Show(resourceManager.GetString("RN_SignUpSuccess", cultureInfo), resourceManager.GetString("RN_Success", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
+                        InformationControl.Show(resourceManager.GetString("RN_Success", cultureInfo), resourceManager.GetString("RN_SignUpSuccess", cultureInfo), "Aceptar");
                         LogInView logInView = new LogInView();
                         logInView.Show();
                         this.Close();
@@ -113,7 +114,7 @@ namespace Hangman.UI.Views
                     {
                         var updateProfileAdapter = new UpdateProfileAdapter();
                         PlayerDTO response = updateProfileAdapter.UpdatePlayer(playerDTO);
-                        MessageBox.Show(resourceManager.GetString("RN_ProfileUpdateSuccess", cultureInfo), resourceManager.GetString("RN_Success", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
+                        InformationControl.Show(resourceManager.GetString("RN_Success", cultureInfo), resourceManager.GetString("RN_ProfileUpdateSuccess", cultureInfo), "Aceptar");
                         ProfileView profileView = new ProfileView(playerDTO);
                         profileView.Show();
                         this.Close();
@@ -121,7 +122,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
+                    InformationControl.Show(resourceManager.GetString("RN_Error", cultureInfo), ex.Message, "Aceptar");
                 }
             }
         }

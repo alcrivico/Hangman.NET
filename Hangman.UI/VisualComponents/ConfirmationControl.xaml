@@ -38,7 +38,6 @@
                     FontSize="32"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
-                    Text="{Binding ConfirmationHeader, ElementName=Confirmation}"
                     TextWrapping="Wrap" />
 
                 <TextBlock
@@ -50,7 +49,6 @@
                     FontSize="24"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_MikadoYellow}"
-                    Text="{Binding ConfirmationContent, ElementName=Confirmation}"
                     TextWrapping="Wrap" />
 
             </Grid>
@@ -86,8 +84,7 @@
                             FontFamily="{StaticResource Font_Nunito}"
                             FontSize="32"
                             FontWeight="Bold"
-                            Foreground="{StaticResource SolidColorBrush_White}"
-                            Text="{Binding ConfirmationButton, ElementName=Confirmation}" />
+                            Foreground="{StaticResource SolidColorBrush_White}" />
                     </Border>
 
                     <Border
@@ -110,8 +107,7 @@
                             FontFamily="{StaticResource Font_Nunito}"
                             FontSize="32"
                             FontWeight="Bold"
-                            Foreground="{StaticResource SolidColorBrush_White}"
-                            Text="{Binding CancelButton, ElementName=Confirmation}" />
+                            Foreground="{StaticResource SolidColorBrush_White}" />
                     </Border>
 
                 </Grid>

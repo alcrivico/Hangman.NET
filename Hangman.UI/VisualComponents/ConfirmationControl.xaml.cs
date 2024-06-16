@@ -24,60 +24,28 @@ namespace Hangman.UI.VisualComponents
 
         Window _window;
 
-        public static DependencyProperty ConfirmationHeader =
-            DependencyProperty.Register(
-            nameof(ConfirmationHeader),
-            typeof(string),
-            typeof(ConfirmationControl),
-            new PropertyMetadata("Confirmation")
-        );
-
-        public string ConfirmationHeaderProperty
+        public string ConfirmationHeader
         {
-            get { return (string)GetValue(ConfirmationHeader); }
-            set { SetValue(ConfirmationHeader, value); }
+            get { return Confirmation_Header.Text; }
+            set { Confirmation_Header.Text = value; }
         }
 
-        public static DependencyProperty ConfirmationContent =
-            DependencyProperty.Register(
-            nameof(ConfirmationContent),
-            typeof(string),
-            typeof(ConfirmationControl),
-            new PropertyMetadata("Are you sure?")
-        );
-
-        public string ConfirmationContentProperty
+        public string ConfirmationContent
         {
-            get { return (string)GetValue(ConfirmationContent); }
-            set { SetValue(ConfirmationContent, value); }
+            get { return Confirmation_Content.Text; }
+            set { Confirmation_Content.Text = value; }
         }
 
-        public static DependencyProperty ConfirmationButton =
-            DependencyProperty.Register(
-            nameof(ConfirmationButton),
-            typeof(string),
-            typeof(ConfirmationControl),
-            new PropertyMetadata("Ok")
-        );
-
-        public string ConfirmationButtonProperty
+        public string ConfirmationButton
         {
-            get { return (string)GetValue(ConfirmationButton); }
-            set { SetValue(ConfirmationButton, value); }
+            get { return Confirmation_Button_Text.Text; }
+            set { Confirmation_Button_Text.Text = value; }
         }
 
-        public static DependencyProperty CancelButton =
-            DependencyProperty.Register(
-            nameof(CancelButton),
-            typeof(string),
-            typeof(ConfirmationControl),
-            new PropertyMetadata("Cancel")
-        );
-
-        public string CancelButtonProperty
+        public string CancelButton
         {
-            get { return (string)GetValue(CancelButton); }
-            set { SetValue(CancelButton, value); }
+            get { return Cancel_Button_Text.Text; }
+            set { Cancel_Button_Text.Text = value; }
         }
 
         public ConfirmationControl()
@@ -91,10 +59,10 @@ namespace Hangman.UI.VisualComponents
            var messageBox = new ConfirmationControl
             {
 
-                ConfirmationHeaderProperty = header,
-                ConfirmationContentProperty = content,
-                ConfirmationButtonProperty = okButtonText,
-                CancelButtonProperty = cancelButtonText
+                ConfirmationHeader = header,
+                ConfirmationContent = content,
+                ConfirmationButton = okButtonText,
+                CancelButton = cancelButtonText
 
             };
 
@@ -102,7 +70,8 @@ namespace Hangman.UI.VisualComponents
             {
 
                 Content = messageBox,
-                SizeToContent = SizeToContent.WidthAndHeight,
+                Height = 292,
+                Width = 600,
                 ResizeMode = ResizeMode.NoResize,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 WindowStyle = WindowStyle.None,
