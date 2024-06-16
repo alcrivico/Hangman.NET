@@ -148,7 +148,8 @@
                                     VerticalAlignment="Bottom"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Click="DoorButton_Click">
+                                    Click="DoorButton_Click"
+                                    Cursor="Hand">
 
                                     <Button.Template>
 

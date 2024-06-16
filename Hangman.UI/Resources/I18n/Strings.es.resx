@@ -145,7 +145,7 @@
     <value>Registrar Usuario</value>
   </data>
   <data name="RN_BtnSearchGame" xml:space="preserve">
-    <value>Ingresar a partida</value>
+    <value>Ingresar</value>
   </data>
   <data name="RN_BtnSignUp" xml:space="preserve">
     <value>Registrarse</value>
@@ -275,6 +275,9 @@
   </data>
   <data name="RN_Title" xml:space="preserve">
     <value>Ahorcado.NET</value>
+  </data>
+  <data name="RN_TitleSearchGame" xml:space="preserve">
+    <value>Buscar Partida</value>
   </data>
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Registrar Usuario</value>

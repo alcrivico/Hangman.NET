@@ -74,8 +74,9 @@ namespace Hangman.UI.Views
 
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+            LanguageDTO selectedLanguage = TitleBarControl.SelectedItem as LanguageDTO;
 
-            SearchGameView searchGameView = new SearchGameView(_player);
+            SearchGameView searchGameView = new SearchGameView(_player, selectedLanguage);
 
             searchGameView.Show();
             this.Close();
@@ -108,7 +109,7 @@ namespace Hangman.UI.Views
             bool result = ConfirmationControl.Show(
                 _resourceManager.GetString("RN_ConfirmLogout", _cultureInfo),
                 _resourceManager.GetString("RN_Confirmation", _cultureInfo),
-                _resourceManager.GetString("RN_Acccept", _cultureInfo),
+                _resourceManager.GetString("RN_Accept", _cultureInfo),
                 _resourceManager.GetString("RN_Cancel", _cultureInfo)
             );
 

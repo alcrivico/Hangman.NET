@@ -113,6 +113,11 @@ namespace Hangman.UI.VisualComponents
             InitializeComponent();
         }
 
+        public ComboBox languageComboBox
+        {
+            get { return ComboBoxControlType; }
+        }
+
         public static readonly RoutedEvent SelectedItemChangedEvent =
             EventManager.RegisterRoutedEvent(
                 nameof(SelectedItemChanged), 

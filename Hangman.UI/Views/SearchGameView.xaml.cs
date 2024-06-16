@@ -31,19 +31,30 @@ namespace Hangman.UI.Views
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Game.GameDTO> _games;
         private PlayerDTO _player;
+        private LanguageDTO _language;
         private ResourceManager _resourceManager;
         private CultureInfo _cultureInfo;
 
-        public SearchGameView(PlayerDTO player)
+        public SearchGameView(PlayerDTO player, LanguageDTO language)
         {
 
             _player = player;
+            _language = language;
             _gameDTOs = new ObservableCollection<Object>();
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SearchGameView).Assembly);
 
             SearchGameAdapter searchGameAdapter = new SearchGameAdapter();
 
             InitializeComponent();
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
+            else if (_language.LanguageName.Equals("English"))
+            {
+                SetLanguage("en");
+            }
 
             DefineGamesTable();
 
@@ -79,6 +90,7 @@ namespace Hangman.UI.Views
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
+            TitleBarControl.SelectComboBoxLanguageName(_language.LanguageName);
             DefineGamesTable();
 
         }

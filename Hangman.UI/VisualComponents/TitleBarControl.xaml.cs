@@ -92,6 +92,67 @@ namespace Hangman.UI.VisualComponents
             set { ComboBoxControl_Language.SelectedItem = value; }
         }
 
+        public ComboBoxControl ComboBoxControlLanguage
+        {
+            get { return ComboBoxControl_Language; }
+        }
+
+        public void SelectComboBoxLanguageName(string languageName)
+        {
+
+            var customComboBox = this.ComboBoxControlLanguage;
+
+            if (customComboBox != null)
+            {
+
+                var comboBox = customComboBox.ComboBoxControlType;
+
+                if (comboBox != null)
+                {
+
+                    foreach (var item in comboBox.Items)
+                    {
+
+                        if (item is LanguageDTO language && language.LanguageName == languageName)
+                        {
+
+                            comboBox.SelectedItem = item;
+                            break;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        private void SelectComboBoxIndex(int index)
+        {
+
+            var customComboBox = this.ComboBoxControlLanguage;
+
+            if (customComboBox != null)
+            {
+
+                var comboBox = customComboBox.ComboBoxControlType;
+
+                if (comboBox != null)
+                {
+
+                    if (index >= 0 && index < comboBox.Items.Count)
+                    {
+                        comboBox.SelectedIndex = index;
+                    }
+
+                }
+
+            }
+
+        }
+
         public static readonly RoutedEvent LanguageChangedEvent =
             EventManager.RegisterRoutedEvent(
                 nameof(LanguageChanged),
