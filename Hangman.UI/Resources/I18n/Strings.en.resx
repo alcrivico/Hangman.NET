@@ -277,7 +277,11 @@
     <value>Hangman.NET</value>
   </data>
   <data name="RN_TitleSearchGame" xml:space="preserve">
+<<<<<<< HEAD
     <value>Search Game</value>
+=======
+    <value>Available Games</value>
+>>>>>>> 2c5c2756f8c6c9e0ac50d503390a2236119b5916
   </data>
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Register User</value>

@@ -72,16 +72,28 @@ namespace Hangman.UI.Views
                 this.Close();
 
             }
-
+            SetLanguagesFromTitleBarControl();
             SetGames(_games);
             GamesTable.SetItemsSource(_gameDTOs);
 
         }
 
+        private void SetLanguagesFromTitleBarControl()
+        {
+            if (_language.LanguageName == "Spanish")
+            {
+                SetLanguage("es");
+            }
+            else if (_language.LanguageName == "English")
+            {
+                SetLanguage("en");
+            }
+        }
+
         private void SetLanguage(string language)
         {
             _cultureInfo = new CultureInfo(language);
-            System.Threading.Thread.CurrentThread.CurrentUICulture = _cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
 
             Title.Text = _resourceManager.GetString("RN_TitleSearchGame", _cultureInfo);
             TextBox_GameCode.FieldName = _resourceManager.GetString("RN_GameCode", _cultureInfo);
@@ -92,6 +104,8 @@ namespace Hangman.UI.Views
 
             TitleBarControl.SelectComboBoxLanguageName(_language.LanguageName);
             DefineGamesTable();
+
+            TitleBarControl.SetSelectedLanguage(_language);
 
         }
 

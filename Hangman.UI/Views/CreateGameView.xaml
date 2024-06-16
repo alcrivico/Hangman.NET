@@ -50,9 +50,8 @@
                 <Grid Name="TitleBar" Grid.Row="0">
                     <components:TitleBarControl
                         x:Name="TitleBarControl"
-                        
+                        ChangeLanguage="False"
                         ChangeOpacity="0.5"
-                        LanguageChanged="TitleBarControl_LanguageChanged"
                         WindowStateChangeRequested="TitleBarControl_WindowStateChangeRequested" />
                 </Grid>
 

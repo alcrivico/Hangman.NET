@@ -277,7 +277,11 @@
     <value>Ahorcado.NET</value>
   </data>
   <data name="RN_TitleSearchGame" xml:space="preserve">
+<<<<<<< HEAD
     <value>Buscar Partida</value>
+=======
+    <value>Partidas disponibles</value>
+>>>>>>> 2c5c2756f8c6c9e0ac50d503390a2236119b5916
   </data>
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Registrar Usuario</value>
