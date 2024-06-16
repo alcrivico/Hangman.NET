@@ -1,6 +1,7 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -176,7 +177,7 @@ namespace Hangman.UI.Views
             catch (Exception e)
             {
 
-                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                InformationControl.Show("Error", e.Message, "Aceptar");
                 this.Close();
 
             }
@@ -451,6 +452,7 @@ namespace Hangman.UI.Views
                 {
 
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     MenuView menuView = new MenuView(_playerDTO);

@@ -120,6 +120,12 @@
   <data name="Faltan campos por llenar" xml:space="preserve">
     <value>Los campos no deben exceder los 50 caracteres.</value>
   </data>
+  <data name="RN_Accept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="RN_AlertDatabase" xml:space="preserve">
+    <value>No se ha podido conectar con la base de datos. Por favor, intente más tarde</value>
+  </data>
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Correo y/o contraseña incorrectos. Por favor, verifíquelos.</value>
   </data>
@@ -150,6 +156,15 @@
   <data name="RN_Categories" xml:space="preserve">
     <value>Categorías</value>
   </data>
+  <data name="RN_ChooseCategory" xml:space="preserve">
+    <value>CategoryES</value>
+  </data>
+  <data name="RN_ChooseTip" xml:space="preserve">
+    <value>TipES</value>
+  </data>
+  <data name="RN_ChooseWord" xml:space="preserve">
+    <value>WordES</value>
+  </data>
   <data name="RN_Confirmation" xml:space="preserve">
     <value>Confirmación</value>
   </data>
@@ -161,6 +176,9 @@
   </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Derechos Reservados</value>
+  </data>
+  <data name="RN_CreatedBy" xml:space="preserve">
+    <value>Creador por:</value>
   </data>
   <data name="RN_CreateGame" xml:space="preserve">
     <value>Crear partida</value>
@@ -178,7 +196,7 @@
     <value>Apellido Paterno</value>
   </data>
   <data name="RN_GameCode" xml:space="preserve">
-    <value>Código de la partida</value>
+    <value>Código de Partida</value>
   </data>
   <data name="RN_GameDate" xml:space="preserve">
     <value>Fecha de Juego</value>
@@ -207,8 +225,14 @@
   <data name="RN_Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="RN_NoCategoriesFound" xml:space="preserve">
+    <value>No se encontraron categorías</value>
+  </data>
   <data name="RN_NoGamesFound" xml:space="preserve">
     <value>No se encontraron partidas jugadas</value>
+  </data>
+  <data name="RN_NoWaitingGamesFound" xml:space="preserve">
+    <value>No se encontraron partidas en espera</value>
   </data>
   <data name="RN_Opponent" xml:space="preserve">
     <value>Contrincante</value>
@@ -222,11 +246,17 @@
   <data name="RN_ProfileUpdateSuccess" xml:space="preserve">
     <value>Perfil actualizado correctamente.</value>
   </data>
+  <data name="RN_RegisterError" xml:space="preserve">
+    <value>No se pudo registrar la información, lo sentimos.</value>
+  </data>
   <data name="RN_Result" xml:space="preserve">
     <value>Resultado</value>
   </data>
   <data name="RN_SaveChanges" xml:space="preserve">
     <value>Guardar Cambios</value>
+  </data>
+  <data name="RN_SearchWordError" xml:space="preserve">
+    <value>No se ha podido encontrar la palabra</value>
   </data>
   <data name="RN_SecondLastName" xml:space="preserve">
     <value>Apellido Materno</value>
@@ -240,11 +270,17 @@
   <data name="RN_Success" xml:space="preserve">
     <value>Éxito</value>
   </data>
+  <data name="RN_TimeWaiting" xml:space="preserve">
+    <value>Tiempo esperando (min):</value>
+  </data>
   <data name="RN_Title" xml:space="preserve">
     <value>Ahorcado.NET</value>
   </data>
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Registrar Usuario</value>
+  </data>
+  <data name="RN_UpdateError" xml:space="preserve">
+    <value>No se pudo actualizar la información, lo sentimos.</value>
   </data>
   <data name="RN_UserInfo" xml:space="preserve">
     <value>Información del Usuario</value>

@@ -1,5 +1,6 @@
 ﻿using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.Adapters.ControllerAdapters.Services.Player;
+using Hangman.UI.VisualComponents;
 using System;
 using System.Globalization;
 using System.Resources;
@@ -11,38 +12,38 @@ namespace Hangman.UI.Views
 {
     public partial class MenuView : Window
     {
-        private ResourceManager resourceManager;
-        private CultureInfo cultureInfo;
-        private PlayerDTO player;
+        private ResourceManager _resourceManager;
+        private CultureInfo _cultureInfo;
+        private PlayerDTO _player;
 
         public MenuView(PlayerDTO player)
         {
 
             InitializeComponent();
 
-            this.player = player;
-            resourceManager = new ResourceManager(
+            this._player = player;
+            _resourceManager = new ResourceManager(
                 "Hangman.UI.Resources.I18n.Strings", 
                 typeof(MenuView).Assembly);
 
             SetLanguage("es");
 
             this.ProfileControl.UserName = 
-                $"{player.Name} {player.FirstLastName} {player.SecondLastName}";
+                $"{_player.Name} {_player.FirstLastName} {_player.SecondLastName}";
 
         }
 
         private void SetLanguage(string language)
         {
 
-            cultureInfo = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            _cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
 
-            TextBlock_Title.Text = resourceManager.GetString("RN_Title", cultureInfo);
-            Button_SearchGame.Text = resourceManager.GetString("RN_BtnSearchGame", cultureInfo);
-            Button_CreateGame.Text = resourceManager.GetString("RN_BtnCreateGame", cultureInfo);
-            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
-            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+            TextBlock_Title.Text = _resourceManager.GetString("RN_Title", _cultureInfo);
+            Button_SearchGame.Text = _resourceManager.GetString("RN_BtnSearchGame", _cultureInfo);
+            Button_CreateGame.Text = _resourceManager.GetString("RN_BtnCreateGame", _cultureInfo);
+            Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
         }
 
@@ -74,7 +75,7 @@ namespace Hangman.UI.Views
         private void Button_SearchGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
 
-            SearchGameView searchGameView = new SearchGameView(player);
+            SearchGameView searchGameView = new SearchGameView(_player);
 
             searchGameView.Show();
             this.Close();
@@ -86,11 +87,15 @@ namespace Hangman.UI.Views
         private void Button_CreateGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
             LanguageDTO selectedLanguage = TitleBarControl.SelectedItem as LanguageDTO;
+
             if (selectedLanguage != null)
             {
-                CreateGameView createGameView = new CreateGameView(player, selectedLanguage);
+
+                CreateGameView createGameView = new CreateGameView(_player, selectedLanguage);
+
                 createGameView.Show();
                 this.Close();
+
             }
 
         }
@@ -100,18 +105,21 @@ namespace Hangman.UI.Views
         private void DoorButton_Click(object sender, RoutedEventArgs e)
         {
 
-            MessageBoxResult result = MessageBox.Show(
-                resourceManager.GetString("RN_ConfirmLogout", cultureInfo),
-                resourceManager.GetString("RN_Confirmation", cultureInfo),
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
+            bool result = ConfirmationControl.Show(
+                _resourceManager.GetString("RN_ConfirmLogout", _cultureInfo),
+                _resourceManager.GetString("RN_Confirmation", _cultureInfo),
+                _resourceManager.GetString("RN_Acccept", _cultureInfo),
+                _resourceManager.GetString("RN_Cancel", _cultureInfo)
             );
 
-            if (result == MessageBoxResult.Yes)
+            if (result)
             {
+
                 LogInView logInView = new LogInView();
+
                 logInView.Show();
                 this.Close();
+
             }
 
         }
@@ -119,7 +127,8 @@ namespace Hangman.UI.Views
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
 
-            ProfileView profileView = new ProfileView(player);
+            ProfileView profileView = new ProfileView(_player);
+
             profileView.Show();
             this.Close();
 

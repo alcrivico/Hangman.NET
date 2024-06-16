@@ -17,10 +17,11 @@ namespace Hangman.UI.Views
 {
     public partial class CreateGameView : Window
     {
-        private ResourceManager resourceManager;
-        private CultureInfo cultureInfo;
+        private ResourceManager _resourceManager;
+        private CultureInfo _cultureInfo;
         private CreateGameAdapter _createGameAdapter;
         private PlayerDTO _player;
+        private LanguageDTO _language;
         private List<WordDTO> _words;
         public List<CategoryDTO> _categories;
         private ObservableCollection<Object> _categoryDTOs;
@@ -28,8 +29,10 @@ namespace Hangman.UI.Views
 
         public CreateGameView(PlayerDTO player, LanguageDTO language)
         {
+
             _createGameAdapter = new CreateGameAdapter();
             _player = player;
+            _language = language;
             _words = new List<WordDTO>();
             _categories = null;
             _wordDTOs = new ObservableCollection<Object>();
@@ -37,17 +40,27 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
-            setComponents();
+            SetComponents();
 
             LoadData();
+
             TitleBarControl.SelectedItem = language;
                
         }
 
-        private void setComponents()
+        private void SetComponents()
         {
-            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(CreateGameView).Assembly);
-            SetLanguage("es"); 
+            _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(CreateGameView).Assembly);
+
+            if (_language.LanguageName == "Spanish")
+            {
+                SetLanguage("es");
+            }
+            else if (_language.LanguageName == "English")
+            {
+                SetLanguage("en");
+            }
+
             InitializeTable();
 
         }
@@ -56,41 +69,57 @@ namespace Hangman.UI.Views
         {
             try
             {
+
                 _categories = _createGameAdapter.GetCategoriesList();
+
                 SetCategories(_categories);
-                CategoryList.SetItemsSource(_categoryDTOs, "CategoryES");
+
+                CategoryList.SetItemsSource(_categoryDTOs, _resourceManager.GetString("RN_ChooseCategory", _cultureInfo));
 
                 _words = _createGameAdapter.GetWordsList();
+
                 SetWords(_words);
                 WordsTable.SetItemsSource(_wordDTOs);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
+
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo),
+                    _resourceManager.GetString("RN_NoCategoriesFound", _cultureInfo),
+                    _resourceManager.GetString("RN_Accept", _cultureInfo));
+                
                 MenuView menuView = new MenuView(_player);
+
                 menuView.Show();
                 this.Close();
+
             }
         }
 
         private void SetLanguage(string language)
         {
-            cultureInfo = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-            Title.Text = resourceManager.GetString("RN_CreateGame", cultureInfo);
-            CategoryList.FieldName = resourceManager.GetString("RN_Categories", cultureInfo);
-            Button_StartGame.Text = resourceManager.GetString("RN_StartGame", cultureInfo);
-            Button_Cancel.Text = resourceManager.GetString("RN_Cancel", cultureInfo);
-            TextBoxControl_GameCode.FieldName = resourceManager.GetString("RN_GameCode", cultureInfo);
+            _cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
+
+            Title.Text = _resourceManager.GetString("RN_CreateGame", _cultureInfo);
+            CategoryList.FieldName = _resourceManager.GetString("RN_Categories", _cultureInfo);
+            Button_StartGame.Text = _resourceManager.GetString("RN_StartGame", _cultureInfo);
+            Button_Cancel.Text = _resourceManager.GetString("RN_Cancel", _cultureInfo);
+            TextBoxControl_GameCode.FieldName = _resourceManager.GetString("RN_GameCode", _cultureInfo);
 
             InitializeTable();
+
         }
 
         private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
         {
+
             if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
             {
+
                 if (languageDTO.LanguageName.Equals("Spanish"))
                 {
                     SetLanguage("es");
@@ -99,53 +128,69 @@ namespace Hangman.UI.Views
                 {
                     SetLanguage("en");
                 }
+
             }
+
         }
 
         private void SetCategories(List<CategoryDTO> categories)
         {
+
             _categoryDTOs.Clear();
+
             foreach (CategoryDTO category in categories)
             {
                 _categoryDTOs.Add(category);
             }
+
         }
 
         private void SetWords(List<WordDTO> words)
         {
+
             _wordDTOs.Clear();
+
             foreach (WordDTO word in words)
             {
                 _wordDTOs.Add(word);
             }
+
         }
 
         private void InitializeTable()
         {
+
             Dictionary<string, string>[] columns =
             {
+
                 new Dictionary<string, string>
                 {
-                    { "Name", resourceManager.GetString("RN_Word", cultureInfo) },
+
+                    { "Name", _resourceManager.GetString("RN_Word", _cultureInfo) },
                     { "Width", "*" },
-                    { "BindingName", "WordES" }
+                    { "BindingName", _resourceManager.GetString("RN_ChooseWord", _cultureInfo) }
+
                 },
                 new Dictionary<string, string>
                 {
-                    { "Name", resourceManager.GetString("RN_Hint", cultureInfo) },
+
+                    { "Name", _resourceManager.GetString("RN_Hint", _cultureInfo) },
                     { "Width", "*" },
-                    { "BindingName", "TipES" }
-                },
+                    { "BindingName", _resourceManager.GetString("RN_ChooseTip", _cultureInfo) }
+
+                }
+
             };
 
             WordsTable.DefineColumns(columns);
+
         }
 
         private void Button_StartGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+
             Adapters.ControllerAdapters.Services.Game.GameDTO newGame = new Adapters.ControllerAdapters.Services.Game.GameDTO();
             WordDTO selectedWord = WordsTable.GetSelectedItem() as WordDTO;
-
             newGame.CreatorEmail = _player.Email;
             newGame.WordES = selectedWord.WordES;
             newGame.WordEN = selectedWord.WordEN;
@@ -153,22 +198,31 @@ namespace Hangman.UI.Views
 
             try
             {
+
                 Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
                 GameView gameView = new GameView(response, _player);
+
                 gameView.Show();
                 this.Close();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo), 
+                    _resourceManager.GetString("RN_RegisterError", _cultureInfo), 
+                    _resourceManager.GetString("RN_Accept", _cultureInfo));
             }
         }
 
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+
             MenuView menuView = new MenuView(_player);
+
             menuView.Show();
             this.Close();
+
         }
 
         private void TitleBarControl_WindowStateChangeRequested(object sender, WindowState e)
@@ -178,11 +232,15 @@ namespace Hangman.UI.Views
 
         private void CategoryList_SelectedItemChanged(object sender, RoutedEventArgs e)
         {
+
             CategoryDTO selectedCategory = CategoryList.SelectedItem as CategoryDTO;
 
             if (selectedCategory != null)
             {
-                List<WordDTO> filteredWords = _words.Where(word => word.CategoryES == selectedCategory.CategoryES).ToList();
+
+                List<WordDTO> filteredWords = 
+                    _words.Where(word => word.CategoryES == selectedCategory.CategoryES).ToList();
+                
                 _wordDTOs.Clear();
 
                 foreach (var word in filteredWords)
@@ -191,7 +249,11 @@ namespace Hangman.UI.Views
                 }
 
                 WordsTable.SetItemsSource(_wordDTOs);
+
             }
+
         }
+
     }
+
 }

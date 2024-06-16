@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="RN_Accept" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="RN_AlertDatabase" xml:space="preserve">
+    <value>Unable to connect to the database. Please try again later</value>
+  </data>
   <data name="RN_AlertLogIn" xml:space="preserve">
     <value>Incorrect email and/or password. Please verify them.</value>
   </data>
@@ -147,6 +153,15 @@
   <data name="RN_Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="RN_ChooseCategory" xml:space="preserve">
+    <value>CategoryEN</value>
+  </data>
+  <data name="RN_ChooseTip" xml:space="preserve">
+    <value>TipEN</value>
+  </data>
+  <data name="RN_ChooseWord" xml:space="preserve">
+    <value>WordEN</value>
+  </data>
   <data name="RN_Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
@@ -158,6 +173,9 @@
   </data>
   <data name="RN_Copyright" xml:space="preserve">
     <value>© 2024 Universidad Veracruzana. Copyright</value>
+  </data>
+  <data name="RN_CreatedBy" xml:space="preserve">
+    <value>Created by:</value>
   </data>
   <data name="RN_CreateGame" xml:space="preserve">
     <value>Create Game</value>
@@ -207,8 +225,14 @@
   <data name="RN_Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="RN_NoCategoriesFound" xml:space="preserve">
+    <value>No categories were found</value>
+  </data>
   <data name="RN_NoGamesFound" xml:space="preserve">
-    <value>No games found</value>
+    <value>No games were found</value>
+  </data>
+  <data name="RN_NoWaitingGamesFound" xml:space="preserve">
+    <value>No waiting games were found</value>
   </data>
   <data name="RN_Opponent" xml:space="preserve">
     <value>Opponent</value>
@@ -222,11 +246,17 @@
   <data name="RN_ProfileUpdateSuccess" xml:space="preserve">
     <value>Profile updated successfully.</value>
   </data>
+  <data name="RN_RegisterError" xml:space="preserve">
+    <value>The information could not be registered, we are sorry.</value>
+  </data>
   <data name="RN_Result" xml:space="preserve">
     <value>Result</value>
   </data>
   <data name="RN_SaveChanges" xml:space="preserve">
     <value>Save Changes</value>
+  </data>
+  <data name="RN_SearchWordError" xml:space="preserve">
+    <value>The word could not be found</value>
   </data>
   <data name="RN_SecondLastName" xml:space="preserve">
     <value>Second Last Name</value>
@@ -240,11 +270,17 @@
   <data name="RN_Success" xml:space="preserve">
     <value>Success</value>
   </data>
+  <data name="RN_TimeWaiting" xml:space="preserve">
+    <value>Time waiting (min):</value>
+  </data>
   <data name="RN_Title" xml:space="preserve">
     <value>Hangman.NET</value>
   </data>
   <data name="RN_TitleSignUp" xml:space="preserve">
     <value>Register User</value>
+  </data>
+  <data name="RN_UpdateError" xml:space="preserve">
+    <value>The information could not be updated, we are sorry.</value>
   </data>
   <data name="RN_UserInfo" xml:space="preserve">
     <value>User Information</value>

@@ -19,9 +19,9 @@ namespace Hangman.UI.Views
 {
     public partial class ProfileView : Window
     {
-        private ResourceManager resourceManager;
-        private CultureInfo cultureInfo;
-        private ProfileAdapter profileAdapter;
+        private ResourceManager _resourceManager;
+        private CultureInfo _cultureInfo;
+        private ProfileAdapter _profileAdapter;
         private PlayerDTO _player;
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
@@ -30,10 +30,10 @@ namespace Hangman.UI.Views
         {
             InitializeComponent();
 
-            resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
+            _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
 
             _player = player;
-            profileAdapter = new ProfileAdapter();
+            _profileAdapter = new ProfileAdapter();
             _gameDTOs = new ObservableCollection<Object>();
 
             SetLanguage("es");
@@ -48,14 +48,21 @@ namespace Hangman.UI.Views
 
             try
             {
-                _games = profileAdapter.GetPlayedGames(player.Email);
+                _games = _profileAdapter.GetPlayedGames(player.Email);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Error);
+
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo),
+                    e.Message,
+                    _resourceManager.GetString("RN_Accept", _cultureInfo));
+
                 MenuView menuView = new MenuView(_player);
+
                 menuView.Show();
                 this.Close();
+
             }
 
             if (_games[0].GameCode != null)
@@ -64,7 +71,10 @@ namespace Hangman.UI.Views
             }
             if (_games[0].ResponseCode == 1)
             {
-                MessageBox.Show(resourceManager.GetString("RN_NoGamesFound", cultureInfo), resourceManager.GetString("RN_Error", cultureInfo), MessageBoxButton.OK, MessageBoxImage.Information);
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo),
+                    _resourceManager.GetString("RN_NoGamesFound", _cultureInfo),
+                    _resourceManager.GetString("RN_Accept", _cultureInfo));
             }
 
             GamesTable.SetItemsSource(_gameDTOs);
@@ -72,24 +82,24 @@ namespace Hangman.UI.Views
 
         private void SetLanguage(string language)
         {
-            cultureInfo = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            _cultureInfo = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
 
-            Title.Text = resourceManager.GetString("RN_UserInfo", cultureInfo);
-            Button_Back.Text = resourceManager.GetString("RN_Back", cultureInfo);
-            score.FieldName = resourceManager.GetString("RN_GlobalScore", cultureInfo);
-            Button_ModifyProfile.Text = resourceManager.GetString("RN_ModifyProfile", cultureInfo);
-            name.FieldName = resourceManager.GetString("RN_Name", cultureInfo);
-            firstLastName.FieldName = resourceManager.GetString("RN_FirstLastName", cultureInfo);
-            secondLastName.FieldName = resourceManager.GetString("RN_SecondLastName", cultureInfo);
-            email.FieldName = resourceManager.GetString("RN_Email", cultureInfo);
-            birhtDate.FieldName = resourceManager.GetString("RN_BirthDate", cultureInfo);
-            birhtDate.Text = _player.BirthDate.ToString("d", cultureInfo);
-            Footer_Text.Text = resourceManager.GetString("RN_Copyright", cultureInfo);
-            TitleBarControl.FieldName = resourceManager.GetString("RN_LanguageField", cultureInfo);
+            Title.Text = _resourceManager.GetString("RN_UserInfo", _cultureInfo);
+            Button_Back.Text = _resourceManager.GetString("RN_Back", _cultureInfo);
+            score.FieldName = _resourceManager.GetString("RN_GlobalScore", _cultureInfo);
+            Button_ModifyProfile.Text = _resourceManager.GetString("RN_ModifyProfile", _cultureInfo);
+            name.FieldName = _resourceManager.GetString("RN_Name", _cultureInfo);
+            firstLastName.FieldName = _resourceManager.GetString("RN_FirstLastName", _cultureInfo);
+            secondLastName.FieldName = _resourceManager.GetString("RN_SecondLastName", _cultureInfo);
+            email.FieldName = _resourceManager.GetString("RN_Email", _cultureInfo);
+            birhtDate.FieldName = _resourceManager.GetString("RN_BirthDate", _cultureInfo);
+            birhtDate.Text = _player.BirthDate.ToString("d", _cultureInfo);
+            Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
-            // Actualiza los encabezados de la tabla
             InitializeTable();
+
         }
 
         private void TitleBarControl_LanguageChanged(object sender, RoutedEventArgs e)
@@ -112,22 +122,22 @@ namespace Hangman.UI.Views
             Dictionary<string, string>[] columns =
             {
                 new Dictionary<string, string> {
-                    { "Name", resourceManager.GetString("RN_Opponent", cultureInfo) },
+                    { "Name", _resourceManager.GetString("RN_Opponent", _cultureInfo) },
                     { "Width", "150.0" },
                     { "BindingName", "CreatorName" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", resourceManager.GetString("RN_GameDate", cultureInfo) },
+                    { "Name", _resourceManager.GetString("RN_GameDate", _cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "CreationDate" }
                 },
                 new Dictionary<string, string> {
-                    { "Name", resourceManager.GetString("RN_Word", cultureInfo) },
+                    { "Name", _resourceManager.GetString("RN_Word", _cultureInfo) },
                     { "Width", "*" },
-                    { "BindingName", "WordEN" }
+                    { "BindingName", _resourceManager.GetString("RN_ChooseWord", _cultureInfo) } //---- Cambia depende en que idioma lo jugaste, No en el que está actualmente -----//
                 },
                 new Dictionary<string, string> {
-                    { "Name", resourceManager.GetString("RN_Result", cultureInfo) },
+                    { "Name", _resourceManager.GetString("RN_Result", _cultureInfo) },
                     { "Width", "*" },
                     { "BindingName", "Status" }
                 }
@@ -233,7 +243,7 @@ namespace Hangman.UI.Views
             var textBox = sender as TextBoxControl;
             if (textBox != null)
             {
-                textBox.Text = _player.BirthDate.ToString("d", cultureInfo);
+                textBox.Text = _player.BirthDate.ToString("d", _cultureInfo);
             }
         }
     }

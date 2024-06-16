@@ -53,7 +53,7 @@ namespace Hangman.UI.VisualComponents
             InitializeComponent();
         }
 
-        public static bool? Show(string header, string content, string okButtonText, string cancelButtonText)
+        public static bool Show(string header, string content, string okButtonText, string cancelButtonText)
         {
 
            var messageBox = new ConfirmationControl
@@ -82,7 +82,7 @@ namespace Hangman.UI.VisualComponents
 
             messageBox._window = window;
 
-            bool? result = window.ShowDialog();
+            bool result = window.ShowDialog() ?? false;
 
             return result;
 
