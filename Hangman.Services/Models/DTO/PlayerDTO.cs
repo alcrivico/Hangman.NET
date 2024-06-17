@@ -26,9 +26,6 @@ namespace Hangman.Services.Models.DTO
 
         public int ResponseCode { get; set; }
 
-        public override string ToString()
-        {
-            return Name + " " + FirstLastName + " " + SecondLastName;
-        }
+        public string Telephone { get; set; }
     }
 }

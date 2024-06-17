@@ -29,17 +29,11 @@ namespace Hangman.Services.Models.DTO
 
         public string ChallengerEmail { get; set; }
 
-        public string WordES { get; set; }
-
-        public string WordEN { get; set; }
+        public string Word { get; set; }
 
         public string Language { get; set; }
 
         public int ResponseCode { get; set; }
 
-        public override string ToString()
-        {
-            return GameCode;
-        }
     }
 }
