@@ -11,6 +11,7 @@ using System.Windows.Media;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.UI.VisualComponents;
 using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace Hangman.UI.Views
 {
@@ -21,6 +22,7 @@ namespace Hangman.UI.Views
         private CultureInfo _cultureInfo;
         private LanguageDTO _language;
         private PlayerDTO _player;
+        private Button Button_Back;
 
         public SignUpView(LanguageDTO language)
         {
@@ -70,7 +72,24 @@ namespace Hangman.UI.Views
                 SetLanguage("es");
             }
 
+            Button_Back = new Button
+            {
+                Content = _resourceManager.GetString("RN_Back", _cultureInfo),
+                Width = 100,
+                Height = 30,
+                Margin = new Thickness(10),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            Button_Back.Click += BackButton_Click;
 
+            Grid.SetRow(Button_Back, 2); 
+            Grid.SetColumn(Button_Back, 0);
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void SetLanguage(string language)
