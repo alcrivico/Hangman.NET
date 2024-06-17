@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Media;
 using Hangman.Adapters.ControllerAdapters.Services.Game;
 using Hangman.UI.VisualComponents;
+using System.Diagnostics;
 
 namespace Hangman.UI.Views
 {
@@ -18,33 +19,39 @@ namespace Hangman.UI.Views
         private bool _isEdit;
         private ResourceManager _resourceManager;
         private CultureInfo _cultureInfo;
+        private LanguageDTO _language;
         private PlayerDTO _player;
 
-        public SignUpView()
+        public SignUpView(LanguageDTO language)
         {
             
             _isEdit = false;
+            _language = language;
 
             InitializeComponent();
-            
+
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
             
-            SetLanguage("es");
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
 
         }
 
-        public SignUpView(PlayerDTO player)
+        public SignUpView(PlayerDTO player, LanguageDTO language)
         {
             
             _player = player;
             _isEdit = true;
+            _language = language;
 
             InitializeComponent();
 
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
             
-            SetLanguage("es");
-
             Title.Text = _resourceManager.GetString("RN_EditProfile", _cultureInfo);
             TextBox_Email.IsEnabled = false;
             TextBox_Email.Text = _player.Email;
@@ -56,6 +63,14 @@ namespace Hangman.UI.Views
             Button_SignUp.FontSize = 20;
             TextBlock_LogIn.Visibility = Visibility.Collapsed;
         
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
+
+
         }
 
         private void SetLanguage(string language)
@@ -69,12 +84,18 @@ namespace Hangman.UI.Views
             TextBox_SecondLastName.FieldName = _resourceManager.GetString("RN_SecondLastName", _cultureInfo);
             DatePicker_BirthDate.FieldName = _resourceManager.GetString("RN_BirthDate", _cultureInfo);
             TextBox_Email.FieldName = _resourceManager.GetString("RN_Email", _cultureInfo);
-            PasswordBox_Password.FieldName = _resourceManager.GetString("RN_Password", _cultureInfo);
+
+            Debug.WriteLine("Antes de la asignación: " + _resourceManager.GetString("RN_LanguageField", _cultureInfo));
+            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+            Debug.WriteLine("Despues de la asignación: " + _resourceManager.GetString("RN_LanguageField", _cultureInfo));
+            
+            
             PasswordBox_ConfirmPassword.FieldName = _resourceManager.GetString("RN_ConfirmPassword", _cultureInfo);
+            PasswordBox_Password.FieldName = _resourceManager.GetString("RN_Password", _cultureInfo);
             Button_SignUp.Text = _resourceManager.GetString("RN_BtnSignUp", _cultureInfo);
             TextBlock_LogIn.Text = _resourceManager.GetString("RN_LogIn", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
-            TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
         
         }
 
@@ -83,7 +104,7 @@ namespace Hangman.UI.Views
 
             if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
             {
-
+                Debug.WriteLine("LanguageDTO: " + languageDTO.LanguageName);
                 if (languageDTO.LanguageName.Equals("Spanish"))
                 {
                     SetLanguage("es");
@@ -146,7 +167,7 @@ namespace Hangman.UI.Views
 
                         InformationControl.Show(_resourceManager.GetString("RN_Success", _cultureInfo), _resourceManager.GetString("RN_ProfileUpdateSuccess", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
                         
-                        ProfileView profileView = new ProfileView(playerDTO);
+                        ProfileView profileView = new ProfileView(playerDTO, _language);
                         
                         profileView.Show();
                         this.Close();
@@ -212,7 +233,7 @@ namespace Hangman.UI.Views
         private void TextBlock_LogIn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            LogInView logInView = new LogInView();
+            LogInView logInView = new LogInView(_language);
 
             logInView.Show();
             Close();

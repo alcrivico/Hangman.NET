@@ -15,21 +15,28 @@ namespace Hangman.UI.Views
         private ResourceManager _resourceManager;
         private CultureInfo _cultureInfo;
         private PlayerDTO _player;
+        private LanguageDTO _language;
 
-        public MenuView(PlayerDTO player)
+        public MenuView(PlayerDTO player, LanguageDTO language)
         {
+            _player = player;
+            _language = language;
 
             InitializeComponent();
 
-            this._player = player;
             _resourceManager = new ResourceManager(
                 "Hangman.UI.Resources.I18n.Strings", 
                 typeof(MenuView).Assembly);
 
-            SetLanguage("es");
-
             this.ProfileControl.UserName = 
                 $"{_player.Name} {_player.FirstLastName} {_player.SecondLastName}";
+
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
 
         }
 
@@ -44,6 +51,7 @@ namespace Hangman.UI.Views
             Button_CreateGame.Text = _resourceManager.GetString("RN_BtnCreateGame", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
 
         }
 
@@ -115,8 +123,8 @@ namespace Hangman.UI.Views
         {
 
             bool result = ConfirmationControl.Show(
-                _resourceManager.GetString("RN_ConfirmLogout", _cultureInfo),
                 _resourceManager.GetString("RN_Confirmation", _cultureInfo),
+                _resourceManager.GetString("RN_ConfirmLogout", _cultureInfo),
                 _resourceManager.GetString("RN_Accept", _cultureInfo),
                 _resourceManager.GetString("RN_Cancel", _cultureInfo)
             );
@@ -124,7 +132,7 @@ namespace Hangman.UI.Views
             if (result)
             {
 
-                LogInView logInView = new LogInView();
+                LogInView logInView = new LogInView(_language);
 
                 logInView.Show();
                 this.Close();
@@ -136,7 +144,7 @@ namespace Hangman.UI.Views
         private void ProfileControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
 
-            ProfileView profileView = new ProfileView(_player);
+            ProfileView profileView = new ProfileView(_player, _language);
 
             profileView.Show();
             this.Close();

@@ -40,7 +40,15 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
+
             SetComponents();
+
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName == "Spanish")
+            {
+                SetLanguage("es");
+            }
 
             LoadData();
                
@@ -88,7 +96,7 @@ namespace Hangman.UI.Views
                     _resourceManager.GetString("RN_NoCategoriesFound", _cultureInfo),
                     _resourceManager.GetString("RN_Accept", _cultureInfo));
                 
-                MenuView menuView = new MenuView(_player);
+                MenuView menuView = new MenuView(_player, _language);
 
                 menuView.Show();
                 this.Close();
@@ -109,8 +117,6 @@ namespace Hangman.UI.Views
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
             InitializeTable();
-
-            TitleBarControl.SetSelectedLanguage(_language);
 
         }
 
@@ -175,13 +181,13 @@ namespace Hangman.UI.Views
             newGame.CreatorEmail = _player.Email;
             newGame.WordES = selectedWord.WordES;
             newGame.WordEN = selectedWord.WordEN;
-            newGame.Language = "Spanish";
+            newGame.Language = _language.LanguageName;
 
             try
             {
 
                 Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
-                GameView gameView = new GameView(response, _player);
+                GameView gameView = new GameView(response, _player, _language);
 
                 gameView.Show();
                 this.Close();
@@ -199,7 +205,7 @@ namespace Hangman.UI.Views
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
         {
 
-            MenuView menuView = new MenuView(_player);
+            MenuView menuView = new MenuView(_player, _language);
 
             menuView.Show();
             this.Close();

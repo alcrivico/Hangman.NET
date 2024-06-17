@@ -47,14 +47,7 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
-            if (_language.LanguageName.Equals("Spanish"))
-            {
-                SetLanguage("es");
-            }
-            else if (_language.LanguageName.Equals("English"))
-            {
-                SetLanguage("en");
-            }
+            TitleBarControl.SetSelectedLanguage(_language);
 
             DefineGamesTable();
 
@@ -72,6 +65,7 @@ namespace Hangman.UI.Views
                 this.Close();
 
             }
+
             SetLanguagesFromTitleBarControl();
             SetGames(_games);
             GamesTable.SetItemsSource(_gameDTOs);
@@ -101,8 +95,8 @@ namespace Hangman.UI.Views
             Button_Back.Text = _resourceManager.GetString("RN_Back", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
 
-            TitleBarControl.SetSelectedLanguage(_language);
             DefineGamesTable();
 
         }
@@ -115,7 +109,7 @@ namespace Hangman.UI.Views
         private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
         {
 
-            MenuView menuView = new MenuView(_player);
+            MenuView menuView = new MenuView(_player, _language);
 
             menuView.Show();
             this.Close();
@@ -212,7 +206,7 @@ namespace Hangman.UI.Views
 
         private void Button_Join_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            GameView gameView = new GameView((Adapters.ControllerAdapters.Services.Game.GameDTO) GamesTable.GetSelectedItem(), _player);
+            GameView gameView = new GameView((Adapters.ControllerAdapters.Services.Game.GameDTO) GamesTable.GetSelectedItem(), _player, _language);
             gameView.Show();
             this.Close();
         }

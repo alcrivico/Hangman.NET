@@ -20,6 +20,7 @@ namespace Hangman.UI.Views
         private ResourceManager _resourceManager;
         private CultureInfo _cultureInfo;
         private LogInAdapter _logInAdapter;
+        private LanguageDTO _language;
 
         public LogInView()
         {
@@ -29,6 +30,35 @@ namespace Hangman.UI.Views
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
             
             SetLanguage("es");
+
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
+
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
+
+            _logInAdapter = new LogInAdapter();
+
+        }
+
+        public LogInView(LanguageDTO language)
+        {
+
+            InitializeComponent();
+
+            _language = language;
+
+            _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(LogInView).Assembly);
+
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
 
             _logInAdapter = new LogInAdapter();
 
@@ -52,7 +82,8 @@ namespace Hangman.UI.Views
 
                 if (response.ResponseCode == 0)
                 {
-                    MenuView menuView = new MenuView(response);
+
+                    MenuView menuView = new MenuView(response, _language);
                     menuView.Show();
                     this.Close();
                 }
@@ -93,7 +124,7 @@ namespace Hangman.UI.Views
         private void TextBlock_SingUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            SignUpView signUpView = new SignUpView();
+            SignUpView signUpView = new SignUpView(_language);
 
             signUpView.Show();
             this.Close();
@@ -123,6 +154,7 @@ namespace Hangman.UI.Views
             Button_LogIn.Text = _resourceManager.GetString("RN_BtnLogin", _cultureInfo);
             TextBlock_SingUp.Text = _resourceManager.GetString("RN_BtnRegister", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
 
         }

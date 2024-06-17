@@ -31,6 +31,7 @@ namespace Hangman.UI.Views
         List<string> _tips;
         Adapters.ControllerAdapters.Services.Game.GameDTO _gameDTO;
         PlayerDTO _playerDTO;
+        LanguageDTO _language;
         WordDTO _word;
         int _wrongLetters;
         TcpClient _challengerClient;
@@ -113,7 +114,7 @@ namespace Hangman.UI.Views
                         _creatorStream.Close();
                         _creatorClient.Close();
 
-                        MenuView menuView = new MenuView(_playerDTO);
+                        MenuView menuView = new MenuView(_playerDTO, _language);
 
                         menuView.Show();
 
@@ -136,7 +137,7 @@ namespace Hangman.UI.Views
 
         }
 
-        public GameView(Adapters.ControllerAdapters.Services.Game.GameDTO gameDTO, PlayerDTO playerDTO)
+        public GameView(Adapters.ControllerAdapters.Services.Game.GameDTO gameDTO, PlayerDTO playerDTO, LanguageDTO language)
         {
 
             _gameAdapter = new GameAdapter();
@@ -149,6 +150,19 @@ namespace Hangman.UI.Views
 
 
             InitializeComponent();
+
+            TitleBarControl.SetSelectedLanguage(language);
+
+            if (language.LanguageName.Equals("Spanish"))
+            {
+                TitleBarControl.FieldName = "Idioma";
+            }
+            else if (language.LanguageName.Equals("English"))
+            {
+                TitleBarControl.FieldName = "Language";
+            }
+
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
 
             try
             {
@@ -182,7 +196,7 @@ namespace Hangman.UI.Views
 
             }
 
-            if (_gameDTO.CreatorName != _playerDTO.Name)
+            if (_gameDTO.CreatorEmail != _playerDTO.Email)
             {
 
                 try
@@ -226,7 +240,7 @@ namespace Hangman.UI.Views
             if (result == MessageBoxResult.Yes)
             {
 
-                if (_gameDTO.CreatorName != _playerDTO.Name)
+                if (_gameDTO.CreatorEmail != _playerDTO.Email)
                 {
 
                     _gameAdapter.LeftGame(_gameDTO.GameCode);
@@ -243,7 +257,7 @@ namespace Hangman.UI.Views
 
                 }
 
-                MenuView menuView = new MenuView(_playerDTO);
+                MenuView menuView = new MenuView(_playerDTO, _language);
                 menuView.Show();
                 this.Close();
 
@@ -253,7 +267,7 @@ namespace Hangman.UI.Views
         private void ReceiveLetter(String letter)
         {
 
-            if (_gameDTO.CreatorName != _playerDTO.Name)
+            if (_gameDTO.CreatorEmail != _playerDTO.Email)
             {
 
                 try
@@ -281,7 +295,7 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO);
+                                MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
 
@@ -318,7 +332,7 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO);
+                                MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
 
@@ -351,7 +365,7 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO);
+                                MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
 
@@ -381,7 +395,7 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO);
+                                MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
 
@@ -399,7 +413,7 @@ namespace Hangman.UI.Views
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    MenuView menuView = new MenuView(_playerDTO);
+                    MenuView menuView = new MenuView(_playerDTO, _language);
 
                     menuView.Show();
 
@@ -455,7 +469,7 @@ namespace Hangman.UI.Views
 
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    MenuView menuView = new MenuView(_playerDTO);
+                    MenuView menuView = new MenuView(_playerDTO, _language);
 
                     menuView.Show();
 

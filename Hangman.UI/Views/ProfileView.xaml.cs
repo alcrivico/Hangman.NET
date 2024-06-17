@@ -22,22 +22,29 @@ namespace Hangman.UI.Views
         private ResourceManager _resourceManager;
         private CultureInfo _cultureInfo;
         private ProfileAdapter _profileAdapter;
+        private LanguageDTO _language;
         private PlayerDTO _player;
         private ObservableCollection<Object> _gameDTOs;
         private List<Adapters.ControllerAdapters.Services.Player.GameDTO> _games;
 
-        public ProfileView(PlayerDTO player)
+        public ProfileView(PlayerDTO player, LanguageDTO language)
         {
             InitializeComponent();
 
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(ProfileView).Assembly);
-
             _player = player;
+            _language = language;
             _profileAdapter = new ProfileAdapter();
             _gameDTOs = new ObservableCollection<Object>();
 
-            SetLanguage("es");
             InitializeTable();
+
+            TitleBarControl.SetSelectedLanguage(_language);
+
+            if (_language.LanguageName.Equals("Spanish"))
+            {
+                SetLanguage("es");
+            }
 
             birhtDate.IsEnabled = false;
             email.IsEnabled = false;
@@ -58,7 +65,7 @@ namespace Hangman.UI.Views
                     e.Message,
                     _resourceManager.GetString("RN_Accept", _cultureInfo));
 
-                MenuView menuView = new MenuView(_player);
+                MenuView menuView = new MenuView(_player, _language);
 
                 menuView.Show();
                 this.Close();
@@ -97,6 +104,7 @@ namespace Hangman.UI.Views
             birhtDate.Text = _player.BirthDate.ToString("d", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
+            _language = TitleBarControl.SelectedItem as LanguageDTO;
 
             InitializeTable();
 
@@ -178,7 +186,7 @@ namespace Hangman.UI.Views
 
         private void Button_Back_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            MenuView menuView = new MenuView(_player);
+            MenuView menuView = new MenuView(_player, _language);
             menuView.Show();
             this.Close();
         }
@@ -189,7 +197,7 @@ namespace Hangman.UI.Views
 
         private void Button_ModifyProfile_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            SignUpView profileView = new SignUpView(_player);
+            SignUpView profileView = new SignUpView(_player, _language);
             profileView.Show();
         }
 
