@@ -31,5 +31,8 @@ namespace Hangman.Services.Models.POCO
         [Column (Name = "Password")]
         public string Password { get; set; }
 
+        [Column (Name = "Telephone")]
+        public string Telephone { get; set; }
+
     }
 }
