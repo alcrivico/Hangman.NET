@@ -192,7 +192,6 @@ namespace Hangman.UI.VisualComponents
                 Window parentWindow = Window.GetWindow(this);
                 
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                parentWindow.Close();
                 Application.Current.Shutdown();
 
             }

@@ -12,12 +12,14 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <TextBlock
             x:Name="DatePicker_FieldName"
+            Grid.ColumnSpan="2"
+            Margin="13,0,0,0"
             Padding="5,0,5,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -27,25 +29,27 @@
             FontSize="12"
             FontWeight="Bold"
             Foreground="{StaticResource SolidColorBrush_Gold}"
-            Text="{Binding FieldName, ElementName=DatePicker}" Margin="13,0,0,0" Grid.ColumnSpan="2" />
+            Text="{Binding FieldName, ElementName=DatePicker}" />
 
         <Rectangle
             x:Name="DatePicker_Highlight"
+            Grid.ColumnSpan="2"
             Panel.ZIndex="2"
             Fill="{StaticResource SolidColorBrush_Black}"
             Opacity="0.5"
             RadiusX="10"
             RadiusY="10"
-            Visibility="Hidden" Grid.ColumnSpan="2"/>
+            Visibility="Hidden" />
 
         <Border
             x:Name="DatePicker_Border"
+            Grid.ColumnSpan="2"
             Height="40"
             Panel.ZIndex="0"
             Background="{StaticResource SolidColorBrush_MarianBlue}"
             BorderBrush="{StaticResource SolidColorBrush_Gold}"
             BorderThickness="3"
-            CornerRadius="10" Grid.ColumnSpan="2">
+            CornerRadius="10">
 
             <Grid>
                 <TextBox
@@ -59,9 +63,9 @@
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_White}"
+                    IsReadOnly="True"
                     Text="{Binding SelectedDate, ElementName=DatePicker, StringFormat='dd/MM/yyyy'}"
-                    TextAlignment="Left"
-                    IsReadOnly="True" />
+                    TextAlignment="Left" />
 
                 <Button
                     x:Name="CalendarButton"
@@ -71,8 +75,8 @@
                     VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"
-                    Cursor="Hand"
-                    Click="CalendarButton_Click">
+                    Click="CalendarButton_Click"
+                    Cursor="Hand">
                     <Image Source="/Resources/Images/calendar_icon.png" />
                 </Button>
             </Grid>
@@ -80,17 +84,16 @@
 
         <Popup
             x:Name="CalendarPopup"
-            PlacementTarget="{Binding ElementName=CalendarButton}"
+            Grid.ColumnSpan="2"
             Placement="Bottom"
-            StaysOpen="False" Grid.ColumnSpan="2">
+            PlacementTarget="{Binding ElementName=CalendarButton}"
+            StaysOpen="False">
             <Border
+                Background="{StaticResource SolidColorBrush_MarianBlue}"
                 BorderBrush="{StaticResource SolidColorBrush_MikadoYellow}"
                 BorderThickness="3"
-                CornerRadius="10"
-                Background="{StaticResource SolidColorBrush_MarianBlue}">
-                <Calendar
-                    x:Name="DatePickerCalendar"
-                    SelectedDate="{Binding SelectedDate, ElementName=DatePicker, Mode=TwoWay}" />
+                CornerRadius="10">
+                <Calendar x:Name="DatePickerCalendar" SelectedDate="{Binding SelectedDate, ElementName=DatePicker, Mode=TwoWay}" />
             </Border>
         </Popup>
 

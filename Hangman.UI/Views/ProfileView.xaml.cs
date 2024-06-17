@@ -254,5 +254,15 @@ namespace Hangman.UI.Views
                 textBox.Text = _player.BirthDate.ToString("d", _cultureInfo);
             }
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+
+        }
     }
 }

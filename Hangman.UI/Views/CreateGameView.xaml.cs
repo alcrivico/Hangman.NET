@@ -12,6 +12,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Hangman.Adapters.ControllerAdapters.SingleAdapters;
+using System.Windows.Input;
 
 namespace Hangman.UI.Views
 {
@@ -237,6 +238,16 @@ namespace Hangman.UI.Views
 
                 WordsTable.SetItemsSource(_wordDTOs);
 
+            }
+
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
             }
 
         }
