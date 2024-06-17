@@ -15,7 +15,7 @@ BEGIN
     -- Obtener el ID del status "Waiting"
     SELECT @StatusID = ID
     FROM GameStatus
-    WHERE Status = 'Waiting';
+    WHERE StatusEn = 'Waiting';
 
     -- Obtener el correo del creador
     SELECT @Email = Email
