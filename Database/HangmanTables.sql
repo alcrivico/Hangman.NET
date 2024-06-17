@@ -12,8 +12,10 @@ IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Ga
 
 CREATE TABLE [GameStatus] (
     -- Waiting, Playing, Won, Lost, Cancelled, Left
+    -- Esperando, Jugando, Ganado, Perdido, Cancelado, Abandonado
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Status] varchar(10) NULL
+    [StatusEn] varchar(10) NULL,
+    [StatusEs] varchar(10) NULL
 )
 
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Language]') AND type IN ('U'))
@@ -34,7 +36,8 @@ CREATE TABLE [Player] (
     [SecondLastName] varchar(55) NULL,
     [BirthDate] date NOT NULL,
     [Email] varchar(55) NOT NULL,
-    [Password] varchar(55) NOT NULL
+    [Password] varchar(55) NOT NULL,
+    [Telephone] varchar(10) NOT NULL
 )
 
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[Word]') AND type IN ('U'))
