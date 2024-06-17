@@ -10,23 +10,23 @@ INSERT INTO [Category] ([CategoryES], [CategoryEN]) VALUES
     ('Profesiones', 'Professions'),
     ('Objetos', 'Objects');
 
-INSERT INTO [GameStatus] ([Status]) VALUES
-    ('Waiting'),
-    ('Playing'),
-    ('Cancelled'),
-    ('Left'),
-    ('Won'),
-    ('Lost');
+INSERT INTO [GameStatus] ([StatusEn], [StatusEs]) VALUES
+    ('Waiting', 'Esperando'),
+    ('Playing', 'Jugando'),
+    ('Cancelled', 'Cancelado'),
+    ('Left', 'Abandonado'),
+    ('Won', 'Ganado'),
+    ('Lost', 'Perdido');
 
 INSERT INTO [Language] ([LanguageName]) VALUES
     ('Spanish'), --id 1
     ('English'); -- id 2
 
-INSERT INTO [Player] ([FirstName], [FirstLastName], [SecondLastName], [BirthDate], [Email], [Password]) VALUES
-    ('Raul', 'Hernandez', 'Olivares', '2000-06-23', 'raulh230600@gmail.com', '12345'), --id 1
-    ('Albhieri', 'Villa', 'Contreras', '2002-12-18', 'alcrivico@gmail.com', 'alcrivico'), --id 2
-    ('Miguel', 'Morales', 'Cruz', '2002-08-30', 'moralesmiguelangel176@gmail.com', 'miguelon'), --id 3
-    ('Victoria', 'Moyano', '', '1999-01-04', 'soyunpokemonytuno@gmail.com', 'victoria'); --id 4
+INSERT INTO [Player] ([FirstName], [FirstLastName], [SecondLastName], [BirthDate], [Email], [Password], [Telephone]) VALUES
+    ('Raul', 'Hernandez', 'Olivares', '2000-06-23', 'raulh230600@gmail.com', '12345', '2281940630'), --id 1
+    ('Albhieri', 'Villa', 'Contreras', '2002-12-18', 'alcrivico@gmail.com', 'alcrivico', '2282213736'), --id 2
+    ('Miguel', 'Morales', 'Cruz', '2002-08-30', 'moralesmiguelangel176@gmail.com', 'miguelon', '2311343356'), --id 3
+    ('Victoria', 'Moyano', '', '1999-01-04', 'soyunpokemonytuno@gmail.com', 'victoria', '2282728682'); --id 4
 
 INSERT INTO [Word] ([WordES], [WordEN], [TipES], [TipEN], [HasNumber], [CategoryId]) VALUES
     ('Pizza', 'Pizza', 'Comida italiana', 'Italian food', 0, 1),
