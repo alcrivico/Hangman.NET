@@ -49,6 +49,8 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (playerId != 0 && wordId != 0 && languageId != 0)
                         {
+                            dataSource.AddGame(playerId, wordId, languageId);
+
                             var games = (from game in gameTable
                                         join gameStatus in statusTable on game.StatusId equals gameStatus.Id
                                         join creator in playerTable on game.CreatorId equals creator.Id
