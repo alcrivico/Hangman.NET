@@ -84,8 +84,7 @@ namespace Hangman.UI.Views
 
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-                //ERROR SI LE DOY A FINALIZAR PARTIDA
-
+                
                 try
                 {
                     while ((bytesRead = _creatorStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -277,6 +276,8 @@ namespace Hangman.UI.Views
                     _creatorClient.Close();
 
                 }
+
+
 
                 MenuView menuView = new MenuView(_playerDTO, _language);
                 menuView.Show();
