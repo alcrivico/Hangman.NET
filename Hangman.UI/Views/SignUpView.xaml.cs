@@ -231,6 +231,12 @@ namespace Hangman.UI.Views
 
             }
 
+            if (playerDTO.BirthDate > DateTime.Now)
+            {
+                InformationControl.Show(_resourceManager.GetString("RN_Error", _cultureInfo), _resourceManager.GetString("RN_InvalidBirthDate", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
+                return false;
+            }
+
             if (playerDTO.Telephone.Length != 10 || !Regex.IsMatch(playerDTO.Telephone, @"^\d{10}$"))
             {
                 InformationControl.Show(_resourceManager.GetString("RN_Error", _cultureInfo), _resourceManager.GetString("RN_InvalidTelephoneFormat", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
