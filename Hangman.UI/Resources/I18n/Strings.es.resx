@@ -159,6 +159,9 @@
   <data name="RN_ChooseCategory" xml:space="preserve">
     <value>CategoryES</value>
   </data>
+  <data name="RN_ChooseStatus" xml:space="preserve">
+    <value>StatusEs</value>
+  </data>
   <data name="RN_ChooseTip" xml:space="preserve">
     <value>TipES</value>
   </data>

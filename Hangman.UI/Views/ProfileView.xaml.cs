@@ -142,12 +142,12 @@ namespace Hangman.UI.Views
                 new Dictionary<string, string> {
                     { "Name", _resourceManager.GetString("RN_Word", _cultureInfo) },
                     { "Width", "*" },
-                    { "BindingName", _resourceManager.GetString("RN_ChooseWord", _cultureInfo) } //---- Cambia depende en que idioma lo jugaste, No en el que está actualmente -----//
+                    { "BindingName", "Word" }
                 },
                 new Dictionary<string, string> {
                     { "Name", _resourceManager.GetString("RN_Result", _cultureInfo) },
                     { "Width", "*" },
-                    { "BindingName", "Status" }
+                    { "BindingName", _resourceManager.GetString("RN_ChooseStatus", _cultureInfo) }
                 }
             };
 
@@ -157,7 +157,7 @@ namespace Hangman.UI.Views
         private int CalculateGlobalScore(List<Adapters.ControllerAdapters.Services.Player.GameDTO> games)
         {
             int scorePerGame = 10;
-            int totalScore = games.Count(game => game.Status == "Won") * scorePerGame;
+            int totalScore = games.Count(game => game.StatusEn == "Won") * scorePerGame;
             return totalScore;
         }
 
