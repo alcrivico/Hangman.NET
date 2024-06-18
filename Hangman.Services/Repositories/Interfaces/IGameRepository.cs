@@ -16,7 +16,5 @@ namespace Hangman.Services.Repositories.Interfaces
 
         GameDTO SetChallenger(string gameCode, string challengerEmail);
 
-        GameDTO GetPlayerType(string email, string gameCode);
-
     }
 }

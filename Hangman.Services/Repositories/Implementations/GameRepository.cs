@@ -9,6 +9,7 @@ using Hangman.Services.Utilities;
 using System.Diagnostics;
 using Hangman.Services.Models.DTO;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace Hangman.Services.Repositories.Implementations
 {
@@ -39,7 +40,7 @@ namespace Hangman.Services.Repositories.Implementations
                                         select player.Id).First();
 
                         var wordId = (from word in wordTable
-                                      where word.WordEN == newGame.WordEN || word.WordES == newGame.WordES
+                                      where word.WordEN == newGame.Word || word.WordES == newGame.Word
                                       select word.Id).First();
 
                         var languageId = (from language in languageTable
@@ -48,28 +49,24 @@ namespace Hangman.Services.Repositories.Implementations
 
                         if (playerId != 0 && wordId != 0 && languageId != 0)
                         {
-                            dataSource.AddGame(playerId, wordId, languageId);
-
                             var games = (from game in gameTable
-                                         join gameStatus in statusTable on game.StatusId equals gameStatus.Id
-                                         join creator in playerTable on game.CreatorId equals creator.Id
-                                         join word in wordTable on game.WordId equals word.Id
-                                         join language in languageTable on game.LanguageId equals language.Id
-                                         where playerId == game.CreatorId && wordId == game.WordId && languageId == game.LanguageId
-                                         orderby game.CreationDate descending
-                                         select new GameDTO
-                                         {
-                                             CreationDate = game.CreationDate,
-                                             GameCode = game.GameCode,
-                                             Status = gameStatus.Status,
-                                             CreatorName = creator.Name,
-                                             CreatorEmail = creator.Email,
-                                             WordES = word.WordES,
-                                             WordEN = word.WordEN,
-                                             Language = language.LanguageName,
-                                             ResponseCode = 0
-                                         }).FirstOrDefault();
-                            Debug.WriteLine("Añade respuesta");
+                                        join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                        join creator in playerTable on game.CreatorId equals creator.Id
+                                        join word in wordTable on game.WordId equals word.Id
+                                        join language in languageTable on game.LanguageId equals language.Id
+                                        where playerId == game.CreatorId && wordId == game.WordId && languageId == game.LanguageId
+                                        orderby game.CreationDate descending
+                                        select new GameDTO
+                                        {
+                                            CreationDate = game.CreationDate,
+                                            GameCode = game.GameCode,
+                                            Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
+                                            CreatorName = creator.Name,
+                                            CreatorEmail = creator.Email,
+                                            Word = (language.LanguageName == "English") ? word.WordEN : word.WordES,
+                                            Language = language.LanguageName,
+                                            ResponseCode = 0
+                                        }).FirstOrDefault();
                             response = games;
                         }
                         else
@@ -119,27 +116,26 @@ namespace Hangman.Services.Repositories.Implementations
                         Table<Language> languageTable = dataSource.GetTable<Language>();
 
                         var games = (from game in gameTable
-                                    join gameStatus in statusTable on game.StatusId equals gameStatus.Id
-                                    join creator in playerTable on game.CreatorId equals creator.Id
-                                    join challenger in playerTable on game.ChallengerId equals challenger.Id
-                                    join word in wordTable on game.WordId equals word.Id
-                                    join language in languageTable on game.LanguageId equals language.Id
-                                    where (gameStatus.Status == "Won" || gameStatus.Status == "Lost" || gameStatus.Status == "Left")
-                                    && challenger.Email == email
-                                    select new GameDTO
-                                    {
-                                        CreationDate = game.CreationDate,
-                                        GameCode = game.GameCode,
-                                        Status = gameStatus.Status,
-                                        CreatorName = creator.Name,
-                                        CreatorEmail = creator.Email,
-                                        ChallengerName = challenger.Name,
-                                        ChallengerEmail = challenger.Email,
-                                        WordES = word.WordES,
-                                        WordEN = word.WordEN,
-                                        Language = language.LanguageName
-                                    }).ToList();
-                        
+                                join gameStatus in statusTable on game.StatusId equals gameStatus.Id
+                                join creator in playerTable on game.CreatorId equals creator.Id
+                                join challenger in playerTable on game.ChallengerId equals challenger.Id
+                                join word in wordTable on game.WordId equals word.Id
+                                join language in languageTable on game.LanguageId equals language.Id
+                                where (gameStatus.StatusEn == "Won" || gameStatus.StatusEn == "Lost" || gameStatus.StatusEn == "Left")
+                                && challenger.Email == email
+                                select new GameDTO
+                                {
+                                    CreationDate = game.CreationDate,
+                                    GameCode = game.GameCode,
+                                    Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
+                                    CreatorName = creator.Name,
+                                    CreatorEmail = creator.Email,
+                                    ChallengerName = challenger.Name,
+                                    ChallengerEmail = challenger.Email,
+                                    Word = (language.LanguageName == "English") ? word.WordEN : word.WordES,
+                                    Language = language.LanguageName
+                                }).ToList();
+
                         if (games.Any())
                         {
                             response = games;
@@ -149,7 +145,7 @@ namespace Hangman.Services.Repositories.Implementations
                         {
                             response[0].ResponseCode = 1;
                         }
-
+                        
                     }
                     catch (SqlException sqlEx)
                     {
@@ -196,18 +192,16 @@ namespace Hangman.Services.Repositories.Implementations
                                      join creator in playerTable on game.CreatorId equals creator.Id
                                      join word in wordTable on game.WordId equals word.Id
                                      join language in languageTable on game.LanguageId equals language.Id
-                                     where (gameStatus.Status == "Waiting")
+                                     where gameStatus.StatusEn == "Waiting"
                                      select new GameDTO
                                      {
                                          CreationDate = game.CreationDate,
                                          GameCode = game.GameCode,
-                                         Status = gameStatus.Status,
+                                         Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
                                          CreatorName = creator.Name,
                                          CreatorEmail = creator.Email,
-                                         WordES = word.WordES,
-                                         WordEN = word.WordEN,
+                                         Word = (language.LanguageName == "English") ? word.WordEN : word.WordES,
                                          Language = language.LanguageName,
-
                                      }).ToList();
 
                         if (games.Any())
@@ -264,7 +258,7 @@ namespace Hangman.Services.Repositories.Implementations
                             Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
 
                             var statusId = (from s in statusTable
-                                            where s.Status == status
+                                            where s.StatusEn == status
                                             select s.Id).First();
 
                             game.StatusId = statusId;
@@ -349,71 +343,6 @@ namespace Hangman.Services.Repositories.Implementations
 
             return response;
 
-        }
-
-        public GameDTO GetPlayerType(string email, string gameCode)
-        {
-
-            GameDTO response = new GameDTO();
-
-            using (DataContext dataSource = DBConnection.GetConnection())
-            {
-
-                if (dataSource != null)
-                {
-
-                    try
-                    {
-
-                        Table<Game> gameTable = dataSource.GetTable<Game>();
-                        Table<Player> playerTable = dataSource.GetTable<Player>();
-
-                        var game = (from g in gameTable
-                                    join creator in playerTable on g.CreatorId equals creator.Id
-                                    join challenger in playerTable on g.ChallengerId equals challenger.Id into challengers
-                                    from challenger in challengers.DefaultIfEmpty()
-                                    where g.GameCode == gameCode
-                                    select new GameDTO
-                                    {
-                                        CreatorEmail = creator.Email,
-                                        ChallengerEmail = challenger.Email,
-                                    }).FirstOrDefault();
-
-                        if (game != null)
-                        {
-                            if (game.ChallengerEmail == email)
-                            {
-                                //Respuesta para Challenger
-                                response.ResponseCode = 0;
-                            }
-                            else
-                            {
-                                //Respuesta para Creator
-                                response.ResponseCode = 1;
-                            }
-
-                            response.ResponseCode = 0;
-
-                        }
-                        else
-                        {
-                            response.ResponseCode = 2;
-                        }
-
-                    }
-                    catch (SqlException sqlEx)
-                    {
-                        Debug.WriteLine("Error: " + sqlEx.Message + ": \n" + sqlEx.StackTrace);
-                        response.ResponseCode = 3;
-                    }
-                }
-                else
-                {
-                    response.ResponseCode = 4;
-                }
-
-            }
-            return response;
         }
 
     }

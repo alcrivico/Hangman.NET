@@ -39,6 +39,7 @@ namespace Hangman.Services.Repositories.Implementations
                                          SecondLastName = p.SecondLastName,
                                          BirthDate = p.BirthDate,
                                          Email = p.Email,
+                                         Telephone = p.Telephone,
                                          ResponseCode = 0
                                      };
 
@@ -97,7 +98,8 @@ namespace Hangman.Services.Repositories.Implementations
                                 SecondLastName = playerDTO.SecondLastName,
                                 BirthDate = playerDTO.BirthDate,
                                 Email = playerDTO.Email,
-                                Password = playerDTO.Password
+                                Password = playerDTO.Password,
+                                Telephone = playerDTO.Telephone
                             };
 
                             playerTable.InsertOnSubmit(newPlayer);
@@ -157,6 +159,7 @@ namespace Hangman.Services.Repositories.Implementations
                             playerToUpdate.SecondLastName = updatedPlayerDTO.SecondLastName;
                             playerToUpdate.BirthDate = updatedPlayerDTO.BirthDate;
                             playerToUpdate.Password = updatedPlayerDTO.Password;
+                            playerToUpdate.Telephone = updatedPlayerDTO.Telephone;
 
                             dataSource.SubmitChanges();
 
@@ -185,53 +188,6 @@ namespace Hangman.Services.Repositories.Implementations
             return response;
 
         }
-
-        //Método cantidado a ser eliminado
-        /*public Player GetPlayerById(int playerId)
-        {
-            
-            using(DataContext dataSource = DBConnection.GetConnection())
-            {
-
-                if (dataSource != null)
-                {
-
-                    try
-                    {
-
-                        Table<Player> playerTable = dataSource.GetTable<Player>();
-
-                        var player = from p in playerTable
-                                     where p.Id == playerId
-                                     select p;
-
-                        if (player.Any())
-                        {
-                            return player.First();
-                        }
-                        else
-                        {
-                            return null;
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                        Console.Write("Error: " + ex.StackTrace);
-                        return null;
-
-                    }
-
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-
-        }*/
 
     }
 
