@@ -210,6 +210,9 @@
   <data name="RN_InvalidEmailFormat" xml:space="preserve">
     <value>The email format is incorrect</value>
   </data>
+  <data name="RN_InvalidTelephoneFormat" xml:space="preserve">
+    <value>Invalid telephone format</value>
+  </data>
   <data name="RN_LanguageField" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="RN_Success" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="RN_Telephone" xml:space="preserve">
+    <value>Telephone</value>
   </data>
   <data name="RN_TimeWaiting" xml:space="preserve">
     <value>Time waiting (min):</value>

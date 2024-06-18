@@ -105,7 +105,7 @@ namespace Hangman.UI.Views
             TextBox_SecondLastName.FieldName = _resourceManager.GetString("RN_SecondLastName", _cultureInfo);
             DatePicker_BirthDate.FieldName = _resourceManager.GetString("RN_BirthDate", _cultureInfo);
             TextBox_Email.FieldName = _resourceManager.GetString("RN_Email", _cultureInfo);
-
+            TextBox_Telephone.FieldName = _resourceManager.GetString("RN_Telephone", _cultureInfo);
             Debug.WriteLine("Antes de la asignación: " + _resourceManager.GetString("RN_LanguageField", _cultureInfo));
             TitleBarControl.FieldName = _resourceManager.GetString("RN_LanguageField", _cultureInfo);
             Debug.WriteLine("Despues de la asignación: " + _resourceManager.GetString("RN_LanguageField", _cultureInfo));
@@ -154,6 +154,7 @@ namespace Hangman.UI.Views
                 SecondLastName = TextBox_SecondLastName.Text,
                 BirthDate = DatePicker_BirthDate.SelectedDate ?? DateTime.MinValue,
                 Email = TextBox_Email.Text,
+                Telephone = TextBox_Telephone.Text,
                 Password = PasswordBox_Password.PasswordText
 
             };
@@ -212,7 +213,8 @@ namespace Hangman.UI.Views
                 string.IsNullOrWhiteSpace(playerDTO.SecondLastName) ||
                 string.IsNullOrWhiteSpace(playerDTO.Email) ||
                 string.IsNullOrWhiteSpace(playerDTO.Password) ||
-                string.IsNullOrWhiteSpace(confirmPassword))
+                string.IsNullOrWhiteSpace(confirmPassword) ||
+                string.IsNullOrWhiteSpace(playerDTO.Telephone))
             {
                 
                 InformationControl.Show(_resourceManager.GetString("RN_Error", _cultureInfo), _resourceManager.GetString("RN_MissingFields", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
@@ -237,6 +239,12 @@ namespace Hangman.UI.Views
                 
                 return false;
 
+            }
+
+            if (playerDTO.Telephone.Length != 10 || !Regex.IsMatch(playerDTO.Telephone, @"^\d{10}$"))
+            {
+                InformationControl.Show(_resourceManager.GetString("RN_Error", _cultureInfo), _resourceManager.GetString("RN_InvalidTelephoneFormat", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
+                return false;
             }
 
             if (!playerDTO.Password.Equals(confirmPassword))
