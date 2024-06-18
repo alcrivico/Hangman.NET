@@ -139,7 +139,7 @@
                             Margin="0,0,0,20"
                             ButtonControlClick="Button_SignUp_ButtonControlClick"
                             FontSize="24"
-                            Text="Registrarse" />
+                            Text="Registrarse" Loaded="Button_SignUp_Loaded" />
 
                         <TextBlock
                             x:Name="TextBlock_LogIn"

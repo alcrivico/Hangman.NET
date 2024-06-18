@@ -26,14 +26,14 @@ namespace Hangman.UI.Views
 
         public SignUpView(LanguageDTO language)
         {
-            
+
             _isEdit = false;
             _language = language;
 
             InitializeComponent();
 
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
-            
+
             TitleBarControl.SetSelectedLanguage(_language);
 
             if (_language.LanguageName.Equals("Spanish"))
@@ -45,7 +45,7 @@ namespace Hangman.UI.Views
 
         public SignUpView(PlayerDTO player, LanguageDTO language)
         {
-            
+
             _player = player;
             _isEdit = true;
             _language = language;
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
             InitializeComponent();
 
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
-            
+
             Title.Text = _resourceManager.GetString("RN_EditProfile", _cultureInfo);
             TextBox_Email.IsEnabled = false;
             TextBox_Email.Text = _player.Email;
@@ -64,7 +64,8 @@ namespace Hangman.UI.Views
             Button_SignUp.Text = _resourceManager.GetString("RN_SaveChanges", _cultureInfo);
             Button_SignUp.FontSize = 20;
             TextBlock_LogIn.Visibility = Visibility.Collapsed;
-        
+            TextBox_Telephone.Text = _player.Telephone;
+
             TitleBarControl.SetSelectedLanguage(_language);
 
             if (_language.LanguageName.Equals("Spanish"))
