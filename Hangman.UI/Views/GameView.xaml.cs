@@ -87,9 +87,9 @@ namespace Hangman.UI.Views
                 
                 try
                 {
-                    while (_creatorClient.Connected && _creatorStream != null)
+                    while ((bytesRead = _creatorStream.Read(buffer, 0, buffer.Length)) != 0)
                     {
-                        bytesRead = _creatorStream.Read(buffer, 0, buffer.Length);
+
                         string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
                         if (letter == _gameDTO.GameCode)

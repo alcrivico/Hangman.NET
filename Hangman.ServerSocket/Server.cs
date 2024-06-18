@@ -31,18 +31,7 @@ namespace Hangman.ServerSocket
         {
             NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
-            int bytesRead;
-
-            try
-            {
-                bytesRead = stream.Read(buffer, 0, buffer.Length);
-            }
-            catch
-            {
-                client.Close();
-                return;
-            }
-
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
             string gameCode = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
 
             lock (games)
@@ -82,29 +71,21 @@ namespace Hangman.ServerSocket
             byte[] buffer = new byte[1024];
             int bytesRead;
 
-            try
+            while ((bytesRead = session.ChallengerStream.Read(buffer, 0, buffer.Length)) != 0)
             {
-                while ((bytesRead = session.ChallengerStream.Read(buffer, 0, buffer.Length)) != 0)
+                Console.WriteLine($"Received data from challenger for game {gameCode}.");
+
+                session.CreatorStream.Write(buffer, 0, bytesRead);
+
+                Console.WriteLine($"Data sent to creator for game {gameCode}.");
+
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                if (message == "Game Over")
                 {
-                    Console.WriteLine($"Received data from challenger for game {gameCode}.");
-
-                    session.CreatorStream.Write(buffer, 0, bytesRead);
-
-                    Console.WriteLine($"Data sent to creator for game {gameCode}.");
-
-                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-
-                    if (message == "Game Over")
-                    {
-                        Console.WriteLine($"Game Over for game {gameCode}");
-                        break;
-                    }
+                    Console.WriteLine($"Game Over for game {gameCode}");
+                    break;
                 }
-            }
-            catch
-            {
-                Console.WriteLine($"Challenger disconnected for game {gameCode}. Closing connections.");
-                CloseConnections(gameCode);
             }
 
             CloseConnections(gameCode);
@@ -114,27 +95,13 @@ namespace Hangman.ServerSocket
         {
             lock (games)
             {
-                if (games.ContainsKey(gameCode))
-                {
-                    GameSession session = games[gameCode];
-
-                    try
-                    {
-                        session.ChallengerStream.Close();
-                        session.ChallengerClient.Close();
-                    }
-                    catch { }
-
-                    try
-                    {
-                        session.CreatorStream.Close();
-                        session.CreatorClient.Close();
-                    }
-                    catch { }
-
-                    games.Remove(gameCode);
-                    Console.WriteLine($"Game {gameCode} connections closed.");
-                }
+                GameSession session = games[gameCode];
+                session.ChallengerStream.Close();
+                session.CreatorStream.Close();
+                session.ChallengerClient.Close();
+                session.CreatorClient.Close();
+                games.Remove(gameCode);
+                Console.WriteLine($"Game {gameCode} connections closed.");
             }
         }
     }
