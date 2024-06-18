@@ -32,6 +32,8 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         
         private string SecondLastNameField;
         
+        private string TelephoneField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime BirthDate
         {
@@ -122,6 +124,19 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
                 this.SecondLastNameField = value;
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telephone
+        {
+            get
+            {
+                return this.TelephoneField;
+            }
+            set
+            {
+                this.TelephoneField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -146,13 +161,13 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         
         private int ResponseCodeField;
         
-        private string StatusField;
+        private string StatusEnField;
+        
+        private string StatusEsField;
         
         private int WaitingTimeField;
         
-        private string WordENField;
-        
-        private string WordESField;
+        private string WordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string ChallengerEmail
@@ -259,15 +274,28 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Status
+        public string StatusEn
         {
             get
             {
-                return this.StatusField;
+                return this.StatusEnField;
             }
             set
             {
-                this.StatusField = value;
+                this.StatusEnField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StatusEs
+        {
+            get
+            {
+                return this.StatusEsField;
+            }
+            set
+            {
+                this.StatusEsField = value;
             }
         }
         
@@ -285,28 +313,15 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Player
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WordEN
+        public string Word
         {
             get
             {
-                return this.WordENField;
+                return this.WordField;
             }
             set
             {
-                this.WordENField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WordES
-        {
-            get
-            {
-                return this.WordESField;
-            }
-            set
-            {
-                this.WordESField = value;
+                this.WordField = value;
             }
         }
     }
