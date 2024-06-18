@@ -90,6 +90,8 @@ namespace Hangman.UI.Views
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            ProfileView profileView = new ProfileView(_player, _language);
+            profileView.Show();
         }
 
         private void SetLanguage(string language)
