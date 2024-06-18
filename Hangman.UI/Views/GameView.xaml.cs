@@ -38,7 +38,6 @@ namespace Hangman.UI.Views
         NetworkStream _challengerStream;
         TcpClient _creatorClient;
         NetworkStream _creatorStream;
-
         private void StartChallengerClient()
         {
 
@@ -48,7 +47,6 @@ namespace Hangman.UI.Views
             SendLetter(_gameDTO.GameCode);
 
         }
-
         private void StartCreatorClient()
         {
 
@@ -59,13 +57,11 @@ namespace Hangman.UI.Views
             ListenForLetters();
 
         }
-
         public void SendGameCode(string gameCode)
         {
             byte[] data = Encoding.UTF8.GetBytes(gameCode);
             _creatorStream.Write(data, 0, data.Length);
         }
-
         private void SendLetter(string letter)
         {
 
@@ -114,11 +110,15 @@ namespace Hangman.UI.Views
                         _creatorStream.Close();
                         _creatorClient.Close();
 
-                        MenuView menuView = new MenuView(_playerDTO, _language);
+                        Dispatcher.Invoke(() =>
+                        {
+                            MenuView menuView = new MenuView(_playerDTO, _language);
 
-                        menuView.Show();
-
-                        this.Close();
+                            menuView.Show();
+                            this.Close();
+                            
+                        });
+                        return;
 
                     }
                     else
@@ -263,7 +263,6 @@ namespace Hangman.UI.Views
 
             }
         }
-
         private void ReceiveLetter(String letter)
         {
 
@@ -295,9 +294,7 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO, _language);
-
-                                menuView.Show();
+                                
 
                                 this.Close();
 

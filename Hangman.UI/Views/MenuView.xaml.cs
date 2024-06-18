@@ -17,6 +17,7 @@ namespace Hangman.UI.Views
         private PlayerDTO _player;
         private LanguageDTO _language;
 
+
         public MenuView(PlayerDTO player, LanguageDTO language)
         {
             _player = player;
