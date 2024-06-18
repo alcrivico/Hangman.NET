@@ -41,7 +41,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("127.0.0.1", 5000);
+            _challengerClient = new TcpClient("192.168.0.55", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -50,7 +50,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("127.0.0.1", 5000);
+            _creatorClient = new TcpClient("192.168.0.55", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
@@ -84,52 +84,72 @@ namespace Hangman.UI.Views
 
                 byte[] buffer = new byte[1024];
                 int bytesRead;
+                //ERROR SI LE DOY A FINALIZAR PARTIDA
 
-                while ((bytesRead = _creatorStream.Read(buffer, 0, buffer.Length)) != 0)
+                try
+                {
+                    while ((bytesRead = _creatorStream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+
+                        string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                        if (letter == _gameDTO.GameCode)
+                        {
+                            MessageBox.Show("Se ha conectado el Challenger", "Game Start", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+
+                        if (letter == "Game Over")
+                        {
+
+                            if (_gameDTO.Language == "Spanish")
+                            {
+                                MessageBox.Show("Fin del Juego", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else if (_gameDTO.Language == "English")
+                            {
+                                MessageBox.Show("Game Over", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+
+                            _creatorStream.Close();
+                            _creatorClient.Close();
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                MenuView menuView = new MenuView(_playerDTO, _language);
+
+                                menuView.Show();
+                                this.Close();
+
+                            });
+                            return;
+
+                        }
+                        else
+                        {
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                ReceiveLetter(letter);
+                            });
+
+                        }
+
+                    }
+                }
+                catch (Exception e)
                 {
 
-                    string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    MessageBox.Show("La partida ha sido finalizada", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Debug.WriteLine(e.Message);
 
-                    if (letter == _gameDTO.GameCode)
+                    Dispatcher.Invoke(() =>
                     {
-                        MessageBox.Show("Se ha conectado el Challenger", "Game Start", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                        MenuView menuView = new MenuView(_playerDTO, _language);
 
-                    if (letter == "Game Over")
-                    {
+                        menuView.Show();
+                        this.Close();
 
-                        if (_gameDTO.Language == "Spanish")
-                        {
-                            MessageBox.Show("Fin del Juego", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                        else if (_gameDTO.Language == "English")
-                        {
-                            MessageBox.Show("Game Over", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-
-                        _creatorStream.Close();
-                        _creatorClient.Close();
-
-                        Dispatcher.Invoke(() =>
-                        {
-                            MenuView menuView = new MenuView(_playerDTO, _language);
-
-                            menuView.Show();
-                            this.Close();
-                            
-                        });
-                        return;
-
-                    }
-                    else
-                    {
-
-                        Dispatcher.Invoke(() =>
-                        {
-                            ReceiveLetter(letter);
-                        });
-
-                    }
+                    });
 
                 }
 
@@ -251,7 +271,8 @@ namespace Hangman.UI.Views
                 }
                 else
                 {
-
+                    _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+                    
                     _creatorStream.Close();
                     _creatorClient.Close();
 
