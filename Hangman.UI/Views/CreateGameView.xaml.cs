@@ -181,27 +181,37 @@ namespace Hangman.UI.Views
             WordDTO selectedWord = WordsTable.GetSelectedItem() as WordDTO;
             newGame.CreatorEmail = _player.Email;
 
-            newGame.Word = selectedWord.WordEN;
-
-            newGame.Language = _language.LanguageName;
-
-            try
+            if (selectedWord != null)
             {
 
-                Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
-                GameView gameView = new GameView(response, _player, _language);
+                newGame.Word = selectedWord.WordEN;
 
-                gameView.Show();
-                this.Close();
+                newGame.Language = _language.LanguageName;
 
+                try
+                {
+
+                    Adapters.ControllerAdapters.Services.Game.GameDTO response = _createGameAdapter.CreateGame(newGame);
+                    GameView gameView = new GameView(response, _player, _language);
+
+                    gameView.Show();
+                    this.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    InformationControl.Show(
+                        _resourceManager.GetString("RN_Error", _cultureInfo),
+                        _resourceManager.GetString("RN_RegisterError", _cultureInfo),
+                        _resourceManager.GetString("RN_Accept", _cultureInfo));
+                }
             }
-            catch (Exception ex)
+            else
             {
-                InformationControl.Show(
-                    _resourceManager.GetString("RN_Error", _cultureInfo), 
-                    _resourceManager.GetString("RN_RegisterError", _cultureInfo), 
-                    _resourceManager.GetString("RN_Accept", _cultureInfo));
+                MessageBox.Show("Please select a word to start the game");
             }
+
+            
         }
 
         private void Button_Cancel_ButtonControlClick(object sender, RoutedEventArgs e)
