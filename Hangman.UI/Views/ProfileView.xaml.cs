@@ -76,15 +76,9 @@ namespace Hangman.UI.Views
             {
                 SetGames(_games);
             }
-            if (_games[0].ResponseCode == 1)
-            {
-                InformationControl.Show(
-                    _resourceManager.GetString("RN_Error", _cultureInfo),
-                    _resourceManager.GetString("RN_NoGamesFound", _cultureInfo),
-                    _resourceManager.GetString("RN_Accept", _cultureInfo));
-            }
 
             GamesTable.SetItemsSource(_gameDTOs);
+
         }
 
         private void SetLanguage(string language)

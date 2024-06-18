@@ -57,18 +57,17 @@ namespace Hangman.UI.Views
             }
             catch (Exception e)
             {
-
-                InformationControl.Show(
-                    _resourceManager.GetString("RN_Error", _cultureInfo), 
-                    _resourceManager.GetString("RN_NoWaitingGamesFound", _cultureInfo), 
-                    _resourceManager.GetString("RN_Accept", _cultureInfo));
-                this.Close();
-
+                
             }
 
             SetLanguagesFromTitleBarControl();
-            SetGames(_games);
-            GamesTable.SetItemsSource(_gameDTOs);
+
+            if (_games != null)
+            {
+                SetGames(_games);
+                GamesTable.SetItemsSource(_gameDTOs);
+            }
+
 
         }
 
@@ -170,35 +169,34 @@ namespace Hangman.UI.Views
         {
             searchGameAdapter = new SearchGameAdapter();
 
-            if (TextBox_GameCode.Text != "")
-            {
-                var filtered_gameDTOs = from game in _games
-                                        where game.GameCode.Contains(TextBox_GameCode.Text.ToUpper())
-                                        select game;
-
-                SetGames(filtered_gameDTOs.ToList());
-                GamesTable.SetItemsSource(_gameDTOs);
-            } 
-            else
+            if (_games != null)
             {
 
-                try
+                if (TextBox_GameCode.Text != "")
                 {
-                    _games = searchGameAdapter.GetWaitingGames();
+                    var filtered_gameDTOs = from game in _games
+                                            where game.GameCode.Contains(TextBox_GameCode.Text.ToUpper())
+                                            select game;
+
+                    SetGames(filtered_gameDTOs.ToList());
+                    GamesTable.SetItemsSource(_gameDTOs);
                 }
-                catch (Exception ex)
+                else
                 {
 
-                    InformationControl.Show(
-                        _resourceManager.GetString("RN_Error", _cultureInfo), 
-                        _resourceManager.GetString("RN_NoWaitingGamesFound", _cultureInfo), 
-                        _resourceManager.GetString("RN_Accept", _cultureInfo));
-                    this.Close();
+                    try
+                    {
+                        _games = searchGameAdapter.GetWaitingGames();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    SetGames(_games);
+                    GamesTable.SetItemsSource(_gameDTOs);
 
                 }
-
-                SetGames(_games);
-                GamesTable.SetItemsSource(_gameDTOs);
 
             }
 

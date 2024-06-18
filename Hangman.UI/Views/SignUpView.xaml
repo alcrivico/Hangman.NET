@@ -131,14 +131,31 @@
                                 Height="50"
                                 FieldName="Confirmar Contraseña" />
                         </Grid>
-                        <components:ButtonControl
-                            x:Name="Button_SignUp"
-                            Width="200"
-                            Height="55"
-                            Margin="0,0,0,20"
-                            ButtonControlClick="Button_SignUp_ButtonControlClick"
-                            FontSize="24"
-                            Text="Registrarse" />
+
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+                            <components:ButtonControl
+                                x:Name="Button_SignUp"
+                                Width="200"
+                                Height="55"
+                                Margin="0,20,0,20"
+                                HorizontalAlignment="Center"
+                                ButtonControlClick="Button_SignUp_ButtonControlClick"
+                                FontSize="24"
+                                Text="Registrarse" />
+
+                            <components:ButtonControl
+                                x:Name="Button_Back"
+                                Width="200"
+                                Height="55"
+                                Margin="40,20,0,20"
+                                HorizontalAlignment="Center"
+                                ButtonControlClick="BackButton_Click"
+                                FontSize="24"
+                                Text="Regresar"
+                                Visibility="Collapsed" />
+
+                        </StackPanel>
 
                         <TextBlock
                             x:Name="TextBlock_LogIn"

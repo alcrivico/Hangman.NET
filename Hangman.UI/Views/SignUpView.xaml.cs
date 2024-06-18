@@ -22,7 +22,6 @@ namespace Hangman.UI.Views
         private CultureInfo _cultureInfo;
         private LanguageDTO _language;
         private PlayerDTO _player;
-        private Button Button_Back;
 
         public SignUpView(LanguageDTO language)
         {
@@ -52,6 +51,8 @@ namespace Hangman.UI.Views
 
             InitializeComponent();
 
+            Button_Back.Visibility = Visibility.Visible;
+
             _resourceManager = new ResourceManager("Hangman.UI.Resources.I18n.Strings", typeof(SignUpView).Assembly);
 
             Title.Text = _resourceManager.GetString("RN_EditProfile", _cultureInfo);
@@ -73,19 +74,6 @@ namespace Hangman.UI.Views
                 SetLanguage("es");
             }
 
-            Button_Back = new Button
-            {
-                Content = _resourceManager.GetString("RN_Back", _cultureInfo),
-                Width = 100,
-                Height = 30,
-                Margin = new Thickness(10),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Button_Back.Click += BackButton_Click;
-
-            Grid.SetRow(Button_Back, 2); 
-            Grid.SetColumn(Button_Back, 0);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -177,7 +165,7 @@ namespace Hangman.UI.Views
 
                         InformationControl.Show(_resourceManager.GetString("RN_Success", _cultureInfo), _resourceManager.GetString("RN_SignUpSuccess", _cultureInfo), _resourceManager.GetString("RN_Accept", _cultureInfo));
                         
-                        LogInView logInView = new LogInView();
+                        LogInView logInView = new LogInView(_language);
 
                         logInView.Show();
                         this.Close();
