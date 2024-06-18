@@ -167,7 +167,7 @@ namespace Hangman.UI.Views
             try
             {
 
-                _word = _gameAdapter.SearchWord(_gameDTO.WordEN);
+                _word = _gameAdapter.SearchWord(_gameDTO.Word);
 
                 if (_gameDTO.Language == "Spanish")
                 {

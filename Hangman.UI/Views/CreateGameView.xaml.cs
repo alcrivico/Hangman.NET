@@ -180,8 +180,9 @@ namespace Hangman.UI.Views
             Adapters.ControllerAdapters.Services.Game.GameDTO newGame = new Adapters.ControllerAdapters.Services.Game.GameDTO();
             WordDTO selectedWord = WordsTable.GetSelectedItem() as WordDTO;
             newGame.CreatorEmail = _player.Email;
-            newGame.WordES = selectedWord.WordES;
-            newGame.WordEN = selectedWord.WordEN;
+
+            newGame.Word = selectedWord.WordEN;
+
             newGame.Language = _language.LanguageName;
 
             try
