@@ -76,11 +76,6 @@ namespace Hangman.Services.Communications
             return _gameRepository.GetWaitingGames();
         }
 
-        public GameDTO GetPlayerType(string email, string gameCode)
-        {
-            return _gameRepository.GetPlayerType(email, gameCode);
-        }
-
         public List<LanguageDTO> GetLanguagesList()
         {
             return _languageRepository.GetLanguagesList();

@@ -28,9 +28,6 @@ namespace Hangman.Services.Communications
         List<GameDTO> GetWaitingGames();
 
         [OperationContract]
-        GameDTO GetPlayerType(string email, string gameCode);
-
-        [OperationContract]
         List<LanguageDTO> GetLanguagesList();
 
         [OperationContract]

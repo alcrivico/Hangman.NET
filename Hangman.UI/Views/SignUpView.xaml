@@ -110,10 +110,17 @@
                                 Height="50"
                                 FieldName="Correo Electrónico"
                                 Text="" />
-                            <components:PasswordBoxControl
-                                x:Name="PasswordBox_Password"
+                            <components:TextBoxControl
+                                x:Name="TextBox_Telephone"
                                 Grid.Row="1"
                                 Grid.Column="2"
+                                Width="230"
+                                Height="50"
+                                FieldName="Telefono" />
+                            <components:PasswordBoxControl
+                                x:Name="PasswordBox_Password"
+                                Grid.Row="2"
+                                Grid.Column="0"
                                 Width="230"
                                 Height="50"
                                 FieldName="Contraseña" />
