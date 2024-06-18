@@ -17,7 +17,9 @@ namespace Hangman.Services.Models.DTO
 
         public string GameCode { get; set; }
 
-        public string Status { get; set; }
+        public string StatusEn { get; set; }
+
+        public string StatusEs { get; set; }
 
         public string CreatorName { get; set; }
         

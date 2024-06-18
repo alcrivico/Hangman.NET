@@ -60,7 +60,8 @@ namespace Hangman.Services.Repositories.Implementations
                                         {
                                             CreationDate = game.CreationDate,
                                             GameCode = game.GameCode,
-                                            Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
+                                            StatusEn = gameStatus.StatusEn,
+                                            StatusEs = gameStatus.StatusEs,
                                             CreatorName = creator.Name,
                                             CreatorEmail = creator.Email,
                                             Word = (language.LanguageName == "English") ? word.WordEN : word.WordES,
@@ -127,7 +128,8 @@ namespace Hangman.Services.Repositories.Implementations
                                 {
                                     CreationDate = game.CreationDate,
                                     GameCode = game.GameCode,
-                                    Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
+                                    StatusEn = gameStatus.StatusEn,
+                                    StatusEs = gameStatus.StatusEs,
                                     CreatorName = creator.Name,
                                     CreatorEmail = creator.Email,
                                     ChallengerName = challenger.Name,
@@ -197,7 +199,8 @@ namespace Hangman.Services.Repositories.Implementations
                                      {
                                          CreationDate = game.CreationDate,
                                          GameCode = game.GameCode,
-                                         Status = (language.LanguageName == "English") ? gameStatus.StatusEn : gameStatus.StatusEs,
+                                         StatusEn = gameStatus.StatusEn,
+                                         StatusEs = gameStatus.StatusEs,
                                          CreatorName = creator.Name,
                                          CreatorEmail = creator.Email,
                                          Word = (language.LanguageName == "English") ? word.WordEN : word.WordES,
@@ -258,7 +261,7 @@ namespace Hangman.Services.Repositories.Implementations
                             Table<GameStatus> statusTable = dataSource.GetTable<GameStatus>();
 
                             var statusId = (from s in statusTable
-                                            where s.StatusEn == status
+                                            where s.StatusEn == status || s.StatusEs == status
                                             select s.Id).First();
 
                             game.StatusId = statusId;
