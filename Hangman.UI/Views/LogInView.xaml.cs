@@ -179,16 +179,6 @@ namespace Hangman.UI.Views
             
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-
-        }
-
     }
 
 }

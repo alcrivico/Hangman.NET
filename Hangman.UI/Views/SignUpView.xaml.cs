@@ -147,6 +147,7 @@ namespace Hangman.UI.Views
 
         private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("SignUp Button Clicked");
             var playerDTO = new PlayerDTO
             {
 
@@ -280,15 +281,6 @@ namespace Hangman.UI.Views
             TextBlock_LogIn.Foreground = FindResource("SolidColorBrush_Gold") as SolidColorBrush;
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-
-        }
     }
 
 }

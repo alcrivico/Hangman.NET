@@ -11,7 +11,6 @@
     Height="720"
     AllowsTransparency="True"
     Background="Transparent"
-    MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"

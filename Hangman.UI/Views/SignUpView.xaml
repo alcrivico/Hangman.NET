@@ -11,7 +11,6 @@
     Height="720"
     AllowsTransparency="True"
     Background="Transparent"
-    MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -139,7 +138,7 @@
                             Margin="0,0,0,20"
                             ButtonControlClick="Button_SignUp_ButtonControlClick"
                             FontSize="24"
-                            Text="Registrarse" Loaded="Button_SignUp_Loaded" />
+                            Text="Registrarse" />
 
                         <TextBlock
                             x:Name="TextBlock_LogIn"
