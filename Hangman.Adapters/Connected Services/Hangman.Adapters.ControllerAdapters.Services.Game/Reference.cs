@@ -34,13 +34,13 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         
         private int ResponseCodeField;
         
-        private string StatusField;
+        private string StatusEnField;
+        
+        private string StatusEsField;
         
         private int WaitingTimeField;
         
-        private string WordENField;
-        
-        private string WordESField;
+        private string WordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string ChallengerEmail
@@ -147,15 +147,28 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Status
+        public string StatusEn
         {
             get
             {
-                return this.StatusField;
+                return this.StatusEnField;
             }
             set
             {
-                this.StatusField = value;
+                this.StatusEnField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StatusEs
+        {
+            get
+            {
+                return this.StatusEsField;
+            }
+            set
+            {
+                this.StatusEsField = value;
             }
         }
         
@@ -173,28 +186,15 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WordEN
+        public string Word
         {
             get
             {
-                return this.WordENField;
+                return this.WordField;
             }
             set
             {
-                this.WordENField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string WordES
-        {
-            get
-            {
-                return this.WordESField;
-            }
-            set
-            {
-                this.WordESField = value;
+                this.WordField = value;
             }
         }
     }
@@ -438,9 +438,6 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetWaitingGames", ReplyAction="http://tempuri.org/IGameServices/GetWaitingGamesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO>> GetWaitingGamesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetPlayerType", ReplyAction="http://tempuri.org/IGameServices/GetPlayerTypeResponse")]
-        System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> GetPlayerTypeAsync(string email, string gameCode);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameServices/GetLanguagesList", ReplyAction="http://tempuri.org/IGameServices/GetLanguagesListResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync();
         
@@ -526,11 +523,6 @@ namespace Hangman.Adapters.ControllerAdapters.Services.Game
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO>> GetWaitingGamesAsync()
         {
             return base.Channel.GetWaitingGamesAsync();
-        }
-        
-        public System.Threading.Tasks.Task<Hangman.Adapters.ControllerAdapters.Services.Game.GameDTO> GetPlayerTypeAsync(string email, string gameCode)
-        {
-            return base.Channel.GetPlayerTypeAsync(email, gameCode);
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Hangman.Adapters.ControllerAdapters.Services.Game.LanguageDTO>> GetLanguagesListAsync()
