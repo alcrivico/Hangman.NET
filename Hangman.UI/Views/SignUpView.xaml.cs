@@ -88,7 +88,7 @@ namespace Hangman.UI.Views
             
             _cultureInfo = new CultureInfo(language);
             Thread.CurrentThread.CurrentUICulture = _cultureInfo;
-            Title.Text = _resourceManager.GetString("RN_TitleSignUp", _cultureInfo);
+            Title.Text = _resourceManager.GetString(_isEdit ? "RN_EditProfile" : "RN_TitleSignUp", _cultureInfo);
             TextBox_Name.FieldName = _resourceManager.GetString("RN_Name", _cultureInfo);
             TextBox_FirstLastName.FieldName = _resourceManager.GetString("RN_FirstLastName", _cultureInfo);
             TextBox_SecondLastName.FieldName = _resourceManager.GetString("RN_SecondLastName", _cultureInfo);
@@ -102,7 +102,7 @@ namespace Hangman.UI.Views
             
             PasswordBox_ConfirmPassword.FieldName = _resourceManager.GetString("RN_ConfirmPassword", _cultureInfo);
             PasswordBox_Password.FieldName = _resourceManager.GetString("RN_Password", _cultureInfo);
-            Button_SignUp.Text = _resourceManager.GetString("RN_BtnSignUp", _cultureInfo);
+            Button_SignUp.Text = _resourceManager.GetString(_isEdit ? "RN_SaveChanges" : "RN_BtnSignUp", _cultureInfo);
             TextBlock_LogIn.Text = _resourceManager.GetString("RN_LogIn", _cultureInfo);
             Footer_Text.Text = _resourceManager.GetString("RN_Copyright", _cultureInfo);
             _language = TitleBarControl.SelectedItem as LanguageDTO;
