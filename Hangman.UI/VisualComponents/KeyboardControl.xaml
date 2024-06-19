@@ -31,7 +31,7 @@
                     FontSize="16"
                     FontWeight="Bold"
                     Foreground="{StaticResource SolidColorBrush_Gold}"
-                    Text="Enviar Letras" />
+                    Text="{Binding Title}" />
 
                 <UniformGrid
                     Margin="0,0,0,10"

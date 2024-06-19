@@ -43,7 +43,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("192.168.0.55", 5000);
+            _challengerClient = new TcpClient("192.168.1.67", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.0.55", 5000);
+            _creatorClient = new TcpClient("192.168.1.67", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
@@ -282,10 +282,14 @@ namespace Hangman.UI.Views
             if (language.LanguageName.Equals("Spanish"))
             {
                 TitleBarControl.FieldName = "Idioma";
+                Button_ExitGame.Text = "Salir del Juego";
+                Keyboard.Title = "Teclado";
             }
             else if (language.LanguageName.Equals("English"))
             {
                 TitleBarControl.FieldName = "Language";
+                Button_ExitGame.Text = "Exit Game";
+                Keyboard.Title = "Keyboard";
             }
 
             _language = TitleBarControl.SelectedItem as LanguageDTO;
