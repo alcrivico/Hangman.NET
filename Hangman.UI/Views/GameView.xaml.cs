@@ -98,20 +98,21 @@ namespace Hangman.UI.Views
                         if (letter == "Disconnected")
                         {
 
-                            if (_gameDTO.Language == "Spanish")
-                            {
-                                InformationControl.Show(_word.WordES, "La partida ha sido cancelada", "Aceptar");
-                            }
-                            else if (_gameDTO.Language == "English")
-                            {
-                                InformationControl.Show(_word.WordEN, "Game has been cancelled", "Ok");
-                            }
 
                             _challengerStream.Close();
                             _challengerClient.Close();
 
                             Dispatcher.Invoke(() =>
                             {
+                                if (_gameDTO.Language == "Spanish")
+                                {
+                                    InformationControl.Show(_word.WordES, "La partida ha sido cancelada", "Aceptar");
+                                }
+                                else if (_gameDTO.Language == "English")
+                                {
+                                    InformationControl.Show(_word.WordEN, "Game has been cancelled", "Ok");
+                                }
+
                                 MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
