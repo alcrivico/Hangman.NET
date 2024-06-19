@@ -135,6 +135,13 @@ namespace Hangman.UI.Views
                     { "BindingName", "CreatorName" },
 
                 },
+                new Dictionary<string, string> {
+
+                    { "Name", _resourceManager.GetString("RN_LanguageField", _cultureInfo) },
+                    { "Width", "*" },
+                    { "BindingName", "Language" }
+
+                }
                 
 
             };
