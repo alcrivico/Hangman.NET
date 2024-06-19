@@ -124,7 +124,7 @@ namespace Hangman.UI.Views
                 new Dictionary<string, string> {
 
                     { "Name", _resourceManager.GetString("RN_GameCode", _cultureInfo) },
-                    { "Width", "150.0" },
+                    { "Width", "*" },
                     { "BindingName", "GameCode" }
 
                 },
@@ -135,13 +135,7 @@ namespace Hangman.UI.Views
                     { "BindingName", "CreatorName" },
 
                 },
-                new Dictionary<string, string> {
-
-                    { "Name", _resourceManager.GetString("RN_TimeWaiting", _cultureInfo) },
-                    { "Width", "*" },
-                    { "BindingName", "WaitingTime" },
-
-                }
+                
 
             };
 
