@@ -126,11 +126,12 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-                    InformationControl.Show("Game Over", "La partida ha sido finalizada", "Aceptar");
+                    
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
                     {
+                        InformationControl.Show("Game Over", "La partida ha sido finalizada", "Aceptar");
                         MenuView menuView = new MenuView(_playerDTO, _language);
 
                         menuView.Show();

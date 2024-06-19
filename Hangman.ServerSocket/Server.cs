@@ -145,7 +145,7 @@ namespace Hangman.ServerSocket
                 session.CreatorStream.Close();
                 session.ChallengerClient.Close();
                 session.CreatorClient.Close();
-                games.Remove(gameCode);
+                //games.Remove(gameCode);
                 Console.WriteLine($"Game {gameCode} connections closed.");
             }
         }
