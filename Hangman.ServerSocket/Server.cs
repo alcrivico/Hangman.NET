@@ -75,7 +75,7 @@ namespace Hangman.ServerSocket
 
             try
             {
-                session.ChallengerStream.Write(Encoding.UTF8.GetBytes(gameCode), 0, gameCode.Length);
+                session.CreatorStream.Write(Encoding.UTF8.GetBytes(gameCode), 0, gameCode.Length);
                 
                 while ((bytesRead = session.ChallengerStream.Read(buffer, 0, buffer.Length)) != 0)
                 {
@@ -132,7 +132,7 @@ namespace Hangman.ServerSocket
                 }
             } catch (Exception e)
             {
-                Console.WriteLine($"Error: {e.Message}");
+                //Console.WriteLine($"Error: {e.Message}");
             }
 
             CloseConnections(gameCode);
