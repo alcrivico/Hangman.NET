@@ -270,6 +270,9 @@
   <data name="RN_SecondLastName" xml:space="preserve">
     <value>Apellido Materno</value>
   </data>
+  <data name="RN_SelectWord" xml:space="preserve">
+    <value>Elija una palabra para continuar</value>
+  </data>
   <data name="RN_SignUpSuccess" xml:space="preserve">
     <value>Registro exitoso. Puedes iniciar sesión ahora.</value>
   </data>

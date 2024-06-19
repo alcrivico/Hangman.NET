@@ -5,9 +5,11 @@ using Hangman.UI.VisualComponents;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -321,8 +323,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-
-                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    InformationControl.Show("Error", e.Message, "Aceptar");
                     this.Close();
 
                 }
@@ -348,9 +349,13 @@ namespace Hangman.UI.Views
 
         private void Button_ExitGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea salir del juego?", "Salir del juego", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
+            bool result = ConfirmationControl.Show(
+                                "Salir del juego",
+                                "¿Está seguro que desea salir del juego?",
+                                "Aceptar",
+                                "Cancelar"
+                            );
+            if (result)
             {
                 
                 if (_gameDTO.CreatorEmail != _playerDTO.Email)
@@ -401,8 +406,7 @@ namespace Hangman.UI.Views
 
                                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Won");
 
-                                MessageBox.Show("¡Felicidades! Has ganado la partida", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
-
+                                InformationControl.Show("información", "¡Felicidades! Has ganado la partida", "Aceptar");
                                 SendLetter("Game Over");
 
                                 _challengerStream.Close();
@@ -438,8 +442,7 @@ namespace Hangman.UI.Views
 
                                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Lost");
 
-                                MessageBox.Show("La palabra secreta era\n" + _word.WordES, "Derrota", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                                InformationControl.Show("Derrota", "La palabra secreta era\n" + _word.WordES, "Aceptar");
                                 SendLetter("Game Over");
 
                                 _challengerStream.Close();
@@ -472,7 +475,7 @@ namespace Hangman.UI.Views
                                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Won");
 
                                 MessageBox.Show("Congratulations! You have won the game", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
-
+                                InformationControl.Show(_word.WordEN, "Congratulations! You have won the game", "Ok");
                                 SendLetter("Game Over");
 
                                 _challengerStream.Close();
@@ -501,8 +504,7 @@ namespace Hangman.UI.Views
 
                                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Lost");
 
-                                MessageBox.Show("The secret word was\n" + _word.WordEN, "Defeat", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                                InformationControl.Show("Defeat", "The secret word was\n" + _word.WordEN, "Ok");
                                 SendLetter("Game Over");
 
                                 _challengerStream.Close();
@@ -524,7 +526,7 @@ namespace Hangman.UI.Views
                 catch (Exception e)
                 {
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
-                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    InformationControl.Show("Error", e.Message, "Ok");
 
                     MenuView menuView = new MenuView(_playerDTO, _language);
 
@@ -580,7 +582,7 @@ namespace Hangman.UI.Views
 
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
 
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    InformationControl.Show("Error", ex.Message, "OK");
 
                     MenuView menuView = new MenuView(_playerDTO, _language);
 
