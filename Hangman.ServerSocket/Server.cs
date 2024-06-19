@@ -15,7 +15,7 @@ namespace Hangman.ServerSocket
 
         public static void Start()
         {
-            server = new TcpListener(IPAddress.Any, 443);
+            server = new TcpListener(IPAddress.Any, 5000);
             server.Start();
             Console.WriteLine("Server started...");
 
