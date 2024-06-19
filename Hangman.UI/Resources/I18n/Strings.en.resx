@@ -270,6 +270,9 @@
   <data name="RN_SecondLastName" xml:space="preserve">
     <value>Second Last Name</value>
   </data>
+  <data name="RN_SelectWord" xml:space="preserve">
+    <value>Select a word to continue</value>
+  </data>
   <data name="RN_SignUpSuccess" xml:space="preserve">
     <value>Registration successful. You can log in now.</value>
   </data>

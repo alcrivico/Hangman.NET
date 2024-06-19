@@ -208,7 +208,11 @@ namespace Hangman.UI.Views
             }
             else
             {
-                MessageBox.Show("Please select a word to start the game");
+                InformationControl.Show(
+                    _resourceManager.GetString("RN_Error", _cultureInfo),
+                    _resourceManager.GetString("RN_SelectWord", _cultureInfo),
+                    _resourceManager.GetString("RN_Accept", _cultureInfo)
+                );
             }
 
             
