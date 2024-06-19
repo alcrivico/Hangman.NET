@@ -42,6 +42,8 @@ namespace Hangman.ServerSocket
                     games[gameCode].CreatorClient = client;
                     games[gameCode].CreatorStream = stream;
                     Console.WriteLine($"Creator connected for game {gameCode}.");
+                    Thread creatorThread = new Thread(() => ListenToCreator(gameCode));
+                    creatorThread.Start();
                 }
                 else if (games[gameCode].ChallengerClient == null)
                 {
@@ -49,7 +51,6 @@ namespace Hangman.ServerSocket
                     games[gameCode].ChallengerStream = stream;
                     Console.WriteLine($"Challenger connected for game {gameCode}.");
                     Thread challengerThread = new Thread(() => ListenToChallenger(gameCode));
-                    Thread creatorThread = new Thread(() => ListenToCreator(gameCode));
                     challengerThread.Start();
                 }
                 else
