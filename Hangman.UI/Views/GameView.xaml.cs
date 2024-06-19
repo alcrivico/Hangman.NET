@@ -43,7 +43,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("192.168.0.55", 5000);
+            _challengerClient = new TcpClient("192.168.1.67", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.0.55", 5000);
+            _creatorClient = new TcpClient("192.168.1.67", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
@@ -175,11 +175,11 @@ namespace Hangman.UI.Views
                                 //InformationControl.Show("Game Over", "La partida ha sido finalizada", "Ok");
                                 if (_gameDTO.Language == "Spanish")
                                 {
-                                    MessageBox.Show("El jugador se ha rendido", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                                    InformationControl.Show(_word.WordES, "El jugador se ha rendido", "Aceptar");
                                 }
                                 else if (_gameDTO.Language == "English")
                                 {
-                                    MessageBox.Show("The player has surrendered", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                                    InformationControl.Show(_word.WordEN, "The player has surrendered", "Ok");
                                 }
                                 MenuView menuView = new MenuView(_playerDTO, _language);
 
@@ -194,7 +194,15 @@ namespace Hangman.UI.Views
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                                if (_gameDTO.Language == "Spanish")
+                                {
+                                    InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                                }
+                                else if (_gameDTO.Language == "English")
+                                {
+                                    InformationControl.Show("Game Start", "Challenger is connected", "Ok");
+                                }
+                                
                             });
 
                         }
@@ -352,12 +360,27 @@ namespace Hangman.UI.Views
 
         private void Button_ExitGame_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            bool result = ConfirmationControl.Show(
+            bool result = false;
+
+            if (_gameDTO.Language == "Spanish")
+            {
+                result = ConfirmationControl.Show(
                                 "Salir del juego",
                                 "¿Está seguro que desea salir del juego?",
                                 "Aceptar",
                                 "Cancelar"
                             );
+            }
+            else if (_gameDTO.Language == "English")
+            {
+                result = ConfirmationControl.Show(
+                                "Exit the game",
+                                "Are you sure you want to exit the game?",
+                                "Ok",
+                                "Cancel"
+                            );
+            }
+            
             if (result)
             {
                 
