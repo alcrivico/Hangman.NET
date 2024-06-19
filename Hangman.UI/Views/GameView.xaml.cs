@@ -43,7 +43,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("192.168.0.55", 5000);
+            _challengerClient = new TcpClient("192.168.1.67", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -52,7 +52,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.0.55", 5000);
+            _creatorClient = new TcpClient("192.168.1.67", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
@@ -96,7 +96,7 @@ namespace Hangman.UI.Views
 
                         if (letter == _gameDTO.GameCode)
                         {
-                            MessageBox.Show("Se ha conectado el Challenger", "Game Start", MessageBoxButton.OK, MessageBoxImage.Information);
+                            InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
                         }
 
                         if (letter == "Game Over")
@@ -104,11 +104,11 @@ namespace Hangman.UI.Views
 
                             if (_gameDTO.Language == "Spanish")
                             {
-                                MessageBox.Show("Fin del Juego", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                                InformationControl.Show(_word.WordES, "Fin del Juego", "Aceptar");
                             }
                             else if (_gameDTO.Language == "English")
                             {
-                                MessageBox.Show("Game Over", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                                InformationControl.Show(_word.WordEN, "Game Over", "Ok");
                             }
 
                             _creatorStream.Close();
@@ -139,8 +139,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-
-                    MessageBox.Show("La partida ha sido finalizada", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationControl.Show("Game Over", "La partida ha sido finalizado", "Ok");
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
@@ -382,7 +381,6 @@ namespace Hangman.UI.Views
 
                                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Won");
 
-                                MessageBox.Show("Congratulations! You have won the game", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
                                 InformationControl.Show(_word.WordEN, "Congratulations! You have won the game", "Ok");
                                 SendLetter("Game Over");
 
