@@ -42,29 +42,13 @@ namespace Hangman.UI.Views
         NetworkStream _creatorStream;
         private void StartChallengerClient()
         {
-            try
-            {
-                _challengerClient = new TcpClient("192.168.0.55", 5000);
-                _challengerStream = _challengerClient.GetStream();
 
-                SendLetter(_gameDTO.GameCode);
-                ListenForEnd();
-            }
-            catch (Exception e)
-            {
-                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Left");
-                SendLetter("Disconnected");
+            _challengerClient = new TcpClient("192.168.0.55", 5000);
+            _challengerStream = _challengerClient.GetStream();
 
-                Dispatcher.Invoke(() =>
-                {
-                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
+            SendLetter(_gameDTO.GameCode);
+            ListenForEnd();
 
-                    MenuView menuView = new MenuView(_playerDTO, _language);
-                    menuView.Show();
-                    this.Close();
-                });
-            }
-            
         }
         private void StartCreatorClient()
         {
@@ -72,24 +56,10 @@ namespace Hangman.UI.Views
             _creatorClient = new TcpClient("192.168.0.55", 5000);
             _creatorStream = _creatorClient.GetStream();
 
-                SendGameCode(_gameDTO.GameCode);
-                ListenForLetters();
-            }
-            catch (Exception e)
-            {
-                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+            SendGameCode(_gameDTO.GameCode);
+            ListenForLetters();
 
-                Dispatcher.Invoke(() =>
-                {
-                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
-
-                    MenuView menuView = new MenuView(_playerDTO, _language);
-                    menuView.Show();
-                    this.Close();
-                });
-            }
         }
-
         public void SendGameCode(string gameCode)
         {
             byte[] data = Encoding.UTF8.GetBytes(gameCode);
@@ -157,7 +127,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-                    
+
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
@@ -184,7 +154,7 @@ namespace Hangman.UI.Views
 
                 byte[] buffer = new byte[1024];
                 int bytesRead;
-                
+
                 try
                 {
                     while ((bytesRead = _creatorStream.Read(buffer, 0, buffer.Length)) != 0)
@@ -195,7 +165,7 @@ namespace Hangman.UI.Views
                         if (letter == "Disconnected")
                         {
 
-                            
+
 
                             _creatorStream.Close();
                             _creatorClient.Close();
@@ -232,7 +202,7 @@ namespace Hangman.UI.Views
                                 {
                                     InformationControl.Show("Game Start", "Challenger is connected", "Ok");
                                 }
-                                
+
                             });
 
                         }
@@ -275,7 +245,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-                    
+
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
@@ -410,13 +380,13 @@ namespace Hangman.UI.Views
                                 "Cancel"
                             );
             }
-            
+
             if (result)
             {
-                
+
                 if (_gameDTO.CreatorEmail != _playerDTO.Email)
                 {
-                    
+
                     _gameAdapter.LeftGame(_gameDTO.GameCode);
                     SendLetter("Disconnected");
 
@@ -426,7 +396,7 @@ namespace Hangman.UI.Views
 
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
                     SendGameCode("Disconnected");
-                    
+
 
                 }
 
