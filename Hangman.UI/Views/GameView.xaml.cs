@@ -100,11 +100,11 @@ namespace Hangman.UI.Views
 
                             if (_gameDTO.Language == "Spanish")
                             {
-                                MessageBox.Show("La partida ha sido cancelada", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                                InformationControl.Show(_word.WordES, "La partida ha sido cancelada", "Aceptar");
                             }
                             else if (_gameDTO.Language == "English")
                             {
-                                MessageBox.Show("Game has been cancelled", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                                InformationControl.Show(_word.WordEN, "Game has been cancelled", "Ok");
                             }
 
                             _challengerStream.Close();
@@ -126,8 +126,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-
-                    MessageBox.Show("La partida ha sido finalizada", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationControl.Show("Game Over", "La partida ha sido finalizada", "Aceptar");
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
@@ -233,7 +232,7 @@ namespace Hangman.UI.Views
                 }
                 catch (Exception e)
                 {
-                    InformationControl.Show("Game Over", "La partida ha sido finalizado", "Ok");
+                    InformationControl.Show("Game Over", "La partida ha sido finalizada", "Ok");
                     Debug.WriteLine(e.Message);
 
                     Dispatcher.Invoke(() =>
