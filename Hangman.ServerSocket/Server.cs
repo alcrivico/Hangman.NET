@@ -73,21 +73,28 @@ namespace Hangman.ServerSocket
             byte[] buffer = new byte[1024];
             int bytesRead;
 
-            while ((bytesRead = session.ChallengerStream.Read(buffer, 0, buffer.Length)) != 0)
+            try
             {
-                Console.WriteLine($"Received data from challenger for game {gameCode}.");
-
-                session.CreatorStream.Write(buffer, 0, bytesRead);
-
-                Console.WriteLine($"Data sent to creator for game {gameCode}.");
-
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-
-                if (message == "Game Over")
+                while ((bytesRead = session.ChallengerStream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    Console.WriteLine($"Game Over for game {gameCode}");
-                    break;
+                    Console.WriteLine($"Received data from challenger for game {gameCode}.");
+
+                    session.CreatorStream.Write(buffer, 0, bytesRead);
+
+                    Console.WriteLine($"Data sent to creator for game {gameCode}.");
+
+                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                    if (message == "Game Over")
+                    {
+                        Console.WriteLine($"Game Over for game {gameCode}");
+                        break;
+                    }
                 }
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.Message);
             }
 
             CloseConnections(gameCode);
@@ -104,21 +111,28 @@ namespace Hangman.ServerSocket
             byte[] buffer = new byte[1024];
             int bytesRead;
 
-            while ((bytesRead = session.CreatorStream.Read(buffer, 0, buffer.Length)) != 0)
+            try
             {
-                Console.WriteLine($"Received data from creator for game {gameCode}.");
-
-                session.ChallengerStream.Write(buffer, 0, bytesRead);
-
-                Console.WriteLine($"Data sent to challenger for game {gameCode}.");
-
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-
-                if (message == "Game Over")
+                while ((bytesRead = session.CreatorStream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    Console.WriteLine($"Game Over for game {gameCode}");
-                    break;
+                    Console.WriteLine($"Received data from creator for game {gameCode}.");
+
+                    session.ChallengerStream.Write(buffer, 0, bytesRead);
+
+                    Console.WriteLine($"Data sent to challenger for game {gameCode}.");
+
+                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                    if (message == "Game Over")
+                    {
+                        Console.WriteLine($"Game Over for game {gameCode}");
+                        break;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
 
             CloseConnections(gameCode);
