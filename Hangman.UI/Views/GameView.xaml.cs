@@ -42,24 +42,54 @@ namespace Hangman.UI.Views
         NetworkStream _creatorStream;
         private void StartChallengerClient()
         {
+            try
+            {
+                _challengerClient = new TcpClient("192.168.0.55", 5000);
+                _challengerStream = _challengerClient.GetStream();
 
-            _challengerClient = new TcpClient("192.168.1.67", 5000);
-            _challengerStream = _challengerClient.GetStream();
+                SendLetter(_gameDTO.GameCode);
+                ListenForEnd();
+            }
+            catch (Exception e)
+            {
+                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Left");
+                SendLetter("Disconnected");
 
-            SendLetter(_gameDTO.GameCode);
-            ListenForEnd();
+                Dispatcher.Invoke(() =>
+                {
+                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
 
+                    MenuView menuView = new MenuView(_playerDTO, _language);
+                    menuView.Show();
+                    this.Close();
+                });
+            }
+            
         }
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.1.67", 5000);
+            _creatorClient = new TcpClient("192.168.0.55", 5000);
             _creatorStream = _creatorClient.GetStream();
 
-            SendGameCode(_gameDTO.GameCode);
-            ListenForLetters();
+                SendGameCode(_gameDTO.GameCode);
+                ListenForLetters();
+            }
+            catch (Exception e)
+            {
+                _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
 
+                Dispatcher.Invoke(() =>
+                {
+                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
+
+                    MenuView menuView = new MenuView(_playerDTO, _language);
+                    menuView.Show();
+                    this.Close();
+                });
+            }
         }
+
         public void SendGameCode(string gameCode)
         {
             byte[] data = Encoding.UTF8.GetBytes(gameCode);
