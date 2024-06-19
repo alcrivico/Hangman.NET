@@ -438,12 +438,6 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO, _language);
-
-                                menuView.Show();
-
-                                this.Close();
-
                             }
 
                         }
@@ -474,12 +468,6 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO, _language);
-
-                                menuView.Show();
-
-                                this.Close();
-
                             }
 
                         }
@@ -506,12 +494,6 @@ namespace Hangman.UI.Views
                                 _challengerStream.Close();
                                 _challengerClient.Close();
 
-                                MenuView menuView = new MenuView(_playerDTO, _language);
-
-                                menuView.Show();
-
-                                this.Close();
-
                             }
 
                         }
@@ -534,12 +516,6 @@ namespace Hangman.UI.Views
 
                                 _challengerStream.Close();
                                 _challengerClient.Close();
-
-                                MenuView menuView = new MenuView(_playerDTO, _language);
-
-                                menuView.Show();
-
-                                this.Close();
 
                             }
 
