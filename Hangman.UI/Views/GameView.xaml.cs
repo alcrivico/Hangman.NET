@@ -55,11 +55,14 @@ namespace Hangman.UI.Views
                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Left");
                 SendLetter("Disconnected");
 
-                InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
+                Dispatcher.Invoke(() =>
+                {
+                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
 
-                MenuView menuView = new MenuView(_playerDTO, _language);
-                menuView.Show();
-                this.Close();
+                    MenuView menuView = new MenuView(_playerDTO, _language);
+                    menuView.Show();
+                    this.Close();
+                });
             }
             
         }
@@ -78,11 +81,14 @@ namespace Hangman.UI.Views
             {
                 _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
 
-                InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
+                Dispatcher.Invoke(() =>
+                {
+                    InformationControl.Show("Error", "No hemos podido conectarte a la partida", "Aceptar");
 
-                MenuView menuView = new MenuView(_playerDTO, _language);
-                menuView.Show();
-                this.Close();
+                    MenuView menuView = new MenuView(_playerDTO, _language);
+                    menuView.Show();
+                    this.Close();
+                });
             }
         }
 
