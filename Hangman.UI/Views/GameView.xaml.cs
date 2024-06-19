@@ -163,20 +163,17 @@ namespace Hangman.UI.Views
 
                         if (letter == _gameDTO.GameCode)
                         {
-                            InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                            Dispatcher.Invoke(() =>
+                            {
+                                InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                            });
+                            
                         }
 
                         if (letter == "Disconnected")
                         {
 
-                            if (_gameDTO.Language == "Spanish")
-                            {
-                                MessageBox.Show("El jugador se ha rendido", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
-                            }
-                            else if (_gameDTO.Language == "English")
-                            {
-                                MessageBox.Show("The player has surrendered", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
-                            }
+                            
 
                             _creatorStream.Close();
                             _creatorClient.Close();
@@ -184,6 +181,14 @@ namespace Hangman.UI.Views
                             Dispatcher.Invoke(() =>
                             {
                                 //InformationControl.Show("Game Over", "La partida ha sido finalizada", "Ok");
+                                if (_gameDTO.Language == "Spanish")
+                                {
+                                    MessageBox.Show("El jugador se ha rendido", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
+                                else if (_gameDTO.Language == "English")
+                                {
+                                    MessageBox.Show("The player has surrendered", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                                }
                                 MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
@@ -197,20 +202,19 @@ namespace Hangman.UI.Views
                         if (letter == "Game Over")
                         {
 
-                            if (_gameDTO.Language == "Spanish")
-                            {
-                                InformationControl.Show(_word.WordES, "Fin del Juego", "Aceptar");
-                            }
-                            else if (_gameDTO.Language == "English")
-                            {
-                                InformationControl.Show(_word.WordEN, "Game Over", "Ok");
-                            }
-
                             _creatorStream.Close();
                             _creatorClient.Close();
 
                             Dispatcher.Invoke(() =>
                             {
+                                if (_gameDTO.Language == "Spanish")
+                                {
+                                    InformationControl.Show(_word.WordES, "Fin del Juego", "Aceptar");
+                                }
+                                else if (_gameDTO.Language == "English")
+                                {
+                                    InformationControl.Show(_word.WordEN, "Game Over", "Ok");
+                                }
                                 MenuView menuView = new MenuView(_playerDTO, _language);
 
                                 menuView.Show();
