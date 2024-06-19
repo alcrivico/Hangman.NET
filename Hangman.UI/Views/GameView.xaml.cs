@@ -43,7 +43,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("192.168.0.55", 5000);
+            _challengerClient = new TcpClient("192.168.1.67", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.0.55", 5000);
+            _creatorClient = new TcpClient("192.168.1.67", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
