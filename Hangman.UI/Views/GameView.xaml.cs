@@ -43,7 +43,7 @@ namespace Hangman.UI.Views
         private void StartChallengerClient()
         {
 
-            _challengerClient = new TcpClient("192.168.1.67", 5000);
+            _challengerClient = new TcpClient("192.168.0.55", 5000);
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
@@ -53,7 +53,7 @@ namespace Hangman.UI.Views
         private void StartCreatorClient()
         {
 
-            _creatorClient = new TcpClient("192.168.1.67", 5000);
+            _creatorClient = new TcpClient("192.168.0.55", 5000);
             _creatorStream = _creatorClient.GetStream();
 
             SendGameCode(_gameDTO.GameCode);
@@ -162,15 +162,6 @@ namespace Hangman.UI.Views
 
                         string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-                        if (letter == _gameDTO.GameCode)
-                        {
-                            Dispatcher.Invoke(() =>
-                            {
-                                InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
-                            });
-                            
-                        }
-
                         if (letter == "Disconnected")
                         {
 
@@ -199,8 +190,15 @@ namespace Hangman.UI.Views
                             return;
 
                         }
+                        if (letter == _gameDTO.GameCode)
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                            });
 
-                        if (letter == "Game Over")
+                        }
+                        else if (letter == "Game Over")
                         {
 
                             _creatorStream.Close();
