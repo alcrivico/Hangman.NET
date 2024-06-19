@@ -47,6 +47,7 @@ namespace Hangman.UI.Views
             _challengerStream = _challengerClient.GetStream();
 
             SendLetter(_gameDTO.GameCode);
+            ListenForEnd();
 
         }
         private void StartCreatorClient()
@@ -78,6 +79,72 @@ namespace Hangman.UI.Views
 
         }
 
+        private void ListenForEnd()
+        {
+
+            if (_challengerClient.Connected && _challengerStream != null)
+            {
+
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+
+                try
+                {
+                    while ((bytesRead = _challengerStream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+
+                        string letter = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                        if (letter == "Disconnected")
+                        {
+
+                            if (_gameDTO.Language == "Spanish")
+                            {
+                                MessageBox.Show("La partida ha sido cancelada", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else if (_gameDTO.Language == "English")
+                            {
+                                MessageBox.Show("Game has been cancelled", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+
+                            _challengerStream.Close();
+                            _challengerClient.Close();
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                MenuView menuView = new MenuView(_playerDTO, _language);
+
+                                menuView.Show();
+                                this.Close();
+
+                            });
+                            return;
+
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show("La partida ha sido finalizada", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Debug.WriteLine(e.Message);
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        MenuView menuView = new MenuView(_playerDTO, _language);
+
+                        menuView.Show();
+                        this.Close();
+
+                    });
+
+                }
+
+            }
+
+        }
+
         private void ListenForLetters()
         {
 
@@ -97,6 +164,33 @@ namespace Hangman.UI.Views
                         if (letter == _gameDTO.GameCode)
                         {
                             InformationControl.Show("Game Start", "Se ha conectado el Challenger", "Aceptar");
+                        }
+
+                        if (letter == "Disconnected")
+                        {
+
+                            if (_gameDTO.Language == "Spanish")
+                            {
+                                MessageBox.Show("El jugador se ha rendido", _word.WordES, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else if (_gameDTO.Language == "English")
+                            {
+                                MessageBox.Show("The player has surrendered", _word.WordEN, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+
+                            _creatorStream.Close();
+                            _creatorClient.Close();
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                MenuView menuView = new MenuView(_playerDTO, _language);
+
+                                menuView.Show();
+                                this.Close();
+
+                            });
+                            return;
+
                         }
 
                         if (letter == "Game Over")
@@ -262,22 +356,20 @@ namespace Hangman.UI.Views
                             );
             if (result)
             {
-
+                
                 if (_gameDTO.CreatorEmail != _playerDTO.Email)
                 {
-
+                    
                     _gameAdapter.LeftGame(_gameDTO.GameCode);
-
-                    _challengerStream.Close();
-                    _challengerClient.Close();
+                    SendLetter("Disconnected");
 
                 }
                 else
                 {
+
                     _gameAdapter.SetGameStatus(_gameDTO.GameCode, "Cancelled");
+                    SendGameCode("Disconnected");
                     
-                    _creatorStream.Close();
-                    _creatorClient.Close();
 
                 }
 
