@@ -19,20 +19,20 @@ INSERT INTO [GameStatus] ([StatusEn], [StatusEs]) VALUES
     ('Lost', 'Perdido');
 
 INSERT INTO [Language] ([LanguageName]) VALUES
-    ('Spanish'), --id 1
-    ('English'); -- id 2
+    ('Spanish'),
+    ('English');
 
 INSERT INTO [Player] ([FirstName], [FirstLastName], [SecondLastName], [BirthDate], [Email], [Password], [Telephone]) VALUES
-    ('Raul', 'Hernandez', 'Olivares', '2000-06-23', 'raulh230600@gmail.com', '12345', '2281940630'), --id 1
-    ('Albhieri', 'Villa', 'Contreras', '2002-12-18', 'alcrivico@gmail.com', 'alcrivico', '2282213736'), --id 2
-    ('Miguel', 'Morales', 'Cruz', '2002-08-30', 'moralesmiguelangel176@gmail.com', 'miguelon', '2311343356'), --id 3
-    ('Victoria', 'Moyano', '', '1999-01-04', 'soyunpokemonytuno@gmail.com', 'victoria', '2282728682'); --id 4
+    ('Raul', 'Hernandez', 'Olivares', '2000-06-23', 'raulh230600@gmail.com', '12345', '2281940630'),
+    ('Albhieri', 'Villa', 'Contreras', '2002-12-18', 'alcrivico@gmail.com', 'alcrivico', '2282213736'),
+    ('Miguel', 'Morales', 'Cruz', '2002-08-30', 'moralesmiguelangel176@gmail.com', 'miguelon', '2311343356'),
+    ('Victoria', 'Moyano', '', '1999-01-04', 'soyunpokemonytuno@gmail.com', 'victoria', '2282728682');
 
 INSERT INTO [Word] ([WordES], [WordEN], [TipES], [TipEN], [HasNumber], [CategoryId]) VALUES
     ('Pizza', 'Pizza', 'Comida italiana', 'Italian food', 0, 1),
     ('Perro', 'Dog', 'Animal doméstico', 'Domestic animal', 0, 2),
     ('Futbol', 'Soccer', 'Deporte de equipo', 'Team sport', 0, 3),
-    ('México', 'Mexico', 'País en América del Norte', 'Country in North America', 0, 4),
+    ('Mexico', 'Mexico', 'País en América del Norte', 'Country in North America', 0, 4),
     ('Guadalajara', 'Guadalajara', 'Ciudad en México', 'City in Mexico', 0, 5),
     ('Titanic', 'Titanic', 'Película famosa', 'Famous movie', 0, 6),
     ('Rock', 'Rock', 'Género musical', 'Musical genre', 0, 7),
@@ -42,9 +42,9 @@ INSERT INTO [Word] ([WordES], [WordEN], [TipES], [TipEN], [HasNumber], [Category
     ('Taco', 'Taco', 'Comida mexicana', 'Mexican food', 0, 1),
     ('Gato', 'Cat', 'Animal doméstico', 'Domestic animal', 0, 2),
     ('Baloncesto', 'Basketball', 'Deporte de equipo', 'Team sport', 0, 3),
-    ('Canadá', 'Canada', 'País en América del Norte', 'Country in North America', 0, 4),
+    ('Canada', 'Canada', 'País en América del Norte', 'Country in North America', 0, 4),
     ('Monterrey', 'Monterrey', 'Ciudad en México', 'City in Mexico', 0, 5),
-    ('El Rey León', 'The Lion King', 'Película famosa', 'Famous movie', 0, 6),
+    ('Frozen', 'Frozen', 'Película famosa', 'Famous movie', 0, 6),
     ('Pop', 'Pop', 'Género musical', 'Musical genre', 0, 7),
     ('Rojo', 'Red', 'Color primario', 'Primary color', 0, 8),
     ('Ingeniero', 'Engineer', 'Profesional de la ingeniería', 'Engineering professional', 0, 9),
@@ -54,13 +54,13 @@ INSERT INTO [Word] ([WordES], [WordEN], [TipES], [TipEN], [HasNumber], [Category
     ('Beisbol', 'Baseball', 'Deporte de equipo', 'Team sport', 0, 3),
     ('Brasil', 'Brazil', 'País en América del Sur', 'Country in South America', 0, 4),
     ('Puebla', 'Puebla', 'Ciudad en México', 'City in Mexico', 0, 5),
-    ('Harry Potter', 'Harry Potter', 'Saga de libros y películas', 'Book and movie saga', 0, 6),
-    ('Clásica', 'Classical', 'Género musical', 'Musical genre', 0, 7),
+    ('Crepusculo', 'Twilight', 'Saga de libros y películas', 'Book and movie saga', 0, 6),
+    ('Clasica', 'Classical', 'Género musical', 'Musical genre', 0, 7),
     ('Amarillo', 'Yellow', 'Color primario', 'Primary color', 0, 8),
     ('Abogado', 'Lawyer', 'Profesional del derecho', 'Legal professional', 0, 9);
 
 
---GameCode (pares de digitos): correo del creador + dia + mes + hora + minuto + segundo
+--GameCode: correo del creador(Primer par de) + dia + mes + hora + minuto + segundo
 INSERT INTO [Game] ([CreationDate], [GameCode], [StatusID], [CreatorID], [ChallengerId], [WordId], [LanguageId]) VALUES
     ('2021-06-23 12:00:00', 'RA230621120000', 5, 1, 4, 1, 1),
     ('2021-06-23 12:53:22', 'AL230621125322', 6, 2, 3, 2, 1),
