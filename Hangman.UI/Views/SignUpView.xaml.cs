@@ -78,9 +78,12 @@ namespace Hangman.UI.Views
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
             ProfileView profileView = new ProfileView(_player, _language);
+
             profileView.Show();
+            this.Close();
+
         }
 
         private void SetLanguage(string language)
@@ -114,7 +117,7 @@ namespace Hangman.UI.Views
 
             if (TitleBarControl.SelectedItem is LanguageDTO languageDTO)
             {
-                Debug.WriteLine("LanguageDTO: " + languageDTO.LanguageName);
+
                 if (languageDTO.LanguageName.Equals("Spanish"))
                 {
                     SetLanguage("es");
@@ -135,7 +138,7 @@ namespace Hangman.UI.Views
 
         private void Button_SignUp_ButtonControlClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("SignUp Button Clicked");
+
             var playerDTO = new PlayerDTO
             {
 

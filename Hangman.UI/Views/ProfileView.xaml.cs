@@ -191,8 +191,12 @@ namespace Hangman.UI.Views
 
         private void Button_ModifyProfile_ButtonControlClick(object sender, RoutedEventArgs e)
         {
+
             SignUpView profileView = new SignUpView(_player, _language);
+
             profileView.Show();
+            this.Close();
+
         }
 
         private void TextBoxControl_GlobalScore(object sender, RoutedEventArgs e)
